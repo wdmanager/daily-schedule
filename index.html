@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0064)file:///Users/shunsukekobayashi/Downloads/kuppography_v4_14.html -->
+<!-- saved from url=(0064)file:///Users/shunsukekobayashi/Downloads/kuppography_v4_18.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,7 +74,7 @@ textarea{resize:vertical;}
 .cal-d{font-size:12px;text-align:center;padding:5px 2px;border-radius:5px;cursor:pointer;transition:background .12s;min-height:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;}
 .cal-d:hover{background:var(--s2);}
 .cal-d.off{background:#FEF2F2;color:#DC2626;font-weight:500;}
-.cal-d.wedding{background:#FDF2F8;color:#DB2777;font-weight:500;}
+.cal-d.wedding{background:#EFF6FF;color:#2563EB;font-weight:500;}
 .cal-d.today{outline:2px solid var(--blue);outline-offset:-2px;}
 .cal-d.other-m{color:var(--t3);}
 .cal-d.weekend{color:var(--t3);}
@@ -178,9 +178,34 @@ textarea{resize:vertical;}
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"></circle><path d="M8 5v3M8 11v.5"></path></svg>
       <span style="font-size:13px;font-weight:500;" id="unsub-title">終業報告 未提出 — 4/16</span>
-      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">19:20 時点</span>
+      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">19:52 時点</span>
     </div>
     <div id="unsub-list"><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
+        <div class="av" style="background:#5B8DD9;">小</div>
+        <span style="font-size:13px;font-weight:500;flex:1;">小林 俊介</span>
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
+        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=0;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
+      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
+        <div class="av" style="background:#C9A84C;">飯</div>
+        <span style="font-size:13px;font-weight:500;flex:1;">飯倉 孝史</span>
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
+        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=1;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
+      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
+        <div class="av" style="background:#C96B6B;">佐</div>
+        <span style="font-size:13px;font-weight:500;flex:1;">佐々木 大翔</span>
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
+        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=2;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
+      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
+        <div class="av" style="background:#D4845A;">坂</div>
+        <span style="font-size:13px;font-weight:500;flex:1;">坂本 楓花</span>
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
+        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=3;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
+      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
+        <div class="av" style="background:#6AAB7B;">山</div>
+        <span style="font-size:13px;font-weight:500;flex:1;">山口 葵</span>
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
+        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=4;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
+      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
         <div class="av" style="background:#9B7EC8;">川</div>
         <span style="font-size:13px;font-weight:500;flex:1;">川上 輝</span>
         <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
@@ -199,9 +224,9 @@ textarea{resize:vertical;}
   </div>
 
   <div class="sg" id="dash-stats">
-    <div class="sc"><div class="sl">予定入力</div><div class="sv">6<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
-    <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:#DC2626;">5<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
-    <div class="sc"><div class="sl">チーム平均超過</div><div class="sv" style="color:#DC2626;">64<span style="font-size:16px;color:var(--t3);">分</span></div></div>
+    <div class="sc"><div class="sl">予定入力</div><div class="sv">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
+    <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:#DC2626;">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
+    <div class="sc"><div class="sl">チーム平均超過</div><div class="sv" style="color:#16A34A;">0<span style="font-size:16px;color:var(--t3);">分</span></div></div>
   </div>
 
   <div class="g2">
@@ -210,93 +235,93 @@ textarea{resize:vertical;}
       <div id="dash-hours"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#5B8DD9;">小</div>
       <span style="font-size:12px;min-width:44px;">小林 俊介</span>
-      <div class="bb"><div class="bf" style="width:50%;background:#5B8DD9;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">88/176h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">50%</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#5B8DD9;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
     </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#C9A84C;">飯</div>
       <span style="font-size:12px;min-width:44px;">飯倉 孝史</span>
-      <div class="bb"><div class="bf" style="width:57%;background:#C9A84C;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">95/168h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">57%</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#C9A84C;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
     </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#C96B6B;">佐</div>
       <span style="font-size:12px;min-width:44px;">佐々木 大翔</span>
-      <div class="bb"><div class="bf" style="width:59%;background:#C96B6B;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">99/168h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">59%</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#C96B6B;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
     </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#D4845A;">坂</div>
       <span style="font-size:12px;min-width:44px;">坂本 楓花</span>
-      <div class="bb"><div class="bf" style="width:64%;background:#D4845A;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">113/176h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">64%</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#D4845A;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
     </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#6AAB7B;">山</div>
       <span style="font-size:12px;min-width:44px;">山口 葵</span>
-      <div class="bb"><div class="bf" style="width:68%;background:#6AAB7B;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">115/168h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">68%</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6AAB7B;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
     </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#9B7EC8;">川</div>
       <span style="font-size:12px;min-width:44px;">川上 輝</span>
-      <div class="bb"><div class="bf" style="width:72%;background:#9B7EC8;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">127/176h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">72%</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#9B7EC8;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
     </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#D4975A;">横</div>
       <span style="font-size:12px;min-width:44px;">横山 大燿</span>
-      <div class="bb"><div class="bf" style="width:79%;background:#D4975A;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">132/168h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">79%</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#D4975A;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
     </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#C4A84E;">片</div>
       <span style="font-size:12px;min-width:44px;">片倉 来波</span>
-      <div class="bb"><div class="bf" style="width:85%;background:#C4A84E;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">143/168h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">85%</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#C4A84E;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
     </div></div>
     </div>
     <div class="card">
       <div class="ct">本日 予定超過時間</div>
       <div id="dash-overtime"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#C96B6B;">佐</div>
-      <span style="font-size:12px;min-width:68px;">佐々木 大翔</span>
-      <div class="bb"><div class="bf" style="width:100%;background:#DC2626;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+150分</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#6AAB7B;">山</div>
-      <span style="font-size:12px;min-width:68px;">山口 葵</span>
-      <div class="bb"><div class="bf" style="width:100%;background:#DC2626;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+150分</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#5B8DD9;">小</div>
       <span style="font-size:12px;min-width:68px;">小林 俊介</span>
-      <div class="bb"><div class="bf" style="width:60%;background:#DC2626;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+90分</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#D4845A;">坂</div>
-      <span style="font-size:12px;min-width:68px;">坂本 楓花</span>
-      <div class="bb"><div class="bf" style="width:40%;background:#D97706;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#D97706;">+60分</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#D4975A;">横</div>
-      <span style="font-size:12px;min-width:68px;">横山 大燿</span>
-      <div class="bb"><div class="bf" style="width:20%;background:#6B7280;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#6B7280;">+30分</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#C4A84E;">片</div>
-      <span style="font-size:12px;min-width:68px;">片倉 来波</span>
-      <div class="bb"><div class="bf" style="width:20%;background:#6B7280;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#6B7280;">+30分</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
     </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#C9A84C;">飯</div>
       <span style="font-size:12px;min-width:68px;">飯倉 孝史</span>
       <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
       <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
     </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#C96B6B;">佐</div>
+      <span style="font-size:12px;min-width:68px;">佐々木 大翔</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#D4845A;">坂</div>
+      <span style="font-size:12px;min-width:68px;">坂本 楓花</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6AAB7B;">山</div>
+      <span style="font-size:12px;min-width:68px;">山口 葵</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#9B7EC8;">川</div>
       <span style="font-size:12px;min-width:68px;">川上 輝</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#D4975A;">横</div>
+      <span style="font-size:12px;min-width:68px;">横山 大燿</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#C4A84E;">片</div>
+      <span style="font-size:12px;min-width:68px;">片倉 来波</span>
       <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
       <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
     </div></div>
@@ -318,305 +343,43 @@ textarea{resize:vertical;}
         <span style="font-size:14px;font-weight:500;">小林 俊介</span>
         
         
-        <span class="badge" style="background:#F0FDF4;color:#16A34A;">報告済</span>
-      </div><div style="display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">6h</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">7h</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+90分</div>
-        </div>
-      </div><div style="overflow-x:auto;margin-bottom:12px;">
-        <div style="min-width:420px;">
-          <div style="display:flex;padding-left:80px;margin-bottom:3px;">
-            <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">21</div>
-          </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#EFF6FF;color:#2563EB;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">スタジオ撮影</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">山田様撮影</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:7.7%;width:23.1%;height:12px;top:1px;background:#2563EB;opacity:.3;border-radius:2px;" title="予定 09:00〜12:00"></div>
-            <div style="position:absolute;left:7.7%;width:28.8%;height:12px;top:13px;background:#2563EB;border-radius:2px;" title="実績 09:00〜12:45"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+45m</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#F0FDF4;color:#16A34A;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">現像チェック</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">現像チェック</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:42.3%;width:15.4%;height:12px;top:1px;background:#16A34A;opacity:.3;border-radius:2px;" title="予定 13:30〜15:30"></div>
-            <div style="position:absolute;left:46.2%;width:15.4%;height:12px;top:13px;background:#16A34A;border-radius:2px;" title="実績 14:00〜16:00"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+30m</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#F5F3FF;color:#7C3AED;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">MTG</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">週次MTG</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:61.5%;width:7.7%;height:12px;top:1px;background:#7C3AED;opacity:.3;border-radius:2px;" title="予定 16:00〜17:00"></div>
-            <div style="position:absolute;left:61.5%;width:9.6%;height:12px;top:13px;background:#7C3AED;border-radius:2px;" title="実績 16:00〜17:15"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#9CA3AF;">+15m</div>
-        </div><div style="display:flex;gap:10px;padding-left:80px;margin-top:4px;">
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.3;display:inline-block;"></span>予定</span>
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>実績</span>
-      </div>
-        </div>
-      </div></div><hr class="divider"><div class="dd-member">
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
+      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
       <div class="dd-m-header">
         <div class="av" style="background:#C9A84C;">飯</div>
         <span style="font-size:14px;font-weight:500;">飯倉 孝史</span>
         
         
-        <span class="badge" style="background:#F0FDF4;color:#16A34A;">報告済</span>
-      </div><div style="display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">7h</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">6h30分</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;color:#6B7280;">±0</div>
-        </div>
-      </div><div style="overflow-x:auto;margin-bottom:12px;">
-        <div style="min-width:420px;">
-          <div style="display:flex;padding-left:80px;margin-bottom:3px;">
-            <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">21</div>
-          </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#EFF6FF;color:#2563EB;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">スタジオ撮影</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">前撮りロケ</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:7.7%;width:23.1%;height:12px;top:1px;background:#2563EB;opacity:.3;border-radius:2px;" title="予定 09:00〜12:00"></div>
-            <div style="position:absolute;left:7.7%;width:23.1%;height:12px;top:13px;background:#2563EB;border-radius:2px;" title="実績 09:00〜12:00"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#9CA3AF;">±0</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#F0FDF4;color:#16A34A;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">現像チェック</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">現像3件</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:38.5%;width:30.8%;height:12px;top:1px;background:#16A34A;opacity:.3;border-radius:2px;" title="予定 13:00〜17:00"></div>
-            <div style="position:absolute;left:38.5%;width:26.9%;height:12px;top:13px;background:#16A34A;border-radius:2px;" title="実績 13:00〜16:30"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">-30m</div>
-        </div><div style="display:flex;gap:10px;padding-left:80px;margin-top:4px;">
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.3;display:inline-block;"></span>予定</span>
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>実績</span>
-      </div>
-        </div>
-      </div></div><hr class="divider"><div class="dd-member">
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
+      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
       <div class="dd-m-header">
         <div class="av" style="background:#C96B6B;">佐</div>
         <span style="font-size:14px;font-weight:500;">佐々木 大翔</span>
         
         
-        <span class="badge" style="background:#F0FDF4;color:#16A34A;">報告済</span>
-      </div><div style="display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">5h</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">7h30分</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+150分</div>
-        </div>
-      </div><div style="overflow-x:auto;margin-bottom:12px;">
-        <div style="min-width:420px;">
-          <div style="display:flex;padding-left:80px;margin-bottom:3px;">
-            <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">21</div>
-          </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#F0FDF4;color:#16A34A;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">現像チェック</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">レタッチ作業</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:11.5%;width:26.9%;height:12px;top:1px;background:#16A34A;opacity:.3;border-radius:2px;" title="予定 09:30〜13:00"></div>
-            <div style="position:absolute;left:11.5%;width:38.5%;height:12px;top:13px;background:#16A34A;border-radius:2px;" title="実績 09:30〜14:30"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+90m</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#FFFBEB;color:#D97706;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">打ち合わせ</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">クライアント打合…</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:46.2%;width:11.5%;height:12px;top:1px;background:#D97706;opacity:.3;border-radius:2px;" title="予定 14:00〜15:30"></div>
-            <div style="position:absolute;left:46.2%;width:19.2%;height:12px;top:13px;background:#D97706;border-radius:2px;" title="実績 14:00〜16:30"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+60m</div>
-        </div><div style="display:flex;gap:10px;padding-left:80px;margin-top:4px;">
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.3;display:inline-block;"></span>予定</span>
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>実績</span>
-      </div>
-        </div>
-      </div></div><hr class="divider"><div class="dd-member">
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
+      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
       <div class="dd-m-header">
         <div class="av" style="background:#D4845A;">坂</div>
         <span style="font-size:14px;font-weight:500;">坂本 楓花</span>
         
         
-        <span class="badge" style="background:#F0FDF4;color:#16A34A;">報告済</span>
-      </div><div style="display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">5h</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">6h15分</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;color:#D97706;">+60分</div>
-        </div>
-      </div><div style="overflow-x:auto;margin-bottom:12px;">
-        <div style="min-width:420px;">
-          <div style="display:flex;padding-left:80px;margin-bottom:3px;">
-            <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">21</div>
-          </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#EFF6FF;color:#2563EB;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">スタジオ撮影</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">挙式撮影</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:15.4%;width:30.8%;height:12px;top:1px;background:#2563EB;opacity:.3;border-radius:2px;" title="予定 10:00〜14:00"></div>
-            <div style="position:absolute;left:13.5%;width:36.5%;height:12px;top:13px;background:#2563EB;border-radius:2px;" title="実績 09:45〜14:30"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+30m</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#F5F3FF;color:#7C3AED;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">MTG</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">スケジュールMT…</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:53.8%;width:7.7%;height:12px;top:1px;background:#7C3AED;opacity:.3;border-radius:2px;" title="予定 15:00〜16:00"></div>
-            <div style="position:absolute;left:53.8%;width:11.5%;height:12px;top:13px;background:#7C3AED;border-radius:2px;" title="実績 15:00〜16:30"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+30m</div>
-        </div><div style="display:flex;gap:10px;padding-left:80px;margin-top:4px;">
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.3;display:inline-block;"></span>予定</span>
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>実績</span>
-      </div>
-        </div>
-      </div></div><hr class="divider"><div class="dd-member">
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
+      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
       <div class="dd-m-header">
         <div class="av" style="background:#6AAB7B;">山</div>
         <span style="font-size:14px;font-weight:500;">山口 葵</span>
         
         
-        <span class="badge" style="background:#F0FDF4;color:#16A34A;">報告済</span>
-      </div><div style="display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">6h</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">8h</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+150分</div>
-        </div>
-      </div><div style="overflow-x:auto;margin-bottom:12px;">
-        <div style="min-width:420px;">
-          <div style="display:flex;padding-left:80px;margin-bottom:3px;">
-            <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">21</div>
-          </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#F0FDFA;color:#0D9488;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">梱包作業</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">アルバム梱包5件</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:7.7%;width:15.4%;height:12px;top:1px;background:#0D9488;opacity:.3;border-radius:2px;" title="予定 09:00〜11:00"></div>
-            <div style="position:absolute;left:7.7%;width:23.1%;height:12px;top:13px;background:#0D9488;border-radius:2px;" title="実績 09:00〜12:00"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+60m</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#FDF2F8;color:#DB2777;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">プロジェクト推進</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">新企画準備</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:38.5%;width:30.8%;height:12px;top:1px;background:#DB2777;opacity:.3;border-radius:2px;" title="予定 13:00〜17:00"></div>
-            <div style="position:absolute;left:42.3%;width:38.5%;height:12px;top:13px;background:#DB2777;border-radius:2px;" title="実績 13:30〜18:30"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#DC2626;">+90m</div>
-        </div><div style="display:flex;gap:10px;padding-left:80px;margin-top:4px;">
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.3;display:inline-block;"></span>予定</span>
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>実績</span>
-      </div>
-        </div>
-      </div></div><hr class="divider"><div class="dd-member">
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
+      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
       <div class="dd-m-header">
         <div class="av" style="background:#9B7EC8;">川</div>
         <span style="font-size:14px;font-weight:500;">川上 輝</span>
         
         
         <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-      </div><div style="display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">6h</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">5h30分</div>
-        </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
-          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;color:#6B7280;">±0</div>
-        </div>
-      </div><div style="overflow-x:auto;margin-bottom:12px;">
-        <div style="min-width:420px;">
-          <div style="display:flex;padding-left:80px;margin-bottom:3px;">
-            <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">21</div>
-          </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#EFF6FF;color:#2563EB;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">スタジオ撮影</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">ポートレート撮影</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:7.7%;width:23.1%;height:12px;top:1px;background:#2563EB;opacity:.3;border-radius:2px;" title="予定 09:00〜12:00"></div>
-            <div style="position:absolute;left:7.7%;width:23.1%;height:12px;top:13px;background:#2563EB;border-radius:2px;" title="実績 09:00〜12:00"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#9CA3AF;">±0</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#F0FDF4;color:#16A34A;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">現像チェック</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">現像チェック</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:38.5%;width:23.1%;height:12px;top:1px;background:#16A34A;opacity:.3;border-radius:2px;" title="予定 13:00〜16:00"></div>
-            <div style="position:absolute;left:38.5%;width:19.2%;height:12px;top:13px;background:#16A34A;border-radius:2px;" title="実績 13:00〜15:30"></div>
-          </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">-30m</div>
-        </div><div style="display:flex;gap:10px;padding-left:80px;margin-top:4px;">
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.3;display:inline-block;"></span>予定</span>
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>実績</span>
-      </div>
-        </div>
-      </div></div><hr class="divider"><div class="dd-member">
+      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
       <div class="dd-m-header">
         <div class="av" style="background:#D4975A;">横</div>
         <span style="font-size:14px;font-weight:500;">横山 大燿</span>
@@ -747,7 +510,7 @@ textarea{resize:vertical;}
       <div class="ct">凡例</div>
       <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--t2);line-height:1.5;">
         <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:3px;background:#FEF2F2;border:1px solid #FCA5A5;flex-shrink:0;"></span>休み（有給・代休・公休）<br>→ その日は入力不要</span>
-        <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:3px;background:#FDF2F8;border:1px solid #F9A8D4;flex-shrink:0;"></span>婚礼撮影日（8h自動カウント）<br>→ その日は入力不要</span>
+        <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:3px;background:#EFF6FF;border:1px solid #93C5FD;flex-shrink:0;"></span>婚礼撮影日（8h自動カウント）<br>→ その日は入力不要</span>
         <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--s2);border:1px solid var(--border);flex-shrink:0;"></span>通常勤務日（入力必要）</span>
       </div>
     </div>
@@ -937,25 +700,9 @@ const CATS=['スタジオ撮影','現像チェック','打ち合わせ','MTG','�
 const CC={'スタジオ撮影':'#2563EB','現像チェック':'#16A34A','打ち合わせ':'#D97706','MTG':'#7C3AED','梱包作業':'#0D9488','プロジェクト推進':'#DB2777','その他':'#6B7280'};
 const CB={'スタジオ撮影':'#EFF6FF','現像チェック':'#F0FDF4','打ち合わせ':'#FFFBEB','MTG':'#F5F3FF','梱包作業':'#F0FDFA','プロジェクト推進':'#FDF2F8','その他':'#F9FAFB'};
 
-// Demo tasks
+// Task data - empty by default (data will be saved via Google Spreadsheet integration)
 const DEMO=[
-  [{cat:'スタジオ撮影',name:'山田様撮影',ps:'09:00',pe:'12:00',as:'09:00',ae:'12:45',done:true,note:''},
-   {cat:'現像チェック',name:'現像チェック',ps:'13:30',pe:'15:30',as:'14:00',ae:'16:00',done:true,note:''},
-   {cat:'MTG',name:'週次MTG',ps:'16:00',pe:'17:00',as:'16:00',ae:'17:15',done:true,note:''}],
-  [{cat:'スタジオ撮影',name:'前撮りロケ',ps:'09:00',pe:'12:00',as:'09:00',ae:'12:00',done:true,note:''},
-   {cat:'現像チェック',name:'現像3件',ps:'13:00',pe:'17:00',as:'13:00',ae:'16:30',done:true,note:''}],
-  [{cat:'現像チェック',name:'レタッチ作業',ps:'09:30',pe:'13:00',as:'09:30',ae:'14:30',done:true,note:''},
-   {cat:'打ち合わせ',name:'クライアント打合せ',ps:'14:00',pe:'15:30',as:'14:00',ae:'16:30',done:false,note:'追加依頼'}],
-  [{cat:'スタジオ撮影',name:'挙式撮影',ps:'10:00',pe:'14:00',as:'09:45',ae:'14:30',done:true,note:''},
-   {cat:'MTG',name:'スケジュールMTG',ps:'15:00',pe:'16:00',as:'15:00',ae:'16:30',done:true,note:''}],
-  [{cat:'梱包作業',name:'アルバム梱包5件',ps:'09:00',pe:'11:00',as:'09:00',ae:'12:00',done:true,note:''},
-   {cat:'プロジェクト推進',name:'新企画準備',ps:'13:00',pe:'17:00',as:'13:30',ae:'18:30',done:false,note:''}],
-  [{cat:'スタジオ撮影',name:'ポートレート撮影',ps:'09:00',pe:'12:00',as:'09:00',ae:'12:00',done:true,note:''},
-   {cat:'現像チェック',name:'現像チェック',ps:'13:00',pe:'16:00',as:'13:00',ae:'15:30',done:true,note:''}],
-  [{cat:'打ち合わせ',name:'新規クライアント打合せ',ps:'10:00',pe:'11:30',as:'10:00',ae:'12:00',done:false,note:''},
-   {cat:'梱包作業',name:'梱包・発送',ps:'13:00',pe:'16:00',as:'',ae:'',done:false,note:''}],
-  [{cat:'プロジェクト推進',name:'SNS準備',ps:'09:00',pe:'11:00',as:'09:00',ae:'11:30',done:true,note:''},
-   {cat:'現像チェック',name:'現像チェック',ps:'13:00',pe:'17:00',as:'13:00',ae:'17:00',done:true,note:''}]
+  [],[],[],[],[],[],[],[]
 ];
 
 let state={
@@ -968,13 +715,13 @@ let state={
 };
 MEMBERS.forEach((_,i)=>{
   state.memberData[i]={
-    weddingCount:Math.floor(Math.random()*3),
+    weddingCount:0,
     targetHours:160,
     offDays:[],
     weddingDays:[],
-    submitted:{plan:i<6,report:i<5},
-    workedHours:Math.round(80+i*8+Math.random()*10),
-    remainShiftDays:Math.round(8+Math.random()*4)
+    submitted:{plan:false,report:false},
+    workedHours:0,
+    remainShiftDays:20
   };
 });
 
@@ -1341,7 +1088,7 @@ function renderInputForm(){
   const isWed=md.weddingDays.includes(today);
   const notice=document.getElementById('input-notice');
   if(isOff) notice.innerHTML=`<div style="background:#FFFBEB;border:1px solid #FCD34D;border-radius:var(--rs);padding:9px 14px;font-size:13px;color:#92400E;margin-bottom:10px;">本日は休み登録日です。入力不要ですが任意で残すこともできます。</div>`;
-  else if(isWed) notice.innerHTML=`<div style="background:#FDF2F8;border:1px solid #F9A8D4;border-radius:var(--rs);padding:9px 14px;font-size:13px;color:#9D174D;margin-bottom:10px;">本日は婚礼撮影日です。8時間として自動カウントされます。</div>`;
+  else if(isWed) notice.innerHTML=`<div style="background:#EFF6FF;border:1px solid #93C5FD;border-radius:var(--rs);padding:9px 14px;font-size:13px;color:#1D4ED8;margin-bottom:10px;">本日は婚礼撮影日です。8時間として自動カウントされます。</div>`;
   else notice.innerHTML='';
   document.getElementById('task-list').innerHTML='';
   taskIdx=0;
