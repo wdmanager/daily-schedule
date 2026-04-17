@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!-- saved from url=(0064)file:///Users/shunsukekobayashi/Downloads/kuppography_v4_22.html -->
+<!-- saved from url=(0063)file:///Users/shunsukekobayashi/Downloads/kuppography_v4_3.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuppography — チーム管理</title>
+<title>kuppography — チーム管理</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap');
 :root{
@@ -125,7 +125,7 @@ textarea{resize:vertical;}
 <div class="layout">
 <nav class="sidebar">
   <div class="s-logo">
-    <div class="s-logo-t">Kuppography</div>
+    <div class="s-logo-t">kuppography</div>
     <div class="s-logo-s">Team Dashboard</div>
   </div>
   <div class="s-sec">
@@ -159,28 +159,28 @@ textarea{resize:vertical;}
     </button>
   </div>
   <div class="s-sec"><div class="s-sec-l">メンバー</div></div>
-  <div class="s-members" id="s-members"><div class="sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=0;renderInputForm();">
+  <div class="s-members" id="s-members"><div class="sm" onclick="showMemberPage(0);">
       <div class="sm-av" style="background:#5B8DD9;">小</div>
       <span class="sm-n">小林 俊介</span>
-    </div><div class="sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=1;renderInputForm();">
+    </div><div class="sm" onclick="showMemberPage(1);">
       <div class="sm-av" style="background:#C9A84C;">飯</div>
       <span class="sm-n">飯倉 孝史</span>
-    </div><div class="sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=2;renderInputForm();">
+    </div><div class="sm" onclick="showMemberPage(2);">
       <div class="sm-av" style="background:#C96B6B;">佐</div>
       <span class="sm-n">佐々木 大翔</span>
-    </div><div class="sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=3;renderInputForm();">
+    </div><div class="sm" onclick="showMemberPage(3);">
       <div class="sm-av" style="background:#D4845A;">坂</div>
       <span class="sm-n">坂本 楓花</span>
-    </div><div class="sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=4;renderInputForm();">
+    </div><div class="sm" onclick="showMemberPage(4);">
       <div class="sm-av" style="background:#6AAB7B;">山</div>
       <span class="sm-n">山口 葵</span>
-    </div><div class="sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=5;renderInputForm();">
+    </div><div class="sm" onclick="showMemberPage(5);">
       <div class="sm-av" style="background:#9B7EC8;">川</div>
       <span class="sm-n">川上 輝</span>
-    </div><div class="sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=6;renderInputForm();">
+    </div><div class="sm" onclick="showMemberPage(6);">
       <div class="sm-av" style="background:#D4975A;">横</div>
       <span class="sm-n">横山 大燿</span>
-    </div><div class="sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=7;renderInputForm();">
+    </div><div class="sm" onclick="showMemberPage(7);">
       <div class="sm-av" style="background:#C4A84E;">片</div>
       <span class="sm-n">片倉 来波</span>
     </div></div>
@@ -190,7 +190,7 @@ textarea{resize:vertical;}
 <!-- ダッシュボード -->
 <div class="view" id="page-dashboard">
   <div class="ph">
-    <div><div class="pt">ダッシュボード</div><div class="ps" id="dash-date">2026年4月16日(木)</div></div>
+    <div><div class="pt">ダッシュボード</div><div class="ps" id="dash-date">2026年4月17日(金)</div></div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
       <input type="date" id="dash-pick" onchange="onDatePick()" style="width:auto;padding:6px 10px;font-size:13px;">
       <button class="btn btn-sm" onclick="goToday()">今日</button>
@@ -201,8 +201,8 @@ textarea{resize:vertical;}
   <div class="card" id="unsub-card" style="margin-bottom: 14px; border-left: 3px solid rgb(220, 38, 38);">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"></circle><path d="M8 5v3M8 11v.5"></path></svg>
-      <span style="font-size:13px;font-weight:500;" id="unsub-title">終業報告 未提出 — 4/16</span>
-      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">20:02 時点</span>
+      <span style="font-size:13px;font-weight:500;" id="unsub-title">終業報告 未提出 — 4/17</span>
+      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">18:54 時点</span>
     </div>
     <div id="unsub-list"><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
         <div class="av" style="background:#5B8DD9;">小</div>
@@ -248,7 +248,7 @@ textarea{resize:vertical;}
   </div>
 
   <div class="sg" id="dash-stats">
-    <div class="sc"><div class="sl">予定入力</div><div class="sv">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
+    <div class="sc"><div class="sl">予定入力</div><div class="sv">1<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
     <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:#DC2626;">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
     <div class="sc"><div class="sl">チーム平均超過</div><div class="sv" style="color:#16A34A;">0<span style="font-size:16px;color:var(--t3);">分</span></div></div>
   </div>
@@ -355,7 +355,7 @@ textarea{resize:vertical;}
   <!-- 日別詳細 -->
   <div class="card" id="day-detail-card">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-      <div class="ct" style="margin-bottom:0;" id="day-detail-title">4月16日（木）のタスク詳細</div>
+      <div class="ct" style="margin-bottom:0;" id="day-detail-title">4月17日（金）のタスク詳細</div>
       <div style="display:flex;gap:6px;">
         <button class="btn btn-sm" onclick="shiftDay(-1)">◀ 前日</button>
         <button class="btn btn-sm" onclick="shiftDay(1)">翌日 ▶</button>
@@ -368,7 +368,29 @@ textarea{resize:vertical;}
         
         
         <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
+      </div><div style="display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
+        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
+          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">0h</div>
+        </div>
+        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
+          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;">—</div>
+        </div>
+        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
+          <div style="font-size:15px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;color:#6B7280;">±0</div>
+        </div>
+      </div><div style="overflow-x:auto;margin-bottom:12px;">
+        <div style="min-width:420px;">
+          <div style="display:flex;padding-left:80px;margin-bottom:3px;">
+            <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">21</div>
+          </div><div style="display:flex;gap:10px;padding-left:80px;margin-top:4px;">
+        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.3;display:inline-block;"></span>予定</span>
+        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>実績</span>
+      </div>
+        </div>
+      </div></div><hr class="divider"><div class="dd-member">
       <div class="dd-m-header">
         <div class="av" style="background:#C9A84C;">飯</div>
         <span style="font-size:14px;font-weight:500;">飯倉 孝史</span>
@@ -424,9 +446,17 @@ textarea{resize:vertical;}
 <!-- 予定・報告入力 -->
 <div class="view active" id="page-input">
   <div class="ph">
-    <div><div class="pt">予定・報告入力</div><div class="ps" id="input-date">2026年4月16日(木)</div></div>
+    <div>
+      <div class="pt">予定・報告入力</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap;">
+        <button onclick="shiftInputDay(-1)" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--b2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">◀ 前日</button>
+        <span class="ps" id="input-date" style="margin-top:0;">2026年4月17日(金)</span>
+        <button onclick="shiftInputDay(1)" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--b2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">翌日 ▶</button>
+        <button onclick="resetInputDate()" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--b2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">今日</button>
+      </div>
+    </div>
   </div>
-  <div id="toast-input" class="toast">送信しました。お疲れ様です！</div>
+  <div id="toast-input" class="toast" style="display: none;">送信しました。お疲れ様です！</div>
   <div id="input-notice" style="margin-bottom:10px;"></div>
   <div class="card">
     <div style="margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);">
@@ -438,13 +468,19 @@ textarea{resize:vertical;}
       <div>
         <div style="font-size:11px;color:var(--t3);margin-bottom:6px;font-weight:500;">種別</div>
         <div style="display:flex;gap:5px;">
-          <button onclick="setType(&#39;plan&#39;,this)" id="type-plan" style="padding:6px 16px;font-size:13px;font-weight:500;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">予定入力</button>
-          <button onclick="setType(&#39;report&#39;,this)" id="type-report" style="padding:6px 16px;font-size:13px;font-weight:500;border-radius:6px;border:1px solid var(--b2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">終業報告</button>
+          <button onclick="setType(&#39;plan&#39;,this)" id="type-plan" style="padding: 6px 16px; font-size: 13px; font-weight: 500; border-radius: 6px; border-color: var(--b2); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; background: var(--surface); color: var(--t2); cursor: pointer; font-family: &quot;Noto Sans JP&quot;, sans-serif;">予定入力</button>
+          <button onclick="setType(&#39;report&#39;,this)" id="type-report" style="padding: 6px 16px; font-size: 13px; font-weight: 500; border-radius: 6px; border-color: var(--accent); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; background: var(--accent); color: rgb(255, 255, 255); cursor: pointer; font-family: &quot;Noto Sans JP&quot;, sans-serif;">終業報告</button>
         </div>
         <select id="i-type" onchange="renderInputForm()" style="display:none;"><option value="plan">予定入力</option><option value="report">終業報告</option></select>
       </div>
     </div>
-    <div class="ct" id="input-title">本日の予定タスク（スケジュール）</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+      <div class="ct" id="input-title" style="margin-bottom:0;">実績報告</div>
+      <div id="report-shortcut-btns" style="display: flex; gap: 6px;">
+        <button onclick="planAsIs()" style="padding:6px 14px;font-size:12px;font-weight:500;border-radius:6px;border:1px solid #2563EB;background:#EFF6FF;color:#1D4ED8;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">予定通り ✓</button>
+        <button id="copy-plan-btn" onclick="copyPlanToReport()" style="padding:6px 14px;font-size:12px;font-weight:500;border-radius:6px;border:1px solid #16A34A;background:#F0FDF4;color:#16A34A;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">予定をコピー</button>
+      </div>
+    </div>
     <div id="task-list"><div class="tb" id="tb-0">
     <button class="rm" onclick="this.closest(&#39;.tb&#39;).remove()">×</button>
     <div class="tb-h">
@@ -453,7 +489,18 @@ textarea{resize:vertical;}
     </div>
     <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
       <select class="t-h t-start" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9" selected="">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select><select class="t-m t-start" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:72px;padding:6px 8px;font-size:13px;"><option value="0" selected="">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select><span style="font-size:12px;color:var(--t3);">〜</span><select class="t-h t-end" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18" selected="">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select><select class="t-m t-end" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:72px;padding:6px 8px;font-size:13px;"><option value="0" selected="">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
-      
+      <select style="width:auto;padding:6px 9px;font-size:12px;"><option>完了</option><option>進行中</option><option>翌日へ</option></select>
+    </div>
+    <textarea placeholder="備考・メモ" style="font-size:12px;min-height:40px;"></textarea>
+  </div><div class="tb" id="tb-1">
+    <button class="rm" onclick="this.closest(&#39;.tb&#39;).remove()">×</button>
+    <div class="tb-h">
+      <select style="width:auto;padding:6px 9px;font-size:12px;" id="cat-1"><option>スタジオ撮影</option><option>現像チェック</option><option>打ち合わせ</option><option>MTG</option><option>梱包作業</option><option>プロジェクト推進</option><option>その他</option></select>
+      <input type="text" placeholder="作業内容（例：山田様スタジオ撮影）" style="flex:1;min-width:130px;">
+    </div>
+    <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
+      <select class="t-h t-start" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9" selected="">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select><select class="t-m t-start" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:72px;padding:6px 8px;font-size:13px;"><option value="0" selected="">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select><span style="font-size:12px;color:var(--t3);">〜</span><select class="t-h t-end" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18" selected="">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select><select class="t-m t-end" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:72px;padding:6px 8px;font-size:13px;"><option value="0" selected="">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
+      <select style="width:auto;padding:6px 9px;font-size:12px;"><option>完了</option><option>進行中</option><option>翌日へ</option></select>
     </div>
     <textarea placeholder="備考・メモ" style="font-size:12px;min-height:40px;"></textarea>
   </div></div>
@@ -461,15 +508,15 @@ textarea{resize:vertical;}
       <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 1.5v10M1.5 6.5h10"></path></svg>
       タスクを追加
     </button>
-    <div id="report-reason-wrap" style="display:none;margin-top:16px;">
+    <div id="report-reason-wrap" style="display: block; margin-top: 16px;">
       <hr class="divider">
 
       <!-- 休憩時間 -->
       <div style="margin-bottom:16px;">
         <div style="font-size:12px;font-weight:500;color:var(--t2);margin-bottom:8px;">休憩時間</div>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
-          <button class="break-btn" onclick="setBreak(60,this)" data-min="60" style="padding:6px 16px;font-size:13px;border-radius:99px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">1時間（デフォルト）</button>
-          <button class="break-btn" onclick="setBreak(-1,this)" data-min="-1" style="padding:6px 16px;font-size:13px;border-radius:99px;border:1px solid var(--b2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">変更する</button>
+          <button class="break-btn" onclick="setBreak(60,this)" data-min="60" style="padding: 6px 16px; font-size: 13px; border-radius: 99px; border-color: var(--accent); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; background: var(--accent); color: rgb(255, 255, 255); cursor: pointer; font-family: &quot;Noto Sans JP&quot;, sans-serif;">1時間（デフォルト）</button>
+          <button class="break-btn" onclick="setBreak(-1,this)" data-min="-1" style="padding: 6px 16px; font-size: 13px; border-radius: 99px; border-color: var(--b2); border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; background: var(--surface); color: var(--t2); cursor: pointer; font-family: &quot;Noto Sans JP&quot;, sans-serif;">変更する</button>
         </div>
         <div id="break-custom" style="display:none;align-items:center;gap:8px;margin-bottom:8px;">
           <input type="number" id="break-custom-min" value="60" min="0" max="240" placeholder="分" oninput="breakMin=parseInt(this.value||0);calcWorkHours()" style="width:90px;font-size:13px;">
@@ -480,12 +527,12 @@ textarea{resize:vertical;}
           <div>
             <div style="font-size:11px;color:var(--t3);margin-bottom:2px;">タスク合計 − 休憩 = 実働時間</div>
             <div style="font-size:12px;color:var(--t2);">
-              <span id="task-sum-display">--</span> − <span id="break-display">1h</span>
+              <span id="task-sum-display">0h</span> − <span id="break-display">1h</span>
             </div>
           </div>
           <div style="text-align:right;">
             <div style="font-size:11px;color:var(--t3);margin-bottom:2px;">本日の実働時間</div>
-            <div style="font-size:22px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;" id="work-hours-result">--</div>
+            <div style="font-size:22px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;" id="work-hours-result">0h</div>
           </div>
         </div>
       </div>
@@ -724,6 +771,37 @@ const CATS=['スタジオ撮影','現像チェック','打ち合わせ','MTG','�
 const CC={'スタジオ撮影':'#2563EB','現像チェック':'#16A34A','打ち合わせ':'#D97706','MTG':'#7C3AED','梱包作業':'#0D9488','プロジェクト推進':'#DB2777','その他':'#6B7280'};
 const CB={'スタジオ撮影':'#EFF6FF','現像チェック':'#F0FDF4','打ち合わせ':'#FFFBEB','MTG':'#F5F3FF','梱包作業':'#F0FDFA','プロジェクト推進':'#FDF2F8','その他':'#F9FAFB'};
 
+// ============================================================
+// GAS API
+// ============================================================
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwP7zABlHMDZmRzveQtzBe6k5aBNOCpi50JtFnSjGkMUowgiEa2OQtBrOu7Avi0A_es4A/exec';
+
+async function apiPost(data) {
+  try {
+    await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    });
+    return {success: true};
+  } catch(e) {
+    console.error('API POST error:', e);
+    return {success: false};
+  }
+}
+
+async function apiGet(params) {
+  try {
+    const qs = Object.entries(params).map(([k,v])=>k+'='+encodeURIComponent(v)).join('&');
+    const res = await fetch(GAS_URL + '?' + qs);
+    return await res.json();
+  } catch(e) {
+    console.error('API GET error:', e);
+    return {success: false, tasks: []};
+  }
+}
+
 // Task data - empty by default (data will be saved via Google Spreadsheet integration)
 const DEMO=[
   [],[],[],[],[],[],[],[]
@@ -731,12 +809,15 @@ const DEMO=[
 
 let state={
   selectedDate: new Date(),
+  inputDate: new Date(),
   calYear: new Date().getFullYear(),
   calMonth: new Date().getMonth(),
   memberData: {},
   diffPeriod: 'week',
   taskCount: 0
 };
+// Store plan tasks per member per date
+const planStore = {};
 MEMBERS.forEach((_,i)=>{
   state.memberData[i]={
     weddingCount:0,
@@ -768,6 +849,154 @@ function sw(name){
   if(name==='summary')renderSummary();
   if(name==='diff')renderDiff();
   if(name==='slack')renderGASCode();
+}
+
+function showMemberPage(mi){
+  sw('dashboard');
+  // Set date picker to today
+  const now=new Date();
+  state.selectedDate=now;
+  document.getElementById('dash-pick').value=dateStr(now);
+  renderDashboard();
+  // Scroll to that member's detail
+  setTimeout(()=>{
+    const memberCards=document.querySelectorAll('.dd-member');
+    if(memberCards[mi]) memberCards[mi].scrollIntoView({behavior:'smooth',block:'start'});
+  },300);
+}
+
+function shiftInputDay(d){
+  state.inputDate=new Date(state.inputDate);
+  state.inputDate.setDate(state.inputDate.getDate()+d);
+  updateInputDate();
+  renderInputForm();
+}
+function resetInputDate(){
+  state.inputDate=new Date();
+  updateInputDate();
+  renderInputForm();
+}
+function updateInputDate(){
+  const d=state.inputDate;
+  document.getElementById('input-date').textContent=d.toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
+}
+
+async function planAsIs(){
+  const mi=parseInt(document.getElementById('i-member').value||0);
+  const ds=dateStr(state.inputDate);
+  const key=mi+'_'+ds;
+  let plans=planStore[key];
+  if(!plans||plans.length===0){
+    const data=await apiGet({action:'getPlan', date:ds, memberName:MEMBERS[mi].name});
+    if(data.success && data.tasks && data.tasks.length>0){
+      plans=data.tasks.map(t=>{
+        const[sh,sm]=t.startTime?t.startTime.split(':'):['9','0'];
+        const[eh,em]=t.endTime?t.endTime.split(':'):['18','0'];
+        return{cat:t.cat,name:t.name,startH:sh,startM:parseInt(sm)||0,endH:eh,endM:parseInt(em)||0};
+      });
+      planStore[key]=plans;
+    }
+  }
+  if(!plans||plans.length===0){
+    alert('予定が登録されていません。先に予定を入力してください。');
+    return;
+  }
+  // Copy plan to report with all tasks marked 完了
+  document.getElementById('task-list').innerHTML='';
+  taskIdx=0;
+  plans.forEach(p=>{
+    addTask();
+    const tb=document.getElementById('task-list').lastElementChild;
+    const catSel=tb.querySelector('select');
+    const nameInput=tb.querySelector('input[type=text]');
+    const startH=tb.querySelector('.t-start.t-h');
+    const startM=tb.querySelector('.t-start.t-m');
+    const endH=tb.querySelector('.t-end.t-h');
+    const endM=tb.querySelector('.t-end.t-m');
+    const statusSel=tb.querySelectorAll('select')[3];
+    if(catSel) catSel.value=p.cat;
+    if(nameInput) nameInput.value=p.name;
+    if(startH) startH.value=p.startH;
+    if(startM) startM.value=p.startM;
+    if(endH) endH.value=p.endH;
+    if(endM) endM.value=p.endM;
+    if(statusSel) statusSel.value='完了';
+  });
+  setTimeout(()=>{
+    calcWorkHours();
+    // Auto submit
+    submitInput();
+  },100);
+}
+
+async function copyPlanToReport(){
+  const mi=parseInt(document.getElementById('i-member').value||0);
+  const ds=dateStr(state.inputDate);
+  const key=mi+'_'+ds;
+  let plans=planStore[key];
+  if(!plans||plans.length===0){
+    // Try fetching from GAS
+    const data=await apiGet({action:'getPlan', date:ds, memberName:MEMBERS[mi].name});
+    if(data.success && data.tasks && data.tasks.length>0){
+      plans=data.tasks.map(t=>{
+        const[sh,sm]=t.startTime?t.startTime.split(':'):['9','0'];
+        const[eh,em]=t.endTime?t.endTime.split(':'):['18','0'];
+        return{cat:t.cat,name:t.name,startH:sh,startM:parseInt(sm)||0,endH:eh,endM:parseInt(em)||0};
+      });
+      planStore[key]=plans;
+    }
+  }
+  if(!plans||plans.length===0){
+    alert('予定が登録されていません。先に予定を入力してください。');
+    return;
+  }
+  document.getElementById('task-list').innerHTML='';
+  taskIdx=0;
+  plans.forEach(p=>{
+    addTask();
+    const tb=document.getElementById('task-list').lastElementChild;
+    const catSel=tb.querySelector('select');
+    const nameInput=tb.querySelector('input[type=text]');
+    const startH=tb.querySelector('.t-start.t-h');
+    const startM=tb.querySelector('.t-start.t-m');
+    const endH=tb.querySelector('.t-end.t-h');
+    const endM=tb.querySelector('.t-end.t-m');
+    const statusSel=tb.querySelectorAll('select')[3];
+    if(catSel) catSel.value=p.cat;
+    if(nameInput) nameInput.value=p.name;
+    if(startH) startH.value=p.startH;
+    if(startM) startM.value=p.startM;
+    if(endH) endH.value=p.endH;
+    if(endM) endM.value=p.endM;
+    if(statusSel) statusSel.value='完了';
+  });
+  setTimeout(calcWorkHours,100);
+}
+
+function savePlanToStore(){
+  const mi=parseInt(document.getElementById('i-member').value||0);
+  const ds=dateStr(state.inputDate);
+  const key=mi+'_'+ds;
+  const tasks=[];
+  document.querySelectorAll('#task-list .tb').forEach(tb=>{
+    const catSel=tb.querySelector('select');
+    const nameInput=tb.querySelector('input[type=text]');
+    const startH=tb.querySelector('.t-start.t-h');
+    const startM=tb.querySelector('.t-start.t-m');
+    const endH=tb.querySelector('.t-end.t-h');
+    const endM=tb.querySelector('.t-end.t-m');
+    if(nameInput&&nameInput.value){
+      tasks.push({
+        cat:catSel?catSel.value:'その他',
+        name:nameInput.value,
+        startH:startH?startH.value:'9',
+        startM:startM?startM.value:'0',
+        endH:endH?endH.value:'18',
+        endM:endM?endM.value:'0'
+      });
+    }
+  });
+  planStore[key]=tasks;
 }
 
 function setMember(idx, btn){
@@ -806,7 +1035,8 @@ function setType(type, btn){
 function init(){
   const now=new Date();
   document.getElementById('dash-date').textContent=formatDate(now);
-  document.getElementById('input-date').textContent=formatDate(now);
+  state.inputDate=new Date();
+  updateInputDate();
   const dp=document.getElementById('dash-pick');
   dp.value=dateStr(now);
   state.selectedDate=now;
@@ -815,7 +1045,7 @@ function init(){
   const sm=document.getElementById('s-members');
   sm.innerHTML=''; // clear first
   MEMBERS.forEach((m,i)=>{
-    sm.innerHTML+=`<div class="sm" onclick="sw('input');document.getElementById('i-member').value=${i};renderInputForm();">
+    sm.innerHTML+=`<div class="sm" onclick="showMemberPage(${i});">
       <div class="sm-av" style="background:${m.color};">${m.init}</div>
       <span class="sm-n">${m.name}</span>
     </div>`;
@@ -1103,8 +1333,10 @@ function calcWorkHours(){
 function renderInputForm(){
   const isRep=document.getElementById('i-type').value==='report';
   const mi=parseInt(document.getElementById('i-member').value||0);
-  document.getElementById('input-title').textContent=isRep?'本日の実績報告':'本日の予定タスク（スケジュール）';
+  document.getElementById('input-title').textContent=isRep?'実績報告':'予定タスク（スケジュール）';
   document.getElementById('report-reason-wrap').style.display=isRep?'block':'none';
+  const shortcutBtns=document.getElementById('report-shortcut-btns');
+  if(shortcutBtns) shortcutBtns.style.display=isRep?'flex':'none';
   if(isRep){
     breakMin=60;
     document.querySelectorAll('.break-btn').forEach(b=>{
@@ -1125,7 +1357,54 @@ function renderInputForm(){
   else notice.innerHTML='';
   document.getElementById('task-list').innerHTML='';
   taskIdx=0;
-  addTask();
+  loadTasksFromGAS(isRep, mi);
+}
+
+async function loadTasksFromGAS(isRep, mi){
+  const mName=MEMBERS[mi].name;
+  const ds=dateStr(state.inputDate);
+  const action=isRep?'getReport':'getPlan';
+  const data=await apiGet({action, date:ds, memberName:mName});
+  if(data.success && data.tasks && data.tasks.length>0){
+    document.getElementById('task-list').innerHTML='';
+    taskIdx=0;
+    data.tasks.forEach(t=>{
+      addTask();
+      const tb=document.getElementById('task-list').lastElementChild;
+      const catSel=tb.querySelector('select');
+      const nameInput=tb.querySelector('input[type=text]');
+      const startH=tb.querySelector('.t-start.t-h');
+      const startM=tb.querySelector('.t-start.t-m');
+      const endH=tb.querySelector('.t-end.t-h');
+      const endM=tb.querySelector('.t-end.t-m');
+      const [sh,sm]=t.startTime?t.startTime.split(':'):['9','0'];
+      const [eh,em]=t.endTime?t.endTime.split(':'):['18','0'];
+      if(catSel) catSel.value=t.cat||'その他';
+      if(nameInput) nameInput.value=t.name||'';
+      if(startH) startH.value=sh;
+      if(startM) startM.value=parseInt(sm)||0;
+      if(endH) endH.value=eh;
+      if(endM) endM.value=parseInt(em)||0;
+      if(isRep){
+        const statusSel=tb.querySelectorAll('select')[3];
+        if(statusSel) statusSel.value=t.status||'完了';
+      }
+      const noteArea=tb.querySelector('textarea');
+      if(noteArea) noteArea.value=t.note||'';
+    });
+    if(isRep) setTimeout(calcWorkHours,100);
+    // Also cache in planStore for copyPlanToReport
+    if(!isRep){
+      const key=mi+'_'+dateStr(state.inputDate);
+      planStore[key]=data.tasks.map(t=>{
+        const[sh,sm]=t.startTime?t.startTime.split(':'):['9','0'];
+        const[eh,em]=t.endTime?t.endTime.split(':'):['18','0'];
+        return{cat:t.cat,name:t.name,startH:sh,startM:parseInt(sm)||0,endH:eh,endM:parseInt(em)||0};
+      });
+    }
+  } else {
+    addTask();
+  }
 }
 
 function addTask(){
@@ -1149,11 +1428,56 @@ function addTask(){
   document.getElementById('task-list').appendChild(div);
 }
 
-function submitInput(){
+async function submitInput(){
   const mi=parseInt(document.getElementById('i-member').value||0);
   const isRep=document.getElementById('i-type').value==='report';
-  if(isRep) state.memberData[mi].submitted.report=true;
-  else state.memberData[mi].submitted.plan=true;
+  const mName=MEMBERS[mi].name;
+  const ds=dateStr(state.inputDate);
+
+  // Collect tasks
+  const tasks=[];
+  document.querySelectorAll('#task-list .tb').forEach(tb=>{
+    const catSel=tb.querySelector('select');
+    const nameInput=tb.querySelector('input[type=text]');
+    const startH=tb.querySelector('.t-start.t-h');
+    const startM=tb.querySelector('.t-start.t-m');
+    const endH=tb.querySelector('.t-end.t-h');
+    const endM=tb.querySelector('.t-end.t-m');
+    if(nameInput&&nameInput.value){
+      const task={
+        cat:catSel?catSel.value:'その他',
+        name:nameInput.value,
+        startH:startH?startH.value:'9',
+        startM:startM?startM.value:'0',
+        endH:endH?endH.value:'18',
+        endM:endM?endM.value:'0',
+        note:tb.querySelector('textarea')?tb.querySelector('textarea').value:''
+      };
+      if(isRep){
+        const statusSel=tb.querySelectorAll('select')[3];
+        task.status=statusSel?statusSel.value:'完了';
+      }
+      tasks.push(task);
+    }
+  });
+
+  if(isRep){
+    const reason=document.getElementById('report-reason')?document.getElementById('report-reason').value:'';
+    const workResult=document.getElementById('work-hours-result');
+    await apiPost({
+      action:'saveReport',
+      date:ds, memberName:mName, tasks,
+      breakMin:breakMin,
+      workHours:workResult?workResult.textContent:'',
+      reason
+    });
+    state.memberData[mi].submitted.report=true;
+  } else {
+    await apiPost({action:'savePlanBatch', date:ds, memberName:mName, tasks});
+    state.memberData[mi].submitted.plan=true;
+    savePlanToStore();
+  }
+
   const t=document.getElementById('toast-input');
   t.style.display='block';
   setTimeout(()=>t.style.display='none',3000);
