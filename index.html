@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0064)file:///Users/shunsukekobayashi/Downloads/kuppography_v4_15.html -->
+<!-- saved from url=(0064)file:///Users/shunsukekobayashi/Downloads/kuppography_v4_17.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -244,7 +244,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
 <main class="main">
 
 <!-- ダッシュボード -->
-<div class="view" id="page-dashboard">
+<div class="view active" id="page-dashboard">
   <div class="ph">
     <div><div class="pt">ダッシュボード</div><div class="ps" id="dash-date">2026年4月18日(土)</div></div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
@@ -254,231 +254,43 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
   </div>
 
   <!-- 未提出カード -->
-  <div class="card" id="unsub-card" style="margin-bottom: 14px; border-left: 3px solid rgb(220, 38, 38);">
+  <div class="card" id="unsub-card" style="margin-bottom:14px;">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"></circle><path d="M8 5v3M8 11v.5"></path></svg>
-      <span style="font-size:13px;font-weight:500;" id="unsub-title">終業報告 未提出 — 4/18</span>
-      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">15:48 時点</span>
+      <span style="font-size:13px;font-weight:500;" id="unsub-title">終業報告 未提出</span>
+      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time"></span>
     </div>
-    <div id="unsub-list"><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
-        <div class="av" style="background:#5B8DD9;">小</div>
-        <span style="font-size:13px;font-weight:500;flex:1;">小林 俊介</span>
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
-        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=0;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
-      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
-        <div class="av" style="background:#C9A84C;">飯</div>
-        <span style="font-size:13px;font-weight:500;flex:1;">飯倉 孝史</span>
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
-        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=1;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
-      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
-        <div class="av" style="background:#C96B6B;">佐</div>
-        <span style="font-size:13px;font-weight:500;flex:1;">佐々木 大翔</span>
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
-        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=2;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
-      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
-        <div class="av" style="background:#D4845A;">坂</div>
-        <span style="font-size:13px;font-weight:500;flex:1;">坂本 楓花</span>
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
-        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=3;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
-      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
-        <div class="av" style="background:#6AAB7B;">山</div>
-        <span style="font-size:13px;font-weight:500;flex:1;">山口 葵</span>
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
-        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=4;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
-      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
-        <div class="av" style="background:#9B7EC8;">川</div>
-        <span style="font-size:13px;font-weight:500;flex:1;">川上 輝</span>
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
-        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=5;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
-      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
-        <div class="av" style="background:#9DC47E;">横</div>
-        <span style="font-size:13px;font-weight:500;flex:1;">横山 大燿</span>
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
-        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=6;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
-      </div><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
-        <div class="av" style="background:#C4739A;">片</div>
-        <span style="font-size:13px;font-weight:500;flex:1;">片倉 来波</span>
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
-        <button class="btn btn-sm" onclick="sw(&#39;input&#39;);document.getElementById(&#39;i-member&#39;).value=7;document.getElementById(&#39;i-type&#39;).value=&#39;report&#39;;renderInputForm();">入力する</button>
-      </div><div style="font-size:11px;color:var(--t3);margin-top:8px;">22:00 に本人へメールが自動送信されます</div></div>
+    <div id="unsub-list"></div>
   </div>
 
-  <div class="sg" id="dash-stats">
-    <div class="sc"><div class="sl">予定入力</div><div class="sv">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
-    <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:#DC2626;">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
-    <div class="sc"><div class="sl">チーム平均超過</div><div class="sv" style="color:#16A34A;">0<span style="font-size:16px;color:var(--t3);">分</span></div></div>
-  </div>
+  <div class="sg" id="dash-stats"></div>
 
   <div class="g2">
     <div class="card">
       <div class="ct">月間勤務時間 進捗</div>
-      <div id="dash-hours"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#5B8DD9;">小</div>
-      <span style="font-size:12px;min-width:44px;">小林 俊介</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#5B8DD9;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#C9A84C;">飯</div>
-      <span style="font-size:12px;min-width:44px;">飯倉 孝史</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#C9A84C;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#C96B6B;">佐</div>
-      <span style="font-size:12px;min-width:44px;">佐々木 大翔</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#C96B6B;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#D4845A;">坂</div>
-      <span style="font-size:12px;min-width:44px;">坂本 楓花</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#D4845A;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#6AAB7B;">山</div>
-      <span style="font-size:12px;min-width:44px;">山口 葵</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#6AAB7B;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#9B7EC8;">川</div>
-      <span style="font-size:12px;min-width:44px;">川上 輝</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#9B7EC8;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#9DC47E;">横</div>
-      <span style="font-size:12px;min-width:44px;">横山 大燿</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#9DC47E;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#C4739A;">片</div>
-      <span style="font-size:12px;min-width:44px;">片倉 来波</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#C4739A;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
-    </div></div>
+      <div id="dash-hours"></div>
     </div>
     <div class="card">
       <div class="ct">本日 予定超過時間</div>
-      <div id="dash-overtime"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#5B8DD9;">小</div>
-      <span style="font-size:12px;min-width:68px;">小林 俊介</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#C9A84C;">飯</div>
-      <span style="font-size:12px;min-width:68px;">飯倉 孝史</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#C96B6B;">佐</div>
-      <span style="font-size:12px;min-width:68px;">佐々木 大翔</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#D4845A;">坂</div>
-      <span style="font-size:12px;min-width:68px;">坂本 楓花</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#6AAB7B;">山</div>
-      <span style="font-size:12px;min-width:68px;">山口 葵</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#9B7EC8;">川</div>
-      <span style="font-size:12px;min-width:68px;">川上 輝</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#9DC47E;">横</div>
-      <span style="font-size:12px;min-width:68px;">横山 大燿</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
-    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-      <div class="av" style="background:#C4739A;">片</div>
-      <span style="font-size:12px;min-width:68px;">片倉 来波</span>
-      <div class="bb"><div class="bf" style="width:0%;background:#16A34A;"></div></div>
-      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
-    </div></div>
+      <div id="dash-overtime"></div>
     </div>
   </div>
 
   <!-- 日別詳細 -->
   <div class="card" id="day-detail-card">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-      <div class="ct" style="margin-bottom:0;" id="day-detail-title">4月18日（土）のタスク詳細</div>
+      <div class="ct" style="margin-bottom:0;" id="day-detail-title">選択日のタスク詳細</div>
       <div style="display:flex;gap:6px;">
         <button class="btn btn-sm" onclick="shiftDay(-1)">◀ 前日</button>
         <button class="btn btn-sm" onclick="shiftDay(1)">翌日 ▶</button>
       </div>
     </div>
-    <div id="day-detail-body"><div class="dd-member">
-      <div class="dd-m-header">
-        <div class="av" style="background:#5B8DD9;">小</div>
-        <span style="font-size:14px;font-weight:500;">小林 俊介</span>
-        
-        
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
-      <div class="dd-m-header">
-        <div class="av" style="background:#C9A84C;">飯</div>
-        <span style="font-size:14px;font-weight:500;">飯倉 孝史</span>
-        
-        
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
-      <div class="dd-m-header">
-        <div class="av" style="background:#C96B6B;">佐</div>
-        <span style="font-size:14px;font-weight:500;">佐々木 大翔</span>
-        
-        
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
-      <div class="dd-m-header">
-        <div class="av" style="background:#D4845A;">坂</div>
-        <span style="font-size:14px;font-weight:500;">坂本 楓花</span>
-        
-        
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
-      <div class="dd-m-header">
-        <div class="av" style="background:#6AAB7B;">山</div>
-        <span style="font-size:14px;font-weight:500;">山口 葵</span>
-        
-        
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
-      <div class="dd-m-header">
-        <div class="av" style="background:#9B7EC8;">川</div>
-        <span style="font-size:14px;font-weight:500;">川上 輝</span>
-        
-        
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
-      <div class="dd-m-header">
-        <div class="av" style="background:#9DC47E;">横</div>
-        <span style="font-size:14px;font-weight:500;">横山 大燿</span>
-        
-        
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div><hr class="divider"><div class="dd-member">
-      <div class="dd-m-header">
-        <div class="av" style="background:#C4739A;">片</div>
-        <span style="font-size:14px;font-weight:500;">片倉 来波</span>
-        
-        
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-      </div><div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div></div></div>
+    <div id="day-detail-body"></div>
   </div>
 </div>
 
 <!-- 予定・報告入力 -->
-<div class="view active" id="page-input">
+<div class="view" id="page-input">
   <div class="ph">
     <div>
       <div class="pt">予定・報告入力</div>
@@ -509,24 +321,13 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       </div>
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-      <div class="ct" id="input-title" style="margin-bottom:0;">予定タスク（スケジュール）</div>
+      <div class="ct" id="input-title" style="margin-bottom:0;">本日の予定タスク（スケジュール）</div>
       <div id="report-shortcut-btns" style="display:none;gap:6px;">
         <button onclick="planAsIs()" style="padding:6px 14px;font-size:12px;font-weight:500;border-radius:6px;border:1px solid #2563EB;background:#EFF6FF;color:#1D4ED8;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">予定通り ✓</button>
         <button id="copy-plan-btn" onclick="copyPlanToReport()" style="padding:6px 14px;font-size:12px;font-weight:500;border-radius:6px;border:1px solid #16A34A;background:#F0FDF4;color:#16A34A;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">予定をコピー</button>
       </div>
     </div>
-    <div id="task-list"><div class="tb" id="tb-0">
-    <button class="rm" onclick="this.closest(&#39;.tb&#39;).remove()">×</button>
-    <div class="tb-h">
-      <select style="width:auto;padding:6px 9px;font-size:12px;" id="cat-0"><option>撮影</option><option>現像チェック</option><option>打ち合わせ</option><option>MTG</option><option>梱包作業</option><option>プロジェクト推進</option><option>FB</option><option>その他</option></select>
-      <input type="text" placeholder="作業内容（例：スタジオ撮影）" style="flex:1;min-width:130px;">
-    </div>
-    <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
-      <select class="t-h t-start" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9" selected="">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select><select class="t-m t-start" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:72px;padding:6px 8px;font-size:13px;"><option value="0" selected="">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select><span style="font-size:12px;color:var(--t3);">〜</span><select class="t-h t-end" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18" selected="">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select><select class="t-m t-end" onchange="if(document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:72px;padding:6px 8px;font-size:13px;"><option value="0" selected="">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
-      
-    </div>
-    <textarea placeholder="備考・メモ" style="font-size:12px;min-height:40px;"></textarea>
-  </div></div>
+    <div id="task-list"></div>
     <button class="btn-add" onclick="addTask()">
       <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 1.5v10M1.5 6.5h10"></path></svg>
       タスクを追加
@@ -628,7 +429,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
 <div class="view" id="page-summary">
   <div class="ph">
     <div><div class="pt">月間サマリー</div><div class="ps">残りシフト日数から1日あたりの必要ペースを算出</div></div>
-    <select id="sum-month" onchange="renderSummary()" style="width:auto;padding:7px 10px;font-size:13px;"><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option></select>
+    <select id="sum-month" onchange="renderSummary()" style="width:auto;padding:7px 10px;font-size:13px;"></select>
   </div>
   <div class="sg" id="sum-stats"></div>
   <div id="pace-grid"></div>
@@ -678,7 +479,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       <button class="btn btn-sm" onclick="copyGAS()">コピー</button>
     </div>
     <div id="toast-copy" class="toast" style="margin-bottom:8px;"></div>
-    <pre id="gas-code" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);padding:14px;font-size:11px;font-family:&#39;DM Mono&#39;,monospace;line-height:1.7;overflow-x:auto;white-space:pre;color:var(--text);max-height:400px;overflow-y:auto;">// Slack設定ページのGASスクリプトはここに表示されます</pre>
+    <pre id="gas-code" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);padding:14px;font-size:11px;font-family:&#39;DM Mono&#39;,monospace;line-height:1.7;overflow-x:auto;white-space:pre;color:var(--text);max-height:400px;overflow-y:auto;"></pre>
   </div>
 </div>
 
@@ -1120,305 +921,107 @@ function renderDashboard(){
 
   // Day detail
   document.getElementById('day-detail-title').textContent=`${sel.getMonth()+1}月${sel.getDate()}日（${['日','月','火','水','木','金','土'][sel.getDay()]}）のタスク詳細`;
+  document.getElementById('day-detail-body').innerHTML='<div style="font-size:13px;color:var(--t3);padding:10px 0;">読み込み中...</div>';
+  renderDayDetailAsync(sel);
+}
+
+async function renderDayDetailAsync(sel){
+  const ds=dateStr(sel);
+  const TL_S=8,TL_E=21,TL_R=TL_E-TL_S;
   let dd='';
-  MEMBERS.forEach((m,i)=>{
-    const tasks=DEMO[i];
+  for(let i=0;i<MEMBERS.length;i++){
+    const m=MEMBERS[i];
     const md=state.memberData[i];
-    const ds=dateStr(sel);
     const isOff=md.offDays.includes(ds);
     const isWed=md.weddingDays.includes(ds);
-    dd+=`<div class="dd-member">
-      <div class="dd-m-header">
+    // Load from GAS
+    const planData=await apiGet({action:'getPlan',date:ds,memberName:m.name});
+    const reportData=await apiGet({action:'getReport',date:ds,memberName:m.name});
+    const planTasks=(planData.success&&planData.tasks)||[];
+    const reportTasks=(reportData.success&&reportData.tasks)||[];
+    const hasPlan=planTasks.length>0;
+    const hasReport=reportTasks.length>0;
+    // Merge plan + report for timeline
+    const tasks=planTasks.map(p=>{
+      const r=reportTasks.find(r=>r.name===p.name)||{};
+      return{cat:p.cat,name:p.name||'（タスク）',ps:p.startTime,pe:p.endTime,as:r.startTime||null,ae:r.endTime||null,done:r.status==='完了',note:p.note||''};
+    });
+
+    dd+=`<div class="dd-member-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div class="av" style="background:${m.color};">${m.init}</div>
         <span style="font-size:14px;font-weight:500;">${m.name}</span>
         ${isOff?`<span class="badge" style="background:#FEF2F2;color:#DC2626;">休み</span>`:''}
-        ${isWed?`<span class="badge" style="background:#FDF2F8;color:#DB2777;">婚礼撮影（8h）</span>`:''}
-        ${!isOff&&!isWed?`<span class="badge" style="background:${md.submitted.report?'#F0FDF4':'#FEF2F2'};color:${md.submitted.report?'#16A34A':'#DC2626'};">${md.submitted.report?'報告済':'未提出'}</span>`:''}
+        ${isWed?`<span class="badge" style="background:#EFF6FF;color:#2563EB;">婚礼撮影（8h）</span>`:''}
+        ${!isOff&&!isWed?`<span class="badge" style="background:${hasReport?'#F0FDF4':'#FEF2F2'};color:${hasReport?'#16A34A':'#DC2626'};">${hasReport?'報告済':'未提出'}</span>`:''}
       </div>`;
     if(isOff){
-      dd+=`<div style="font-size:12px;color:var(--t3);padding:6px 12px;">休み登録日のため入力不要です</div>`;
+      dd+=`<div style="font-size:13px;color:var(--t3);">休み登録日のため入力不要です</div>`;
     } else if(isWed){
-      dd+=`<div style="font-size:12px;color:var(--t3);padding:6px 12px;">婚礼撮影日（8h自動カウント）</div>`;
-    } else if(!md.submitted.plan){
-      dd+=`<div style="font-size:12px;color:var(--t3);padding:6px 12px;">予定未入力</div>`;
+      dd+=`<div style="font-size:13px;color:var(--t3);">婚礼撮影日（8h自動カウント）</div>`;
+    } else if(!hasPlan){
+      dd+=`<div style="font-size:13px;color:var(--t3);">予定未入力</div>`;
     } else {
-      // Summary row per member
+      // Summary row
       const totalPlanMin=tasks.reduce((s,t)=>s+(t.ps&&t.pe?Math.max(0,t2m(t.pe)-t2m(t.ps)):0),0);
       const totalActMin=tasks.reduce((s,t)=>s+(t.as&&t.ae?Math.max(0,t2m(t.ae)-t2m(t.as)):0),0);
-      const doneCount=tasks.filter(t=>t.done).length;
-      const totalOverMin=tasks.reduce((s,t)=>{
-        if(!t.as||!t.ae)return s;
-        return s+Math.max(0,t2m(t.ae)-t2m(t.pe));
-      },0);
+      const totalOverMin=tasks.reduce((s,t)=>{if(!t.as||!t.ae)return s;return s+Math.max(0,t2m(t.ae)-t2m(t.pe));},0);
       const ph=Math.floor(totalPlanMin/60),pm=totalPlanMin%60;
       const ah=Math.floor(totalActMin/60),am=totalActMin%60;
       const overCol=totalOverMin>60?'#DC2626':totalOverMin>30?'#D97706':'#6B7280';
-      dd+=`<div style="display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
+      dd+=`<div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
           <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:'DM Mono',monospace;">${pm===0?ph+'h':ph+'h'+pm+'分'}</div>
+          <div style="font-size:16px;font-weight:500;font-family:'DM Mono',monospace;">${pm===0?ph+'h':ph+'h'+pm+'分'}</div>
         </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
+        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
           <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
-          <div style="font-size:15px;font-weight:700;font-family:'DM Mono',monospace;">${totalActMin>0?(am===0?ah+'h':ah+'h'+am+'分'):'—'}</div>
+          <div style="font-size:16px;font-weight:500;font-family:'DM Mono',monospace;">${totalActMin>0?(am===0?ah+'h':ah+'h'+am+'分'):'—'}</div>
         </div>
-        <div style="background:var(--s2);border-radius:6px;padding:6px 12px;text-align:center;flex:1;min-width:80px;">
+        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
           <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
-          <div style="font-size:15px;font-weight:700;font-family:'DM Mono',monospace;color:${overCol};">${totalOverMin>0?'+'+totalOverMin+'分':'±0'}</div>
+          <div style="font-size:16px;font-weight:500;font-family:'DM Mono',monospace;color:${overCol};">${totalOverMin>0?'+'+totalOverMin+'分':'±0'}</div>
         </div>
       </div>`;
-
-      // Timeline header
-      const TL_S=8,TL_E=21,TL_R=TL_E-TL_S;
-      const hours=[];for(let h=TL_S;h<=TL_E;h++)hours.push(h);
-      dd+=`<div style="overflow-x:auto;margin-bottom:12px;">
-        <div style="min-width:420px;">
-          <div style="display:flex;padding-left:80px;margin-bottom:3px;">
-            ${hours.map(h=>`<div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;line-height:1;">${h}</div>`).join('')}
-          </div>`;
+      // Timeline
+      dd+=`<div style="overflow-x:auto;"><div style="min-width:380px;">
+        <div style="display:flex;padding-left:76px;margin-bottom:3px;">
+          ${Array.from({length:TL_E-TL_S+1},(_,j)=>TL_S+j).map(h=>`<div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">${h}</div>`).join('')}
+        </div>`;
       tasks.forEach(t=>{
-        if(!t.ps||!t.pe) return;
+        if(!t.ps||!t.pe)return;
         const pL=((t2m(t.ps)/60-TL_S)/TL_R*100).toFixed(1);
-        const pW=(Math.max(0.5,(t2m(t.pe)-t2m(t.ps))/60/TL_R*100)).toFixed(1);
+        const pW=Math.max(.5,(t2m(t.pe)-t2m(t.ps))/60/TL_R*100).toFixed(1);
         const hasA=t.as&&t.ae;
         const aL=hasA?((t2m(t.as)/60-TL_S)/TL_R*100).toFixed(1):pL;
-        const aW=hasA?(Math.max(0.5,(t2m(t.ae)-t2m(t.as))/60/TL_R*100)).toFixed(1):pW;
+        const aW=hasA?Math.max(.5,(t2m(t.ae)-t2m(t.as))/60/TL_R*100).toFixed(1):pW;
         const diff=hasA?t2m(t.ae)-t2m(t.pe):null;
         const dStr=diff===null?'—':diff>0?`+${diff}m`:diff<0?`${diff}m`:'±0';
         const dCol=diff===null?'#A09890':diff>15?'#DC2626':diff<-10?'#16A34A':'#9CA3AF';
-        const bc=CC[t.cat];
-        dd+=`<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-          <div style="width:74px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:${CB[t.cat]};color:${bc};margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.cat}</div>
-            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.name.length>8?t.name.substring(0,8)+'…':t.name}</div>
+        const bc=CC[t.cat]||'#6B7280';
+        const bg=CB[t.cat]||'#F9FAFB';
+        dd+=`<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
+          <div style="width:70px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:${bg};color:${bc};margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${t.cat}</div>
+            <div style="font-size:10px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${(t.name||'').length>8?(t.name||'').substring(0,8)+'…':(t.name||'—')}</div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--s2);border-radius:3px;overflow:hidden;">
-            <div style="position:absolute;left:${pL}%;width:${pW}%;height:12px;top:1px;background:${bc};opacity:.3;border-radius:2px;" title="予定 ${t.ps}〜${t.pe}"></div>
-            <div style="position:absolute;left:${aL}%;width:${aW}%;height:12px;top:13px;background:${bc};border-radius:2px;" title="実績 ${hasA?t.as+'〜'+t.ae:'未入力'}"></div>
+          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:hidden;">
+            <div style="position:absolute;left:${pL}%;width:${pW}%;height:12px;top:1px;background:${bc};opacity:.3;border-radius:2px;"></div>
+            <div style="position:absolute;left:${aL}%;width:${aW}%;height:12px;top:13px;background:${bc};border-radius:2px;"></div>
           </div>
-          <div style="font-size:11px;font-weight:700;min-width:36px;text-align:right;font-family:'DM Mono',monospace;color:${dCol};">${dStr}</div>
+          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:'DM Mono',monospace;color:${dCol};">${dStr}</div>
         </div>`;
       });
-      dd+=`<div style="display:flex;gap:10px;padding-left:80px;margin-top:4px;">
+      dd+=`<div style="display:flex;gap:10px;padding-left:76px;margin-top:4px;">
         <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.3;display:inline-block;"></span>予定</span>
         <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>実績</span>
-      </div>
-        </div>
-      </div>`;
+      </div></div></div>`;
     }
     dd+=`</div>`;
-    if(i<MEMBERS.length-1) dd+=`<hr class="divider">`;
-  });
+  }
   document.getElementById('day-detail-body').innerHTML=dd;
 }
 
-// Input
-let taskIdx=0;
-let breakMin=60;
-
-function setBreak(min,btn){
-  document.querySelectorAll('.break-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const custom=document.getElementById('break-custom');
-  if(min===-1){
-    custom.style.display='flex';
-    breakMin=parseInt(document.getElementById('break-custom-min').value||60);
-  } else {
-    custom.style.display='none';
-    breakMin=min;
-    document.getElementById('break-custom-min').value=min;
-  }
-  calcWorkHours();
-}
-
-function calcWorkHours(){
-  const tasks=document.querySelectorAll('#task-list .tb');
-  let totalMin=0;
-  tasks.forEach(tb=>{
-    const startH=tb.querySelector('.t-start.t-h');
-    const startM=tb.querySelector('.t-start.t-m');
-    const endH=tb.querySelector('.t-end.t-h');
-    const endM=tb.querySelector('.t-end.t-m');
-    if(startH&&startM&&endH&&endM){
-      const sMin=parseInt(startH.value)*60+parseInt(startM.value);
-      const eMin=parseInt(endH.value)*60+parseInt(endM.value);
-      if(eMin>sMin) totalMin+=eMin-sMin;
-    }
-  });
-  const workMin=Math.max(0,totalMin-breakMin);
-  const th=Math.floor(totalMin/60),tm=totalMin%60;
-  const wh=Math.floor(workMin/60),wm=workMin%60;
-  const bh=Math.floor(breakMin/60),bm=breakMin%60;
-  const tStr=tm===0?th+'h':th+'h'+tm+'分';
-  const bStr=breakMin===0?'なし':(bm===0?(bh>0?bh+'h':''):(bh>0?bh+'h'+bm+'分':bm+'分'));
-  const wStr=workMin===0?'0h':(wm===0?wh+'h':wh+'h'+wm+'分');
-  document.getElementById('task-sum-display').textContent=tStr;
-  document.getElementById('break-display').textContent=bStr;
-  document.getElementById('work-hours-result').textContent=wStr;
-  const mi=parseInt(document.getElementById('i-member').value||0);
-  state.memberData[mi].todayWorkMin=workMin;
-}
-
-function renderInputForm(){
-  const isRep=document.getElementById('i-type').value==='report';
-  const mi=parseInt(document.getElementById('i-member').value||0);
-  document.getElementById('input-title').textContent=isRep?'実績報告':'予定タスク（スケジュール）';
-  document.getElementById('report-reason-wrap').style.display=isRep?'block':'none';
-  const shortcutBtns=document.getElementById('report-shortcut-btns');
-  if(shortcutBtns) shortcutBtns.style.display=isRep?'flex':'none';
-  if(isRep){
-    breakMin=60;
-    document.querySelectorAll('.break-btn').forEach(b=>b.classList.remove('active'));
-    const defBtn=document.querySelector('.break-btn[data-min="60"]');
-    if(defBtn)defBtn.classList.add('active');
-    document.getElementById('break-custom').style.display='none';
-    setTimeout(calcWorkHours,50);
-  }
-  const md=state.memberData[mi];
-  const today=dateStr(new Date());
-  const isOff=md.offDays.includes(today);
-  const isWed=md.weddingDays.includes(today);
-  const notice=document.getElementById('input-notice');
-  if(isOff) notice.innerHTML=`<div style="background:#FFFBEB;border:1px solid #FCD34D;border-radius:var(--rs);padding:9px 14px;font-size:13px;color:#92400E;margin-bottom:10px;">本日は休み登録日です。入力不要ですが任意で残すこともできます。</div>`;
-  else if(isWed) notice.innerHTML=`<div style="background:#EFF6FF;border:1px solid #93C5FD;border-radius:var(--rs);padding:9px 14px;font-size:13px;color:#1D4ED8;margin-bottom:10px;">本日は婚礼撮影日です。8時間として自動カウントされます。</div>`;
-  else notice.innerHTML='';
-  document.getElementById('task-list').innerHTML='';
-  taskIdx=0;
-  loadTasksFromGAS(isRep, mi);
-}
-
-async function loadTasksFromGAS(isRep, mi){
-  // Prevent double loading
-  const loadKey=isRep+'_'+mi+'_'+dateStr(state.inputDate);
-  if(loadTasksFromGAS._key===loadKey&&loadTasksFromGAS._loading)return;
-  loadTasksFromGAS._key=loadKey;
-  loadTasksFromGAS._loading=true;
-  const mName=MEMBERS[mi].name;
-  const ds=dateStr(state.inputDate);
-  const action=isRep?'getReport':'getPlan';
-  const data=await apiGet({action, date:ds, memberName:mName});
-  if(data.success && data.tasks && data.tasks.length>0){
-    document.getElementById('task-list').innerHTML='';
-    taskIdx=0;
-    data.tasks.forEach(t=>{
-      addTask();
-      const tb=document.getElementById('task-list').lastElementChild;
-      const catSel=tb.querySelector('select');
-      const nameInput=tb.querySelector('input[type=text]');
-      const startH=tb.querySelector('.t-start.t-h');
-      const startM=tb.querySelector('.t-start.t-m');
-      const endH=tb.querySelector('.t-end.t-h');
-      const endM=tb.querySelector('.t-end.t-m');
-      const [sh,sm]=t.startTime?t.startTime.split(':'):['9','0'];
-      const [eh,em]=t.endTime?t.endTime.split(':'):['18','0'];
-      if(catSel) catSel.value=t.cat||'その他';
-      if(nameInput) nameInput.value=t.name||'';
-      if(startH) startH.value=sh;
-      if(startM) startM.value=parseInt(sm)||0;
-      if(endH) endH.value=eh;
-      if(endM) endM.value=parseInt(em)||0;
-      if(isRep){
-        const statusSel=tb.querySelectorAll('select')[3];
-        if(statusSel) statusSel.value=t.status||'完了';
-      }
-      const noteArea=tb.querySelector('textarea');
-      if(noteArea) noteArea.value=t.note||'';
-    });
-    if(isRep) setTimeout(calcWorkHours,100);
-    // Also cache in planStore for copyPlanToReport
-    if(!isRep){
-      const key=mi+'_'+dateStr(state.inputDate);
-      planStore[key]=data.tasks.map(t=>{
-        const[sh,sm]=t.startTime?t.startTime.split(':'):['9','0'];
-        const[eh,em]=t.endTime?t.endTime.split(':'):['18','0'];
-        return{cat:t.cat,name:t.name,startH:sh,startM:parseInt(sm)||0,endH:eh,endM:parseInt(em)||0};
-      });
-    }
-  } else {
-    addTask();
-  }
-  loadTasksFromGAS._loading=false;
-}
-
-function addTask(){
-  const isRep=document.getElementById('i-type').value==='report';
-  const id=taskIdx++;
-  const div=document.createElement('div');
-  div.className='tb';
-  div.id='tb-'+id;
-  div.innerHTML=`
-    <button class="rm" onclick="this.closest('.tb').remove()">×</button>
-    <div class="tb-h">
-      <select style="width:auto;padding:6px 9px;font-size:12px;" id="cat-${id}">${CATS.map(c=>`<option>${c}</option>`).join('')}</select>
-      <input type="text" placeholder="作業内容（例：スタジオ撮影）" style="flex:1;min-width:130px;" />
-    </div>
-    <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
-      <select class="t-h t-start" onchange="if(document.getElementById('i-type').value==='report')calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9" selected>9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select><select class="t-m t-start" onchange="if(document.getElementById('i-type').value==='report')calcWorkHours()" style="width:72px;padding:6px 8px;font-size:13px;"><option value="0" selected>00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select><span style="font-size:12px;color:var(--t3);">〜</span><select class="t-h t-end" onchange="if(document.getElementById('i-type').value==='report')calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18" selected>18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select><select class="t-m t-end" onchange="if(document.getElementById('i-type').value==='report')calcWorkHours()" style="width:72px;padding:6px 8px;font-size:13px;"><option value="0" selected>00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
-      ${isRep?`<select style="width:auto;padding:6px 9px;font-size:12px;"><option>完了</option><option>進行中</option><option>翌日へ</option></select>`:''}
-    </div>
-    <textarea placeholder="備考・メモ" style="font-size:12px;min-height:40px;"></textarea>
-  `;
-  document.getElementById('task-list').appendChild(div);
-}
-
-async function submitInput(){
-  const mi=parseInt(document.getElementById('i-member').value||0);
-  const isRep=document.getElementById('i-type').value==='report';
-  const mName=MEMBERS[mi].name;
-  const ds=dateStr(state.inputDate);
-
-  // Collect tasks
-  const tasks=[];
-  document.querySelectorAll('#task-list .tb').forEach(tb=>{
-    const allSels=tb.querySelectorAll('select');
-    const nameInput=tb.querySelector('input[type=text]');
-    // selects order: [0]=cat, [1]=startH, [2]=startM, [3]=endH, [4]=endM, [5]=status(report only)
-    const catSel=allSels[0];
-    const startH=tb.querySelector('.t-start.t-h')||tb.querySelector('.t-h.t-start')||allSels[1];
-    const startM=tb.querySelector('.t-start.t-m')||tb.querySelector('.t-m.t-start')||allSels[2];
-    const endH=tb.querySelector('.t-end.t-h')||tb.querySelector('.t-h.t-end')||allSels[3];
-    const endM=tb.querySelector('.t-end.t-m')||tb.querySelector('.t-m.t-end')||allSels[4];
-    if(nameInput&&nameInput.value){
-      const task={
-        cat:catSel?catSel.value:'その他',
-        name:nameInput.value,
-        startH:startH?startH.value:'9',
-        startM:startM?startM.value:'0',
-        endH:endH?endH.value:'18',
-        endM:endM?endM.value:'0',
-        note:tb.querySelector('textarea')?tb.querySelector('textarea').value:''
-      };
-      if(isRep){
-        const statusSel=allSels[5];
-        task.status=statusSel?statusSel.value:'完了';
-      }
-      tasks.push(task);
-    }
-  });
-  console.log('Collected tasks:', JSON.stringify(tasks));
-
-  console.log('Submitting tasks:', tasks);
-
-  if(isRep){
-    const reason=document.getElementById('report-reason')?document.getElementById('report-reason').value:'';
-    const wr=document.getElementById('work-hours-result');
-    const result=await apiPost({action:'saveReport',date:ds,memberName:mName,tasks,breakMin:String(breakMin),workHours:wr?wr.textContent:'',reason});
-    console.log('saveReport:', result);
-    state.memberData[mi].submitted.report=true;
-  } else {
-    const result=await apiPost({action:'savePlan',date:ds,memberName:mName,tasks});
-    console.log('savePlan:', result);
-    state.memberData[mi].submitted.plan=true;
-    planStore[mi+'_'+ds]=tasks.map(t=>({...t}));
-  }
-
-  const t=document.getElementById('toast-input');
-  t.style.display='block';
-  setTimeout(()=>t.style.display='none',3000);
-}
-
-
-let calY=new Date().getFullYear(),calM=new Date().getMonth();
 
 function renderMonthly(){
   const sel=document.getElementById('m-member-sel');
