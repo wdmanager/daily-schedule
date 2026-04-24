@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0043)https://wdmanager.github.io/daily-schedule/ -->
+<!-- saved from url=(0230)file:///Users/shunsukekobayashi/Library/Application%20Support/Claude/local-agent-mode-sessions/36d28eab-0f9b-4285-b8a1-375410750365/8d543c9d-afd6-456c-a0ad-fae7225ca750/local_748d943d-d727-44c2-b018-b1b13d14392e/outputs/index.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -112,6 +112,18 @@ textarea{resize:vertical;min-height:56px;line-height:1.6;}
 /* Calendar */
 .cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;}
 .cal-h{font-size:11px;color:var(--t3);text-align:center;padding:4px 0;}
+/* タイムライン */
+.tl-wrap{position:relative;padding:4px 0 0;margin-bottom:14px;}
+.tl-hours{position:relative;height:18px;margin-bottom:3px;}
+.tl-hour{position:absolute;top:0;font-size:10px;color:var(--t2);transform:translateX(-50%);font-family:'DM Mono',monospace;white-space:nowrap;font-weight:500;}
+.tl-track{position:relative;height:46px;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--border);}
+.tl-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(160,152,144,.35);}
+.tl-tick.half{background:rgba(160,152,144,.18);}
+.tl-block{position:absolute;top:4px;bottom:4px;border-radius:4px;padding:0 8px;font-size:11px;font-weight:500;color:#fff;display:flex;align-items:center;overflow:hidden;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.1);}
+.tl-block.no-cat{background:repeating-linear-gradient(135deg,#A09890,#A09890 4px,#8B847D 4px,#8B847D 8px);color:#fff;}
+.tl-empty{font-size:11px;color:var(--t3);text-align:center;padding:10px 0;}
+.tl-gap-label{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:10px;color:var(--t2);font-family:'DM Mono',monospace;background:var(--bg);padding:0 3px;border-radius:2px;}
+.tl-summary{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:11px;color:var(--t3);}
 .cal-d{font-size:12px;text-align:center;padding:5px 2px;border-radius:5px;cursor:pointer;transition:background .12s;min-height:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;}
 .cal-d:hover{background:var(--bg);}
 .cal-d.off{background:#FEF2F2;color:#DC2626;font-weight:500;}
@@ -275,7 +287,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
 <!-- ダッシュボード -->
 <div class="view" id="page-dashboard">
   <div class="ph">
-    <div><div class="pt">ダッシュボード</div><div class="ps" id="dash-date">2026年4月23日(木)</div></div>
+    <div><div class="pt">ダッシュボード</div><div class="ps" id="dash-date">2026年4月24日(金)</div></div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
       <input type="date" id="dash-pick" onchange="onDatePick()" style="width:auto;padding:6px 10px;font-size:13px;">
       <button class="btn btn-sm" onclick="goToday()">今日</button>
@@ -289,8 +301,8 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
   <div class="card" id="unsub-card" style="margin-bottom: 14px; border-left: 3px solid rgb(220, 38, 38);">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"></circle><path d="M8 5v3M8 11v.5"></path></svg>
-      <span style="font-size:13px;font-weight:500;" id="unsub-title">終業報告 未提出 — 4/23</span>
-      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">13:36 時点</span>
+      <span style="font-size:13px;font-weight:500;" id="unsub-title">終業報告 未提出 — 4/24</span>
+      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">10:02 時点</span>
     </div>
     <div id="unsub-list"><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
         <div class="av" style="background:#C9A84C;">飯</div>
@@ -446,7 +458,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
   <!-- 日別詳細 -->
   <div class="card" id="day-detail-card">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-      <div class="ct" style="margin-bottom:0;" id="day-detail-title">4月23日（木）のタスク詳細</div>
+      <div class="ct" style="margin-bottom:0;" id="day-detail-title">4月24日（金）のタスク詳細</div>
       <div style="display:flex;gap:6px;">
         <button class="btn btn-sm" onclick="shiftDay(-1)">◀ 前日</button>
         <button class="btn btn-sm" onclick="shiftDay(1)">翌日 ▶</button>
@@ -463,7 +475,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       <div class="pt">予定・報告入力</div>
       <div style="display:flex;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap;">
         <button onclick="shiftInputDay(-1)" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">◀ 前日</button>
-        <span class="ps" id="input-date" style="margin-top:0;">2026年4月23日(木)</span>
+        <span class="ps" id="input-date" style="margin-top:0;">2026年4月24日(金)</span>
         <button onclick="shiftInputDay(1)" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">翌日 ▶</button>
         <button onclick="resetInputDate()" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">今日</button>
         <button id="cal-import-btn" onclick="importFromCalendar()" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid #2563EB;background:#EFF6FF;color:#1D4ED8;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">📅 カレンダーから取得</button>
@@ -493,18 +505,23 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
         <button id="copy-plan-btn" onclick="copyPlanToReport()" style="padding:6px 14px;font-size:12px;font-weight:500;border-radius:6px;border:1px solid #16A34A;background:#F0FDF4;color:#16A34A;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">予定をコピー</button>
       </div>
     </div>
+    <div class="tl-wrap" id="timeline-wrap">
+      <div class="tl-hours" id="tl-hours"><span class="tl-hour" style="left:0%;">8</span><span class="tl-hour" style="left:8.333333333333332%;">9</span><span class="tl-hour" style="left:16.666666666666664%;">10</span><span class="tl-hour" style="left:25%;">11</span><span class="tl-hour" style="left:33.33333333333333%;">12</span><span class="tl-hour" style="left:41.66666666666667%;">13</span><span class="tl-hour" style="left:50%;">14</span><span class="tl-hour" style="left:58.333333333333336%;">15</span><span class="tl-hour" style="left:66.66666666666666%;">16</span><span class="tl-hour" style="left:75%;">17</span><span class="tl-hour" style="left:83.33333333333334%;">18</span><span class="tl-hour" style="left:91.66666666666666%;">19</span><span class="tl-hour" style="left:100%;">20</span></div>
+      <div class="tl-track" id="tl-track"><div class="tl-tick" style="left:8.333333333333332%;"></div><div class="tl-tick" style="left:16.666666666666664%;"></div><div class="tl-tick" style="left:25%;"></div><div class="tl-tick" style="left:33.33333333333333%;"></div><div class="tl-tick" style="left:41.66666666666667%;"></div><div class="tl-tick" style="left:50%;"></div><div class="tl-tick" style="left:58.333333333333336%;"></div><div class="tl-tick" style="left:66.66666666666666%;"></div><div class="tl-tick" style="left:75%;"></div><div class="tl-tick" style="left:83.33333333333334%;"></div><div class="tl-tick" style="left:91.66666666666666%;"></div><div class="tl-tick half" style="left:4.166666666666666%;"></div><div class="tl-tick half" style="left:12.5%;"></div><div class="tl-tick half" style="left:20.833333333333336%;"></div><div class="tl-tick half" style="left:29.166666666666668%;"></div><div class="tl-tick half" style="left:37.5%;"></div><div class="tl-tick half" style="left:45.83333333333333%;"></div><div class="tl-tick half" style="left:54.166666666666664%;"></div><div class="tl-tick half" style="left:62.5%;"></div><div class="tl-tick half" style="left:70.83333333333334%;"></div><div class="tl-tick half" style="left:79.16666666666666%;"></div><div class="tl-tick half" style="left:87.5%;"></div><div class="tl-tick half" style="left:95.83333333333334%;"></div></div>
+      <div class="tl-summary"><span id="tl-summary-left">タスクを追加するとタイムラインに表示されます</span><span id="tl-summary-right"></span></div>
+    </div>
     <div id="task-list"><div class="tb" id="tb-0">
     <button class="rm" onclick="confirmRemoveTask(this);">×</button>
     <div class="tb-h" style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
-      <input type="text" class="task-name" placeholder="作業内容（例：スタジオ撮影）" style="flex:1;min-width:120px;">
-      <select class="task-cat" onchange="onCatChange(this)" style="width:auto;padding:6px 9px;font-size:12px;"><option value="">カテゴリ選択</option><option>撮影</option><option>婚礼</option><option>現像チェック</option><option>打ち合わせ</option><option>MTG</option><option>梱包作業</option><option>プロジェクト推進</option><option>FB</option><option>その他</option></select>
+      <input type="text" class="task-name" placeholder="作業内容（例：スタジオ撮影）" oninput="renderTimeline()" style="flex:1;min-width:120px;">
+      <select class="task-cat" onchange="onCatChange(this);renderTimeline();" style="width:auto;padding:6px 9px;font-size:12px;"><option value="">カテゴリ選択</option><option>撮影</option><option>婚礼</option><option>現像チェック</option><option>打ち合わせ</option><option>MTG</option><option>梱包作業</option><option>プロジェクト推進</option><option>FB</option><option>その他</option></select>
     </div>
     <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
-      <select class="t-h t-start" onchange="if(document.getElementById(&#39;i-type&#39;)&amp;&amp;document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9" selected="">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select>
-      <select class="t-m t-start" onchange="if(document.getElementById(&#39;i-type&#39;)&amp;&amp;document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:62px;padding:6px 8px;font-size:13px;"><option value="0" selected="">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
+      <select class="t-h t-start" onchange="onTimeChange()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="" selected="">--</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select>
+      <select class="t-m t-start" onchange="onTimeChange()" style="width:62px;padding:6px 8px;font-size:13px;"><option value="" selected="">--</option><option value="0">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
       <span style="font-size:12px;color:var(--t3);">〜</span>
-      <select class="t-h t-end" onchange="if(document.getElementById(&#39;i-type&#39;)&amp;&amp;document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18" selected="">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select>
-      <select class="t-m t-end" onchange="if(document.getElementById(&#39;i-type&#39;)&amp;&amp;document.getElementById(&#39;i-type&#39;).value===&#39;report&#39;)calcWorkHours()" style="width:62px;padding:6px 8px;font-size:13px;"><option value="0" selected="">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
+      <select class="t-h t-end" onchange="onTimeChange()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="" selected="">--</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select>
+      <select class="t-m t-end" onchange="onTimeChange()" style="width:62px;padding:6px 8px;font-size:13px;"><option value="" selected="">--</option><option value="0">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
     </div>
     <textarea placeholder="備考・メモ" style="font-size:13px;min-height:44px;"></textarea>
   </div></div>
@@ -591,8 +608,8 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       <div class="ct">凡例</div>
       <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--t2);line-height:1.5;">
         <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:3px;background:#FEF2F2;border:1px solid #FCA5A5;flex-shrink:0;"></span>休み（有給・代休・公休）<br>→ その日は入力不要</span>
-        <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:3px;background:#EFF6FF;border:1px solid #93C5FD;flex-shrink:0;"></span>婚礼撮影日（入力必要）</span>
-        <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--s2);border:1px solid var(--border);flex-shrink:0;"></span>通常勤務日（入力必要）</span>
+        <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--surface);border:1px solid var(--border);flex-shrink:0;"></span>通常勤務日（入力必要）</span>
+        <span style="font-size:11px;color:var(--t3);margin-top:4px;">※ 婚礼は予定入力でカテゴリ選択すると自動カウントされます</span>
       </div>
     </div>
   </div>
@@ -604,10 +621,88 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       <button class="btn btn-sm" onclick="nextMonth()">▶</button>
     </div>
     <div class="cal" id="cal-header"><div class="cal-h" style="color:#DC2626;">日</div><div class="cal-h" style="color:var(--t3);">月</div><div class="cal-h" style="color:var(--t3);">火</div><div class="cal-h" style="color:var(--t3);">水</div><div class="cal-h" style="color:var(--t3);">木</div><div class="cal-h" style="color:var(--t3);">金</div><div class="cal-h" style="color:#2563EB;">土</div></div>
-    <div class="cal" id="cal-body"><div class="cal-d other-m">29</div><div class="cal-d other-m">30</div><div class="cal-d other-m">31</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-01&#39;,0)">1</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-02&#39;,0)">2</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-03&#39;,0)">3</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-04&#39;,0)">4</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-05&#39;,0)">5</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-06&#39;,0)">6</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-07&#39;,0)">7</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-08&#39;,0)">8</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-09&#39;,0)">9</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-10&#39;,0)">10</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-11&#39;,0)">11</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-12&#39;,0)">12</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-13&#39;,0)">13</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-14&#39;,0)">14</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-15&#39;,0)">15</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-16&#39;,0)">16</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-17&#39;,0)">17</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-18&#39;,0)">18</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-19&#39;,0)">19</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-20&#39;,0)">20</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-21&#39;,0)">21</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-22&#39;,0)">22</div><div class="cal-d today" onclick="toggleDay(&#39;2026-04-23&#39;,0)">23</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-24&#39;,0)">24</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-25&#39;,0)">25</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-26&#39;,0)">26</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-27&#39;,0)">27</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-28&#39;,0)">28</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-29&#39;,0)">29</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-30&#39;,0)">30</div><div class="cal-d other-m">1</div><div class="cal-d other-m">2</div></div>
+    <div class="cal" id="cal-body"><div class="cal-d other-m">29</div><div class="cal-d other-m">30</div><div class="cal-d other-m">31</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-01&#39;,0)">1</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-02&#39;,0)">2</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-03&#39;,0)">3</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-04&#39;,0)">4</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-05&#39;,0)">5</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-06&#39;,0)">6</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-07&#39;,0)">7</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-08&#39;,0)">8</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-09&#39;,0)">9</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-10&#39;,0)">10</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-11&#39;,0)">11</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-12&#39;,0)">12</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-13&#39;,0)">13</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-14&#39;,0)">14</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-15&#39;,0)">15</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-16&#39;,0)">16</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-17&#39;,0)">17</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-18&#39;,0)">18</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-19&#39;,0)">19</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-20&#39;,0)">20</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-21&#39;,0)">21</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-22&#39;,0)">22</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-23&#39;,0)">23</div><div class="cal-d today" onclick="toggleDay(&#39;2026-04-24&#39;,0)">24</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-25&#39;,0)">25</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-04-26&#39;,0)">26</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-27&#39;,0)">27</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-28&#39;,0)">28</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-29&#39;,0)">29</div><div class="cal-d" onclick="toggleDay(&#39;2026-04-30&#39;,0)">30</div><div class="cal-d other-m">1</div><div class="cal-d other-m">2</div></div>
     <div style="display:flex;justify-content:flex-end;margin-top:14px;">
       <button class="btn btn-p" onclick="saveMonthly()">保存する</button>
     </div>
+  </div>
+
+  <!-- カテゴリ管理 -->
+  <div class="card">
+    <div class="ct">カテゴリ管理</div>
+    <div style="font-size:12px;color:var(--t2);margin-bottom:12px;line-height:1.6;">
+      予定・報告入力で選べるカテゴリを編集できます。追加・削除は全メンバー共通で反映されます。
+    </div>
+    <div id="cat-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#8B9DC3" onchange="updateCategoryColor(0,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="撮影" onchange="updateCategoryName(0,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#8B9DC3;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">撮影</span>
+      <button onclick="removeCategory(0)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#D4A5B5" onchange="updateCategoryColor(1,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="婚礼" onchange="updateCategoryName(1,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#D4A5B5;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">婚礼</span>
+      <button onclick="removeCategory(1)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#9DB89F" onchange="updateCategoryColor(2,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="現像チェック" onchange="updateCategoryName(2,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#9DB89F;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">現像チェック</span>
+      <button onclick="removeCategory(2)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#C9A87C" onchange="updateCategoryColor(3,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="打ち合わせ" onchange="updateCategoryName(3,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#C9A87C;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">打ち合わせ</span>
+      <button onclick="removeCategory(3)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#B0A3C7" onchange="updateCategoryColor(4,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="MTG" onchange="updateCategoryName(4,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#B0A3C7;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">MTG</span>
+      <button onclick="removeCategory(4)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#95B5AE" onchange="updateCategoryColor(5,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="梱包作業" onchange="updateCategoryName(5,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#95B5AE;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">梱包作業</span>
+      <button onclick="removeCategory(5)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#C095A8" onchange="updateCategoryColor(6,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="プロジェクト推進" onchange="updateCategoryName(6,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#C095A8;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">プロジェクト推進</span>
+      <button onclick="removeCategory(6)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#D4A082" onchange="updateCategoryColor(7,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="FB" onchange="updateCategoryName(7,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#D4A082;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">FB</span>
+      <button onclick="removeCategory(7)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#A39990" onchange="updateCategoryColor(8,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="その他" onchange="updateCategoryName(8,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#A39990;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">その他</span>
+      <button onclick="removeCategory(8)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding-top:12px;border-top:1px dashed var(--border);">
+      <input type="text" id="cat-new-name" placeholder="新しいカテゴリ名" style="flex:1;min-width:140px;padding:7px 10px;font-size:13px;">
+      <input type="color" id="cat-new-color" value="#2563EB" style="width:42px;height:34px;padding:0;border:1px solid var(--border2);border-radius:var(--rs);cursor:pointer;">
+      <button class="btn btn-sm" onclick="addCategory()">追加</button>
+    </div>
+    <div id="toast-category" class="toast" style="margin-top:10px;margin-bottom:0;">保存しました！</div>
   </div>
 </div>
 
@@ -615,7 +710,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
 <div class="view" id="page-summary">
   <div class="ph">
     <div><div class="pt">月間サマリー</div><div class="ps">残りシフト日数から1日あたりの必要ペースを算出</div></div>
-    <select id="sum-month" onchange="renderSummary()" style="width:auto;padding:7px 10px;font-size:13px;"><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option></select>
+    <select id="sum-month" onchange="renderSummary()" style="width:auto;padding:7px 10px;font-size:13px;"><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option></select>
   </div>
   <div class="sg" id="sum-stats"></div>
   <div id="pace-grid"></div>
@@ -709,9 +804,60 @@ const MEMBERS=[
   {name:'片倉 来波',  init:'片', color:'#C4739A', bg:'#F9EDF4'},
   {name:'小林 俊介',  init:'小', color:'#5B8DD9', bg:'#EBF2FC'}
 ];
-const CATS=['撮影','婚礼','現像チェック','打ち合わせ','MTG','梱包作業','プロジェクト推進','FB','その他'];
-const CC={'撮影':'#2563EB','現像チェック':'#16A34A','打ち合わせ':'#D97706','MTG':'#7C3AED','梱包作業':'#0D9488','プロジェクト推進':'#DB2777','FB':'#EA580C','その他':'#6B7280'};
-const CB={'撮影':'#EFF6FF','現像チェック':'#F0FDF4','打ち合わせ':'#FFFBEB','MTG':'#F5F3FF','梱包作業':'#F0FDFA','プロジェクト推進':'#FDF2F8','FB':'#FFF7ED','その他':'#F9FAFB'};
+// カテゴリは GAS から取得。初期値はデフォルトセット。
+let CATEGORIES=[
+  {name:'撮影',            color:'#8B9DC3'},
+  {name:'婚礼',            color:'#D4A5B5'},
+  {name:'現像チェック',    color:'#9DB89F'},
+  {name:'打ち合わせ',      color:'#C9A87C'},
+  {name:'MTG',             color:'#B0A3C7'},
+  {name:'梱包作業',        color:'#95B5AE'},
+  {name:'プロジェクト推進',color:'#C095A8'},
+  {name:'FB',              color:'#D4A082'},
+  {name:'その他',          color:'#A39990'}
+];
+let CATS=CATEGORIES.map(c=>c.name);
+let CC={};CATEGORIES.forEach(c=>CC[c.name]=c.color);
+// 薄い背景色はメイン色から自動生成
+function hexToBg(hex){
+  // #RRGGBB → rgba(r,g,b,0.08) を16進に近似
+  const h=hex.replace('#','');
+  const r=parseInt(h.substring(0,2),16);
+  const g=parseInt(h.substring(2,4),16);
+  const b=parseInt(h.substring(4,6),16);
+  // 白 95% ブレンド
+  const mix=(c)=>Math.round(c*0.08+255*0.92);
+  return '#'+[mix(r),mix(g),mix(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+let CB={};CATEGORIES.forEach(c=>CB[c.name]=hexToBg(c.color));
+
+function rebuildCategoryMaps(){
+  CATS=CATEGORIES.map(c=>c.name);
+  CC={};CATEGORIES.forEach(c=>CC[c.name]=c.color);
+  CB={};CATEGORIES.forEach(c=>CB[c.name]=hexToBg(c.color));
+  // 既存のカテゴリselectを全部再構築
+  document.querySelectorAll('.task-cat').forEach(sel=>{
+    const current=sel.value;
+    sel.innerHTML='<option value="">カテゴリ選択</option>'+CATS.map(c=>`<option${c===current?' selected':''}>${c}</option>`).join('');
+  });
+  renderCategoryList();
+  renderTimeline();
+}
+
+async function loadCategoriesFromGAS(){
+  try{
+    const data=await apiGet({action:'getCategories'});
+    if(data && data.success && Array.isArray(data.categories) && data.categories.length){
+      CATEGORIES=data.categories;
+      rebuildCategoryMaps();
+    }
+  }catch(e){/* デフォルト維持 */}
+}
+async function saveCategoriesToGAS(){
+  try{
+    await apiPost({action:'saveCategories', categories:CATEGORIES});
+  }catch(e){}
+}
 
 // ============================================================
 // GAS API
@@ -821,7 +967,7 @@ function sw(name){
   });
   if(name==='dashboard')renderDashboard();
   if(name==='input'&&document.getElementById('task-list').children.length===0)renderInputForm();
-  if(name==='monthly')renderMonthly();
+  if(name==='monthly'){renderMonthly();renderCategoryList();}
   if(name==='summary')renderSummary();
   if(name==='diff')renderDiff();
 }
@@ -987,6 +1133,9 @@ function init(){
   document.getElementById('dash-date').textContent=formatDate(now);
   state.inputDate=new Date();
   updateInputDate();
+
+  // GAS からカテゴリを読み込む（非同期、失敗時はデフォルト維持）
+  loadCategoriesFromGAS();
   const dp=document.getElementById('dash-pick');
   dp.value=dateStr(now);
   state.selectedDate=now;
@@ -1255,7 +1404,120 @@ function setBreak(min,btn){
   calcWorkHours();
 }
 
+// ============================================================
+// タイムライン表示
+// ============================================================
+const TL_START=8;   // 8:00
+const TL_END=20;    // 20:00
+const TL_RANGE=(TL_END-TL_START)*60; // 分
+
+function renderTimeline(){
+  const hoursEl=document.getElementById('tl-hours');
+  const trackEl=document.getElementById('tl-track');
+  const sumL=document.getElementById('tl-summary-left');
+  const sumR=document.getElementById('tl-summary-right');
+  if(!hoursEl||!trackEl) return;
+
+  // 時間軸ラベル
+  let hh='';
+  for(let h=TL_START;h<=TL_END;h++){
+    const left=((h-TL_START)*60/TL_RANGE)*100;
+    hh+=`<span class="tl-hour" style="left:${left}%;">${h}</span>`;
+  }
+  hoursEl.innerHTML=hh;
+
+  // タスク取得
+  const tbs=document.querySelectorAll('#task-list .tb');
+  const items=[];
+  tbs.forEach(tb=>{
+    const allSels=tb.querySelectorAll('select');
+    const sH=tb.querySelector('.t-h.t-start')||allSels[1];
+    const sM=tb.querySelector('.t-m.t-start')||allSels[2];
+    const eH=tb.querySelector('.t-h.t-end')||allSels[3];
+    const eM=tb.querySelector('.t-m.t-end')||allSels[4];
+    const cat=tb.querySelector('.task-cat');
+    const name=tb.querySelector('.task-name');
+    if(!sH||!eH||sH.value===''||eH.value==='') return;
+    const sMin=parseInt(sH.value)*60+parseInt(sM&&sM.value!==''?sM.value:0);
+    const eMin=parseInt(eH.value)*60+parseInt(eM&&eM.value!==''?eM.value:0);
+    if(eMin<=sMin) return;
+    items.push({
+      sMin, eMin,
+      cat:cat?cat.value:'',
+      name:name?name.value:''
+    });
+  });
+
+  // 時刻でソート
+  items.sort((a,b)=>a.sMin-b.sMin);
+
+  // 刻みtick（1時間ごと + 30分の薄いtick）
+  let ticks='';
+  for(let h=TL_START+1;h<TL_END;h++){
+    const left=((h-TL_START)*60/TL_RANGE)*100;
+    ticks+=`<div class="tl-tick" style="left:${left}%;"></div>`;
+  }
+  for(let h=TL_START;h<TL_END;h++){
+    const left=((h-TL_START)*60+30)/TL_RANGE*100;
+    ticks+=`<div class="tl-tick half" style="left:${left}%;"></div>`;
+  }
+
+  // ブロック描画
+  let blocks='';
+  let totalMin=0;
+  items.forEach(it=>{
+    const sClamped=Math.max(it.sMin, TL_START*60);
+    const eClamped=Math.min(it.eMin, TL_END*60);
+    if(eClamped<=sClamped) return;
+    const leftPct=((sClamped-TL_START*60)/TL_RANGE)*100;
+    const widthPct=((eClamped-sClamped)/TL_RANGE)*100;
+    const bg=it.cat && CC[it.cat] ? CC[it.cat] : '';
+    const cls='tl-block'+(bg?'':' no-cat');
+    const label=(it.name||it.cat||'無題');
+    const title=label+' ('+m2t(it.sMin)+'–'+m2t(it.eMin)+(it.cat?' / '+it.cat:'')+')';
+    blocks+=`<div class="${cls}" style="left:${leftPct}%;width:${widthPct}%;${bg?'background:'+bg+';':''}" title="${title.replace(/"/g,'&quot;')}">${label}</div>`;
+    totalMin+=(it.eMin-it.sMin);
+  });
+
+  // 隙間ラベル（30分以上の隙間のみ）
+  let gaps='';
+  if(items.length>=2){
+    for(let i=0;i<items.length-1;i++){
+      const gS=items[i].eMin, gE=items[i+1].sMin;
+      const gap=gE-gS;
+      if(gap>=30 && gS>=TL_START*60 && gE<=TL_END*60){
+        const centerPct=((gS+gap/2)-TL_START*60)/TL_RANGE*100;
+        const gh=Math.floor(gap/60), gm=gap%60;
+        const lbl=gh>0?(gm>0?gh+'h'+gm+'m':gh+'h'):gm+'m';
+        gaps+=`<div class="tl-gap-label" style="left:${centerPct}%;">${lbl}</div>`;
+      }
+    }
+  }
+
+  trackEl.innerHTML=ticks+blocks+gaps;
+
+  // サマリ
+  if(items.length===0){
+    sumL.textContent='タスクを追加するとタイムラインに表示されます';
+    sumR.textContent='';
+  } else {
+    const th=Math.floor(totalMin/60),tm=totalMin%60;
+    const first=items[0].sMin, last=items[items.length-1].eMin;
+    const spanMin=last-first;
+    const sh=Math.floor(spanMin/60),sm=spanMin%60;
+    const gapTotal=spanMin-totalMin;
+    const gh=Math.floor(gapTotal/60),gm=gapTotal%60;
+    sumL.textContent=`作業 ${tm===0?th+'h':th+'h'+tm+'m'} / 拘束 ${sm===0?sh+'h':sh+'h'+sm+'m'}`;
+    sumR.textContent=gapTotal>0?`隙間 ${gm===0?gh+'h':(gh>0?gh+'h'+gm+'m':gm+'m')}`:'隙間なし';
+  }
+}
+function m2t(mn){
+  const h=Math.floor(mn/60), m=mn%60;
+  return h+':'+String(m).padStart(2,'0');
+}
+
 function calcWorkHours(){
+  renderTimeline();
   const tasks=document.querySelectorAll('#task-list .tb');
   let totalMin=0;
   tasks.forEach(tb=>{
@@ -1264,9 +1526,9 @@ function calcWorkHours(){
     const startM=tb.querySelector('.t-m.t-start')||tb.querySelector('.t-start.t-m')||allSels[2];
     const endH=tb.querySelector('.t-h.t-end')||tb.querySelector('.t-end.t-h')||allSels[3];
     const endM=tb.querySelector('.t-m.t-end')||tb.querySelector('.t-end.t-m')||allSels[4];
-    if(startH&&endH){
-      const sMin=parseInt(startH.value||9)*60+parseInt(startM?startM.value:0);
-      const eMin=parseInt(endH.value||18)*60+parseInt(endM?endM.value:0);
+    if(startH&&endH&&startH.value!==''&&endH.value!==''){
+      const sMin=parseInt(startH.value)*60+parseInt(startM&&startM.value!==''?startM.value:0);
+      const eMin=parseInt(endH.value)*60+parseInt(endM&&endM.value!==''?endM.value:0);
       if(eMin>sMin) totalMin+=eMin-sMin;
     }
   });
@@ -1304,14 +1566,12 @@ function renderInputForm(){
     if(bc)bc.style.display='none';
     setTimeout(calcWorkHours,50);
   }
-  const md=state.memberData[mi]||{offDays:[],weddingDays:[]};
+  const md=state.memberData[mi]||{offDays:[]};
   const ds=dateStr(state.inputDate);
   const isOff=md.offDays.includes(ds);
-  const isWed=md.weddingDays.includes(ds);
   const notice=document.getElementById('input-notice');
   if(notice){
     if(isOff)notice.innerHTML=`<div style="background:#FFFBEB;border:1px solid #FCD34D;border-radius:var(--rs);padding:10px 14px;font-size:13px;color:#92400E;margin-bottom:14px;">本日は休み登録日です。</div>`;
-    else if(isWed)notice.innerHTML=`<div style="background:#EFF6FF;border:1px solid #93C5FD;border-radius:var(--rs);padding:10px 14px;font-size:13px;color:#1D4ED8;margin-bottom:14px;">本日は婚礼撮影日です。予定・報告の入力が必要です。</div>`;
     else notice.innerHTML='';
   }
   const tl=document.getElementById('task-list');
@@ -1323,14 +1583,20 @@ function renderInputForm(){
 let taskIdx=0;
 
 function genHourOpts(def){
-  let s='';
+  let s='<option value="" '+(def==null?'selected':'')+'>--</option>';
   for(let h=5;h<=24;h++){s+=`<option value="${h}"${h==def?' selected':''}>${h}</option>`;}
   return s;
 }
 function genMinOpts(def){
-  let s='';
+  let s='<option value="" '+(def==null?'selected':'')+'>--</option>';
   [0,5,10,15,20,25,30,35,40,45,50,55].forEach(m=>{s+=`<option value="${m}"${m==def?' selected':''}>${String(m).padStart(2,'0')}</option>`;});
   return s;
+}
+
+function onTimeChange(){
+  renderTimeline();
+  const it=document.getElementById('i-type');
+  if(it&&it.value==='report') calcWorkHours();
 }
 
 function addTask(){
@@ -1343,15 +1609,15 @@ function addTask(){
   div.innerHTML=`
     <button class="rm" onclick="confirmRemoveTask(this);">×</button>
     <div class="tb-h" style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
-      <input type="text" class="task-name" placeholder="作業内容（例：スタジオ撮影）" style="flex:1;min-width:120px;" />
-      <select class="task-cat" onchange="onCatChange(this)" style="width:auto;padding:6px 9px;font-size:12px;"><option value="">カテゴリ選択</option>${CATS.map(c=>`<option>${c}</option>`).join('')}</select>
+      <input type="text" class="task-name" placeholder="作業内容（例：スタジオ撮影）" oninput="renderTimeline()" style="flex:1;min-width:120px;" />
+      <select class="task-cat" onchange="onCatChange(this);renderTimeline();" style="width:auto;padding:6px 9px;font-size:12px;"><option value="">カテゴリ選択</option>${CATS.map(c=>`<option>${c}</option>`).join('')}</select>
     </div>
     <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
-      <select class="t-h t-start" onchange="if(document.getElementById('i-type')&&document.getElementById('i-type').value==='report')calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;">${genHourOpts(9)}</select>
-      <select class="t-m t-start" onchange="if(document.getElementById('i-type')&&document.getElementById('i-type').value==='report')calcWorkHours()" style="width:62px;padding:6px 8px;font-size:13px;">${genMinOpts(0)}</select>
+      <select class="t-h t-start" onchange="onTimeChange()" style="width:auto;padding:6px 8px;font-size:13px;">${genHourOpts(null)}</select>
+      <select class="t-m t-start" onchange="onTimeChange()" style="width:62px;padding:6px 8px;font-size:13px;">${genMinOpts(null)}</select>
       <span style="font-size:12px;color:var(--t3);">〜</span>
-      <select class="t-h t-end" onchange="if(document.getElementById('i-type')&&document.getElementById('i-type').value==='report')calcWorkHours()" style="width:auto;padding:6px 8px;font-size:13px;">${genHourOpts(18)}</select>
-      <select class="t-m t-end" onchange="if(document.getElementById('i-type')&&document.getElementById('i-type').value==='report')calcWorkHours()" style="width:62px;padding:6px 8px;font-size:13px;">${genMinOpts(0)}</select>
+      <select class="t-h t-end" onchange="onTimeChange()" style="width:auto;padding:6px 8px;font-size:13px;">${genHourOpts(null)}</select>
+      <select class="t-m t-end" onchange="onTimeChange()" style="width:62px;padding:6px 8px;font-size:13px;">${genMinOpts(null)}</select>
     </div>
     <textarea placeholder="備考・メモ" style="font-size:13px;min-height:44px;"></textarea>
   `;
@@ -1360,11 +1626,13 @@ function addTask(){
   if(catSel) catSel.value='';
   const tl=document.getElementById('task-list');
   if(tl)tl.appendChild(div);
+  renderTimeline();
 }
 
 function confirmRemoveTask(el){
   const tb=el.closest('.tb');
   if(tb) tb.remove();
+  renderTimeline();
   const it=document.getElementById('i-type');
   if(it&&it.value==='report') calcWorkHours();
 }
@@ -1418,6 +1686,7 @@ async function loadTasksFromGAS(isRep,mi){
       if(ta)ta.value=t.note||'';
     });
     if(isRep)setTimeout(calcWorkHours,100);
+    setTimeout(renderTimeline,120);
     if(!isRep){
       const key=mi+'_'+ds;
       planStore[key]=data.tasks.map(t=>{
@@ -1428,6 +1697,7 @@ async function loadTasksFromGAS(isRep,mi){
     }
   } else {
     if(tl.children.length===0)addTask();
+    renderTimeline();
   }
 }
 
@@ -1475,13 +1745,14 @@ async function submitInput(){
     const startM=tb.querySelector('.t-m.t-start');
     const endH=tb.querySelector('.t-h.t-end');
     const endM=tb.querySelector('.t-m.t-end');
+    const sV=startH?startH.value:'', eV=endH?endH.value:'';
     const task={
       cat:catSel?catSel.value:'',
       name:ni?ni.value||'':'',
-      startH:startH?startH.value:'9',
-      startM:startM?startM.value:'0',
-      endH:endH?endH.value:'18',
-      endM:endM?endM.value:'0',
+      startH:sV,
+      startM:startM?(startM.value||'0'):'0',
+      endH:eV,
+      endM:endM?(endM.value||'0'):'0',
       note:ta?ta.value:''
     };
     // バリデーション: カテゴリ必須
@@ -1490,10 +1761,13 @@ async function submitInput(){
     // バリデーション: タスク名必須
     if(!task.name.trim()){nameErr=true;if(ni)ni.style.borderColor='#DC2626';}
     else if(ni)ni.style.borderColor='';
-    // バリデーション: 終了 > 開始
-    const sMin=parseInt(task.startH)*60+parseInt(task.startM);
-    const eMin=parseInt(task.endH)*60+parseInt(task.endM);
-    if(eMin<=sMin)timeErr=true;
+    // バリデーション: 開始/終了時刻の入力
+    if(sV===''||eV===''){timeErr=true;}
+    else {
+      const sMin=parseInt(sV)*60+parseInt(task.startM||0);
+      const eMin=parseInt(eV)*60+parseInt(task.endM||0);
+      if(eMin<=sMin)timeErr=true;
+    }
     tasks.push(task);
   });
   if(tasks.length===0){showError('タスクを1件以上入力してください');return;}
@@ -1548,7 +1822,7 @@ async function renderDayDetailAsync(sel){
     const m=MEMBERS[i];
     const md=state.memberData[i];
     const isOff=md.offDays.includes(ds);
-    const isWed=md.weddingDays.includes(ds);
+    const isWed=(md.reportedWeddingDates||[]).includes(ds);
     // Load from GAS (with local-store fallback for recently-submitted tasks)
     const planData=await apiGet({action:'getPlan',date:ds,memberName:m.name});
     const reportData=await apiGet({action:'getReport',date:ds,memberName:m.name});
@@ -1667,7 +1941,7 @@ function updateWeddingHours(){
   document.getElementById('wedding-h-label').textContent='= −'+wc*8+'h';
 }
 function renderCalendar(mi){
-  const md=state.memberData[mi]||{offDays:[],weddingDays:[]};
+  const md=state.memberData[mi]||{offDays:[]};
   if(typeof state.calYear!=='number'||isNaN(state.calYear)){
     const n=new Date();
     state.calYear=n.getFullYear();
@@ -1691,11 +1965,10 @@ function renderCalendar(mi){
     const day=new Date(calY,calM,d).getDay();
     const ds=`${calY}-${String(calM+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const isOff=md.offDays.includes(ds);
-    const isWed=md.weddingDays.includes(ds);
     const isTod=today.getFullYear()===calY&&today.getMonth()===calM&&today.getDate()===d;
-    let cls='cal-d'+(isOff?' off':isWed?' wedding':(day===0||day===6)?' weekend':'');
+    let cls='cal-d'+(isOff?' off':(day===0||day===6)?' weekend':'');
     if(isTod)cls+=' today';
-    html+=`<div class="${cls}" onclick="toggleDay('${ds}',${mi})">${d}${isOff?'<span style="font-size:9px;display:block;">休</span>':''}${isWed?'<span style="font-size:9px;display:block;">婚</span>':''}</div>`;
+    html+=`<div class="${cls}" onclick="toggleDay('${ds}',${mi})">${d}${isOff?'<span style="font-size:9px;display:block;">休</span>':''}</div>`;
     cells++;
   }
   const rem=cells%7===0?0:7-(cells%7);
@@ -1705,14 +1978,79 @@ function renderCalendar(mi){
 function toggleDay(ds,mi){
   const md=state.memberData[mi];
   const isOff=md.offDays.includes(ds);
-  const isWed=md.weddingDays.includes(ds);
-  if(!isOff&&!isWed)md.offDays.push(ds);
-  else if(isOff){md.offDays=md.offDays.filter(x=>x!==ds);md.weddingDays.push(ds);}
-  else md.weddingDays=md.weddingDays.filter(x=>x!==ds);
+  if(!isOff) md.offDays.push(ds);
+  else md.offDays=md.offDays.filter(x=>x!==ds);
   renderCalendar(mi);
 }
 function prevMonth(){state.calMonth--;if(state.calMonth<0){state.calMonth=11;state.calYear--;}renderCalendar(parseInt(document.getElementById('m-member-sel').value||0));}
 function nextMonth(){state.calMonth++;if(state.calMonth>11){state.calMonth=0;state.calYear++;}renderCalendar(parseInt(document.getElementById('m-member-sel').value||0));}
+// ============================================================
+// カテゴリ管理 UI
+// ============================================================
+function renderCategoryList(){
+  const wrap=document.getElementById('cat-list');
+  if(!wrap) return;
+  if(CATEGORIES.length===0){
+    wrap.innerHTML='<div style="font-size:12px;color:var(--t3);">カテゴリがありません。下の入力欄から追加してください。</div>';
+    return;
+  }
+  wrap.innerHTML=CATEGORIES.map((c,i)=>`
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="${c.color}" onchange="updateCategoryColor(${i},this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="${c.name.replace(/"/g,'&quot;')}" onchange="updateCategoryName(${i},this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:${c.color};color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">${c.name}</span>
+      <button onclick="removeCategory(${i})" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  `).join('');
+}
+function addCategory(){
+  const nameEl=document.getElementById('cat-new-name');
+  const colorEl=document.getElementById('cat-new-color');
+  if(!nameEl||!colorEl) return;
+  const name=(nameEl.value||'').trim();
+  const color=colorEl.value||'#6B7280';
+  if(!name){nameEl.style.borderColor='#DC2626';return;}
+  nameEl.style.borderColor='';
+  if(CATEGORIES.some(c=>c.name===name)){alert('同名のカテゴリが既にあります');return;}
+  CATEGORIES.push({name, color});
+  nameEl.value='';
+  colorEl.value='#2563EB';
+  rebuildCategoryMaps();
+  saveCategoriesToGAS();
+  flashCategoryToast();
+}
+function removeCategory(idx){
+  const c=CATEGORIES[idx];
+  if(!c) return;
+  if(!confirm('「'+c.name+'」を削除しますか？\n※ 過去の入力データは保持されます。')) return;
+  CATEGORIES.splice(idx,1);
+  rebuildCategoryMaps();
+  saveCategoriesToGAS();
+  flashCategoryToast();
+}
+function updateCategoryName(idx,v){
+  v=(v||'').trim();
+  if(!v) return;
+  if(CATEGORIES.some((c,i)=>i!==idx && c.name===v)){alert('同名のカテゴリが既にあります');rebuildCategoryMaps();return;}
+  CATEGORIES[idx].name=v;
+  rebuildCategoryMaps();
+  saveCategoriesToGAS();
+  flashCategoryToast();
+}
+function updateCategoryColor(idx,v){
+  CATEGORIES[idx].color=v;
+  rebuildCategoryMaps();
+  saveCategoriesToGAS();
+  flashCategoryToast();
+}
+function flashCategoryToast(){
+  const t=document.getElementById('toast-category');
+  if(!t) return;
+  t.style.display='block';
+  clearTimeout(flashCategoryToast._h);
+  flashCategoryToast._h=setTimeout(()=>t.style.display='none',1800);
+}
+
 function saveMonthly(){
   const mi=parseInt(document.getElementById('m-member-sel').value||0);
   const thEl=document.getElementById('target-hours');
@@ -1859,6 +2197,7 @@ async function importFromCalendar(){
         if(endM)endM.value=ev.endM||0;
         tb.style.borderLeft='3px solid #F59E0B'; // 未選択の目印
       });
+      renderTimeline();
       if(btn){btn.textContent='📅 取得完了（'+data.events.length+'件）';btn.style.borderColor='#16A34A';btn.style.color='#15803D';btn.style.background='#F0FDF4';}
       setTimeout(()=>{if(btn){btn.textContent='📅 カレンダーから取得';btn.style.borderColor='#2563EB';btn.style.color='#1D4ED8';btn.style.background='#EFF6FF';btn.disabled=false;}},3000);
     } else {
