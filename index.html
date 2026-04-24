@@ -309,7 +309,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"></circle><path d="M8 5v3M8 11v.5"></path></svg>
       <span style="font-size:13px;font-weight:500;" id="unsub-title">終業報告 未提出 — 4/24</span>
-      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">11:03 時点</span>
+      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">18:03 時点</span>
     </div>
     <div id="unsub-list"><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
         <div class="av" style="background:#C9A84C;">飯</div>
@@ -1158,6 +1158,8 @@ function init(){
 
   // GAS からカテゴリを読み込む（非同期、失敗時はデフォルト維持）
   loadCategoriesFromGAS();
+  // 全メンバーの今月の月初設定（休み等）をGASから読み込む
+  loadAllMonthlySetup();
   // タスクのドラッグ&ドロップ並び替えを有効化
   initTaskDnD();
   const dp=document.getElementById('dash-pick');
@@ -2029,6 +2031,41 @@ async function renderDayDetailAsync(sel){
 
 function _ymStr(y,m){return y+'-'+String(m+1).padStart(2,'0');}
 function _filterByYm(arr,ym){return (arr||[]).filter(ds=>String(ds).startsWith(ym));}
+
+// 全メンバーの当月月初設定（休み日等）をGASから読み込み、state.memberDataに反映
+async function loadAllMonthlySetup(){
+  const now=new Date();
+  const ym=_ymStr(now.getFullYear(), now.getMonth());
+  await Promise.all(MEMBERS.map(async (m,i)=>{
+    try{
+      const data=await apiGet({action:'getMonthlySetup', ym, memberName:m.name});
+      if(!data || !data.success) return;
+      const md=state.memberData[i];
+      if(!md) return;
+      if(typeof data.targetHours==='number' && data.targetHours>0) md.targetHours=data.targetHours;
+      if(typeof data.weddingCount==='number') md.weddingCount=data.weddingCount;
+      if(typeof data.remainShiftDays==='number' && data.remainShiftDays>0) md.remainShiftDays=data.remainShiftDays;
+      if(Array.isArray(data.offDays)){
+        md.offDays=(md.offDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.offDays);
+      }
+      if(Array.isArray(data.weddingDays)){
+        md.weddingDays=(md.weddingDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.weddingDays);
+      }
+    }catch(e){}
+  }));
+  // 読み込み後に画面を再描画
+  try{if(typeof renderDashboard==='function') renderDashboard();}catch(e){}
+  try{
+    const sel=document.getElementById('m-member-sel');
+    if(sel && document.getElementById('page-monthly') && document.getElementById('page-monthly').style.display!=='none'){
+      renderCalendar(parseInt(sel.value||0));
+    }
+  }catch(e){}
+  // 日次詳細も更新
+  try{
+    if(state.selectedDate && typeof renderDayDetailAsync==='function') renderDayDetailAsync(state.selectedDate);
+  }catch(e){}
+}
 
 async function renderMonthly(){
   const sel=document.getElementById('m-member-sel');
