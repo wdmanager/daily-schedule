@@ -28,8 +28,8 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 
 /* Sidebar elements */
 .s-logo{padding:22px 20px 18px;border-bottom:1px solid var(--border);}
-.s-logo-t{font-size:13px;font-weight:500;letter-spacing:.06em;color:var(--text);}
-.s-logo-s{font-size:10px;color:var(--t3);margin-top:2px;font-family:'DM Mono',monospace;}
+.s-logo-t{font-size:14px;font-weight:600;letter-spacing:.04em;color:var(--text);line-height:1.2;}
+.s-logo-s{font-size:13px;color:var(--t2);margin-top:3px;font-family:'DM Mono',monospace;letter-spacing:.02em;}
 .s-sec{padding:14px 12px 6px;}
 .s-sec-l{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);padding:0 8px;margin-bottom:5px;}
 .nav{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--rs);cursor:pointer;font-size:13px;color:var(--t2);border:none;background:none;width:100%;text-align:left;font-family:'Noto Sans JP',sans-serif;transition:all .15s;font-weight:400;}
@@ -102,6 +102,13 @@ textarea{resize:vertical;min-height:56px;line-height:1.6;}
 .tb{border:1px solid var(--border);border-radius:var(--rs);padding:14px;margin-bottom:10px;background:var(--bg);position:relative;}
 .tb-h{display:flex;gap:7px;align-items:flex-start;flex-wrap:wrap;margin-bottom:8px;}
 .rm{position:absolute;top:8px;right:8px;border:none;background:none;color:var(--t3);font-size:15px;cursor:pointer;padding:2px 5px;border-radius:4px;line-height:1;}
+.drag-handle{position:absolute;top:10px;left:8px;width:18px;height:22px;display:flex;align-items:center;justify-content:center;color:var(--t3);cursor:grab;user-select:none;font-size:14px;line-height:1;letter-spacing:-1px;touch-action:none;}
+.drag-handle:hover{color:var(--t1);}
+.drag-handle:active{cursor:grabbing;}
+.tb{padding-left:34px!important;}
+.tb.dragging{opacity:.4;background:var(--surface);}
+.tb.drop-above{box-shadow:inset 0 3px 0 var(--accent);}
+.tb.drop-below{box-shadow:inset 0 -3px 0 var(--accent);}
 .rm:hover{background:var(--border);color:var(--text);}
 .av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
 .av-sm{width:26px;height:26px;font-size:10px;}
@@ -229,7 +236,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
     <div class="s-sec-l">メンバー</div>
     <button class="nav active" onclick="sw(&#39;input&#39;)">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"></rect><path d="M5 8h6M8 5v6"></path></svg>
-      daily schedule
+      予定・報告入力
     </button>
     <button class="nav" onclick="sw(&#39;monthly&#39;)">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"></rect><path d="M5 2v2M11 2v2M2 7h12"></path></svg>
@@ -302,7 +309,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"></circle><path d="M8 5v3M8 11v.5"></path></svg>
       <span style="font-size:13px;font-weight:500;" id="unsub-title">終業報告 未提出 — 4/24</span>
-      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">10:02 時点</span>
+      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">11:03 時点</span>
     </div>
     <div id="unsub-list"><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
         <div class="av" style="background:#C9A84C;">飯</div>
@@ -510,11 +517,12 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       <div class="tl-track" id="tl-track"><div class="tl-tick" style="left:8.333333333333332%;"></div><div class="tl-tick" style="left:16.666666666666664%;"></div><div class="tl-tick" style="left:25%;"></div><div class="tl-tick" style="left:33.33333333333333%;"></div><div class="tl-tick" style="left:41.66666666666667%;"></div><div class="tl-tick" style="left:50%;"></div><div class="tl-tick" style="left:58.333333333333336%;"></div><div class="tl-tick" style="left:66.66666666666666%;"></div><div class="tl-tick" style="left:75%;"></div><div class="tl-tick" style="left:83.33333333333334%;"></div><div class="tl-tick" style="left:91.66666666666666%;"></div><div class="tl-tick half" style="left:4.166666666666666%;"></div><div class="tl-tick half" style="left:12.5%;"></div><div class="tl-tick half" style="left:20.833333333333336%;"></div><div class="tl-tick half" style="left:29.166666666666668%;"></div><div class="tl-tick half" style="left:37.5%;"></div><div class="tl-tick half" style="left:45.83333333333333%;"></div><div class="tl-tick half" style="left:54.166666666666664%;"></div><div class="tl-tick half" style="left:62.5%;"></div><div class="tl-tick half" style="left:70.83333333333334%;"></div><div class="tl-tick half" style="left:79.16666666666666%;"></div><div class="tl-tick half" style="left:87.5%;"></div><div class="tl-tick half" style="left:95.83333333333334%;"></div></div>
       <div class="tl-summary"><span id="tl-summary-left">タスクを追加するとタイムラインに表示されます</span><span id="tl-summary-right"></span></div>
     </div>
-    <div id="task-list"><div class="tb" id="tb-0">
+    <div id="task-list" data-dnd-init="1"><div class="tb" id="tb-0">
+    <span class="drag-handle" title="ドラッグして並び替え" draggable="true">⋮⋮</span>
     <button class="rm" onclick="confirmRemoveTask(this);">×</button>
     <div class="tb-h" style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
-      <input type="text" class="task-name" placeholder="作業内容（例：スタジオ撮影）" oninput="renderTimeline()" style="flex:1;min-width:120px;">
-      <select class="task-cat" onchange="onCatChange(this);renderTimeline();" style="width:auto;padding:6px 9px;font-size:12px;"><option value="">カテゴリ選択</option><option>撮影</option><option>婚礼</option><option>現像チェック</option><option>打ち合わせ</option><option>MTG</option><option>梱包作業</option><option>プロジェクト推進</option><option>FB</option><option>その他</option></select>
+      <select class="task-cat" onchange="onCatChange(this);renderTimeline();calcWorkHours();" style="width:auto;padding:6px 9px;font-size:12px;"><option value="">カテゴリ選択</option><option>撮影</option><option>婚礼</option><option>現像チェック</option><option>打ち合わせ</option><option>MTG</option><option>梱包作業</option><option>プロジェクト推進</option><option>FB</option><option>休憩</option><option>その他</option></select>
+      <input type="text" class="task-name" placeholder="内容" oninput="renderTimeline()" style="flex:1;min-width:120px;">
     </div>
     <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
       <select class="t-h t-start" onchange="onTimeChange()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="" selected="">--</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select>
@@ -523,7 +531,6 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       <select class="t-h t-end" onchange="onTimeChange()" style="width:auto;padding:6px 8px;font-size:13px;"><option value="" selected="">--</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option></select>
       <select class="t-m t-end" onchange="onTimeChange()" style="width:62px;padding:6px 8px;font-size:13px;"><option value="" selected="">--</option><option value="0">00</option><option value="5">05</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
     </div>
-    <textarea placeholder="備考・メモ" style="font-size:13px;min-height:44px;"></textarea>
   </div></div>
     <button class="btn-add" onclick="addTask()">
       <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 1.5v10M1.5 6.5h10"></path></svg>
@@ -532,23 +539,13 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
     <div id="report-reason-wrap" style="display:none;margin-top:16px;">
       <hr class="divider">
 
-      <!-- 休憩時間 -->
+      <!-- 実働時間サマリー（休憩は「休憩」カテゴリタスクから自動集計） -->
       <div style="margin-bottom:16px;">
-        <div style="font-size:12px;font-weight:500;color:var(--t2);margin-bottom:8px;">休憩時間</div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
-          <button class="break-btn" onclick="setBreak(60,this)" data-min="60" style="padding:6px 16px;font-size:13px;border-radius:99px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">1時間（デフォルト）</button>
-          <button class="break-btn" onclick="setBreak(-1,this)" data-min="-1" style="padding:6px 16px;font-size:13px;border-radius:99px;border:1px solid var(--border2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">変更する</button>
-        </div>
-        <div id="break-custom" style="display:none;align-items:center;gap:8px;margin-bottom:8px;">
-          <input type="number" id="break-custom-min" value="60" min="0" max="240" placeholder="分" oninput="breakMin=parseInt(this.value||0);calcWorkHours()" style="width:90px;font-size:13px;">
-          <span style="font-size:13px;color:var(--t2);">分</span>
-          <span style="font-size:12px;color:var(--t3);">（0分 = 休憩なし）</span>
-        </div>
         <div style="background:var(--s2);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
           <div>
             <div style="font-size:11px;color:var(--t3);margin-bottom:2px;">タスク合計 − 休憩 = 実働時間</div>
             <div style="font-size:12px;color:var(--t2);">
-              <span id="task-sum-display">--</span> − <span id="break-display">1h</span>
+              <span id="task-sum-display">--</span> − <span id="break-display">0h</span>
             </div>
           </div>
           <div style="text-align:right;">
@@ -691,10 +688,17 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
     </div>
   
     <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
-      <input type="color" value="#A39990" onchange="updateCategoryColor(8,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
-      <input type="text" value="その他" onchange="updateCategoryName(8,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
-      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#A39990;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">その他</span>
+      <input type="color" value="#BFC7D4" onchange="updateCategoryColor(8,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="休憩" onchange="updateCategoryName(8,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#BFC7D4;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">休憩</span>
       <button onclick="removeCategory(8)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#A39990" onchange="updateCategoryColor(9,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="その他" onchange="updateCategoryName(9,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#A39990;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">その他</span>
+      <button onclick="removeCategory(9)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
     </div>
   </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding-top:12px;border-top:1px dashed var(--border);">
@@ -814,6 +818,7 @@ let CATEGORIES=[
   {name:'梱包作業',        color:'#95B5AE'},
   {name:'プロジェクト推進',color:'#C095A8'},
   {name:'FB',              color:'#D4A082'},
+  {name:'休憩',            color:'#BFC7D4'},
   {name:'その他',          color:'#A39990'}
 ];
 let CATS=CATEGORIES.map(c=>c.name);
@@ -849,6 +854,21 @@ async function loadCategoriesFromGAS(){
     const data=await apiGet({action:'getCategories'});
     if(data && data.success && Array.isArray(data.categories) && data.categories.length){
       CATEGORIES=data.categories;
+      let _mutated=false;
+      // 「休憩」カテゴリが欠けていれば自動追加
+      const breakEntry=CATEGORIES.find(c=>c.name==='休憩');
+      if(!breakEntry){
+        const idx=CATEGORIES.findIndex(c=>c.name==='その他');
+        const breakCat={name:'休憩', color:'#BFC7D4'};
+        if(idx>=0) CATEGORIES.splice(idx,0,breakCat);
+        else CATEGORIES.push(breakCat);
+        _mutated=true;
+      } else if(breakEntry.color==='#B8B0A3'){
+        // 旧色から新色へ自動移行（「その他」と似ていたため変更）
+        breakEntry.color='#BFC7D4';
+        _mutated=true;
+      }
+      if(_mutated) saveCategoriesToGAS();
       rebuildCategoryMaps();
     }
   }catch(e){/* デフォルト維持 */}
@@ -1065,13 +1085,15 @@ function savePlanToStore(){
     const startM=tb.querySelector('.t-start.t-m');
     const endH=tb.querySelector('.t-end.t-h');
     const endM=tb.querySelector('.t-end.t-m');
-    if(nameInput&&nameInput.value){
+    const sVal=startH?startH.value:'';
+    const eVal=endH?endH.value:'';
+    if(sVal!==''&&eVal!==''){
       tasks.push({
-        cat:catSel?catSel.value:'その他',
-        name:nameInput.value,
-        startH:startH?startH.value:'9',
+        cat:catSel?catSel.value:'',
+        name:nameInput?nameInput.value:'',
+        startH:sVal,
         startM:startM?startM.value:'0',
-        endH:endH?endH.value:'18',
+        endH:eVal,
         endM:endM?endM.value:'0'
       });
     }
@@ -1136,6 +1158,8 @@ function init(){
 
   // GAS からカテゴリを読み込む（非同期、失敗時はデフォルト維持）
   loadCategoriesFromGAS();
+  // タスクのドラッグ&ドロップ並び替えを有効化
+  initTaskDnD();
   const dp=document.getElementById('dash-pick');
   dp.value=dateStr(now);
   state.selectedDate=now;
@@ -1388,21 +1412,8 @@ function renderDashboard(){
   renderDayDetailAsync(sel);
 }
 
-let breakMin=60;
-function setBreak(min,btn){
-  document.querySelectorAll('.break-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const custom=document.getElementById('break-custom');
-  if(min===-1){
-    custom.style.display='flex';
-    breakMin=parseInt(document.getElementById('break-custom-min').value||60);
-  } else {
-    custom.style.display='none';
-    breakMin=min;
-    document.getElementById('break-custom-min').value=min;
-  }
-  calcWorkHours();
-}
+// 休憩は「休憩」カテゴリタスクの合計時間から自動算出するため手動入力UIは廃止
+let breakMin=0;
 
 // ============================================================
 // タイムライン表示
@@ -1520,27 +1531,36 @@ function calcWorkHours(){
   renderTimeline();
   const tasks=document.querySelectorAll('#task-list .tb');
   let totalMin=0;
+  let breakTaskMin=0;
   tasks.forEach(tb=>{
     const allSels=tb.querySelectorAll('select');
     const startH=tb.querySelector('.t-h.t-start')||tb.querySelector('.t-start.t-h')||allSels[1];
     const startM=tb.querySelector('.t-m.t-start')||tb.querySelector('.t-start.t-m')||allSels[2];
     const endH=tb.querySelector('.t-h.t-end')||tb.querySelector('.t-end.t-h')||allSels[3];
     const endM=tb.querySelector('.t-m.t-end')||tb.querySelector('.t-end.t-m')||allSels[4];
+    const catSel=tb.querySelector('.task-cat');
+    const isBreak=catSel && catSel.value==='休憩';
     if(startH&&endH&&startH.value!==''&&endH.value!==''){
       const sMin=parseInt(startH.value)*60+parseInt(startM&&startM.value!==''?startM.value:0);
       const eMin=parseInt(endH.value)*60+parseInt(endM&&endM.value!==''?endM.value:0);
-      if(eMin>sMin) totalMin+=eMin-sMin;
+      if(eMin>sMin){
+        if(isBreak) breakTaskMin+=eMin-sMin;
+        else totalMin+=eMin-sMin;
+      }
     }
   });
-  const workMin=Math.max(0,totalMin-breakMin);
-  const th=Math.floor(totalMin/60),tm=totalMin%60;
+  // 休憩カテゴリのタスク分を勤務時間から除外済（totalMinは休憩を含まない）
+  breakMin=breakTaskMin;
+  const workMin=totalMin;
+  const taskSumMin=totalMin+breakTaskMin; // 全タスク合計（休憩も含む）
+  const th=Math.floor(taskSumMin/60),tm=taskSumMin%60;
   const wh=Math.floor(workMin/60),wm=workMin%60;
-  const bh=Math.floor(breakMin/60),bm=breakMin%60;
+  const bh=Math.floor(breakTaskMin/60),bm=breakTaskMin%60;
   const tDisp=document.getElementById('task-sum-display');
   const bDisp=document.getElementById('break-display');
   const wDisp=document.getElementById('work-hours-result');
   if(tDisp)tDisp.textContent=tm===0?th+'h':th+'h'+tm+'分';
-  if(bDisp)bDisp.textContent=breakMin===0?'なし':(bm===0?(bh>0?bh+'h':'0h'):(bh>0?bh+'h'+bm+'分':bm+'分'));
+  if(bDisp)bDisp.textContent=breakTaskMin===0?'なし':(bm===0?(bh>0?bh+'h':'0h'):(bh>0?bh+'h'+bm+'分':bm+'分'));
   if(wDisp)wDisp.textContent=workMin===0?'0h':(wm===0?wh+'h':wh+'h'+wm+'分');
   const mi=parseInt(document.getElementById('i-member')?document.getElementById('i-member').value||0:0);
   if(state.memberData[mi])state.memberData[mi].todayWorkMin=workMin;
@@ -1558,12 +1578,7 @@ function renderInputForm(){
   const sb=document.getElementById('report-shortcut-btns');
   if(sb)sb.style.display=isRep?'flex':'none';
   if(isRep){
-    breakMin=60;
-    document.querySelectorAll('.break-btn').forEach(b=>b.classList.remove('active'));
-    const defBtn=document.querySelector('.break-btn[data-min="60"]');
-    if(defBtn)defBtn.classList.add('active');
-    const bc=document.getElementById('break-custom');
-    if(bc)bc.style.display='none';
+    breakMin=0;
     setTimeout(calcWorkHours,50);
   }
   const md=state.memberData[mi]||{offDays:[]};
@@ -1607,10 +1622,11 @@ function addTask(){
   div.className='tb';
   div.id='tb-'+id;
   div.innerHTML=`
+    <span class="drag-handle" title="ドラッグして並び替え" draggable="true">⋮⋮</span>
     <button class="rm" onclick="confirmRemoveTask(this);">×</button>
     <div class="tb-h" style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
-      <input type="text" class="task-name" placeholder="作業内容（例：スタジオ撮影）" oninput="renderTimeline()" style="flex:1;min-width:120px;" />
-      <select class="task-cat" onchange="onCatChange(this);renderTimeline();" style="width:auto;padding:6px 9px;font-size:12px;"><option value="">カテゴリ選択</option>${CATS.map(c=>`<option>${c}</option>`).join('')}</select>
+      <select class="task-cat" onchange="onCatChange(this);renderTimeline();calcWorkHours();" style="width:auto;padding:6px 9px;font-size:12px;"><option value="">カテゴリ選択</option>${CATS.map(c=>`<option>${c}</option>`).join('')}</select>
+      <input type="text" class="task-name" placeholder="内容" oninput="renderTimeline()" style="flex:1;min-width:120px;" />
     </div>
     <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
       <select class="t-h t-start" onchange="onTimeChange()" style="width:auto;padding:6px 8px;font-size:13px;">${genHourOpts(null)}</select>
@@ -1619,7 +1635,6 @@ function addTask(){
       <select class="t-h t-end" onchange="onTimeChange()" style="width:auto;padding:6px 8px;font-size:13px;">${genHourOpts(null)}</select>
       <select class="t-m t-end" onchange="onTimeChange()" style="width:62px;padding:6px 8px;font-size:13px;">${genMinOpts(null)}</select>
     </div>
-    <textarea placeholder="備考・メモ" style="font-size:13px;min-height:44px;"></textarea>
   `;
   // 初期設定は「カテゴリ選択」(未選択)
   const catSel=div.querySelector('.task-cat');
@@ -1637,22 +1652,110 @@ function confirmRemoveTask(el){
   if(it&&it.value==='report') calcWorkHours();
 }
 
-// 婚礼カテゴリ選択時は休憩時間をデフォルトなしに
-function onCatChange(sel){
-  if(sel&&sel.value==='婚礼'){
-    breakMin=0;
-    const ci=document.getElementById('break-custom-min');
-    if(ci) ci.value=0;
-    const custom=document.getElementById('break-custom');
-    if(custom) custom.style.display='flex';
-    document.querySelectorAll('.break-btn').forEach(b=>{
-      b.style.background='var(--surface)';
-      b.style.color='var(--t2)';
-      b.style.borderColor='var(--border2)';
-    });
-    const it=document.getElementById('i-type');
-    if(it&&it.value==='report') calcWorkHours();
+// ============================================================
+// タスクブロックのドラッグ&ドロップ並び替え
+// ============================================================
+let _dragTb=null;
+let _touchDragTb=null;
+let _touchGhost=null;
+
+function _clearDropMarkers(){
+  document.querySelectorAll('.tb.drop-above, .tb.drop-below').forEach(t=>{
+    t.classList.remove('drop-above');t.classList.remove('drop-below');
+  });
+}
+function _insertByY(list, movingTb, clientY){
+  const tbs=[...list.querySelectorAll('.tb')].filter(t=>t!==movingTb);
+  _clearDropMarkers();
+  for(const tb of tbs){
+    const rect=tb.getBoundingClientRect();
+    if(clientY < rect.top+rect.height/2){
+      list.insertBefore(movingTb, tb);
+      tb.classList.add('drop-above');
+      return;
+    }
   }
+  list.appendChild(movingTb);
+  const last=tbs[tbs.length-1];
+  if(last) last.classList.add('drop-below');
+}
+// --- HTML5 DnD (PC)
+function _onDragStart(e){
+  const handle=e.target.closest('.drag-handle');
+  if(!handle) return;
+  const tb=handle.closest('.tb');
+  if(!tb) return;
+  _dragTb=tb;
+  tb.classList.add('dragging');
+  try{
+    e.dataTransfer.effectAllowed='move';
+    e.dataTransfer.setData('text/plain','tb');
+    e.dataTransfer.setDragImage(tb, 20, 20);
+  }catch(_){}
+}
+function _onDragOver(e){
+  if(!_dragTb) return;
+  const list=e.currentTarget;
+  if(!list) return;
+  e.preventDefault();
+  _insertByY(list, _dragTb, e.clientY);
+}
+function _onDrop(e){
+  if(_dragTb) e.preventDefault();
+}
+function _onDragEnd(e){
+  if(_dragTb){_dragTb.classList.remove('dragging');_dragTb=null;}
+  _clearDropMarkers();
+  renderTimeline();
+  const it=document.getElementById('i-type');
+  if(it&&it.value==='report') calcWorkHours();
+}
+// --- Touch (Mobile)
+function _onTouchStart(e){
+  const handle=e.target.closest('.drag-handle');
+  if(!handle) return;
+  const tb=handle.closest('.tb');
+  if(!tb) return;
+  _touchDragTb=tb;
+  tb.classList.add('dragging');
+  e.preventDefault();
+}
+function _onTouchMove(e){
+  if(!_touchDragTb) return;
+  e.preventDefault();
+  const t=e.touches[0];
+  if(!t) return;
+  const list=document.getElementById('task-list');
+  if(!list) return;
+  _insertByY(list, _touchDragTb, t.clientY);
+}
+function _onTouchEnd(e){
+  if(_touchDragTb){_touchDragTb.classList.remove('dragging');_touchDragTb=null;}
+  _clearDropMarkers();
+  renderTimeline();
+  const it=document.getElementById('i-type');
+  if(it&&it.value==='report') calcWorkHours();
+}
+function initTaskDnD(){
+  const list=document.getElementById('task-list');
+  if(!list || list.dataset.dndInit==='1') return;
+  list.dataset.dndInit='1';
+  // PC
+  list.addEventListener('dragstart', _onDragStart);
+  list.addEventListener('dragover', _onDragOver);
+  list.addEventListener('drop', _onDrop);
+  list.addEventListener('dragend', _onDragEnd);
+  // Mobile
+  list.addEventListener('touchstart', _onTouchStart, {passive:false});
+  list.addEventListener('touchmove', _onTouchMove, {passive:false});
+  list.addEventListener('touchend', _onTouchEnd);
+  list.addEventListener('touchcancel', _onTouchEnd);
+}
+
+// カテゴリ変更時のフック（将来の拡張用）
+function onCatChange(sel){
+  const it=document.getElementById('i-type');
+  if(it&&it.value==='report') calcWorkHours();
 }
 
 async function loadTasksFromGAS(isRep,mi){
@@ -1758,9 +1861,8 @@ async function submitInput(){
     // バリデーション: カテゴリ必須
     if(!task.cat){catErr=true;if(catSel)catSel.style.borderColor='#DC2626';}
     else if(catSel)catSel.style.borderColor='';
-    // バリデーション: タスク名必須
-    if(!task.name.trim()){nameErr=true;if(ni)ni.style.borderColor='#DC2626';}
-    else if(ni)ni.style.borderColor='';
+    // 内容は任意（必須解除）
+    if(ni)ni.style.borderColor='';
     // バリデーション: 開始/終了時刻の入力
     if(sV===''||eV===''){timeErr=true;}
     else {
@@ -1772,7 +1874,6 @@ async function submitInput(){
   });
   if(tasks.length===0){showError('タスクを1件以上入力してください');return;}
   if(catErr){showError('カテゴリを選択してください');return;}
-  if(nameErr){showError('タスク名を入力してください');return;}
   if(timeErr){showError('終了時刻は開始時刻より後にしてください');return;}
   const btn=document.querySelector('[onclick="submitInput()"]');
   if(btn){btn.disabled=true;btn.style.opacity='.6';}
@@ -1840,10 +1941,14 @@ async function renderDayDetailAsync(sel){
     }
     const hasPlan=planTasks.length>0;
     const hasReport=reportTasks.length>0;
-    // Merge plan + report for timeline
+    // Merge plan + report for timeline (開始時刻順にソート)
     const tasks=planTasks.map(p=>{
       const r=reportTasks.find(r=>r.name===p.name)||{};
       return{cat:p.cat,name:p.name||'（タスク）',ps:p.startTime,pe:p.endTime,as:r.startTime||null,ae:r.endTime||null,done:r.status==='完了',note:p.note||''};
+    }).sort((a,b)=>{
+      const am=t2m(a.ps), bm=t2m(b.ps);
+      if(am!==bm) return am-bm;
+      return t2m(a.pe)-t2m(b.pe);
     });
 
     dd+=`<div class="dd-member-card">
@@ -1922,11 +2027,15 @@ async function renderDayDetailAsync(sel){
 }
 
 
-function renderMonthly(){
+function _ymStr(y,m){return y+'-'+String(m+1).padStart(2,'0');}
+function _filterByYm(arr,ym){return (arr||[]).filter(ds=>String(ds).startsWith(ym));}
+
+async function renderMonthly(){
   const sel=document.getElementById('m-member-sel');
   if(!sel||!sel.options.length) return;
   const mi=parseInt(sel.value||0);
   const md=state.memberData[mi];
+  // まず現在値でUI反映（ロード中の白紙を防止）
   const th=document.getElementById('target-hours');
   const wc=document.getElementById('wedding-count');
   const rs=document.getElementById('remain-shift');
@@ -1935,6 +2044,31 @@ function renderMonthly(){
   if(rs)rs.value=md.remainShiftDays;
   updateWeddingHours();
   renderCalendar(mi);
+  // GASから当月分の月初設定を読込
+  if(typeof state.calYear!=='number'||isNaN(state.calYear)){
+    const n=new Date();state.calYear=n.getFullYear();state.calMonth=n.getMonth();
+  }
+  const ym=_ymStr(state.calYear, state.calMonth);
+  try{
+    const data=await apiGet({action:'getMonthlySetup', ym, memberName:MEMBERS[mi].name});
+    if(data && data.success){
+      if(typeof data.targetHours==='number' && data.targetHours>0) md.targetHours=data.targetHours;
+      if(typeof data.weddingCount==='number') md.weddingCount=data.weddingCount;
+      if(typeof data.remainShiftDays==='number' && data.remainShiftDays>0) md.remainShiftDays=data.remainShiftDays;
+      if(Array.isArray(data.offDays)){
+        md.offDays=(md.offDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.offDays);
+      }
+      if(Array.isArray(data.weddingDays)){
+        md.weddingDays=(md.weddingDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.weddingDays);
+      }
+      // 再レンダリング
+      if(th)th.value=md.targetHours;
+      if(wc)wc.value=md.weddingCount;
+      if(rs)rs.value=md.remainShiftDays;
+      updateWeddingHours();
+      renderCalendar(mi);
+    }
+  }catch(e){/* オフライン時はローカル状態のみ */}
 }
 function updateWeddingHours(){
   const wc=parseInt(document.getElementById('wedding-count').value||0);
@@ -1975,15 +2109,35 @@ function renderCalendar(mi){
   for(let i=1;i<=rem;i++)html+=`<div class="cal-d other-m">${i}</div>`;
   body.innerHTML=html;
 }
+let _offDaysSaveTimer=null;
+async function _persistMonthly(mi){
+  const md=state.memberData[mi];
+  const ym=_ymStr(state.calYear, state.calMonth);
+  try{
+    await apiPost({
+      action:'saveMonthlySetup',
+      ym,
+      memberName:MEMBERS[mi].name,
+      targetHours:md.targetHours,
+      weddingCount:md.weddingCount,
+      remainShiftDays:md.remainShiftDays,
+      offDays:_filterByYm(md.offDays, ym),
+      weddingDays:_filterByYm(md.weddingDays, ym)
+    });
+  }catch(e){}
+}
 function toggleDay(ds,mi){
   const md=state.memberData[mi];
   const isOff=md.offDays.includes(ds);
   if(!isOff) md.offDays.push(ds);
   else md.offDays=md.offDays.filter(x=>x!==ds);
   renderCalendar(mi);
+  // デバウンス付きで自動保存
+  clearTimeout(_offDaysSaveTimer);
+  _offDaysSaveTimer=setTimeout(()=>_persistMonthly(mi), 400);
 }
-function prevMonth(){state.calMonth--;if(state.calMonth<0){state.calMonth=11;state.calYear--;}renderCalendar(parseInt(document.getElementById('m-member-sel').value||0));}
-function nextMonth(){state.calMonth++;if(state.calMonth>11){state.calMonth=0;state.calYear++;}renderCalendar(parseInt(document.getElementById('m-member-sel').value||0));}
+function prevMonth(){state.calMonth--;if(state.calMonth<0){state.calMonth=11;state.calYear--;}renderMonthly();}
+function nextMonth(){state.calMonth++;if(state.calMonth>11){state.calMonth=0;state.calYear++;}renderMonthly();}
 // ============================================================
 // カテゴリ管理 UI
 // ============================================================
@@ -2051,7 +2205,7 @@ function flashCategoryToast(){
   flashCategoryToast._h=setTimeout(()=>t.style.display='none',1800);
 }
 
-function saveMonthly(){
+async function saveMonthly(){
   const mi=parseInt(document.getElementById('m-member-sel').value||0);
   const thEl=document.getElementById('target-hours');
   const wcEl=document.getElementById('wedding-count');
@@ -2059,6 +2213,8 @@ function saveMonthly(){
   state.memberData[mi].targetHours=parseInt(thEl?thEl.value:160)||160;
   state.memberData[mi].weddingCount=parseInt(wcEl?wcEl.value:0)||0;
   if(rsEl) state.memberData[mi].remainShiftDays=parseInt(rsEl.value)||20;
+  // GASに保存
+  await _persistMonthly(mi);
   const t=document.getElementById('toast-monthly');
   t.style.display='block';
   setTimeout(()=>t.style.display='none',3000);
