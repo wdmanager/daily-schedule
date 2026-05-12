@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0063)file:///Users/shunsukekobayashi/Downloads/kuppography_v4_3.html -->
+<!-- saved from url=(0063)file:///Users/shunsukekobayashi/Downloads/kuppography_v4_5.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -309,7 +309,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"></circle><path d="M8 5v3M8 11v.5"></path></svg>
       <span style="font-size:13px;font-weight:500;" id="unsub-title">終業報告 未提出 — 5/12</span>
-      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">15:10 時点</span>
+      <span style="font-size:11px;color:var(--t3);margin-left:auto;" id="unsub-time">15:31 時点</span>
     </div>
     <div id="unsub-list"><div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
         <div class="av" style="background:#C9A84C;">飯</div>
@@ -355,7 +355,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
   </div>
 
   <div class="sg" id="dash-stats">
-      <div class="sc"><div class="sl">予定入力</div><div class="sv">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
+      <div class="sc"><div class="sl">予定入力</div><div class="sv">4<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
       <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:#DC2626;">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
       <div class="sc"><div class="sl">チーム平均超過</div><div class="sv" style="color:#16A34A;">0<span style="font-size:16px;color:var(--t3);">分</span></div></div>
     </div>
@@ -990,7 +990,7 @@ async function saveCategoriesToGAS(){
 // ============================================================
 // GAS API
 // ============================================================
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbz1JCMrRP5vM307D4jGjvqml_02JODLy7sHnWAy9nz-kE7u4Btp88Ykz8xJo7W9d70fxw/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbyIcqAMKIrGJJk9JZrxuZCwrtqhG6cA1buhazau5UYqmqd2_WOqIhGacPPiSZh1ypO3Zw/exec';
 
 async function apiPost(data) {
   try {
@@ -1357,19 +1357,61 @@ async function _syncDayStatus(ds){
   try{
     const data=await apiGet({action:'getDayStatus',date:ds});
     if(!data||!data.success||!data.status) return;
+    let changed=false;
     data.status.forEach(s=>{
       const i=MEMBERS.findIndex(m=>m.name===s.name);
       if(i<0) return;
       if(!state.memberData[i].submitted[ds]) state.memberData[i].submitted[ds]={plan:false,report:false};
-      if(s.hasPlan) state.memberData[i].submitted[ds].plan=true;
-      if(s.hasReport) state.memberData[i].submitted[ds].report=true;
-      if(s.offType){
-        if(!state.memberData[i].offDays.includes(ds)) state.memberData[i].offDays.push(ds);
-      }
+      if(s.hasPlan && !state.memberData[i].submitted[ds].plan){state.memberData[i].submitted[ds].plan=true;changed=true;}
+      if(s.hasReport && !state.memberData[i].submitted[ds].report){state.memberData[i].submitted[ds].report=true;changed=true;}
+      if(s.offType && !state.memberData[i].offDays.includes(ds)){state.memberData[i].offDays.push(ds);changed=true;}
     });
-    // 再描画
-    renderDashboard();
+    // 変化があったときだけ再描画（無限ループ防止）
+    if(changed) _renderDashboardNoSync();
   }catch(e){}
+}
+
+function _renderDashboardNoSync(){
+  // renderDashboardの中身をコピーせず、submitedとoffDaysの表示だけ更新
+  const sel=state.selectedDate;
+  const ds=dateStr(sel);
+  const fm=state.filterMember;
+  const indices=(fm!==null&&fm!==undefined)?[fm]:MEMBERS.map((_,i)=>i);
+  const workingIndices=indices.filter(i=>!(state.memberData[i].offDays&&state.memberData[i].offDays.includes(ds)));
+  const workingMembers=workingIndices.map(i=>MEMBERS[i]);
+  const notSub=workingMembers.filter((_,idx)=>{
+    const i=workingIndices[idx];
+    return !(state.memberData[i].submitted[ds]&&state.memberData[i].submitted[ds].report);
+  });
+  const uc=document.getElementById('unsub-card');
+  if(!uc)return;
+  const isToday=ds===dateStr(new Date());
+  if(notSub.length===0){
+    uc.style.borderLeft='3px solid #16A34A';
+    document.getElementById('unsub-list').innerHTML=`<div style="font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#16A34A" stroke-width="1.5"><path d="M2 7l4 4 6-7"/></svg>全員提出済みです</div>`;
+  } else {
+    uc.style.borderLeft='3px solid #DC2626';
+    document.getElementById('unsub-list').innerHTML=notSub.map(m=>{
+      const i=MEMBERS.indexOf(m);
+      return `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
+        <div class="av" style="background:${m.color};">${m.init}</div>
+        <span style="font-size:13px;font-weight:500;flex:1;">${m.name}</span>
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
+        <button class="btn btn-sm" onclick="goToInput(${i},'report')">入力する</button>
+      </div>`;
+    }).join('')+`<div style="font-size:11px;color:var(--t3);margin-top:8px;">22:00 に本人へメールが自動送信されます</div>`;
+  }
+  // Stats更新
+  const total=workingIndices.length;
+  const planDone=workingIndices.filter(i=>state.memberData[i].submitted[ds]&&state.memberData[i].submitted[ds].plan).length;
+  const repDone=workingIndices.filter(i=>state.memberData[i].submitted[ds]&&state.memberData[i].submitted[ds].report).length;
+  const statsEl=document.getElementById('dash-stats');
+  if(statsEl&&(fm===null||fm===undefined)){
+    statsEl.innerHTML=`
+      <div class="sc"><div class="sl">予定入力</div><div class="sv">${planDone}<span style="font-size:14px;color:var(--t3);">/${total}</span></div></div>
+      <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:${repDone<total?'#DC2626':'#16A34A'};">${repDone}<span style="font-size:14px;color:var(--t3);">/${total}</span></div></div>
+    `;
+  }
 }
 
 function renderDashboard(){
