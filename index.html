@@ -1,0 +1,3203 @@
+<!DOCTYPE html>
+<!-- saved from url=(0109)file:///Users/shunsukekobayashi/Downloads/kuppography___%E3%83%81%E3%83%BC%E3%83%A0%E7%AE%A1%E7%90%86_12.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kuppography — チーム管理</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+:root{
+  --bg:#EEEDE9;
+  --surface:#FFFFFF;
+  --border:#E0DDD8;
+  --border2:#CCCAC4;
+  --text:#1A1714;
+  --t2:#6B645A;
+  --t3:#A09890;
+  --accent:#1A1714;
+  --r:10px;--rs:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:14px;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-weight:400;}
+.layout{display:flex;min-height:100vh;}
+
+/* Sidebar */
+.sidebar{width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.main{flex:1;min-width:0;padding:32px 36px;max-width:900px;}
+
+/* Sidebar elements */
+.s-logo{padding:22px 20px 18px;border-bottom:1px solid var(--border);}
+.s-logo-t{font-size:14px;font-weight:600;letter-spacing:.04em;color:var(--text);line-height:1.2;}
+.s-logo-s{font-size:13px;color:var(--t2);margin-top:3px;font-family:'DM Mono',monospace;letter-spacing:.02em;}
+.s-sec{padding:14px 12px 6px;}
+.s-sec-l{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);padding:0 8px;margin-bottom:5px;}
+.nav{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--rs);cursor:pointer;font-size:13px;color:var(--t2);border:none;background:none;width:100%;text-align:left;font-family:'Noto Sans JP',sans-serif;transition:all .15s;font-weight:400;}
+.nav:hover{background:var(--bg);color:var(--text);}
+.nav.active{background:var(--accent);color:#fff;}
+.nav svg{width:15px;height:15px;flex-shrink:0;opacity:.5;}
+.nav.active svg{opacity:1;}
+.s-members{padding:4px 12px 16px;}
+.sm{display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:var(--rs);cursor:pointer;transition:background .15s;}
+.sm:hover{background:var(--bg);}
+.sm-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;}
+.sm-n{font-size:12px;color:var(--t2);}
+
+/* Page */
+.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:10px;}
+.pt{font-size:20px;font-weight:500;}
+.ps{font-size:12px;color:var(--t2);margin-top:2px;}
+
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;margin-bottom:14px;}
+.ct{font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);margin-bottom:14px;}
+
+/* Stats */
+.sg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px;}
+.sc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;}
+.sl{font-size:11px;color:var(--t3);margin-bottom:6px;font-weight:500;}
+.sv{font-size:24px;font-weight:500;font-family:'DM Mono',monospace;line-height:1;}
+.ss{font-size:11px;color:var(--t3);margin-top:4px;}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+
+/* Badge */
+.badge{display:inline-flex;align-items:center;font-size:11px;font-weight:500;padding:2px 8px;border-radius:99px;white-space:nowrap;}
+
+/* Bar */
+.bb{height:5px;background:var(--bg);border-radius:3px;overflow:hidden;flex:1;}
+.bf{height:100%;border-radius:3px;transition:width .4s;}
+
+/* Form */
+.form-group{margin-bottom:16px;}
+.form-label{display:block;font-size:12px;color:var(--t2);margin-bottom:5px;font-weight:500;}
+input[type=text],input[type=number],input[type=time],input[type=date],select,textarea{
+  width:100%;padding:9px 11px;font-size:13px;
+  border:1px solid var(--border2);border-radius:var(--rs);
+  background:var(--surface);color:var(--text);
+  font-family:'Noto Sans JP',sans-serif;outline:none;transition:border-color .15s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,23,20,.08);}
+textarea{resize:vertical;min-height:56px;line-height:1.6;}
+
+/* Buttons */
+.btn{padding:9px 18px;font-size:13px;font-weight:500;border-radius:var(--rs);border:1px solid var(--border2);background:var(--surface);color:var(--text);cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .15s;}
+.btn:hover{background:var(--bg);}
+.btn-p{background:var(--accent);color:#fff;border-color:var(--accent);}
+.btn-p:hover{opacity:.85;}
+.btn-sm{padding:5px 12px;font-size:12px;}
+.btn-add{border:none;background:none;font-size:13px;color:var(--t2);cursor:pointer;padding:3px 0;font-family:'Noto Sans JP',sans-serif;display:flex;align-items:center;gap:4px;}
+.btn-add:hover{color:var(--text);}
+
+/* Member buttons */
+.member-btn{padding:6px 13px;font-size:12px;border-radius:var(--rs);border:1px solid var(--border2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .15s;white-space:nowrap;}
+.member-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.member-btn:hover:not(.active){border-color:var(--accent);color:var(--text);}
+
+/* Type toggle */
+.type-toggle{display:flex;gap:3px;background:var(--bg);border-radius:var(--rs);padding:3px;border:1px solid var(--border);}
+.type-btn{flex:1;padding:7px 14px;font-size:13px;border-radius:4px;border:none;background:none;color:var(--t2);cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .15s;}
+.type-btn.active{background:var(--accent);color:#fff;font-weight:500;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+
+/* Task block */
+.tb{border:1px solid var(--border);}  .tb.drag-over{border-top:3px solid var(--accent) !important;}  .tb.dragging{opacity:0.5;} .tb{border-radius:var(--rs);padding:14px;margin-bottom:10px;background:var(--bg);position:relative;}
+.tb-h{display:flex;gap:7px;align-items:flex-start;flex-wrap:wrap;margin-bottom:8px;}
+.rm{position:absolute;top:8px;right:8px;border:none;background:none;color:var(--t3);font-size:15px;cursor:pointer;padding:2px 5px;border-radius:4px;line-height:1;}
+.drag-handle{position:absolute;top:10px;left:8px;width:18px;height:22px;display:flex;align-items:center;justify-content:center;color:var(--t3);cursor:grab;user-select:none;font-size:14px;line-height:1;letter-spacing:-1px;touch-action:none;}
+.drag-handle:hover{color:var(--t1);}
+.drag-handle:active{cursor:grabbing;}
+.tb{padding-left:34px!important;}
+.tb.dragging{opacity:.4;background:var(--surface);}
+.tb.drop-above{box-shadow:inset 0 3px 0 var(--accent);}
+.tb.drop-below{box-shadow:inset 0 -3px 0 var(--accent);}
+.rm:hover{background:var(--border);color:var(--text);}
+.av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
+.av-sm{width:26px;height:26px;font-size:10px;}
+
+/* Toast */
+.toast{display:none;background:#F0FDF4;border:1px solid #86EFAC;border-radius:var(--rs);padding:9px 14px;font-size:13px;color:#16A34A;margin-bottom:12px;}
+
+/* Calendar */
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;}
+.cal-h{font-size:11px;color:var(--t3);text-align:center;padding:4px 0;}
+/* タイムライン */
+.tl-wrap{position:relative;padding:4px 0 0;margin-bottom:14px;}
+.tl-hours{position:relative;height:18px;margin-bottom:3px;}
+.tl-hour{position:absolute;top:0;font-size:10px;color:var(--t2);transform:translateX(-50%);font-family:'DM Mono',monospace;white-space:nowrap;font-weight:500;}
+.tl-track{position:relative;height:46px;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--border);}
+.tl-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(160,152,144,.35);}
+.tl-tick.half{background:rgba(160,152,144,.18);}
+.tl-block{position:absolute;top:4px;bottom:4px;border-radius:4px;padding:0 8px;font-size:11px;font-weight:500;color:#fff;display:flex;align-items:center;overflow:hidden;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.1);}
+.tl-block.no-cat{background:repeating-linear-gradient(135deg,#A09890,#A09890 4px,#8B847D 4px,#8B847D 8px);color:#fff;}
+.tl-empty{font-size:11px;color:var(--t3);text-align:center;padding:10px 0;}
+.tl-gap-label{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:10px;color:var(--t2);font-family:'DM Mono',monospace;background:var(--bg);padding:0 3px;border-radius:2px;}
+.tl-summary{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:11px;color:var(--t3);}
+.cal-d{font-size:12px;text-align:center;padding:5px 2px;border-radius:5px;cursor:pointer;transition:background .12s;min-height:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;}
+.cal-d:hover{background:var(--bg);}
+.cal-d.off{background:#FEF2F2;color:#DC2626;font-weight:500;}
+.cal-d.wedding{background:#EFF6FF;color:#2563EB;font-weight:500;}
+.cal-d.today{outline:2px solid var(--accent);outline-offset:-2px;}
+.cal-d.other-m{color:var(--t3);}
+.cal-d.weekend{color:var(--t3);}
+
+/* Pace card */
+.pace-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;}
+.pace-bar{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;margin-bottom:6px;}
+.pace-fill{height:100%;border-radius:3px;}
+.pace-nums{display:flex;justify-content:space-between;font-size:11px;color:var(--t3);}
+.pace-alert{margin-top:8px;padding:9px 12px;border-radius:var(--rs);display:flex;align-items:baseline;justify-content:space-between;}
+
+/* Day detail */
+.dd-member{margin-bottom:16px;}
+.dd-m-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.dd-task{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+.dd-task:last-child{border-bottom:none;}
+
+/* Unsub */
+.unsub-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06);}
+.unsub-row:last-child{border-bottom:none;}
+
+/* Date nav */
+.date-nav{display:flex;align-items:center;gap:6px;}
+.date-nav-btn{padding:5px 11px;font-size:12px;border-radius:var(--rs);border:1px solid var(--border2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .15s;}
+.date-nav-btn:hover{border-color:var(--accent);color:var(--text);}
+
+/* Shortcut buttons */
+.shortcut-btn-blue{padding:7px 14px;font-size:12px;font-weight:500;border-radius:var(--rs);border:1px solid #2563EB;background:#EFF6FF;color:#1D4ED8;cursor:pointer;font-family:'Noto Sans JP',sans-serif;}
+.shortcut-btn-green{padding:7px 14px;font-size:12px;font-weight:500;border-radius:var(--rs);border:1px solid #16A34A;background:#F0FDF4;color:#15803D;cursor:pointer;font-family:'Noto Sans JP',sans-serif;}
+
+/* Work hours */
+.work-hours-box{background:var(--bg);border-radius:var(--rs);padding:11px 14px;display:flex;align-items:center;justify-content:space-between;margin-top:10px;}
+
+/* View */
+.view{display:none;}
+.view.active{display:block;}
+.divider{border:none;border-top:1px solid var(--border);margin:14px 0;}
+.pb{padding:5px 12px;font-size:12px;border-radius:99px;border:1px solid var(--border2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .15s;}
+.pb.active,.pb:hover{border-color:var(--accent);}
+.pb.active{background:var(--accent);color:#fff;}
+
+/* Pace grid */
+#pace-grid .g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+
+/* Mobile nav */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);z-index:200;height:58px;}
+.mobile-nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:none;color:var(--t3);cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-size:10px;padding:6px 4px;transition:color .15s;}
+.mobile-nav-btn.active{color:var(--text);}
+.mobile-nav-btn svg{width:20px;height:20px;}
+
+pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);padding:14px;font-size:11px;font-family:'DM Mono',monospace;line-height:1.7;overflow-x:auto;white-space:pre;max-height:400px;overflow-y:auto;}
+
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{padding:14px 12px 80px;}
+  .sg{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .sg>.sc{padding:10px 12px;}
+  .sv{font-size:20px!important;}
+  .g2{grid-template-columns:1fr;}
+  .mobile-nav{display:flex;}
+  .ph{flex-direction:column;align-items:flex-start;gap:10px;}
+  .pt{font-size:18px;}
+  .card{padding:14px;}
+  .pace-card{padding:14px 16px;}
+  .type-toggle{max-width:100%!important;}
+  .tb{padding:12px;}
+  .tb-h{flex-direction:column;align-items:stretch;gap:6px;}
+  .tb-h .task-cat, .tb-h .task-name{width:100%!important;min-width:0!important;}
+  .member-btn{font-size:12px;padding:6px 10px;}
+  .btn{padding:8px 14px;font-size:12px;}
+  .btn-sm{padding:6px 10px;font-size:11px;}
+  #pace-grid .g2, #pace-grid div[style*="grid-template-columns"]{grid-template-columns:1fr!important;}
+  .dd-member-card{padding:20px 0 20px;margin-bottom:16px;border-bottom:1px solid var(--border);}
+  h1, .pt{font-size:18px;}
+  .ct{font-size:13px;}
+  input[type="date"], input[type="number"], input[type="text"], select, textarea{font-size:13px;}
+  .form-label{font-size:12px;}
+  /* カレンダーグリッド (月初設定) */
+  .cal-d{font-size:11px;}
+  /* スクロール可能なエリア */
+  pre{font-size:10px;}
+}
+@media(max-width:480px){
+  .sg{grid-template-columns:1fr;}
+  .main{padding:12px 10px 80px;}
+  .ph{padding-bottom:12px;margin-bottom:12px;}
+  .member-btn{font-size:11px;padding:5px 8px;}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <div class="s-logo">
+    <div class="s-logo-t">kuppography</div>
+    <div class="s-logo-s">daily schedule</div>
+  </div>
+  <div class="s-sec">
+    <div class="s-sec-l">メンバー</div>
+    <button class="nav active" onclick="sw(&#39;input&#39;)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"></rect><path d="M5 8h6M8 5v6"></path></svg>
+      予定・報告入力
+    </button>
+    <button class="nav" onclick="sw(&#39;monthly&#39;)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"></rect><path d="M5 2v2M11 2v2M2 7h12"></path></svg>
+      月初設定
+    </button>
+  </div>
+  <div class="s-sec" style="margin-top:8px;">
+    <div class="s-sec-l">マネージャー</div>
+    <button class="nav" id="nav-dashboard" onclick="sw(&#39;dashboard&#39;)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"></rect><rect x="9" y="2" width="5" height="5" rx="1"></rect><rect x="2" y="9" width="5" height="5" rx="1"></rect><rect x="9" y="9" width="5" height="5" rx="1"></rect></svg>
+      ダッシュボード
+    </button>
+    <button class="nav" id="nav-diff" onclick="sw(&#39;diff&#39;)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"></circle><path d="M8 5v3l2 2"></path></svg>
+      分析
+    </button>
+    <button class="nav" id="nav-summary" onclick="sw(&#39;summary&#39;)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L6 8l3 3 3-5 2 3"></path><circle cx="13" cy="4" r="1.5"></circle></svg>
+      月間サマリー
+    </button>
+    <button class="nav" id="nav-usage" onclick="sw(&#39;usage&#39;)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"></circle><path d="M8 11v.01M8 7V5a1.5 1.5 0 1 1 2 1.3c-1 .3-2 .8-2 2.2"></path></svg>
+      使用方法
+    </button>
+    <button class="nav" id="nav-settings" onclick="sw(&#39;settings&#39;)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.5"></circle><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.5 3.5l1.5 1.5M11 11l1.5 1.5M3.5 12.5l1.5-1.5M11 5l1.5-1.5"></path></svg>
+      管理
+    </button>
+  </div>
+  <div class="s-sec"><div class="s-sec-l">メンバー</div></div>
+  <div class="s-members" id="s-members"><div class="sm" onclick="showMemberPage(0);">
+        <div class="sm-av" style="background:#6B7280;">飯</div>
+        <div style="flex:1;min-width:0;">
+          <span class="sm-n">飯倉 孝史</span><span style="font-size:9px;background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">予定未入力</span>
+        </div>
+      </div><div class="sm" onclick="showMemberPage(1);">
+        <div class="sm-av" style="background:#6B7280;">佐</div>
+        <div style="flex:1;min-width:0;">
+          <span class="sm-n">佐々木 大翔</span><span style="font-size:9px;background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">予定未入力</span>
+        </div>
+      </div><div class="sm" onclick="showMemberPage(2);">
+        <div class="sm-av" style="background:#6B7280;">坂</div>
+        <div style="flex:1;min-width:0;">
+          <span class="sm-n">坂本 楓花</span><span style="font-size:9px;background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">予定未入力</span>
+        </div>
+      </div><div class="sm" onclick="showMemberPage(3);">
+        <div class="sm-av" style="background:#6B7280;">山</div>
+        <div style="flex:1;min-width:0;">
+          <span class="sm-n">山口 葵</span><span style="font-size:9px;background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">予定未入力</span>
+        </div>
+      </div><div class="sm" onclick="showMemberPage(4);">
+        <div class="sm-av" style="background:#6B7280;">川</div>
+        <div style="flex:1;min-width:0;">
+          <span class="sm-n">川上 輝</span><span style="font-size:9px;background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">予定未入力</span>
+        </div>
+      </div><div class="sm" onclick="showMemberPage(5);">
+        <div class="sm-av" style="background:#6B7280;">横</div>
+        <div style="flex:1;min-width:0;">
+          <span class="sm-n">横山 大燿</span><span style="font-size:9px;background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">予定未入力</span>
+        </div>
+      </div><div class="sm" onclick="showMemberPage(6);">
+        <div class="sm-av" style="background:#6B7280;">片</div>
+        <div style="flex:1;min-width:0;">
+          <span class="sm-n">片倉 来波</span><span style="font-size:9px;background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">予定未入力</span>
+        </div>
+      </div><div class="sm" onclick="showMemberPage(7);">
+        <div class="sm-av" style="background:#6B7280;">小</div>
+        <div style="flex:1;min-width:0;">
+          <span class="sm-n">小林 俊介</span><span style="font-size:9px;background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">予定未入力</span>
+        </div>
+      </div></div>
+</nav>
+<main class="main">
+
+<!-- ダッシュボード -->
+<div class="view" id="page-dashboard">
+  <div class="ph">
+    <div><div class="pt">ダッシュボード</div><div class="ps" id="dash-date">2026年6月1日(月)</div></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <input type="date" id="dash-pick" onchange="onDatePick()" style="width:auto;padding:6px 10px;font-size:13px;">
+      <button class="btn btn-sm" onclick="goToday()">今日</button>
+    </div>
+  </div>
+
+  <!-- 個人ビューのバナー -->
+  <div id="dash-filter-banner"></div>
+
+  
+  <div id="unsub-card" style="display: none; border-left: 3px solid rgb(220, 38, 38);"></div>
+
+  <div class="sg" id="dash-stats" style="">
+      <div class="sc"><div class="sl">予定入力</div><div class="sv">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
+      <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:#DC2626;">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
+      <div class="sc"><div class="sl">チーム平均超過</div><div class="sv" style="color:#16A34A;">0<span style="font-size:16px;color:var(--t3);">分</span></div></div>
+    </div>
+
+  <!-- 個人ビュー時のペース情報 -->
+  <div id="dash-personal-pace" style="margin-bottom:14px;"></div>
+
+  <div class="g2">
+    <div class="card" id="dash-hours-card" style="">
+      <div class="ct">月間勤務時間 進捗</div>
+      <div id="dash-hours"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">飯</div>
+      <span style="font-size:12px;min-width:44px;">飯倉 孝史</span>
+      <div class="bb"><div class="bf" style="width:36%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">64/176h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">36%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">佐</div>
+      <span style="font-size:12px;min-width:44px;">佐々木 大翔</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">坂</div>
+      <span style="font-size:12px;min-width:44px;">坂本 楓花</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">山</div>
+      <span style="font-size:12px;min-width:44px;">山口 葵</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">川</div>
+      <span style="font-size:12px;min-width:44px;">川上 輝</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">横</div>
+      <span style="font-size:12px;min-width:44px;">横山 大燿</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">片</div>
+      <span style="font-size:12px;min-width:44px;">片倉 来波</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">小</div>
+      <span style="font-size:12px;min-width:44px;">小林 俊介</span>
+      <div class="bb"><div class="bf" style="width:15%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">24/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">15%</span>
+    </div></div>
+    </div>
+    <div class="card" id="dash-overtime-card" style="">
+      <div class="ct">本日 予定超過時間</div>
+      <div id="dash-overtime"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">飯</div>
+      <span style="font-size:12px;min-width:68px;">飯倉 孝史</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">佐</div>
+      <span style="font-size:12px;min-width:68px;">佐々木 大翔</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">坂</div>
+      <span style="font-size:12px;min-width:68px;">坂本 楓花</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">山</div>
+      <span style="font-size:12px;min-width:68px;">山口 葵</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">川</div>
+      <span style="font-size:12px;min-width:68px;">川上 輝</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">横</div>
+      <span style="font-size:12px;min-width:68px;">横山 大燿</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">片</div>
+      <span style="font-size:12px;min-width:68px;">片倉 来波</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">小</div>
+      <span style="font-size:12px;min-width:68px;">小林 俊介</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div></div>
+    </div>
+  </div>
+
+  <!-- 日別詳細 -->
+  <div class="card" id="day-detail-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <div class="ct" style="margin-bottom:0;" id="day-detail-title">6月1日（月）のタスク詳細</div>
+      <div style="display:flex;gap:6px;">
+        <button class="btn btn-sm" onclick="shiftDay(-1)">◀ 前日</button>
+        <button class="btn btn-sm" onclick="shiftDay(1)">翌日 ▶</button>
+      </div>
+    </div>
+    <div id="day-detail-body"><div style="font-size:13px;color:var(--t3);padding:10px 0;">読み込み中...</div></div>
+  </div>
+</div>
+
+<!-- 予定・報告入力 -->
+<div class="view active" id="page-input">
+  <div class="ph">
+    <div>
+      <div class="pt">予定・報告入力</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap;">
+        <button onclick="shiftInputDay(-1)" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">◀ 前日</button>
+        <span class="ps" id="input-date" style="margin-top:0;">2026年6月1日(月)</span>
+        <button onclick="shiftInputDay(1)" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">翌日 ▶</button>
+        <button onclick="resetInputDate()" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--t2);cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">今日</button>
+        <button id="cal-import-btn" onclick="importFromCalendar()" style="padding:4px 10px;font-size:12px;border-radius:6px;border:1px solid #2563EB;background:#EFF6FF;color:#1D4ED8;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">📅 カレンダーから取得</button>
+      </div>
+    </div>
+  </div>
+  <div id="input-notice" style="margin-bottom:10px;"></div>
+  <div class="card">
+    <div style="margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border);">
+      <div class="form-group">
+        <div class="form-label">メンバー</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;" id="member-btns"><button data-idx="0" class="member-btn">飯倉 孝史</button><button data-idx="1" class="member-btn">佐々木 大翔</button><button data-idx="2" class="member-btn">坂本 楓花</button><button data-idx="3" class="member-btn">山口 葵</button><button data-idx="4" class="member-btn">川上 輝</button><button data-idx="5" class="member-btn">横山 大燿</button><button data-idx="6" class="member-btn">片倉 来波</button><button data-idx="7" class="member-btn">小林 俊介</button></div>
+        <select id="i-member" onchange="renderInputForm()" style="display:none;"><option value="0">飯倉 孝史</option><option value="1">佐々木 大翔</option><option value="2">坂本 楓花</option><option value="3">山口 葵</option><option value="4">川上 輝</option><option value="5">横山 大燿</option><option value="6">片倉 来波</option><option value="7">小林 俊介</option></select>
+      </div>
+      <div class="form-group" style="margin-bottom:0;">
+        <div class="form-label">種別</div>
+        <div class="type-toggle" style="max-width:260px;">
+          <button class="type-btn active" id="type-plan" onclick="setType(&#39;plan&#39;,this)" style="background: var(--accent); color: rgb(255, 255, 255); border-color: var(--accent);">予定入力</button>
+          <button class="type-btn" id="type-report" onclick="setType(&#39;report&#39;,this)" style="background: var(--surface); color: var(--t2); border-color: var(--border2);">終業報告</button>
+        </div>
+        <select id="i-type" onchange="renderInputForm()" style="display:none;"><option value="plan">予定入力</option><option value="report">終業報告</option></select>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+      <div class="ct" id="input-title" style="margin-bottom:0;">予定タスク（スケジュール）</div>
+      <div id="report-shortcut-btns" style="display: none; gap: 6px;">
+        <button id="copy-plan-btn" onclick="copyPlanToReport()" style="padding:6px 14px;font-size:12px;font-weight:500;border-radius:6px;border:1px solid #16A34A;background:#F0FDF4;color:#16A34A;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">予定をコピー</button>
+      </div>
+    </div>
+    <div class="tl-wrap" id="timeline-wrap">
+      <div class="tl-hours" id="tl-hours"><span class="tl-hour" style="left:0%;">8</span><span class="tl-hour" style="left:8.333333333333332%;">9</span><span class="tl-hour" style="left:16.666666666666664%;">10</span><span class="tl-hour" style="left:25%;">11</span><span class="tl-hour" style="left:33.33333333333333%;">12</span><span class="tl-hour" style="left:41.66666666666667%;">13</span><span class="tl-hour" style="left:50%;">14</span><span class="tl-hour" style="left:58.333333333333336%;">15</span><span class="tl-hour" style="left:66.66666666666666%;">16</span><span class="tl-hour" style="left:75%;">17</span><span class="tl-hour" style="left:83.33333333333334%;">18</span><span class="tl-hour" style="left:91.66666666666666%;">19</span><span class="tl-hour" style="left:100%;">20</span></div>
+      <div class="tl-track" id="tl-track"><div class="tl-tick" style="left:8.333333333333332%;"></div><div class="tl-tick" style="left:16.666666666666664%;"></div><div class="tl-tick" style="left:25%;"></div><div class="tl-tick" style="left:33.33333333333333%;"></div><div class="tl-tick" style="left:41.66666666666667%;"></div><div class="tl-tick" style="left:50%;"></div><div class="tl-tick" style="left:58.333333333333336%;"></div><div class="tl-tick" style="left:66.66666666666666%;"></div><div class="tl-tick" style="left:75%;"></div><div class="tl-tick" style="left:83.33333333333334%;"></div><div class="tl-tick" style="left:91.66666666666666%;"></div><div class="tl-tick half" style="left:4.166666666666666%;"></div><div class="tl-tick half" style="left:12.5%;"></div><div class="tl-tick half" style="left:20.833333333333336%;"></div><div class="tl-tick half" style="left:29.166666666666668%;"></div><div class="tl-tick half" style="left:37.5%;"></div><div class="tl-tick half" style="left:45.83333333333333%;"></div><div class="tl-tick half" style="left:54.166666666666664%;"></div><div class="tl-tick half" style="left:62.5%;"></div><div class="tl-tick half" style="left:70.83333333333334%;"></div><div class="tl-tick half" style="left:79.16666666666666%;"></div><div class="tl-tick half" style="left:87.5%;"></div><div class="tl-tick half" style="left:95.83333333333334%;"></div></div>
+      <div class="tl-summary"><span id="tl-summary-left">タスクを追加するとタイムラインに表示されます</span><span id="tl-summary-right"></span></div>
+    </div>
+    <div id="task-list" data-dnd-init="1"><div style="font-size:13px;color:var(--t3);padding:20px 0;text-align:center;">メンバーを選択してください</div></div>
+    <button class="btn-add" onclick="addTask()">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 1.5v10M1.5 6.5h10"></path></svg>
+      タスクを追加
+    </button>
+    <div id="report-reason-wrap" style="display: none; margin-top: 16px;">
+      <hr class="divider">
+
+      <!-- 実働時間サマリー（休憩は「休憩」カテゴリタスクから自動集計） -->
+      <div style="margin-bottom:16px;">
+        <div style="background:var(--s2);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="font-size:11px;color:var(--t3);margin-bottom:2px;">タスク合計 − 休憩 = 実働時間</div>
+            <div style="font-size:12px;color:var(--t2);">
+              <span id="task-sum-display">0h</span> − <span id="break-display">なし</span>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:var(--t3);margin-bottom:2px;">本日の実働時間</div>
+            <div style="font-size:22px;font-weight:700;font-family:&#39;DM Mono&#39;,monospace;" id="work-hours-result">0h</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 申し送り -->
+      <div>
+        <div style="font-size:12px;font-weight:500;color:var(--t2);margin-bottom:6px;">予定通り進まなかった理由・申し送り事項</div>
+        <textarea id="report-reason" placeholder="例：クライアントからの追加依頼があり現像チェックが延長。翌日に持ち越します。" style="min-height:72px;font-size:13px;"></textarea>
+      </div>
+    </div>
+    <div id="toast-input" class="toast" style="margin-top:14px;margin-bottom:0;"></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:14px;">
+      <button class="btn btn-p" onclick="submitInput()">送信する</button>
+    </div>
+  </div>
+</div>
+
+<!-- 月初設定 -->
+<div class="view" id="page-monthly">
+  <div class="ph">
+    <div><div class="pt">月初設定</div><div class="ps">毎月はじめに各自入力してください</div></div>
+  </div>
+  <div id="toast-monthly" class="toast" style="display: none;">保存しました！</div>
+  <div class="card" style="margin-bottom:12px;">
+    <div class="form-group" style="margin-bottom:0;">
+      <div class="form-label">メンバー</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;" id="m-member-btns"><button data-idx="0" class="member-btn">飯倉 孝史</button><button data-idx="1" class="member-btn">佐々木 大翔</button><button data-idx="2" class="member-btn">坂本 楓花</button><button data-idx="3" class="member-btn">山口 葵</button><button data-idx="4" class="member-btn">川上 輝</button><button data-idx="5" class="member-btn">横山 大燿</button><button data-idx="6" class="member-btn">片倉 来波</button><button data-idx="7" class="member-btn">小林 俊介</button></div>
+      <select id="m-member-sel" onchange="renderMonthly()" style="display:none;"><option value="0">飯倉 孝史</option><option value="1">佐々木 大翔</option><option value="2">坂本 楓花</option><option value="3">山口 葵</option><option value="4">川上 輝</option><option value="5">横山 大燿</option><option value="6">片倉 来波</option><option value="7">小林 俊介</option></select>
+    </div>
+  </div>
+
+  <div id="monthly-content" style="display:none;">
+  <div class="g2" style="margin-bottom:12px;">
+    <div class="card">
+      <div class="ct">今月の予定総労働時間</div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12px;color:var(--t2);margin-bottom:5px;">今月の予定総労働時間</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <input type="number" id="target-hours" value="160" min="0" max="400" style="width:100px;background:var(--bg);" readonly="" title="休み登録から自動計算されます">
+          <span style="font-size:13px;color:var(--t2);">時間</span>
+        </div>
+      </div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12px;color:var(--t2);margin-bottom:5px;">婚礼撮影件数（1件 = 8h 加算）</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <input type="number" id="wedding-count" value="2" min="0" max="20" oninput="updateWeddingHours()" style="width:100px;">
+          <span style="font-size:13px;color:var(--t2);">件</span>
+          <span style="font-size:13px;font-weight:500;color:var(--pink);" id="wedding-h-label">= −64h</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">凡例</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--t2);line-height:1.5;">
+        <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:3px;background:#FEF2F2;border:1px solid #FCA5A5;flex-shrink:0;"></span>休み（有給・代休・公休）<br>→ その日は入力不要</span>
+        <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:3px;background:var(--surface);border:1px solid var(--border);flex-shrink:0;"></span>通常勤務日（入力必要）</span>
+        <span style="font-size:11px;color:var(--t3);margin-top:4px;">※ 婚礼は予定入力でカテゴリ選択すると自動カウントされます</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <button class="btn btn-sm" onclick="prevMonth()">◀</button>
+      <span style="font-size:14px;font-weight:500;" id="cal-title">2026年6月</span>
+      <button class="btn btn-sm" onclick="nextMonth()">▶</button>
+    </div>
+    <div class="cal" id="cal-header"><div class="cal-h" style="color:var(--t3);">月</div><div class="cal-h" style="color:var(--t3);">火</div><div class="cal-h" style="color:var(--t3);">水</div><div class="cal-h" style="color:var(--t3);">木</div><div class="cal-h" style="color:var(--t3);">金</div><div class="cal-h" style="color:#2563EB;">土</div><div class="cal-h" style="color:#DC2626;">日</div></div>
+    <div class="cal" id="cal-body"><div class="cal-d today" onclick="toggleDay(&#39;2026-06-01&#39;,0)">1</div><div class="cal-d off" onclick="toggleDay(&#39;2026-06-02&#39;,0)">2<span style="font-size:9px;display:block;">休</span></div><div class="cal-d" onclick="toggleDay(&#39;2026-06-03&#39;,0)">3</div><div class="cal-d off" onclick="toggleDay(&#39;2026-06-04&#39;,0)">4<span style="font-size:9px;display:block;">休</span></div><div class="cal-d" onclick="toggleDay(&#39;2026-06-05&#39;,0)">5</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-06-06&#39;,0)">6</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-06-07&#39;,0)">7</div><div class="cal-d" onclick="toggleDay(&#39;2026-06-08&#39;,0)">8</div><div class="cal-d" onclick="toggleDay(&#39;2026-06-09&#39;,0)">9</div><div class="cal-d off" onclick="toggleDay(&#39;2026-06-10&#39;,0)">10<span style="font-size:9px;display:block;">休</span></div><div class="cal-d off" onclick="toggleDay(&#39;2026-06-11&#39;,0)">11<span style="font-size:9px;display:block;">休</span></div><div class="cal-d" onclick="toggleDay(&#39;2026-06-12&#39;,0)">12</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-06-13&#39;,0)">13</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-06-14&#39;,0)">14</div><div class="cal-d" onclick="toggleDay(&#39;2026-06-15&#39;,0)">15</div><div class="cal-d" onclick="toggleDay(&#39;2026-06-16&#39;,0)">16</div><div class="cal-d off" onclick="toggleDay(&#39;2026-06-17&#39;,0)">17<span style="font-size:9px;display:block;">休</span></div><div class="cal-d off" onclick="toggleDay(&#39;2026-06-18&#39;,0)">18<span style="font-size:9px;display:block;">休</span></div><div class="cal-d" onclick="toggleDay(&#39;2026-06-19&#39;,0)">19</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-06-20&#39;,0)">20</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-06-21&#39;,0)">21</div><div class="cal-d" onclick="toggleDay(&#39;2026-06-22&#39;,0)">22</div><div class="cal-d" onclick="toggleDay(&#39;2026-06-23&#39;,0)">23</div><div class="cal-d off" onclick="toggleDay(&#39;2026-06-24&#39;,0)">24<span style="font-size:9px;display:block;">休</span></div><div class="cal-d off" onclick="toggleDay(&#39;2026-06-25&#39;,0)">25<span style="font-size:9px;display:block;">休</span></div><div class="cal-d" onclick="toggleDay(&#39;2026-06-26&#39;,0)">26</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-06-27&#39;,0)">27</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-06-28&#39;,0)">28</div><div class="cal-d" onclick="toggleDay(&#39;2026-06-29&#39;,0)">29</div><div class="cal-d" onclick="toggleDay(&#39;2026-06-30&#39;,0)">30</div><div class="cal-d other-m">1</div><div class="cal-d other-m">2</div><div class="cal-d other-m">3</div><div class="cal-d other-m">4</div><div class="cal-d other-m">5</div></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:14px;">
+      <button class="btn btn-p" onclick="saveMonthly()">保存する</button>
+    </div>
+  </div>
+
+  </div><!-- /#monthly-content -->
+</div><!-- /#page-monthly -->
+
+<!-- 月間サマリー -->
+<div class="view" id="page-summary">
+  <div class="ph">
+    <div><div class="pt">月間サマリー</div><div class="ps">残りシフト日数から1日あたりの必要ペースを算出</div></div>
+    <select id="sum-month" onchange="renderSummary()" style="width:auto;padding:7px 10px;font-size:13px;"><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option></select>
+  </div>
+  <div class="sg" id="sum-stats">
+    <div class="sc"><div class="sl">今月の残り日数</div><div class="sv">29<span style="font-size:16px;color:var(--t3);">日</span></div><div class="ss">シフトは個人ごとに異なります</div></div>
+    <div class="sc"><div class="sl">ペースが早いメンバー</div><div class="sv" style="color:#16A34A;">0<span style="font-size:16px;color:var(--t3);">名</span></div><div class="ss">残り出勤1日6h以下ペースの人</div></div>
+    <div class="sc"><div class="sl">基準ペース</div><div class="sv">8h<span style="font-size:14px;color:var(--t3);">/日</span></div><div class="ss">6h以下でアラート</div></div>
+  </div>
+  <div id="pace-grid"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;"><div class="pace-card" style="border-left:3px solid #16A34A;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <div class="av av-sm" style="background:#C9A84C;">飯</div>
+        <span style="font-size:13px;font-weight:500;">飯倉 孝史</span>
+        <span class="badge" style="background:#F0FDF4;color:#16A34A;margin-left:auto;">順調</span>
+      </div>
+      <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: 12日</div>
+      <div class="pace-bar"><div class="pace-fill" style="width:36%;background:#C9A84C;opacity:.8;"></div></div>
+      <div class="pace-nums"><span>実績 64h / 目標 176h（36%）</span><span>残り 112h</span></div>
+      <div class="pace-alert" style="background:#F0FDF4;">
+        <span style="font-size:12px;color:#16A34A;">必要ペース</span>
+        <span style="font-size:20px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">9.3h<span style="font-size:12px;font-weight:400;">/日</span></span>
+      </div>
+    </div><div class="pace-card" style="border-left:3px solid #16A34A;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <div class="av av-sm" style="background:#C96B6B;">佐</div>
+        <span style="font-size:13px;font-weight:500;">佐々木 大翔</span>
+        <span class="badge" style="background:#F0FDF4;color:#16A34A;margin-left:auto;">順調</span>
+      </div>
+      <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: 20日</div>
+      <div class="pace-bar"><div class="pace-fill" style="width:0%;background:#C96B6B;opacity:.8;"></div></div>
+      <div class="pace-nums"><span>実績 0h / 目標 232h（0%）</span><span>残り 232h</span></div>
+      <div class="pace-alert" style="background:#F0FDF4;">
+        <span style="font-size:12px;color:#16A34A;">必要ペース</span>
+        <span style="font-size:20px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">11.6h<span style="font-size:12px;font-weight:400;">/日</span></span>
+      </div>
+    </div><div class="pace-card" style="border-left:3px solid #16A34A;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <div class="av av-sm" style="background:#D4845A;">坂</div>
+        <span style="font-size:13px;font-weight:500;">坂本 楓花</span>
+        <span class="badge" style="background:#F0FDF4;color:#16A34A;margin-left:auto;">順調</span>
+      </div>
+      <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: 20日</div>
+      <div class="pace-bar"><div class="pace-fill" style="width:0%;background:#D4845A;opacity:.8;"></div></div>
+      <div class="pace-nums"><span>実績 0h / 目標 160h（0%）</span><span>残り 160h</span></div>
+      <div class="pace-alert" style="background:#F0FDF4;">
+        <span style="font-size:12px;color:#16A34A;">必要ペース</span>
+        <span style="font-size:20px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">8h<span style="font-size:12px;font-weight:400;">/日</span></span>
+      </div>
+    </div><div class="pace-card" style="border-left:3px solid #16A34A;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <div class="av av-sm" style="background:#6AAB7B;">山</div>
+        <span style="font-size:13px;font-weight:500;">山口 葵</span>
+        <span class="badge" style="background:#F0FDF4;color:#16A34A;margin-left:auto;">順調</span>
+      </div>
+      <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: 20日</div>
+      <div class="pace-bar"><div class="pace-fill" style="width:0%;background:#6AAB7B;opacity:.8;"></div></div>
+      <div class="pace-nums"><span>実績 0h / 目標 160h（0%）</span><span>残り 160h</span></div>
+      <div class="pace-alert" style="background:#F0FDF4;">
+        <span style="font-size:12px;color:#16A34A;">必要ペース</span>
+        <span style="font-size:20px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">8h<span style="font-size:12px;font-weight:400;">/日</span></span>
+      </div>
+    </div><div class="pace-card" style="border-left:3px solid #16A34A;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <div class="av av-sm" style="background:#9B7EC8;">川</div>
+        <span style="font-size:13px;font-weight:500;">川上 輝</span>
+        <span class="badge" style="background:#F0FDF4;color:#16A34A;margin-left:auto;">順調</span>
+      </div>
+      <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: 20日</div>
+      <div class="pace-bar"><div class="pace-fill" style="width:0%;background:#9B7EC8;opacity:.8;"></div></div>
+      <div class="pace-nums"><span>実績 0h / 目標 160h（0%）</span><span>残り 160h</span></div>
+      <div class="pace-alert" style="background:#F0FDF4;">
+        <span style="font-size:12px;color:#16A34A;">必要ペース</span>
+        <span style="font-size:20px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">8h<span style="font-size:12px;font-weight:400;">/日</span></span>
+      </div>
+    </div><div class="pace-card" style="border-left:3px solid #16A34A;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <div class="av av-sm" style="background:#9DC47E;">横</div>
+        <span style="font-size:13px;font-weight:500;">横山 大燿</span>
+        <span class="badge" style="background:#F0FDF4;color:#16A34A;margin-left:auto;">順調</span>
+      </div>
+      <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: 20日</div>
+      <div class="pace-bar"><div class="pace-fill" style="width:0%;background:#9DC47E;opacity:.8;"></div></div>
+      <div class="pace-nums"><span>実績 0h / 目標 160h（0%）</span><span>残り 160h</span></div>
+      <div class="pace-alert" style="background:#F0FDF4;">
+        <span style="font-size:12px;color:#16A34A;">必要ペース</span>
+        <span style="font-size:20px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">8h<span style="font-size:12px;font-weight:400;">/日</span></span>
+      </div>
+    </div><div class="pace-card" style="border-left:3px solid #16A34A;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <div class="av av-sm" style="background:#C4739A;">片</div>
+        <span style="font-size:13px;font-weight:500;">片倉 来波</span>
+        <span class="badge" style="background:#F0FDF4;color:#16A34A;margin-left:auto;">順調</span>
+      </div>
+      <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: 20日</div>
+      <div class="pace-bar"><div class="pace-fill" style="width:0%;background:#C4739A;opacity:.8;"></div></div>
+      <div class="pace-nums"><span>実績 0h / 目標 160h（0%）</span><span>残り 160h</span></div>
+      <div class="pace-alert" style="background:#F0FDF4;">
+        <span style="font-size:12px;color:#16A34A;">必要ペース</span>
+        <span style="font-size:20px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">8h<span style="font-size:12px;font-weight:400;">/日</span></span>
+      </div>
+    </div><div class="pace-card" style="border-left:3px solid #16A34A;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <div class="av av-sm" style="background:#5B8DD9;">小</div>
+        <span style="font-size:13px;font-weight:500;">小林 俊介</span>
+        <span class="badge" style="background:#F0FDF4;color:#16A34A;margin-left:auto;">順調</span>
+      </div>
+      <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: 17日</div>
+      <div class="pace-bar"><div class="pace-fill" style="width:15%;background:#5B8DD9;opacity:.8;"></div></div>
+      <div class="pace-nums"><span>実績 24h / 目標 160h（15%）</span><span>残り 136h</span></div>
+      <div class="pace-alert" style="background:#F0FDF4;">
+        <span style="font-size:12px;color:#16A34A;">必要ペース</span>
+        <span style="font-size:20px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">8h<span style="font-size:12px;font-weight:400;">/日</span></span>
+      </div>
+    </div></div></div>
+</div>
+
+<!-- ズレ分析 -->
+<div class="view" id="page-diff">
+  <div class="ph">
+    <div><div class="pt">分析</div><div class="ps">予定 vs 実績のギャップ</div></div>
+    <div style="display:flex;gap:4px;">
+      <button class="pb active" onclick="setDiffP(&#39;week&#39;,this)">週間</button>
+      <button class="pb" onclick="setDiffP(&#39;month&#39;,this)">月間</button>
+    </div>
+  </div>
+  <div id="diff-stats"></div>
+  <div class="card" style="margin-bottom:12px;">
+    <div id="diff-avg-label" style="font-size:12px;color:var(--t2);margin-bottom:8px;"></div>
+    <div class="ct">メンバー別 差分合計</div>
+    <div id="diff-mbars"></div>
+  </div>
+  <div class="card" style="margin-bottom:12px;">
+    <div class="ct">カテゴリ別 1日平均時間</div>
+    <div id="diff-cat-avg"><div style="font-size:13px;color:var(--t3);padding:6px 0;">データなし（報告入力後に反映されます）</div></div>
+  </div>
+  <div class="card" style="margin-bottom:12px;">
+    <div class="ct">カテゴリ別 平均ズレ（分）</div>
+    <div id="diff-cbars"></div>
+  </div>
+  <div class="card" style="margin-bottom:12px;">
+    <div class="ct">メンバー別 詳細</div>
+    <div id="diff-detail"></div>
+  </div>
+</div>
+
+<!-- 使用方法 -->
+<div class="view" id="page-usage">
+  <div class="ph"><div><div class="pt">使用方法</div><div class="ps">各ページの使い方と運用フロー</div></div></div>
+  <div class="card" style="border-left:3px solid var(--accent);margin-bottom:14px;">
+    <div style="font-size:14px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="color:var(--accent);">◎</span>monthly</div>
+    <div style="font-size:13px;color:var(--t2);line-height:1.9;padding-left:8px;">
+      自分のマネーフォワード勤怠とカレンダーを確認し、当月の総労働時間と婚礼件数を登録。
+    </div>
+  </div>
+  <div class="card" style="border-left:3px solid var(--accent);margin-bottom:14px;">
+    <div style="font-size:14px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px;"><span style="color:var(--accent);">◎</span>daily</div>
+
+    <div style="padding:4px 8px 12px;margin-bottom:4px;">
+      <div style="font-size:13px;font-weight:700;margin-bottom:6px;color:var(--text);">予定入力</div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.9;">
+        出勤日の前日か朝に自分の名前と日付を選択し、Googleカレンダーからスケジュールを取得。<br>
+        カレンダーの予定を元に、当日に行う予定の仕事と時間を入力。
+      </div>
+    </div>
+
+    <div style="padding:4px 8px;">
+      <div style="font-size:13px;font-weight:700;margin-bottom:6px;color:var(--text);">終業報告</div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.9;">
+        予定をコピーを押すと、予定入力の内容が引用される。<br>
+        終業のタイミングで、実際に行った仕事内容と時間を記録。
+      </div>
+      <div style="font-size:12px;color:var(--t3);margin-top:8px;">
+        （出勤日に入力がない場合、22:00にメールで通知）
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- メンバー管理ページ -->
+<div class="view" id="page-settings">
+  <div class="ph">
+    <div><div class="pt">管理</div><div class="ps">メンバーとカテゴリの管理</div></div>
+  </div>
+  <div id="toast-settings" class="toast" style="margin-bottom:12px;"></div>
+  <div id="add-member-form" style="display:none;" class="card">
+    <div class="ct" id="member-form-title">新しいメンバーを追加</div>
+    <input type="hidden" id="edit-member-idx" value="-1">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+      <div>
+        <div style="font-size:12px;color:var(--t2);margin-bottom:4px;">名前 *</div>
+        <input type="text" id="new-member-name" placeholder="例：田中 太郎">
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--t2);margin-bottom:4px;">メールアドレス *</div>
+        <input type="text" id="new-member-email" placeholder="例：tanaka@kuppography.com">
+      </div>
+    </div>
+    <div style="margin-bottom:16px;">
+      <div style="font-size:12px;color:var(--t2);margin-bottom:4px;">アバターカラー</div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <input type="color" id="new-member-color" value="#2563EB" onchange="updateColorPreview()" style="width:48px;height:36px;padding:2px;border:1px solid var(--border2);border-radius:var(--rs);cursor:pointer;">
+        <div id="member-color-preview" style="width:36px;height:36px;border-radius:50%;background:#2563EB;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;">名</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn btn-p" onclick="saveMember()">保存する</button>
+      <button class="btn" onclick="hideAddMemberForm()">キャンセル</button>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:12px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div class="ct" style="margin-bottom:0;">メンバー</div>
+      <button class="btn btn-sm" onclick="showAddMemberForm()">＋ 追加</button>
+    </div>
+    <div id="settings-member-list"><div class="ct" style="margin-bottom:12px;">メンバー一覧（8名）</div>
+    <div class="card" style="margin-bottom:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="width:40px;height:40px;border-radius:50%;background:#C9A84C;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0;">飯</div>
+      <div style="flex:1;min-width:120px;">
+        <div style="font-size:14px;font-weight:500;">飯倉 孝史</div>
+        <div style="font-size:12px;color:var(--t2);">iikura@kuppography.com</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#F9FAFB;border:1px solid var(--border2);">
+          <span style="font-size:12px;color:var(--t3);">通知</span>
+          <button onclick="toggleNotification(0)" style="width:36px;height:20px;border-radius:99px;border:none;background:#D1D5DB;position:relative;cursor:pointer;transition:background .2s;">
+            <span style="position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;display:block;transition:all .2s;"></span>
+          </button>
+          <span style="font-size:11px;color:var(--t3);">OFF</span>
+        </div>
+        <button class="btn btn-sm" onclick="showAddMemberForm(0)">編集</button>
+        <button class="btn btn-sm" onclick="deleteMember(0)" style="color:#DC2626;border-color:#FCA5A5;">削除</button>
+      </div>
+    </div>
+  
+    <div class="card" style="margin-bottom:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="width:40px;height:40px;border-radius:50%;background:#C96B6B;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0;">佐</div>
+      <div style="flex:1;min-width:120px;">
+        <div style="font-size:14px;font-weight:500;">佐々木 大翔</div>
+        <div style="font-size:12px;color:var(--t2);">hiroto@kuppography.com</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#F9FAFB;border:1px solid var(--border2);">
+          <span style="font-size:12px;color:var(--t3);">通知</span>
+          <button onclick="toggleNotification(1)" style="width:36px;height:20px;border-radius:99px;border:none;background:#D1D5DB;position:relative;cursor:pointer;transition:background .2s;">
+            <span style="position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;display:block;transition:all .2s;"></span>
+          </button>
+          <span style="font-size:11px;color:var(--t3);">OFF</span>
+        </div>
+        <button class="btn btn-sm" onclick="showAddMemberForm(1)">編集</button>
+        <button class="btn btn-sm" onclick="deleteMember(1)" style="color:#DC2626;border-color:#FCA5A5;">削除</button>
+      </div>
+    </div>
+  
+    <div class="card" style="margin-bottom:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="width:40px;height:40px;border-radius:50%;background:#D4845A;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0;">坂</div>
+      <div style="flex:1;min-width:120px;">
+        <div style="font-size:14px;font-weight:500;">坂本 楓花</div>
+        <div style="font-size:12px;color:var(--t2);">sakamoto@kuppography.com</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#F9FAFB;border:1px solid var(--border2);">
+          <span style="font-size:12px;color:var(--t3);">通知</span>
+          <button onclick="toggleNotification(2)" style="width:36px;height:20px;border-radius:99px;border:none;background:#D1D5DB;position:relative;cursor:pointer;transition:background .2s;">
+            <span style="position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;display:block;transition:all .2s;"></span>
+          </button>
+          <span style="font-size:11px;color:var(--t3);">OFF</span>
+        </div>
+        <button class="btn btn-sm" onclick="showAddMemberForm(2)">編集</button>
+        <button class="btn btn-sm" onclick="deleteMember(2)" style="color:#DC2626;border-color:#FCA5A5;">削除</button>
+      </div>
+    </div>
+  
+    <div class="card" style="margin-bottom:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="width:40px;height:40px;border-radius:50%;background:#6AAB7B;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0;">山</div>
+      <div style="flex:1;min-width:120px;">
+        <div style="font-size:14px;font-weight:500;">山口 葵</div>
+        <div style="font-size:12px;color:var(--t2);">ao@kuppography.com</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#F9FAFB;border:1px solid var(--border2);">
+          <span style="font-size:12px;color:var(--t3);">通知</span>
+          <button onclick="toggleNotification(3)" style="width:36px;height:20px;border-radius:99px;border:none;background:#D1D5DB;position:relative;cursor:pointer;transition:background .2s;">
+            <span style="position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;display:block;transition:all .2s;"></span>
+          </button>
+          <span style="font-size:11px;color:var(--t3);">OFF</span>
+        </div>
+        <button class="btn btn-sm" onclick="showAddMemberForm(3)">編集</button>
+        <button class="btn btn-sm" onclick="deleteMember(3)" style="color:#DC2626;border-color:#FCA5A5;">削除</button>
+      </div>
+    </div>
+  
+    <div class="card" style="margin-bottom:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="width:40px;height:40px;border-radius:50%;background:#9B7EC8;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0;">川</div>
+      <div style="flex:1;min-width:120px;">
+        <div style="font-size:14px;font-weight:500;">川上 輝</div>
+        <div style="font-size:12px;color:var(--t2);">h.kawakami@kuppography.com</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#F9FAFB;border:1px solid var(--border2);">
+          <span style="font-size:12px;color:var(--t3);">通知</span>
+          <button onclick="toggleNotification(4)" style="width:36px;height:20px;border-radius:99px;border:none;background:#D1D5DB;position:relative;cursor:pointer;transition:background .2s;">
+            <span style="position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;display:block;transition:all .2s;"></span>
+          </button>
+          <span style="font-size:11px;color:var(--t3);">OFF</span>
+        </div>
+        <button class="btn btn-sm" onclick="showAddMemberForm(4)">編集</button>
+        <button class="btn btn-sm" onclick="deleteMember(4)" style="color:#DC2626;border-color:#FCA5A5;">削除</button>
+      </div>
+    </div>
+  
+    <div class="card" style="margin-bottom:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="width:40px;height:40px;border-radius:50%;background:#9DC47E;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0;">横</div>
+      <div style="flex:1;min-width:120px;">
+        <div style="font-size:14px;font-weight:500;">横山 大燿</div>
+        <div style="font-size:12px;color:var(--t2);">taiyo@kuppography.com</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#F0FDF4;border:1px solid #86EFAC;">
+          <span style="font-size:12px;color:#16A34A;">通知</span>
+          <button onclick="toggleNotification(5)" style="width:36px;height:20px;border-radius:99px;border:none;background:#16A34A;position:relative;cursor:pointer;transition:background .2s;">
+            <span style="position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:#fff;display:block;transition:all .2s;"></span>
+          </button>
+          <span style="font-size:11px;color:#16A34A;">ON</span>
+        </div>
+        <button class="btn btn-sm" onclick="showAddMemberForm(5)">編集</button>
+        <button class="btn btn-sm" onclick="deleteMember(5)" style="color:#DC2626;border-color:#FCA5A5;">削除</button>
+      </div>
+    </div>
+  
+    <div class="card" style="margin-bottom:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="width:40px;height:40px;border-radius:50%;background:#C4739A;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0;">片</div>
+      <div style="flex:1;min-width:120px;">
+        <div style="font-size:14px;font-weight:500;">片倉 来波</div>
+        <div style="font-size:12px;color:var(--t2);">konami@kuppography.com</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#F9FAFB;border:1px solid var(--border2);">
+          <span style="font-size:12px;color:var(--t3);">通知</span>
+          <button onclick="toggleNotification(6)" style="width:36px;height:20px;border-radius:99px;border:none;background:#D1D5DB;position:relative;cursor:pointer;transition:background .2s;">
+            <span style="position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;display:block;transition:all .2s;"></span>
+          </button>
+          <span style="font-size:11px;color:var(--t3);">OFF</span>
+        </div>
+        <button class="btn btn-sm" onclick="showAddMemberForm(6)">編集</button>
+        <button class="btn btn-sm" onclick="deleteMember(6)" style="color:#DC2626;border-color:#FCA5A5;">削除</button>
+      </div>
+    </div>
+  
+    <div class="card" style="margin-bottom:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="width:40px;height:40px;border-radius:50%;background:#5B8DD9;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0;">小</div>
+      <div style="flex:1;min-width:120px;">
+        <div style="font-size:14px;font-weight:500;">小林 俊介</div>
+        <div style="font-size:12px;color:var(--t2);">kobashun@kuppography.com</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:#F0FDF4;border:1px solid #86EFAC;">
+          <span style="font-size:12px;color:#16A34A;">通知</span>
+          <button onclick="toggleNotification(7)" style="width:36px;height:20px;border-radius:99px;border:none;background:#16A34A;position:relative;cursor:pointer;transition:background .2s;">
+            <span style="position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:#fff;display:block;transition:all .2s;"></span>
+          </button>
+          <span style="font-size:11px;color:#16A34A;">ON</span>
+        </div>
+        <button class="btn btn-sm" onclick="showAddMemberForm(7)">編集</button>
+        <button class="btn btn-sm" onclick="deleteMember(7)" style="color:#DC2626;border-color:#FCA5A5;">削除</button>
+      </div>
+    </div>
+  </div>
+    </div><!-- /settings-member-list -->
+  </div><!-- /member-card -->
+
+  <!-- カテゴリ管理 -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div class="ct" style="margin-bottom:0;">カテゴリ</div>
+      <button class="btn btn-sm" onclick="const f=document.getElementById(&#39;cat-add-form&#39;);f.style.display=f.style.display===&#39;none&#39;?&#39;&#39;:&#39;none&#39;">＋ 追加</button>
+    </div>
+    <div id="cat-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#c8c8c8" onchange="updateCategoryColor(0,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="撮影" onchange="updateCategoryName(0,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#c8c8c8;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">撮影</span>
+      <button onclick="removeCategory(0)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#c8c8c8" onchange="updateCategoryColor(1,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="婚礼" onchange="updateCategoryName(1,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#c8c8c8;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">婚礼</span>
+      <button onclick="removeCategory(1)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#c8c8c8" onchange="updateCategoryColor(2,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="現像チェック" onchange="updateCategoryName(2,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#c8c8c8;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">現像チェック</span>
+      <button onclick="removeCategory(2)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#c8c8c8" onchange="updateCategoryColor(3,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="打ち合わせ" onchange="updateCategoryName(3,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#c8c8c8;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">打ち合わせ</span>
+      <button onclick="removeCategory(3)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#c8c8c8" onchange="updateCategoryColor(4,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="MTG" onchange="updateCategoryName(4,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#c8c8c8;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">MTG</span>
+      <button onclick="removeCategory(4)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#c8c8c8" onchange="updateCategoryColor(5,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="梱包作業" onchange="updateCategoryName(5,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#c8c8c8;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">梱包作業</span>
+      <button onclick="removeCategory(5)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#c8c8c8" onchange="updateCategoryColor(6,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="プロジェクト推進" onchange="updateCategoryName(6,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#c8c8c8;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">プロジェクト推進</span>
+      <button onclick="removeCategory(6)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#c8c8c8" onchange="updateCategoryColor(7,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="FB" onchange="updateCategoryName(7,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#c8c8c8;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">FB</span>
+      <button onclick="removeCategory(7)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#e59494" onchange="updateCategoryColor(8,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="休憩" onchange="updateCategoryName(8,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#e59494;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">休憩</span>
+      <button onclick="removeCategory(8)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="#c8c8c8" onchange="updateCategoryColor(9,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="その他" onchange="updateCategoryName(9,this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:#c8c8c8;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">その他</span>
+      <button onclick="removeCategory(9)" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  </div>
+    <div id="cat-add-form" style="display:none;padding-top:12px;border-top:1px dashed var(--border);">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <input type="text" id="cat-new-name" placeholder="新しいカテゴリ名" style="flex:1;min-width:140px;padding:7px 10px;font-size:13px;">
+        <input type="color" id="cat-new-color" value="#2563EB" style="width:42px;height:34px;padding:0;border:1px solid var(--border2);border-radius:var(--rs);cursor:pointer;">
+        <button class="btn btn-p btn-sm" onclick="addCategory()">追加</button>
+        <button class="btn btn-sm" onclick="document.getElementById(&#39;cat-add-form&#39;).style.display=&#39;none&#39;">キャンセル</button>
+      </div>
+    </div>
+    <div id="toast-category" class="toast" style="margin-top:10px;margin-bottom:0;"></div>
+  </div>
+
+<!-- メンバー一覧ページ（スマホ用） -->
+<div class="view" id="page-members">
+  <div class="ph">
+    <div><div class="pt">メンバー</div><div class="ps">タップして個人ビューを表示</div></div>
+  </div>
+  <div id="mobile-members-list"></div>
+</div>
+</main>
+</div>
+
+<!-- モバイル用ボトムナビ -->
+<nav class="mobile-nav">
+  <button class="mobile-nav-btn active" id="mnav-input" onclick="sw(&#39;input&#39;)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg>
+    <span>入力</span>
+  </button>
+  <button class="mobile-nav-btn" id="mnav-monthly" onclick="sw(&#39;monthly&#39;)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>
+    <span>月初</span>
+  </button>
+  <button class="mobile-nav-btn" id="mnav-dashboard" onclick="sw(&#39;dashboard&#39;)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="7" height="7"></rect><rect x="13" y="4" width="7" height="7"></rect><rect x="4" y="13" width="7" height="7"></rect><rect x="13" y="13" width="7" height="7"></rect></svg>
+    <span>ダッシュ</span>
+  </button>
+  <button class="mobile-nav-btn" id="mnav-summary" onclick="sw(&#39;summary&#39;)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V8M10 19V4M16 19V12M22 19H2"></path></svg>
+    <span>サマリー</span>
+  </button>
+  <button class="mobile-nav-btn" id="mnav-usage" onclick="sw(&#39;usage&#39;)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M9 10c0-1.7 1.3-3 3-3s3 1.3 3 3c0 1.5-2 2-2 3.5M12 16v.5"></path></svg>
+    <span>使い方</span>
+  </button>
+  <button class="mobile-nav-btn" id="mnav-members" onclick="sw(&#39;members&#39;)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="7" r="3"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M17 14c2.5 0 4.5 2 4.5 4.5"></path></svg>
+    <span>メンバー</span>
+  </button>
+</nav>
+
+<script>
+const MEMBERS=[
+  {name:'飯倉 孝史',  init:'飯', color:'#C9A84C', bg:'#FDF8E8', email:'iikura@kuppography.com',     active:false},
+  {name:'佐々木 大翔',init:'佐', color:'#C96B6B', bg:'#FCEAEA', email:'hiroto@kuppography.com',     active:false, calendarId:'c_kajibmg0tpn92m10d83j4utsn4@group.calendar.google.com'},
+  {name:'坂本 楓花',  init:'坂', color:'#D4845A', bg:'#FAEDE5', email:'sakamoto@kuppography.com',   active:false},
+  {name:'山口 葵',    init:'山', color:'#6AAB7B', bg:'#EBF5EF', email:'ao@kuppography.com',         active:false},
+  {name:'川上 輝',    init:'川', color:'#9B7EC8', bg:'#F2EDF9', email:'h.kawakami@kuppography.com', active:false},
+  {name:'横山 大燿',  init:'横', color:'#9DC47E', bg:'#F2F8EC', email:'taiyo@kuppography.com',      active:false},
+  {name:'片倉 来波',  init:'片', color:'#C4739A', bg:'#F9EDF4', email:'konami@kuppography.com',     active:false},
+  {name:'小林 俊介',  init:'小', color:'#5B8DD9', bg:'#EBF2FC', email:'kobashun@kuppography.com',   active:true}
+];
+// カテゴリは GAS から取得。初期値はデフォルトセット。
+let CATEGORIES=[
+  {name:'撮影',            color:'#8B9DC3'},
+  {name:'婚礼',            color:'#D4A5B5'},
+  {name:'現像チェック',    color:'#9DB89F'},
+  {name:'打ち合わせ',      color:'#C9A87C'},
+  {name:'MTG',             color:'#B0A3C7'},
+  {name:'梱包作業',        color:'#95B5AE'},
+  {name:'プロジェクト推進',color:'#C095A8'},
+  {name:'FB',              color:'#D4A082'},
+  {name:'休憩',            color:'#BFC7D4'},
+  {name:'その他',          color:'#A39990'}
+];
+let CATS=CATEGORIES.map(c=>c.name);
+let CC={};CATEGORIES.forEach(c=>CC[c.name]=c.color);
+// 薄い背景色はメイン色から自動生成
+function hexToBg(hex){
+  // #RRGGBB → rgba(r,g,b,0.08) を16進に近似
+  const h=hex.replace('#','');
+  const r=parseInt(h.substring(0,2),16);
+  const g=parseInt(h.substring(2,4),16);
+  const b=parseInt(h.substring(4,6),16);
+  // 白 95% ブレンド
+  const mix=(c)=>Math.round(c*0.08+255*0.92);
+  return '#'+[mix(r),mix(g),mix(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+let CB={};CATEGORIES.forEach(c=>CB[c.name]=hexToBg(c.color));
+
+function rebuildCategoryMaps(){
+  CATS=CATEGORIES.map(c=>c.name);
+  CC={};CATEGORIES.forEach(c=>CC[c.name]=c.color);
+  CB={};CATEGORIES.forEach(c=>CB[c.name]=hexToBg(c.color));
+  // 既存のカテゴリselectを全部再構築
+  document.querySelectorAll('.task-cat').forEach(sel=>{
+    const current=sel.value;
+    sel.innerHTML='<option value="">カテゴリ選択</option>'+CATS.map(c=>`<option${c===current?' selected':''}>${c}</option>`).join('');
+  });
+  renderCategoryList();
+  renderTimeline();
+}
+
+async function loadCategoriesFromGAS(){
+  try{
+    const data=await apiGet({action:'getCategories'});
+    if(data && data.success && Array.isArray(data.categories) && data.categories.length){
+      CATEGORIES=data.categories;
+      let _mutated=false;
+      // 「休憩」カテゴリが欠けていれば自動追加
+      const breakEntry=CATEGORIES.find(c=>c.name==='休憩');
+      if(!breakEntry){
+        const idx=CATEGORIES.findIndex(c=>c.name==='その他');
+        const breakCat={name:'休憩', color:'#BFC7D4'};
+        if(idx>=0) CATEGORIES.splice(idx,0,breakCat);
+        else CATEGORIES.push(breakCat);
+        _mutated=true;
+      } else if(breakEntry.color==='#B8B0A3'){
+        // 旧色から新色へ自動移行（「その他」と似ていたため変更）
+        breakEntry.color='#BFC7D4';
+        _mutated=true;
+      }
+      if(_mutated) saveCategoriesToGAS();
+      rebuildCategoryMaps();
+    }
+  }catch(e){/* デフォルト維持 */}
+}
+async function saveCategoriesToGAS(){
+  try{
+    await apiPost({action:'saveCategories', categories:CATEGORIES});
+  }catch(e){}
+}
+
+// ============================================================
+// GAS API
+// ============================================================
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzEOB_3DdmDjdTwsYRLqy4WRoC7eDariNzEcOs6xPO-47aCNE0KRGjJp8auFUY0VN2V1A/exec';
+
+async function apiPost(data) {
+  try {
+    // Use GET with params to avoid CORS issues
+    const params = {};
+    Object.keys(data).forEach(k => {
+      if(typeof data[k] === 'object') params[k] = JSON.stringify(data[k]);
+      else params[k] = data[k];
+    });
+    const qs = Object.entries(params).map(([k,v])=>k+'='+encodeURIComponent(v)).join('&');
+    const res = await fetch(GAS_URL + '?' + qs);
+    return await res.json();
+  } catch(e) {
+    console.error('API POST error:', e);
+    return {success: false};
+  }
+}
+
+async function apiGet(params) {
+  try {
+    const qs = Object.entries(params).map(([k,v])=>k+'='+encodeURIComponent(v)).join('&');
+    const res = await fetch(GAS_URL + '?' + qs);
+    return await res.json();
+  } catch(e) {
+    console.error('API GET error:', e);
+    return {success: false, tasks: []};
+  }
+}
+
+// Task data - empty by default (data will be saved via Google Spreadsheet integration)
+const DEMO=[
+  [],[],[],[],[],[],[],[]
+];
+
+let state={
+  selectedDate: new Date(),
+  inputDate: new Date(),
+  calYear: new Date().getFullYear(),
+  calMonth: new Date().getMonth(),
+  memberData: {},
+  diffPeriod: 'week',
+  taskCount: 0,
+  filterMember: null // null=全員、数値=個人ビュー
+};
+// Store plan/report tasks per member per date (local cache for rendering fallback)
+const planStore = {};
+const reportStore = {};
+// 送信時/GAS取得タスクを、renderDayDetailAsyncが期待する形式(startTime/endTime)に揃える
+function normalizeTask(t){
+  if(!t) return null;
+  // 既にGAS形式(startTime/endTime)ならそのまま
+  if(t.startTime||t.endTime){
+    return {cat:t.cat||'',name:t.name||'',startTime:t.startTime||'',endTime:t.endTime||'',note:t.note||'',status:t.status||'完了'};
+  }
+  // 送信時の生形式(startH/startM/endH/endM)からstartTime/endTimeへ変換
+  const pad=n=>String(n||0).padStart(2,'0');
+  return {
+    cat:t.cat||'',
+    name:t.name||'',
+    startTime:pad(t.startH)+':'+pad(t.startM),
+    endTime:pad(t.endH)+':'+pad(t.endM),
+    note:t.note||'',
+    status:t.status||'完了'
+  };
+}
+MEMBERS.forEach((_,i)=>{
+  state.memberData[i]={
+    weddingCount:0,
+    targetHours:160,
+    offDays:[],
+    weddingDays:[],
+    submitted:{},
+    workedHours:0,
+    remainShiftDays:20,
+    reportedWeddingDates:[]
+  };
+});
+
+// 婚礼の実効カウント・残日数を計算 (婚礼カテゴリで報告済の日は実労働に加算済みなので-8hを復活)
+function getEffective(md){
+  const reported=(md.reportedWeddingDates||[]).length;
+  const futureWed=Math.max(0,(md.weddingCount||0)-reported);
+  const workedEff=(md.workedHours||0)+futureWed*8;
+  const remainDaysEff=Math.max(1,(md.remainShiftDays||1)-futureWed);
+  return {futureWed, workedEff, remainDaysEff};
+}
+
+function t2m(t){if(!t)return 0;const[h,m]=t.split(':').map(Number);return h*60+m;}
+function dateStr(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+function formatDate(d){return d.toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'short'});}
+
+// Nav
+function sw(name){
+  if(name!=='dashboard') state.filterMember=null;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav').forEach((b,i)=>b.classList.toggle('active',['input','monthly','dashboard','diff','summary','usage','settings'][i]===name));
+  ['input','monthly','dashboard','diff','summary','usage','settings'].forEach(n=>{
+    const mb=document.getElementById('mnav-'+n);
+    if(mb) mb.classList.toggle('active',n===name);
+  });
+  if(name==='dashboard')renderDashboard();
+  if(name==='input')renderInputForm();
+  if(name==='monthly'){renderMonthly();}
+  if(name==='summary')renderSummary();
+  if(name==='diff')renderDiff();
+  if(name==='settings'){renderSettingsPage();renderCategoryList();}
+  if(name==='members')renderMembersPage();
+  ['input','monthly','dashboard','summary','usage','members'].forEach(n=>{
+    const mb2=document.getElementById('mnav-'+n);
+    if(mb2)mb2.classList.toggle('active',n===name);
+  });
+}
+
+function showMemberPage(mi){
+  state.filterMember=mi;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('page-dashboard').classList.add('active');
+  document.querySelectorAll('.nav').forEach((b,i)=>b.classList.toggle('active',['input','monthly','dashboard','diff','summary','usage'][i]==='dashboard'));
+  ['input','monthly','dashboard','diff','summary','usage','settings'].forEach(n=>{
+    const mb=document.getElementById('mnav-'+n);
+    if(mb) mb.classList.toggle('active',n==='dashboard');
+  });
+  const now=new Date();
+  state.selectedDate=now;
+  const dp=document.getElementById('dash-pick');
+  if(dp) dp.value=dateStr(now);
+  renderDashboard();
+}
+
+function clearMemberFilter(){
+  state.filterMember=null;
+  renderDashboard();
+}
+
+function shiftInputDay(d){
+  state.inputDate=new Date(state.inputDate);
+  state.inputDate.setDate(state.inputDate.getDate()+d);
+  updateInputDate();
+  renderInputForm();
+}
+function resetInputDate(){
+  state.inputDate=new Date();
+  updateInputDate();
+  renderInputForm();
+}
+function updateInputDate(){
+  const d=state.inputDate;
+  document.getElementById('input-date').textContent=d.toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
+}
+
+async function copyPlanToReport(){
+  const mi=parseInt(document.getElementById('i-member').value||0);
+  const ds=dateStr(state.inputDate);
+  const key=mi+'_'+ds;
+  let plans=planStore[key];
+  if(!plans||plans.length===0){
+    // Try fetching from GAS
+    const data=await apiGet({action:'getPlan', date:ds, memberName:MEMBERS[mi].name});
+    if(data.success && data.tasks && data.tasks.length>0){
+      plans=data.tasks.map(t=>{
+        const[sh,sm]=t.startTime?t.startTime.split(':'):['9','0'];
+        const[eh,em]=t.endTime?t.endTime.split(':'):['18','0'];
+        return{cat:t.cat,name:t.name,startH:String(sh),startM:parseInt(sm)||0,endH:String(eh),endM:parseInt(em)||0,note:t.note||''};
+      });
+      planStore[key]=plans;
+    }
+  }
+  if(!plans||plans.length===0){
+    alert('予定が登録されていません。先に予定を入力してください。');
+    return;
+  }
+  document.getElementById('task-list').innerHTML='';
+  taskIdx=0;
+  plans.forEach(p=>{
+    addTask();
+    const tb=document.getElementById('task-list').lastElementChild;
+    const catSel=tb.querySelector('.task-cat');
+    const nameInput=tb.querySelector('.task-name');
+    const startH=tb.querySelector('.t-start.t-h');
+    const startM=tb.querySelector('.t-start.t-m');
+    const endH=tb.querySelector('.t-end.t-h');
+    const endM=tb.querySelector('.t-end.t-m');
+    const noteTa=tb.querySelector('textarea');
+    if(catSel) catSel.value=p.cat||'';
+    if(nameInput) nameInput.value=p.name||'';
+    if(startH) startH.value=String(p.startH);
+    if(startM) startM.value=String(p.startM);
+    if(endH) endH.value=String(p.endH);
+    if(endM) endM.value=String(p.endM);
+    if(noteTa) noteTa.value=p.note||'';
+  });
+  setTimeout(calcWorkHours,100);
+}
+
+function savePlanToStore(){
+  const mi=parseInt(document.getElementById('i-member').value||0);
+  const ds=dateStr(state.inputDate);
+  const key=mi+'_'+ds;
+  const tasks=[];
+  document.querySelectorAll('#task-list .tb').forEach(tb=>{
+    const catSel=tb.querySelector('select');
+    const nameInput=tb.querySelector('input[type=text]');
+    const startH=tb.querySelector('.t-start.t-h');
+    const startM=tb.querySelector('.t-start.t-m');
+    const endH=tb.querySelector('.t-end.t-h');
+    const endM=tb.querySelector('.t-end.t-m');
+    const sVal=startH?startH.value:'';
+    const eVal=endH?endH.value:'';
+    if(sVal!==''&&eVal!==''){
+      tasks.push({
+        cat:catSel?catSel.value:'',
+        name:nameInput?nameInput.value:'',
+        startH:sVal,
+        startM:startM?startM.value:'0',
+        endH:eVal,
+        endM:endM?endM.value:'0'
+      });
+    }
+  });
+  planStore[key]=tasks;
+}
+
+function setMember(idx, btn){
+  document.querySelectorAll('#member-btns button').forEach(b=>{
+    b.style.background='var(--surface)';
+    b.style.color='var(--t2)';
+    b.style.borderColor='var(--border2)';
+    b.style.fontWeight='400';
+  });
+  btn.style.background='var(--accent)';
+  btn.style.color='#fff';
+  btn.style.borderColor='var(--accent)';
+  btn.style.fontWeight='500';
+  const sel=document.getElementById('i-member');
+  if(sel){ sel.value=idx; }
+  renderInputForm();
+}
+
+function setMemberMonthly(idx, btn){
+  document.querySelectorAll('#m-member-btns button').forEach(b=>{
+    b.style.background='var(--surface)';
+    b.style.color='var(--t2)';
+    b.style.borderColor='var(--border2)';
+    b.style.fontWeight='400';
+  });
+  btn.style.background='var(--accent)';
+  btn.style.color='#fff';
+  btn.style.borderColor='var(--accent)';
+  btn.style.fontWeight='500';
+  const sel=document.getElementById('m-member-sel');
+  if(sel){ sel.value=idx; }
+  const mc=document.getElementById('monthly-content');if(mc)mc.style.display='';
+  renderMonthly();
+}
+
+function setType(type, btn){
+  const planBtn=document.getElementById('type-plan');
+  const repBtn=document.getElementById('type-report');
+  planBtn.style.background='var(--surface)';
+  planBtn.style.color='var(--t2)';
+  planBtn.style.borderColor='var(--border2)';
+  repBtn.style.background='var(--surface)';
+  repBtn.style.color='var(--t2)';
+  repBtn.style.borderColor='var(--border2)';
+  btn.style.background='var(--accent)';
+  btn.style.color='#fff';
+  btn.style.borderColor='var(--accent)';
+  const sel=document.getElementById('i-type');
+  if(sel){ sel.value=type; }
+  renderInputForm();
+}
+
+function init(){
+  const now=new Date();
+  document.getElementById('dash-date').textContent=formatDate(now);
+  state.inputDate=new Date();
+  updateInputDate();
+
+  // GAS からカテゴリを読み込む（非同期、失敗時はデフォルト維持）
+  loadCategoriesFromGAS();
+  loadMembersFromGAS();
+  // 全メンバーの今月の月初設定（休み等）をGASから読み込む
+  loadAllMonthlySetup();
+  // タスクのドラッグ&ドロップ並び替えを有効化
+  initTaskDnD();
+  const dp=document.getElementById('dash-pick');
+  dp.value=dateStr(now);
+  state.selectedDate=now;
+
+  // Sidebar members
+  rebuildMemberUI();
+
+  // Selects
+  ['i-member','m-member-sel'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){
+      el.innerHTML=''; // clear first
+      MEMBERS.forEach((m,i)=>el.innerHTML+=`<option value="${i}">${m.name}</option>`);
+    }
+  });
+
+  // Member buttons for input page
+  const mb=document.getElementById('member-btns');
+  if(mb){
+    mb.innerHTML=''; // clear first
+    MEMBERS.forEach((m,i)=>{
+      const btn=document.createElement('button');
+      btn.textContent=m.name;
+      btn.dataset.idx=i;
+      btn.className='member-btn';
+      btn.onclick=()=>setMember(i,btn);
+      mb.appendChild(btn);
+    });
+    // デフォルト選択なし
+  }
+
+  // Member buttons for monthly page
+  const mmb=document.getElementById('m-member-btns');
+  if(mmb){
+    mmb.innerHTML='';
+    MEMBERS.forEach((m,i)=>{
+      const btn=document.createElement('button');
+      btn.textContent=m.name;
+      btn.dataset.idx=i;
+      btn.className='member-btn';
+      btn.onclick=()=>setMemberMonthly(i,btn);
+      mmb.appendChild(btn);
+    });
+    // デフォルト選択なし
+  }
+
+  // Summary month
+  const sm2=document.getElementById('sum-month');
+  for(let i=0;i<4;i++){
+    const d=new Date(now.getFullYear(),now.getMonth()-i,1);
+    sm2.innerHTML+=`<option value="${d.getFullYear()}-${d.getMonth()}">${d.getFullYear()}年${d.getMonth()+1}月</option>`;
+  }
+
+  renderDashboard();
+}
+
+// Dashboard
+function onDatePick(){
+  const v=document.getElementById('dash-pick').value;
+  if(v) state.selectedDate=new Date(v+'T00:00:00');
+  renderDashboard();
+}
+function goToday(){
+  state.selectedDate=new Date();
+  document.getElementById('dash-pick').value=dateStr(new Date());
+  renderDashboard();
+}
+function shiftDay(d){
+  const nd=new Date(state.selectedDate);
+  nd.setDate(nd.getDate()+d);
+  state.selectedDate=nd;
+  document.getElementById('dash-pick').value=dateStr(nd);
+  renderDashboard();
+}
+
+async function _syncDayStatus(ds){
+  if(_syncDayStatus._busy) return;
+  _syncDayStatus._busy = true;
+  try{
+    const data = await apiGet({action:'getDayStatus', date:ds});
+    if(!data||!data.success||!data.status){ _syncDayStatus._busy=false; return; }
+    data.status.forEach(s=>{
+      const i = MEMBERS.findIndex(m=>m.name===s.name);
+      if(i<0) return;
+      if(!state.memberData[i].submitted[ds]) state.memberData[i].submitted[ds]={plan:false,report:false};
+      if(s.hasPlan)  state.memberData[i].submitted[ds].plan   = true;
+      if(s.hasReport) state.memberData[i].submitted[ds].report = true;
+      if(s.offType && !(state.memberData[i].offDays||[]).includes(ds)){
+        state.memberData[i].offDays = state.memberData[i].offDays||[];
+        state.memberData[i].offDays.push(ds);
+      }
+    });
+    rebuildMemberUI();
+  }catch(e){}finally{
+    _syncDayStatus._busy = false;
+  }
+}
+
+
+function _renderDashboardNoSync(){
+  // renderDashboardの中身をコピーせず、submitedとoffDaysの表示だけ更新
+  const sel=state.selectedDate;
+  const ds=dateStr(sel);
+  const fm=state.filterMember;
+  const indices=(fm!==null&&fm!==undefined)?[fm]:MEMBERS.map((_,i)=>i);
+  const workingIndices=indices.filter(i=>!(state.memberData[i].offDays&&state.memberData[i].offDays.includes(ds)));
+  const workingMembers=workingIndices.map(i=>MEMBERS[i]);
+  const notSub=workingMembers.filter((_,idx)=>{
+    const i=workingIndices[idx];
+    return !(state.memberData[i].submitted[ds]&&state.memberData[i].submitted[ds].report);
+  });
+  const uc=document.getElementById('unsub-card');
+  if(!uc)return;
+  const isToday=ds===dateStr(new Date());
+  if(notSub.length===0){
+    uc.style.borderLeft='3px solid #16A34A';
+    const _ul=document.getElementById('unsub-list'); if(_ul) _ul.innerHTML=`<div style="font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#16A34A" stroke-width="1.5"><path d="M2 7l4 4 6-7"/></svg>全員提出済みです</div>`;
+  } else {
+    uc.style.borderLeft='3px solid #DC2626';
+    const _ul2=document.getElementById('unsub-list'); if(_ul2) _ul2.innerHTML=notSub.map(m=>{
+      const i=MEMBERS.indexOf(m);
+      return `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
+        <div class="av" style="background:#6B7280;">${m.init}</div>
+        <span style="font-size:13px;font-weight:500;flex:1;">${m.name}</span>
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
+        <button class="btn btn-sm" onclick="goToInput(${i},'report')">入力する</button>
+      </div>`;
+    }).join('')+`<div style="font-size:11px;color:var(--t3);margin-top:8px;">22:00 に本人へメールが自動送信されます</div>`;
+  }
+  // Stats更新
+  const total=workingIndices.length;
+  const planDone=workingIndices.filter(i=>state.memberData[i].submitted[ds]&&state.memberData[i].submitted[ds].plan).length;
+  const repDone=workingIndices.filter(i=>state.memberData[i].submitted[ds]&&state.memberData[i].submitted[ds].report).length;
+  const statsEl=document.getElementById('dash-stats');
+  if(statsEl&&(fm===null||fm===undefined)){
+    statsEl.innerHTML=`
+      <div class="sc"><div class="sl">予定入力</div><div class="sv">${planDone}<span style="font-size:14px;color:var(--t3);">/${total}</span></div></div>
+      <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:${repDone<total?'#DC2626':'#16A34A'};">${repDone}<span style="font-size:14px;color:var(--t3);">/${total}</span></div></div>
+    `;
+  }
+}
+
+function renderDashboard(){
+  const sel=state.selectedDate;
+  const isToday=dateStr(sel)===dateStr(new Date());
+  const ds=dateStr(sel);
+  // 非同期でGASからデータ取得（再描画はsyncDayStatus内で行う）
+  if(isToday) _syncDayStatus(ds);
+
+  // 個人ビューの場合、対象メンバーのインデックスだけを使う
+  const fm=state.filterMember;
+  const isFiltered=(fm!==null&&fm!==undefined);
+  const indices=isFiltered?[fm]:MEMBERS.map((_,i)=>i);
+  // 個人/全員ビューの切替を即座に反映
+  ['dash-hours-card','dash-overtime-card'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.style.display=isFiltered?'none':'';
+  });
+  const statsEl=document.getElementById('dash-stats');
+  if(statsEl && isFiltered) statsEl.style.display='none';
+  const viewMembers=indices.map(i=>MEMBERS[i]);
+
+  // 個人ビュー時は上部にバナー表示
+  const banner=document.getElementById('dash-filter-banner');
+  if(banner){
+    if(isFiltered){
+      const m=MEMBERS[fm];
+      banner.innerHTML=`<div style="background:var(--bg);border:1px solid var(--border2);border-radius:var(--rs);padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+        <div class="av" style="background:#6B7280;">${m.init}</div>
+        <span style="font-size:13px;font-weight:500;flex:1;">${m.name} さんの個人ビュー</span>
+        <button class="btn btn-sm" onclick="clearMemberFilter()">← 全員表示に戻る</button>
+      </div>`;
+    } else {
+      banner.innerHTML='';
+    }
+  }
+
+  // 出勤メンバーのみ対象 (休み・婚礼撮影日は除外)
+  const workingIndices=indices.filter(i=>{
+    const md=state.memberData[i];
+    return !(md.offDays&&md.offDays.includes(ds));
+  });
+  const workingMembers=workingIndices.map(i=>MEMBERS[i]);
+
+  // Unsubmitted (出勤かつ未提出のみ)
+  const _ut=document.getElementById('unsub-title'); if(_ut) _ut.textContent=`終業報告 未提出 — ${sel.getMonth()+1}/${sel.getDate()}`;
+  const _uti=document.getElementById('unsub-time'); if(_uti) _uti.textContent=isToday?new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})+' 時点':'';
+  const notSub=workingMembers.filter((_,idx)=>{
+    const i=workingIndices[idx];
+    return !(state.memberData[i].submitted[ds]&&state.memberData[i].submitted[ds].report);
+  });
+  const uc=document.getElementById('unsub-card');
+  if(notSub.length===0){
+    uc.style.borderLeft='3px solid #16A34A';
+    document.getElementById('unsub-list').innerHTML=`<div style="font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#16A34A" stroke-width="1.5"><path d="M2 7l4 4 6-7"/></svg>${isFiltered?'提出済みです':'全員提出済みです'}</div>`;
+  } else {
+    uc.style.borderLeft='3px solid #DC2626';
+    const _ul2=document.getElementById('unsub-list'); if(_ul2) _ul2.innerHTML=notSub.map((m,_)=>{
+      const i=MEMBERS.indexOf(m);
+      return `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);">
+        <div class="av" style="background:#6B7280;">${m.init}</div>
+        <span style="font-size:13px;font-weight:500;flex:1;">${m.name}</span>
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">報告 未提出</span>
+        <button class="btn btn-sm" onclick="goToInput(${i},'report')">入力する</button>
+      </div>`;
+    }).join('')+(isFiltered?'':`<div style="font-size:11px;color:var(--t3);margin-top:8px;">22:00 に本人へメールが自動送信されます</div>`);
+  }
+
+  // Stats (分母は出勤人数)
+  const total=workingIndices.length;
+  const planDone=workingIndices.filter(i=>state.memberData[i].submitted[ds]&&state.memberData[i].submitted[ds].plan).length;
+  const repDone=workingIndices.filter(i=>state.memberData[i].submitted[ds]&&state.memberData[i].submitted[ds].report).length;
+  const totalOverMin=indices.reduce((sum,i)=>sum+DEMO[i].reduce((s,t)=>{
+    if(!t.as||!t.ae)return s;
+    return s+Math.max(0,t2m(t.ae)-t2m(t.pe));
+  },0),0);
+  const avgOver=total>0?Math.round(totalOverMin/total):0;
+  if(isFiltered){
+    // 個人ビュー: 月間平均 (1日あたり) + ペース情報
+    const md=state.memberData[fm];
+    const nowD=new Date();
+    const daysElapsed=nowD.getDate();
+    const offDaysPassed=(md.offDays||[]).filter(d=>{
+      const dt=new Date(d+'T00:00:00');
+      return dt.getFullYear()===nowD.getFullYear()&&dt.getMonth()===nowD.getMonth()&&dt.getDate()<=daysElapsed;
+    }).length;
+    const workingDaysPassed=Math.max(1,daysElapsed-offDaysPassed);
+    const eff=getEffective(md);
+    const avgPerDay=eff.workedEff/workingDaysPassed;
+    const avgStr=avgPerDay.toFixed(1);
+    const target=md.targetHours;
+    const worked=eff.workedEff;
+    const remain=Math.max(0,target-worked);
+    const remDays=eff.remainDaysEff;
+    const paceNeeded=Math.round(remain/remDays*10)/10;
+    const pctDone=target>0?Math.round(worked/target*100):0;
+    document.getElementById('dash-stats').style.display='none';
+    document.getElementById('dash-hours-card') && (document.getElementById('dash-hours-card').style.display='none');
+    document.getElementById('dash-overtime-card') && (document.getElementById('dash-overtime-card').style.display='none');
+    // 月間サマリーと同じペースカードを個人ページに表示
+    const m=MEMBERS[fm];
+    const isAlert=paceNeeded<=6;
+    const isWarn=paceNeeded>6&&paceNeeded<=7;
+    const col=isAlert?'#DC2626':isWarn?'#D97706':'#16A34A';
+    const bgcol=isAlert?'#FEF2F2':isWarn?'#FFFBEB':'#F0FDF4';
+    document.getElementById('dash-personal-pace').innerHTML=`
+      <div class="pace-card" style="border-left:3px solid var(--border2);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+          <div class="av av-sm" style="background:#6B7280;">${m.init}</div>
+          <span style="font-size:13px;font-weight:500;">${m.name}</span>
+          <span class="badge" style="background:${bgcol};color:${col};margin-left:auto;">${isAlert?'ペース早め':isWarn?'やや早め':'順調'}</span>
+        </div>
+        <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: ${remDays}日</div>
+        <div class="pace-bar"><div class="pace-fill" style="width:${Math.min(100,pctDone)}%;background:#6B7280;opacity:.8;"></div></div>
+        <div class="pace-nums"><span>実績 ${worked}h / 目標 ${target}h（${pctDone}%）</span><span>残り ${remain}h</span></div>
+        <div class="pace-alert" style="background:${bgcol};">
+          <span style="font-size:12px;color:${col};">必要ペース</span>
+          <span style="font-size:20px;font-weight:500;font-family:'DM Mono',monospace;color:${col};">${paceNeeded}h<span style="font-size:12px;font-weight:400;">/日</span></span>
+        </div>
+      </div>`;
+  } else {
+    document.getElementById('dash-stats').style.display='';
+    const _hc=document.getElementById('dash-hours-card');if(_hc)_hc.style.display='';
+    const _oc=document.getElementById('dash-overtime-card');if(_oc)_oc.style.display='';
+    document.getElementById('dash-stats').innerHTML=`
+      <div class="sc"><div class="sl">予定入力</div><div class="sv">${planDone}<span style="font-size:14px;color:var(--t3);">/${total}</span></div></div>
+      <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:${repDone<total?'#DC2626':'#16A34A'};">${repDone}<span style="font-size:14px;color:var(--t3);">/${total}</span></div></div>
+      <div class="sc"><div class="sl">チーム平均超過</div><div class="sv" style="color:${avgOver>30?'#DC2626':avgOver>15?'#D97706':'#16A34A'};">${avgOver}<span style="font-size:16px;color:var(--t3);">分</span></div></div>
+    `;
+    document.getElementById('dash-personal-pace').innerHTML='';
+  }
+
+  // Hours
+  let hh='';
+  indices.forEach(i=>{
+    const m=MEMBERS[i];
+    const md=state.memberData[i];
+    const target=md.targetHours;
+    const done=getEffective(md).workedEff;
+    const pct=target>0?Math.round(done/target*100):0;
+    const w=Math.min(100,pct);
+    const col=pct>105?'#DC2626':pct>=90?'#16A34A':'#2563EB';
+    hh+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">${m.init}</div>
+      <span style="font-size:12px;min-width:44px;">${m.name}</span>
+      <div class="bb"><div class="bf" style="width:${w}%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:'DM Mono',monospace;">${done}/${target}h</span>
+      <span style="font-size:11px;color:${col};min-width:28px;">${pct}%</span>
+    </div>`;
+  });
+  document.getElementById('dash-hours').innerHTML=hh;
+
+  // Overtime - sorted by worst first
+  const otData=indices.map(i=>{
+    const m=MEMBERS[i];
+    const tasks=DEMO[i];
+    const overMin=tasks.reduce((s,t)=>{
+      if(!t.as||!t.ae)return s;
+      return s+Math.max(0,t2m(t.ae)-t2m(t.pe));
+    },0);
+    return {m,overMin};
+  }).sort((a,b)=>b.overMin-a.overMin);
+  const maxOver2=Math.max(...otData.map(d=>d.overMin),1);
+  let ot='';
+  otData.forEach(({m,overMin})=>{
+    const col=overMin>60?'#DC2626':overMin>30?'#D97706':overMin>0?'#6B7280':'#16A34A';
+    const label=overMin>0?`+${overMin}分`:'±0';
+    ot+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">${m.init}</div>
+      <span style="font-size:12px;min-width:68px;">${m.name}</span>
+      <div class="bb"><div class="bf" style="width:${Math.round(overMin/maxOver2*100)}%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:'DM Mono',monospace;color:${col};">${label}</span>
+    </div>`;
+  });
+  document.getElementById('dash-overtime').innerHTML=ot;
+
+  // Day detail
+  document.getElementById('day-detail-title').textContent=`${sel.getMonth()+1}月${sel.getDate()}日（${['日','月','火','水','木','金','土'][sel.getDay()]}）のタスク詳細`;
+  document.getElementById('day-detail-body').innerHTML='<div style="font-size:13px;color:var(--t3);padding:10px 0;">読み込み中...</div>';
+  renderDayDetailAsync(sel);
+}
+
+// 休憩は「休憩」カテゴリタスクの合計時間から自動算出するため手動入力UIは廃止
+let breakMin=0;
+
+// ============================================================
+// タイムライン表示
+// ============================================================
+const TL_START=8;   // 8:00
+const TL_END=20;    // 20:00
+const TL_RANGE=(TL_END-TL_START)*60; // 分
+
+function renderTimeline(){
+  const hoursEl=document.getElementById('tl-hours');
+  const trackEl=document.getElementById('tl-track');
+  const sumL=document.getElementById('tl-summary-left');
+  const sumR=document.getElementById('tl-summary-right');
+  if(!hoursEl||!trackEl) return;
+
+  // 時間軸ラベル
+  let hh='';
+  for(let h=TL_START;h<=TL_END;h++){
+    const left=((h-TL_START)*60/TL_RANGE)*100;
+    hh+=`<span class="tl-hour" style="left:${left}%;">${h}</span>`;
+  }
+  hoursEl.innerHTML=hh;
+
+  // タスク取得
+  const tbs=document.querySelectorAll('#task-list .tb');
+  const items=[];
+  tbs.forEach(tb=>{
+    const allSels=tb.querySelectorAll('select');
+    const sH=tb.querySelector('.t-h.t-start')||allSels[1];
+    const sM=tb.querySelector('.t-m.t-start')||allSels[2];
+    const eH=tb.querySelector('.t-h.t-end')||allSels[3];
+    const eM=tb.querySelector('.t-m.t-end')||allSels[4];
+    const cat=tb.querySelector('.task-cat');
+    const name=tb.querySelector('.task-name');
+    if(!sH||!eH||sH.value===''||eH.value==='') return;
+    const sMin=parseInt(sH.value)*60+parseInt(sM&&sM.value!==''?sM.value:0);
+    const eMin=parseInt(eH.value)*60+parseInt(eM&&eM.value!==''?eM.value:0);
+    if(eMin<=sMin) return;
+    items.push({
+      sMin, eMin,
+      cat:cat?cat.value:'',
+      name:name?name.value:''
+    });
+  });
+
+  // 時刻でソート
+  items.sort((a,b)=>a.sMin-b.sMin);
+
+  // 刻みtick（1時間ごと + 30分の薄いtick）
+  let ticks='';
+  for(let h=TL_START+1;h<TL_END;h++){
+    const left=((h-TL_START)*60/TL_RANGE)*100;
+    ticks+=`<div class="tl-tick" style="left:${left}%;"></div>`;
+  }
+  for(let h=TL_START;h<TL_END;h++){
+    const left=((h-TL_START)*60+30)/TL_RANGE*100;
+    ticks+=`<div class="tl-tick half" style="left:${left}%;"></div>`;
+  }
+
+  // ブロック描画
+  let blocks='';
+  let totalMin=0;
+  items.forEach(it=>{
+    const sClamped=Math.max(it.sMin, TL_START*60);
+    const eClamped=Math.min(it.eMin, TL_END*60);
+    if(eClamped<=sClamped) return;
+    const leftPct=((sClamped-TL_START*60)/TL_RANGE)*100;
+    const widthPct=((eClamped-sClamped)/TL_RANGE)*100;
+    const bg=it.cat && CC[it.cat] ? CC[it.cat] : '';
+    const cls='tl-block'+(bg?'':' no-cat');
+    const label=(it.name||it.cat||'無題');
+    const title=label+' ('+m2t(it.sMin)+'–'+m2t(it.eMin)+(it.cat?' / '+it.cat:'')+')';
+    blocks+=`<div class="${cls}" style="left:${leftPct}%;width:${widthPct}%;${bg?'background:'+bg+';':''}" title="${title.replace(/"/g,'&quot;')}">${label}</div>`;
+    totalMin+=(it.eMin-it.sMin);
+  });
+
+  // 隙間ラベル（30分以上の隙間のみ）
+  let gaps='';
+  if(items.length>=2){
+    for(let i=0;i<items.length-1;i++){
+      const gS=items[i].eMin, gE=items[i+1].sMin;
+      const gap=gE-gS;
+      if(gap>=30 && gS>=TL_START*60 && gE<=TL_END*60){
+        const centerPct=((gS+gap/2)-TL_START*60)/TL_RANGE*100;
+        const gh=Math.floor(gap/60), gm=gap%60;
+        const lbl=gh>0?(gm>0?gh+'h'+gm+'m':gh+'h'):gm+'m';
+        gaps+=`<div class="tl-gap-label" style="left:${centerPct}%;">${lbl}</div>`;
+      }
+    }
+  }
+
+  trackEl.innerHTML=ticks+blocks+gaps;
+
+  // サマリ
+  if(items.length===0){
+    sumL.textContent='タスクを追加するとタイムラインに表示されます';
+    sumR.textContent='';
+  } else {
+    const th=Math.floor(totalMin/60),tm=totalMin%60;
+    const first=items[0].sMin, last=items[items.length-1].eMin;
+    const spanMin=last-first;
+    const sh=Math.floor(spanMin/60),sm=spanMin%60;
+    const gapTotal=spanMin-totalMin;
+    const gh=Math.floor(gapTotal/60),gm=gapTotal%60;
+    sumL.textContent=`作業 ${tm===0?th+'h':th+'h'+tm+'m'} / 拘束 ${sm===0?sh+'h':sh+'h'+sm+'m'}`;
+    sumR.textContent=gapTotal>0?`隙間 ${gm===0?gh+'h':(gh>0?gh+'h'+gm+'m':gm+'m')}`:'隙間なし';
+  }
+}
+function m2t(mn){
+  const h=Math.floor(mn/60), m=mn%60;
+  return h+':'+String(m).padStart(2,'0');
+}
+
+function calcWorkHours(){
+  renderTimeline();
+  const tasks=document.querySelectorAll('#task-list .tb');
+  let totalMin=0;
+  let breakTaskMin=0;
+  tasks.forEach(tb=>{
+    const allSels=tb.querySelectorAll('select');
+    const startH=tb.querySelector('.t-h.t-start')||tb.querySelector('.t-start.t-h')||allSels[1];
+    const startM=tb.querySelector('.t-m.t-start')||tb.querySelector('.t-start.t-m')||allSels[2];
+    const endH=tb.querySelector('.t-h.t-end')||tb.querySelector('.t-end.t-h')||allSels[3];
+    const endM=tb.querySelector('.t-m.t-end')||tb.querySelector('.t-end.t-m')||allSels[4];
+    const catSel=tb.querySelector('.task-cat');
+    const isBreak=catSel && catSel.value==='休憩';
+    if(startH&&endH&&startH.value!==''&&endH.value!==''){
+      const sMin=parseInt(startH.value)*60+parseInt(startM&&startM.value!==''?startM.value:0);
+      const eMin=parseInt(endH.value)*60+parseInt(endM&&endM.value!==''?endM.value:0);
+      if(eMin>sMin){
+        if(isBreak) breakTaskMin+=eMin-sMin;
+        else totalMin+=eMin-sMin;
+      }
+    }
+  });
+  // 休憩カテゴリのタスク分を勤務時間から除外済（totalMinは休憩を含まない）
+  breakMin=breakTaskMin;
+  const workMin=totalMin;
+  const taskSumMin=totalMin+breakTaskMin; // 全タスク合計（休憩も含む）
+  const th=Math.floor(taskSumMin/60),tm=taskSumMin%60;
+  const wh=Math.floor(workMin/60),wm=workMin%60;
+  const bh=Math.floor(breakTaskMin/60),bm=breakTaskMin%60;
+  const tDisp=document.getElementById('task-sum-display');
+  const bDisp=document.getElementById('break-display');
+  const wDisp=document.getElementById('work-hours-result');
+  if(tDisp)tDisp.textContent=tm===0?th+'h':th+'h'+tm+'分';
+  if(bDisp)bDisp.textContent=breakTaskMin===0?'なし':(bm===0?(bh>0?bh+'h':'0h'):(bh>0?bh+'h'+bm+'分':bm+'分'));
+  if(wDisp)wDisp.textContent=workMin===0?'0h':(wm===0?wh+'h':wh+'h'+wm+'分');
+  const mi=parseInt(document.getElementById('i-member')?document.getElementById('i-member').value||0:0);
+  if(state.memberData[mi])state.memberData[mi].todayWorkMin=workMin;
+}
+
+function renderInputForm(){
+  const itEl=document.getElementById('i-type');
+  const isRep=itEl?itEl.value==='report':false;
+  const miEl=document.getElementById('i-member');
+  const mi=parseInt(miEl?miEl.value||0:0);
+  // メンバー未選択なら何も表示しない
+  const mb=document.getElementById('member-btns');
+  if(mb && !mb.querySelector('.member-btn.active')){
+    const tl=document.getElementById('task-list');
+    if(tl) tl.innerHTML='<div style="font-size:13px;color:var(--t3);padding:20px 0;text-align:center;">メンバーを選択してください</div>';
+    return;
+  }
+  const titleEl=document.getElementById('input-title');
+  if(titleEl)titleEl.textContent=isRep?'実績報告':'予定タスク（スケジュール）';
+  const rrw=document.getElementById('report-reason-wrap');
+  if(rrw)rrw.style.display=isRep?'block':'none';
+  const sb=document.getElementById('report-shortcut-btns');
+  if(sb)sb.style.display=isRep?'flex':'none';
+  if(isRep){
+    breakMin=0;
+    setTimeout(calcWorkHours,50);
+  }
+  const md=state.memberData[mi]||{offDays:[]};
+  const ds=dateStr(state.inputDate);
+  const isOff=md.offDays.includes(ds);
+  const notice=document.getElementById('input-notice');
+  if(notice){
+    if(isOff)notice.innerHTML=`<div style="background:#FFFBEB;border:1px solid #FCD34D;border-radius:var(--rs);padding:10px 14px;font-size:13px;color:#92400E;margin-bottom:14px;">本日は休み登録日です。</div>`;
+    else notice.innerHTML='';
+  }
+  const tl=document.getElementById('task-list');
+  if(tl)tl.innerHTML='';
+  taskIdx=0;
+  loadTasksFromGAS(isRep,mi);
+}
+
+let taskIdx=0;
+
+function genHourOpts(def){
+  let s='<option value="" '+(def==null?'selected':'')+'>--</option>';
+  for(let h=5;h<=24;h++){s+=`<option value="${h}"${h==def?' selected':''}>${h}</option>`;}
+  return s;
+}
+function genMinOpts(def){
+  let s='<option value="" '+(def==null?'selected':'')+'>--</option>';
+  [0,5,10,15,20,25,30,35,40,45,50,55].forEach(m=>{s+=`<option value="${m}"${m==def?' selected':''}>${String(m).padStart(2,'0')}</option>`;});
+  return s;
+}
+
+function onTimeChange(){
+  renderTimeline();
+  const it=document.getElementById('i-type');
+  if(it&&it.value==='report') calcWorkHours();
+}
+
+function addTask(){
+  const itEl=document.getElementById('i-type');
+  const isRep=itEl?itEl.value==='report':false;
+  const id=taskIdx++;
+  const div=document.createElement('div');
+  div.className='tb';
+  div.id='tb-'+id;
+  div.innerHTML=`
+    <span class="drag-handle" title="ドラッグして並び替え" draggable="true" onmousedown="this.closest('.tb').setAttribute('draggable','true')" onmouseup="this.closest('.tb').setAttribute('draggable','false')">⋮⋮</span>
+    <button class="rm" onclick="confirmRemoveTask(this);">×</button>
+    <div class="tb-h" style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
+      <select class="task-cat" onchange="onCatChange(this);renderTimeline();calcWorkHours();" style="width:auto;padding:6px 9px;font-size:12px;"><option value="">カテゴリ選択</option>${CATS.map(c=>`<option>${c}</option>`).join('')}</select>
+      <input type="text" class="task-name" placeholder="内容" oninput="renderTimeline()" style="flex:1;min-width:120px;" />
+    </div>
+    <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
+      <select class="t-h t-start" onchange="onTimeChange()" style="width:auto;padding:6px 8px;font-size:13px;">${genHourOpts(null)}</select>
+      <select class="t-m t-start" onchange="onTimeChange()" style="width:62px;padding:6px 8px;font-size:13px;">${genMinOpts(null)}</select>
+      <span style="font-size:12px;color:var(--t3);">〜</span>
+      <select class="t-h t-end" onchange="onTimeChange()" style="width:auto;padding:6px 8px;font-size:13px;">${genHourOpts(null)}</select>
+      <select class="t-m t-end" onchange="onTimeChange()" style="width:62px;padding:6px 8px;font-size:13px;">${genMinOpts(null)}</select>
+    </div>
+  `;
+  // 初期設定は「カテゴリ選択」(未選択)
+  const catSel=div.querySelector('.task-cat');
+  if(catSel) catSel.value='';
+  const tl=document.getElementById('task-list');
+  if(tl)tl.appendChild(div);
+  attachDnD(div);
+  renderTimeline();
+}
+
+function confirmRemoveTask(el){
+  const tb=el.closest('.tb');
+  if(tb) tb.remove();
+  renderTimeline();
+  const it=document.getElementById('i-type');
+  if(it&&it.value==='report') calcWorkHours();
+}
+
+// ============================================================
+// タスクブロックのドラッグ&ドロップ並び替え
+// ============================================================
+let _dragTb=null;
+let _touchDragTb=null;
+let _touchGhost=null;
+
+function _clearDropMarkers(){
+  document.querySelectorAll('.tb.drop-above, .tb.drop-below').forEach(t=>{
+    t.classList.remove('drop-above');t.classList.remove('drop-below');
+  });
+}
+function _insertByY(list, movingTb, clientY){
+  const tbs=[...list.querySelectorAll('.tb')].filter(t=>t!==movingTb);
+  _clearDropMarkers();
+  for(const tb of tbs){
+    const rect=tb.getBoundingClientRect();
+    if(clientY < rect.top+rect.height/2){
+      list.insertBefore(movingTb, tb);
+      tb.classList.add('drop-above');
+      return;
+    }
+  }
+  list.appendChild(movingTb);
+  const last=tbs[tbs.length-1];
+  if(last) last.classList.add('drop-below');
+}
+// --- HTML5 DnD (PC)
+let _dragSrc = null;
+
+function initTaskDnD(){
+  const list = document.getElementById('task-list');
+  if(!list || list.dataset.dndInit==='1') return;
+  list.dataset.dndInit = '1';
+}
+
+// タスクブロックにドラッグイベントを付与（addTask内で呼ぶ）
+function sortTasksByTime(){
+  const list = document.getElementById('task-list');
+  if(!list) return;
+  const items = [...list.children];
+  items.sort((a, b)=>{
+    const getTime = el => {
+      const hSel = el.querySelector('.t-h.t-start');
+      const mSel = el.querySelector('.t-m.t-start');
+      if(!hSel) return 999*60;
+      return parseInt(hSel.value||0)*60 + parseInt(mSel?mSel.value||0:0);
+    };
+    return getTime(a) - getTime(b);
+  });
+  items.forEach(item => list.appendChild(item));
+  renderTimeline && renderTimeline();
+}
+
+function attachDnD(tb){
+  const handle = tb.querySelector('.drag-handle');
+  if(!handle) return;
+
+  // PC: handleにmousedownしたときだけtbをdraggable化
+  handle.addEventListener('mousedown', ()=>{
+    tb.setAttribute('draggable','true');
+  });
+  document.addEventListener('mouseup', ()=>{
+    tb.setAttribute('draggable','false');
+  }, {once:false});
+
+  tb.addEventListener('dragstart', e=>{
+    _dragSrc = tb;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', tb.id);
+    setTimeout(()=>tb.classList.add('dragging'), 0);
+  });
+  tb.addEventListener('dragend', ()=>{
+    tb.classList.remove('dragging');
+    tb.setAttribute('draggable','false');
+    document.querySelectorAll('#task-list .tb').forEach(t=>t.classList.remove('drag-over'));
+  });
+  tb.addEventListener('dragover', e=>{
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if(_dragSrc && _dragSrc !== tb){
+      document.querySelectorAll('#task-list .tb').forEach(t=>t.classList.remove('drag-over'));
+      tb.classList.add('drag-over');
+    }
+  });
+  tb.addEventListener('dragleave', ()=>{
+    tb.classList.remove('drag-over');
+  });
+  tb.addEventListener('drop', e=>{
+    e.preventDefault();
+    tb.classList.remove('drag-over');
+    if(_dragSrc && _dragSrc !== tb){
+      const list = document.getElementById('task-list');
+      const items = [...list.children];
+      const srcIdx = items.indexOf(_dragSrc);
+      const dstIdx = items.indexOf(tb);
+      if(srcIdx < dstIdx) list.insertBefore(_dragSrc, tb.nextSibling);
+      else list.insertBefore(_dragSrc, tb);
+    }
+    _dragSrc = null;
+  });
+
+  // Mobile touch
+  let touchY = 0, touchTb = null;
+  handle.addEventListener('touchstart', e=>{
+    touchY = e.touches[0].clientY;
+    touchTb = tb;
+    tb.classList.add('dragging');
+    e.preventDefault();
+  },{passive:false});
+  handle.addEventListener('touchmove', e=>{
+    e.preventDefault();
+    const y = e.touches[0].clientY;
+    const list = document.getElementById('task-list');
+    const items = [...list.children];
+    let target = null;
+    items.forEach(item=>{
+      const rect = item.getBoundingClientRect();
+      if(y >= rect.top && y <= rect.bottom && item !== touchTb) target = item;
+    });
+    items.forEach(t=>t.classList.remove('drag-over'));
+    if(target) target.classList.add('drag-over');
+  },{passive:false});
+  handle.addEventListener('touchend', e=>{
+    tb.classList.remove('dragging');
+    const y = e.changedTouches[0].clientY;
+    const list = document.getElementById('task-list');
+    const items = [...list.children];
+    items.forEach(t=>t.classList.remove('drag-over'));
+    let target = null;
+    items.forEach(item=>{
+      const rect = item.getBoundingClientRect();
+      if(y >= rect.top && y <= rect.bottom && item !== touchTb) target = item;
+    });
+    if(target && touchTb){
+      const srcIdx = items.indexOf(touchTb);
+      const dstIdx = items.indexOf(target);
+      if(srcIdx < dstIdx) list.insertBefore(touchTb, target.nextSibling);
+      else list.insertBefore(touchTb, target);
+    }
+    touchTb = null;
+  });
+}
+
+// カテゴリ変更時のフック（将来の拡張用）
+function onCatChange(sel){
+  const it=document.getElementById('i-type');
+  if(it&&it.value==='report') calcWorkHours();
+}
+
+async function loadTasksFromGAS(isRep,mi){
+  const mName=MEMBERS[mi].name;
+  const ds=dateStr(state.inputDate);
+  const action=isRep?'getReport':'getPlan';
+  const data=await apiGet({action,date:ds,memberName:mName});
+  const tl=document.getElementById('task-list');
+  if(!tl)return;
+  if(data.success&&data.tasks&&data.tasks.length>0){
+    tl.innerHTML='';taskIdx=0;
+    data.tasks.forEach(t=>{
+      addTask();
+      const tb=tl.lastElementChild;
+      const catSel=tb.querySelector('.task-cat');
+      const ni=tb.querySelector('.task-name');
+      const ta=tb.querySelector('textarea');
+      const statusSel=tb.querySelector('.task-status');
+      const[sh,sm]=t.startTime?t.startTime.split(':'):['9','0'];
+      const[eh,em]=t.endTime?t.endTime.split(':'):['18','0'];
+      if(catSel)catSel.value=t.cat||'撮影';
+      if(ni)ni.value=t.name||'';
+      const startH=tb.querySelector('.t-h.t-start');
+      const startM=tb.querySelector('.t-m.t-start');
+      const endH=tb.querySelector('.t-h.t-end');
+      const endM=tb.querySelector('.t-m.t-end');
+      if(startH)startH.value=sh;
+      if(startM)startM.value=parseInt(sm)||0;
+      if(endH)endH.value=eh;
+      if(endM)endM.value=parseInt(em)||0;
+      if(ta)ta.value=t.note||'';
+    });
+    if(isRep)setTimeout(calcWorkHours,100);
+    setTimeout(renderTimeline,120);
+    if(!isRep){
+      const key=mi+'_'+ds;
+      planStore[key]=data.tasks.map(t=>{
+        const[sh,sm]=t.startTime?t.startTime.split(':'):['9','0'];
+        const[eh,em]=t.endTime?t.endTime.split(':'):['18','0'];
+        return{cat:t.cat,name:t.name||'',startH:sh,startM:parseInt(sm)||0,endH:eh,endM:parseInt(em)||0,note:t.note||''};
+      });
+    }
+  } else {
+    if(tl.children.length===0)addTask();
+    renderTimeline();
+  }
+}
+
+function showError(msg){
+  let bar=document.getElementById('err-bar');
+  if(!bar){
+    bar=document.createElement('div');
+    bar.id='err-bar';
+    bar.style.cssText='position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#DC2626;color:#fff;padding:10px 18px;border-radius:6px;font-size:13px;z-index:9999;box-shadow:0 2px 8px rgba(0,0,0,.2);';
+    document.body.appendChild(bar);
+  }
+  bar.textContent=msg;
+  bar.style.display='block';
+  setTimeout(()=>{bar.style.display='none';},4000);
+}
+
+function goToInput(mi, type, date){
+  // 日付を指定された場合はinputDateを変更
+  if(date){
+    state.inputDate = new Date(date + 'T00:00:00');
+    updateInputDate();
+  }
+  sw('input');
+  const mb=document.getElementById('member-btns');
+  if(mb){
+    const btns=mb.querySelectorAll('button');
+    if(btns[mi]) setMember(mi, btns[mi]);
+  }
+  const planBtn=document.getElementById('type-plan');
+  const repBtn=document.getElementById('type-report');
+  if(planBtn&&repBtn){
+    setType(type, type==='report'?repBtn:planBtn);
+  }
+}
+
+async function submitInput(){
+  const mi=parseInt(document.getElementById('i-member').value||0);
+  const isRep=document.getElementById('i-type').value==='report';
+  const mName=MEMBERS[mi].name;
+  const ds=dateStr(state.inputDate);
+  const tasks=[];
+  let nameErr=false, timeErr=false, catErr=false;
+  document.querySelectorAll('#task-list .tb').forEach(tb=>{
+    const catSel=tb.querySelector('.task-cat');
+    const ni=tb.querySelector('.task-name');
+    const ta=tb.querySelector('textarea');
+    const startH=tb.querySelector('.t-h.t-start');
+    const startM=tb.querySelector('.t-m.t-start');
+    const endH=tb.querySelector('.t-h.t-end');
+    const endM=tb.querySelector('.t-m.t-end');
+    const sV=startH?startH.value:'', eV=endH?endH.value:'';
+    const task={
+      cat:catSel?catSel.value:'',
+      name:ni?ni.value||'':'',
+      startH:sV,
+      startM:startM?(startM.value||'0'):'0',
+      endH:eV,
+      endM:endM?(endM.value||'0'):'0',
+      note:ta?ta.value:''
+    };
+    // バリデーション: カテゴリ必須
+    if(!task.cat){catErr=true;if(catSel)catSel.style.borderColor='#DC2626';}
+    else if(catSel)catSel.style.borderColor='';
+    // 内容は任意（必須解除）
+    if(ni)ni.style.borderColor='';
+    // バリデーション: 開始/終了時刻の入力
+    if(sV===''||eV===''){timeErr=true;}
+    else {
+      const sMin=parseInt(sV)*60+parseInt(task.startM||0);
+      const eMin=parseInt(eV)*60+parseInt(task.endM||0);
+      if(eMin<=sMin)timeErr=true;
+    }
+    tasks.push(task);
+  });
+  if(tasks.length===0){showError('タスクを1件以上入力してください');return;}
+  if(catErr){showError('カテゴリを選択してください');return;}
+  if(timeErr){showError('終了時刻は開始時刻より後にしてください');return;}
+  const btn=document.querySelector('[onclick="submitInput()"]');
+  if(btn){btn.disabled=true;btn.style.opacity='.6';}
+  try{
+    if(!state.memberData[mi].submitted[ds]) state.memberData[mi].submitted[ds]={plan:false,report:false};
+    if(isRep){
+      const reason=document.getElementById('report-reason')?document.getElementById('report-reason').value:'';
+      const wr=document.getElementById('work-hours-result');
+      const result=await apiPost({action:'saveReport',date:ds,memberName:mName,tasks,breakMin:String(breakMin),workHours:wr?wr.textContent:'',reason});
+      if(result&&result.error){showError('保存失敗: '+result.error);return;}
+      state.memberData[mi].submitted[ds].report=true;
+      reportStore[mi+'_'+ds]=tasks.map(t=>({...t}));
+      // 婚礼カテゴリの報告がある日を記録 (実労働に加算済なので-8h枠を復活させる)
+      const hasWed=tasks.some(t=>t.cat==='婚礼');
+      const rwd=state.memberData[mi].reportedWeddingDates||(state.memberData[mi].reportedWeddingDates=[]);
+      const idx=rwd.indexOf(ds);
+      if(hasWed && idx<0) rwd.push(ds);
+      if(!hasWed && idx>=0) rwd.splice(idx,1);
+    } else {
+      const result=await apiPost({action:'savePlan',date:ds,memberName:mName,tasks});
+      if(result&&result.error){showError('保存失敗: '+result.error);return;}
+      state.memberData[mi].submitted[ds].plan=true;
+      planStore[mi+'_'+ds]=tasks.map(t=>({...t}));
+    }
+    const toast=document.getElementById('toast-input');
+    if(toast){
+      toast.textContent=isRep?'送信しました。お疲れさまでした！':'送信しました。本日もよろしくお願いします！';
+      toast.style.display='block';
+      setTimeout(()=>toast.style.display='none',3000);
+    }
+  }catch(e){
+    showError('通信エラーが発生しました');
+  }finally{
+    if(btn){btn.disabled=false;btn.style.opacity='1';}
+  }
+}
+
+let _dayDetailGen=0;
+async function renderDayDetailAsync(sel){
+  const gen=++_dayDetailGen;
+  const ds=dateStr(sel);
+  const TL_S=8,TL_E=21,TL_R=TL_E-TL_S;
+  const fm=state.filterMember;
+  const targetIndices=(fm!==null&&fm!==undefined)?[fm]:MEMBERS.map((_,i)=>i);
+  let dd='';
+  for(const i of targetIndices){
+    const m=MEMBERS[i];
+    const md=state.memberData[i];
+    const isOff=md.offDays.includes(ds);
+    const isWed=(md.reportedWeddingDates||[]).includes(ds);
+    // Load from GAS (with local-store fallback for recently-submitted tasks)
+    const planData=await apiGet({action:'getPlan',date:ds,memberName:m.name});
+    const reportData=await apiGet({action:'getReport',date:ds,memberName:m.name});
+    let planTasks=(planData.success&&planData.tasks)||[];
+    let reportTasks=(reportData.success&&reportData.tasks)||[];
+    // GAS が空を返した場合、ローカルキャッシュ (送信時の生データ) をフォールバック利用
+    const subm=md.submitted&&md.submitted[ds]||{};
+    if(planTasks.length===0 && subm.plan){
+      const stored=planStore[i+'_'+ds];
+      if(stored&&stored.length) planTasks=stored.map(normalizeTask).filter(Boolean);
+    }
+    if(reportTasks.length===0 && subm.report){
+      const stored=reportStore[i+'_'+ds];
+      if(stored&&stored.length) reportTasks=stored.map(normalizeTask).filter(Boolean);
+    }
+    const hasPlan=planTasks.length>0;
+    const hasReport=reportTasks.length>0;
+    // Merge plan + report for timeline (開始時刻順にソート)
+    const tasks=planTasks.map(p=>{
+      const r=reportTasks.find(r=>r.name===p.name)||{};
+      return{cat:p.cat,name:p.name||'（タスク）',ps:p.startTime,pe:p.endTime,as:r.startTime||null,ae:r.endTime||null,done:r.status==='完了',note:p.note||''};
+    }).sort((a,b)=>{
+      const am=t2m(a.ps), bm=t2m(b.ps);
+      if(am!==bm) return am-bm;
+      return t2m(a.pe)-t2m(b.pe);
+    });
+
+    dd+=`<div class="dd-member-card" style="padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:8px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div class="av" style="background:#6B7280;">${m.init}</div>
+        <span style="font-size:14px;font-weight:500;">${m.name}</span>
+        ${isOff?`<span class="badge" style="background:#FEF2F2;color:#DC2626;">休み</span>`:''}
+        ${isWed?`<span class="badge" style="background:#EFF6FF;color:#2563EB;">婚礼撮影</span>`:''}
+        ${!isOff?`<span class="badge" style="background:${hasReport?'#F0FDF4':'#FEF2F2'};color:${hasReport?'#16A34A':'#DC2626'};">${hasReport?'報告済':'未提出'}</span>`:''}
+        <button class="btn btn-sm" onclick="goToInput(${i},'plan')" style="margin-left:auto;">予定を編集</button>
+        ${hasReport?`<button class="btn btn-sm" onclick="goToInput(${i},'report')">報告を編集</button>`:''}
+      </div>`;
+    if(isOff){
+      dd+=`<div style="font-size:13px;color:var(--t3);">休み登録日のため入力不要です</div>`;
+    } else if(!hasPlan){
+      dd+=`<div style="font-size:13px;color:var(--t3);">予定未入力</div>`;
+    } else {
+      // Summary row
+      const totalPlanMin=tasks.reduce((s,t)=>s+(t.ps&&t.pe?Math.max(0,t2m(t.pe)-t2m(t.ps)):0),0);
+      const totalActMin=tasks.reduce((s,t)=>s+(t.as&&t.ae?Math.max(0,t2m(t.ae)-t2m(t.as)):0),0);
+      const totalOverMin=tasks.reduce((s,t)=>{if(!t.as||!t.ae)return s;return s+Math.max(0,t2m(t.ae)-t2m(t.pe));},0);
+      const ph=Math.floor(totalPlanMin/60),pm=totalPlanMin%60;
+      const ah=Math.floor(totalActMin/60),am=totalActMin%60;
+      const overCol=totalOverMin>60?'#DC2626':totalOverMin>30?'#D97706':'#6B7280';
+      dd+=`<div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
+          <div style="font-size:16px;font-weight:500;font-family:'DM Mono',monospace;">${pm===0?ph+'h':ph+'h'+pm+'分'}</div>
+        </div>
+        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
+          <div style="font-size:16px;font-weight:500;font-family:'DM Mono',monospace;">${totalActMin>0?(am===0?ah+'h':ah+'h'+am+'分'):'—'}</div>
+        </div>
+        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
+          <div style="font-size:16px;font-weight:500;font-family:'DM Mono',monospace;color:${overCol};">${totalOverMin>0?'+'+totalOverMin+'分':'±0'}</div>
+        </div>
+      </div>`;
+      // Timeline
+      dd+=`<div style="overflow-x:auto;"><div style="min-width:380px;">
+        <div style="display:flex;padding-left:76px;margin-bottom:3px;">
+          ${Array.from({length:TL_E-TL_S+1},(_,j)=>TL_S+j).map(h=>`<div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">${h}</div>`).join('')}
+        </div>`;
+      tasks.forEach(t=>{
+        if(!t.ps||!t.pe)return;
+        const pL=((t2m(t.ps)/60-TL_S)/TL_R*100).toFixed(1);
+        const pW=Math.max(.5,(t2m(t.pe)-t2m(t.ps))/60/TL_R*100).toFixed(1);
+        const hasA=t.as&&t.ae;
+        const aL=hasA?((t2m(t.as)/60-TL_S)/TL_R*100).toFixed(1):pL;
+        const aW=hasA?Math.max(.5,(t2m(t.ae)-t2m(t.as))/60/TL_R*100).toFixed(1):pW;
+        const planMin=t.ps&&t.pe?Math.max(0,t2m(t.pe)-t2m(t.ps)):0;
+        const actMin=hasA?Math.max(0,t2m(t.ae)-t2m(t.as)):0;
+        const diff=hasA?t2m(t.ae)-t2m(t.pe):null;
+        const dStr=diff===null?'—':diff>0?`+${diff}m`:diff<0?`${diff}m`:'±0';
+        const dCol=diff===null?'#A09890':diff>15?'#DC2626':diff<-10?'#16A34A':'#9CA3AF';
+        const bc=CC[t.cat]||'#6B7280';
+        const bg=CB[t.cat]||'#F9FAFB';
+        dd+=`<div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:${pL}%;width:${pW}%;height:20px;top:0;background:#4B5563;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:${aL}%;width:${aW}%;height:20px;top:0;background:#4B5563;border-radius:2px;opacity:0.35;"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:var(--bg);color:var(--t2);white-space:nowrap;">${t.cat}</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">${t.name||'—'}</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">${t.ps&&t.pe?t.ps+'〜'+t.pe:''}${planMin>0?' ('+( planMin>=60?Math.floor(planMin/60)+'h'+(planMin%60?planMin%60+'m':''):planMin+'m')+')':''}</span>
+          </div>
+        </div>`
+      });
+      dd+=`<div style="display:flex;gap:10px;padding-left:76px;margin-top:4px;">
+        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>予定</span>
+        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.35;display:inline-block;"></span>実績</span>
+      </div></div></div>`;
+    }
+    dd+=`</div>`;
+  }
+  // 古い世代の結果は捨てる (個人ビュー切替時の競合防止)
+  if(gen!==_dayDetailGen) return;
+  document.getElementById('day-detail-body').innerHTML=dd;
+}
+
+
+function _ymStr(y,m){return y+'-'+String(m+1).padStart(2,'0');}
+function _filterByYm(arr,ym){return (arr||[]).filter(ds=>String(ds).startsWith(ym));}
+
+// 全メンバーの当月月初設定（休み日等）をGASから読み込み、state.memberDataに反映
+async function loadAllMonthlySetup(){
+  const now=new Date();
+  const ym=_ymStr(now.getFullYear(), now.getMonth());
+  await Promise.all(MEMBERS.map(async (m,i)=>{
+    try{
+      const data=await apiGet({action:'getMonthlySetup', ym, memberName:m.name});
+      if(!data || !data.success) return;
+      const md=state.memberData[i];
+      if(!md) return;
+      if(typeof data.targetHours==='number' && data.targetHours>0) md.targetHours=data.targetHours;
+      if(typeof data.weddingCount==='number') md.weddingCount=data.weddingCount;
+      if(typeof data.remainShiftDays==='number' && data.remainShiftDays>0) md.remainShiftDays=data.remainShiftDays;
+      if(Array.isArray(data.offDays)){
+        md.offDays=(md.offDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.offDays);
+      }
+      if(Array.isArray(data.weddingDays)){
+        md.weddingDays=(md.weddingDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.weddingDays);
+      }
+    }catch(e){}
+  }));
+  // ダッシュボードを再描画（個人ビュー中も filterMember を維持したまま再描画）
+  try{if(typeof renderDashboard==='function') renderDashboard();}catch(e){}
+  try{
+    const sel=document.getElementById('m-member-sel');
+    if(sel && document.getElementById('page-monthly') && document.getElementById('page-monthly').style.display!=='none'){
+      renderCalendar(parseInt(sel.value||0));
+    }
+  }catch(e){}
+  // 日次詳細も更新
+  try{
+    if(state.selectedDate && typeof renderDayDetailAsync==='function') renderDayDetailAsync(state.selectedDate);
+  }catch(e){}
+}
+
+async function renderMonthly(){
+  const sel=document.getElementById('m-member-sel');
+  if(!sel||!sel.options.length) return;
+  const mi=parseInt(sel.value||0);
+  const md=state.memberData[mi];
+  // まず現在値でUI反映（ロード中の白紙を防止）
+  const th=document.getElementById('target-hours');
+  const wc=document.getElementById('wedding-count');
+  const rs=document.getElementById('remain-shift');
+    renderCalendar(mi);
+  // GASから当月分の月初設定を読込
+  if(typeof state.calYear!=='number'||isNaN(state.calYear)){
+    const n=new Date();state.calYear=n.getFullYear();state.calMonth=n.getMonth();
+  }
+  const ym=_ymStr(state.calYear, state.calMonth);
+  try{
+    const data=await apiGet({action:'getMonthlySetup', ym, memberName:MEMBERS[mi].name});
+    if(data && data.success){
+      if(typeof data.targetHours==='number' && data.targetHours>0) md.targetHours=data.targetHours;
+      if(typeof data.weddingCount==='number') md.weddingCount=data.weddingCount;
+      if(typeof data.remainShiftDays==='number' && data.remainShiftDays>0) md.remainShiftDays=data.remainShiftDays;
+      if(Array.isArray(data.offDays)){
+        md.offDays=(md.offDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.offDays);
+      }
+      if(Array.isArray(data.weddingDays)){
+        md.weddingDays=(md.weddingDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.weddingDays);
+      }
+      // GAS読み込み後に総労働時間を再計算
+      const ymNow=_ymStr(state.calYear, state.calMonth);
+      const daysInMonth=new Date(state.calYear, state.calMonth+1, 0).getDate();
+      const offCount2=(md.offDays||[]).filter(d=>d.startsWith(ymNow)).length;
+      const autoHours=(daysInMonth - offCount2)*8;
+      md.targetHours=autoHours;
+      if(th)th.value=autoHours;
+      if(wc)wc.value=md.weddingCount;
+      if(rs)rs.value=md.remainShiftDays;
+      updateWeddingHours();
+      renderCalendar(mi);
+    }
+  }catch(e){/* オフライン時はローカル状態のみ */}
+}
+function updateWeddingHours(){
+  const wc=parseInt(document.getElementById('wedding-count').value||0);
+  document.getElementById('wedding-h-label').textContent='= −'+wc*8+'h';
+}
+function renderCalendar(mi){
+  const md=state.memberData[mi]||{offDays:[]};
+  if(typeof state.calYear!=='number'||isNaN(state.calYear)){
+    const n=new Date();
+    state.calYear=n.getFullYear();
+    state.calMonth=n.getMonth();
+  }
+  const calY=state.calYear, calM=state.calMonth;
+  const title=document.getElementById('cal-title');
+  const header=document.getElementById('cal-header');
+  const body=document.getElementById('cal-body');
+  if(!title||!header||!body)return;
+  title.textContent=calY+'年'+(calM+1)+'月';
+  const dayNames=['月','火','水','木','金','土','日'];
+  header.innerHTML=dayNames.map(d=>`<div class="cal-h" style="color:${d==='日'?'#DC2626':d==='土'?'#2563EB':'var(--t3)'};">${d}</div>`).join('');
+  const first=(new Date(calY,calM,1).getDay()+6)%7; // 月曜始まり
+  const total=new Date(calY,calM+1,0).getDate();
+  const prev=new Date(calY,calM,0).getDate();
+  const today=new Date();
+  let html='';let cells=0;
+  for(let i=0;i<first;i++){html+=`<div class="cal-d other-m">${prev-first+1+i}</div>`;cells++;}
+  for(let d=1;d<=total;d++){
+    const day=new Date(calY,calM,d).getDay();
+    const ds=`${calY}-${String(calM+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isOff=md.offDays.includes(ds);
+    const isTod=today.getFullYear()===calY&&today.getMonth()===calM&&today.getDate()===d;
+    let cls='cal-d'+(isOff?' off':(day===0||day===6)?' weekend':'');
+    if(isTod)cls+=' today';
+    html+=`<div class="${cls}" onclick="toggleDay('${ds}',${mi})">${d}${isOff?'<span style="font-size:9px;display:block;">休</span>':''}</div>`;
+    cells++;
+  }
+  const rem=cells%7===0?0:7-(cells%7);
+  for(let i=1;i<=rem;i++)html+=`<div class="cal-d other-m">${i}</div>`;
+  body.innerHTML=html;
+}
+let _offDaysSaveTimer=null;
+async function _persistMonthly(mi){
+  const md=state.memberData[mi];
+  const ym=_ymStr(state.calYear, state.calMonth);
+  try{
+    await apiPost({
+      action:'saveMonthlySetup',
+      ym,
+      memberName:MEMBERS[mi].name,
+      targetHours:md.targetHours,
+      weddingCount:md.weddingCount,
+      remainShiftDays:md.remainShiftDays,
+      offDays:_filterByYm(md.offDays, ym),
+      weddingDays:_filterByYm(md.weddingDays, ym)
+    });
+  }catch(e){}
+}
+function toggleDay(ds,mi){
+  const md=state.memberData[mi];
+  const isOff=md.offDays.includes(ds);
+  if(!isOff) md.offDays.push(ds);
+  else md.offDays=md.offDays.filter(x=>x!==ds);
+  renderCalendar(mi);
+  // 休み変更で総労働時間を再計算
+  const _ym2=_ymStr(state.calYear,state.calMonth);
+  const _days2=new Date(state.calYear,state.calMonth+1,0).getDate();
+  const _off2=(state.memberData[mi].offDays||[]).filter(d=>d.startsWith(_ym2)).length;
+  const _h2=(_days2-_off2)*8;
+  state.memberData[mi].targetHours=_h2;
+  const _thEl=document.getElementById('target-hours');
+  if(_thEl)_thEl.value=_h2;
+  // デバウンス付きで自動保存
+  clearTimeout(_offDaysSaveTimer);
+  _offDaysSaveTimer=setTimeout(()=>_persistMonthly(mi), 400);
+}
+function prevMonth(){state.calMonth--;if(state.calMonth<0){state.calMonth=11;state.calYear--;}renderMonthly();}
+function nextMonth(){state.calMonth++;if(state.calMonth>11){state.calMonth=0;state.calYear++;}renderMonthly();}
+// ============================================================
+// カテゴリ管理 UI
+// ============================================================
+function renderCategoryList(){
+  const page=document.getElementById('page-settings');
+  if(!page||!page.classList.contains('active')) return;
+  const wrap=document.getElementById('cat-list');
+  if(!wrap) return;
+  if(CATEGORIES.length===0){
+    wrap.innerHTML='<div style="font-size:12px;color:var(--t3);">カテゴリがありません。下の入力欄から追加してください。</div>';
+    return;
+  }
+  wrap.innerHTML=CATEGORIES.map((c,i)=>`
+    <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:var(--rs);">
+      <input type="color" value="${c.color}" onchange="updateCategoryColor(${i},this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:4px;cursor:pointer;flex-shrink:0;">
+      <input type="text" value="${c.name.replace(/"/g,'&quot;')}" onchange="updateCategoryName(${i},this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:13px;background:var(--surface);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:99px;background:${c.color};color:#fff;font-size:11px;font-weight:500;white-space:nowrap;">${c.name}</span>
+      <button onclick="removeCategory(${i})" title="削除" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;">×</button>
+    </div>
+  `).join('');
+}
+function addCategory(){
+  const nameEl=document.getElementById('cat-new-name');
+  const colorEl=document.getElementById('cat-new-color');
+  if(!nameEl||!colorEl) return;
+  const name=(nameEl.value||'').trim();
+  const color=colorEl.value||'#6B7280';
+  if(!name){nameEl.style.borderColor='#DC2626';return;}
+  nameEl.style.borderColor='';
+  if(CATEGORIES.some(c=>c.name===name)){alert('同名のカテゴリが既にあります');return;}
+  CATEGORIES.push({name, color});
+  nameEl.value='';
+  colorEl.value='#2563EB';
+  rebuildCategoryMaps();
+  saveCategoriesToGAS();
+  flashCategoryToast();
+}
+function removeCategory(idx){
+  const c=CATEGORIES[idx];
+  if(!c) return;
+  if(!confirm('「'+c.name+'」を削除しますか？\n※ 過去の入力データは保持されます。')) return;
+  CATEGORIES.splice(idx,1);
+  rebuildCategoryMaps();
+  saveCategoriesToGAS();
+  flashCategoryToast();
+}
+function updateCategoryName(idx,v){
+  v=(v||'').trim();
+  if(!v) return;
+  if(CATEGORIES.some((c,i)=>i!==idx && c.name===v)){alert('同名のカテゴリが既にあります');rebuildCategoryMaps();return;}
+  CATEGORIES[idx].name=v;
+  rebuildCategoryMaps();
+  saveCategoriesToGAS();
+  flashCategoryToast();
+}
+function updateCategoryColor(idx,v){
+  CATEGORIES[idx].color=v;
+  rebuildCategoryMaps();
+  saveCategoriesToGAS();
+  flashCategoryToast();
+}
+function flashCategoryToast(){
+  const t=document.getElementById('toast-category');
+  if(!t) return;
+  t.style.display='block';
+  clearTimeout(flashCategoryToast._h);
+  flashCategoryToast._h=setTimeout(()=>t.style.display='none',1800);
+}
+
+async function saveMonthly(){
+  const mi=parseInt(document.getElementById('m-member-sel').value||0);
+  const thEl=document.getElementById('target-hours');
+  const wcEl=document.getElementById('wedding-count');
+  const rsEl=document.getElementById('remain-shift');
+  state.memberData[mi].targetHours=parseInt(thEl?thEl.value:160)||160;
+  state.memberData[mi].weddingCount=parseInt(wcEl?wcEl.value:0)||0;
+  if(rsEl) state.memberData[mi].remainShiftDays=parseInt(rsEl.value)||20;
+  // GASに保存
+  await _persistMonthly(mi);
+  const t=document.getElementById('toast-monthly');
+  t.style.display='block';
+  setTimeout(()=>t.style.display='none',3000);
+}
+
+function renderSummary(){
+  const now=new Date();
+  const totalDays=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+  const todayD=now.getDate();
+  // ペースが早い = 残り出勤1日あたり 6h 以下で目標到達できる人
+  const riskCount=MEMBERS.filter((_,i)=>{
+    const md=state.memberData[i];
+    const eff=getEffective(md);
+    const rem=Math.max(0,md.targetHours-eff.workedEff);
+    const pace=eff.remainDaysEff>0?rem/eff.remainDaysEff:rem;
+    return pace<=6;
+  }).length;
+  document.getElementById('sum-stats').innerHTML=`
+    <div class="sc"><div class="sl">今月の残り日数</div><div class="sv">${totalDays-todayD}<span style="font-size:16px;color:var(--t3);">日</span></div><div class="ss">シフトは個人ごとに異なります</div></div>
+    <div class="sc"><div class="sl">ペースが早いメンバー</div><div class="sv" style="color:${riskCount>0?'#DC2626':'#16A34A'};">${riskCount}<span style="font-size:16px;color:var(--t3);">名</span></div><div class="ss">残り出勤1日6h以下ペースの人</div></div>
+    <div class="sc"><div class="sl">基準ペース</div><div class="sv">8h<span style="font-size:14px;color:var(--t3);">/日</span></div><div class="ss">6h以下でアラート</div></div>
+  `;
+  let pg='<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;">';
+  MEMBERS.forEach((m,i)=>{
+    const md=state.memberData[i];
+    const target=md.targetHours;
+    const eff=getEffective(md);
+    const worked=eff.workedEff;
+    const remain=Math.max(0,target-worked);
+    const remDays=eff.remainDaysEff;
+    const paceNeeded=Math.round(remain/remDays*10)/10;
+    const pctDone=target>0?Math.round(worked/target*100):0;
+    const isAlert=paceNeeded<=6;
+    const isWarn=paceNeeded>6&&paceNeeded<=7;
+    const col=isAlert?'#DC2626':isWarn?'#D97706':'#16A34A';
+    const bgcol=isAlert?'#FEF2F2':isWarn?'#FFFBEB':'#F0FDF4';
+    pg+=`<div class="pace-card" style="border-left:3px solid var(--border2);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <div class="av av-sm" style="background:#6B7280;">${m.init}</div>
+        <span style="font-size:13px;font-weight:500;">${m.name}</span>
+        <span class="badge" style="background:${bgcol};color:${col};margin-left:auto;">${isAlert?'ペース早め':isWarn?'やや早め':'順調'}</span>
+      </div>
+      <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: ${remDays}日</div>
+      <div class="pace-bar"><div class="pace-fill" style="width:${Math.min(100,pctDone)}%;background:#6B7280;opacity:.8;"></div></div>
+      <div class="pace-nums"><span>実績 ${worked}h / 目標 ${target}h（${pctDone}%）</span><span>残り ${remain}h</span></div>
+      <div class="pace-alert" style="background:${bgcol};">
+        <span style="font-size:12px;color:${col};">必要ペース</span>
+        <span style="font-size:20px;font-weight:500;font-family:'DM Mono',monospace;color:${col};">${paceNeeded}h<span style="font-size:12px;font-weight:400;">/日</span></span>
+      </div>
+    </div>`;
+  });
+  pg+='</div>';
+  document.getElementById('pace-grid').innerHTML=pg;
+  renderCategoryStats();
+}
+
+async function renderCategoryStats(){
+  const now=new Date();
+  const ym=_ymStr(now.getFullYear(), now.getMonth());
+  // GASから全メンバーの報告データを取得して集計
+  const catTotals={}; // {cat: {total:h, count:days, memberTotals:{mi:h}}}
+  CATEGORIES.forEach(c=>{ catTotals[c.name]={total:0, count:0, members:{}}; });
+  catTotals['その他']||(catTotals['その他']={total:0,count:0,members:{}});
+
+  await Promise.all(MEMBERS.map(async(m,mi)=>{
+    try{
+      // 当月の全日付を取得（簡易版：報告データから）
+      const daysInMonth=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+      for(let d=1;d<=Math.min(daysInMonth,now.getDate());d++){
+        const ds=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        const data=await apiGet({action:'getReport',date:ds,memberName:m.name});
+        if(!data.success||!data.tasks||!data.tasks.length) continue;
+        data.tasks.forEach(t=>{
+          const cat=t.cat||'その他';
+          if(!catTotals[cat]) catTotals[cat]={total:0,count:0,members:{}};
+          const sh=t.startTime?parseInt(t.startTime.split(':')[0]):0;
+          const sm2=t.startTime?parseInt(t.startTime.split(':')[1]):0;
+          const eh=t.endTime?parseInt(t.endTime.split(':')[0]):0;
+          const em=t.endTime?parseInt(t.endTime.split(':')[1]):0;
+          const mins=(eh*60+em)-(sh*60+sm2);
+          if(mins>0){
+            catTotals[cat].total+=mins;
+            catTotals[cat].count++;
+            if(!catTotals[cat].members[mi]) catTotals[cat].members[mi]=0;
+            catTotals[cat].members[mi]+=mins;
+          }
+        });
+      }
+    }catch(e){}
+  }));
+
+  const cats=Object.entries(catTotals).filter(([,v])=>v.total>0).sort((a,b)=>b[1].total-a[1].total);
+  if(!cats.length){
+    const el=document.getElementById('cat-stats-wrap');
+    if(el)el.innerHTML='<div style="font-size:13px;color:var(--t3);">今月の報告データがありません</div>';
+    return;
+  }
+
+  let html='<div class="ct" style="margin-bottom:12px;">カテゴリ別 月間実績</div>';
+  cats.forEach(([cat,v])=>{
+    const totalH=(v.total/60).toFixed(1);
+    const avgH=v.count>0?(v.total/v.count/60).toFixed(1):'0';
+    const bc=CC[cat]||'#6B7280';
+    const bg=CB[cat]||'#F9FAFB';
+    html+=`<div class="card" style="margin-bottom:10px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:3px;background:${bg};color:${bc};">${cat}</span>
+        <span style="font-size:13px;font-weight:500;margin-left:auto;">${totalH}h</span>
+        <span style="font-size:11px;color:var(--t3);">平均 ${avgH}h/回</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;">
+        ${MEMBERS.map((m,mi)=>{
+          const mMins=v.members[mi]||0;
+          if(!mMins) return '';
+          const mH=(mMins/60).toFixed(1);
+          return `<div style="display:flex;align-items:center;gap:6px;font-size:11px;">
+            <div style="width:20px;height:20px;border-radius:50%;background:#6B7280;color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;">${m.init}</div>
+            <span style="color:var(--t2);">${m.name}</span>
+            <span style="margin-left:auto;font-weight:500;font-family:'DM Mono',monospace;">${mH}h</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  });
+
+  const el=document.getElementById('cat-stats-wrap');
+  if(el)el.innerHTML=html;
+}
+
+function setDiffP(p,btn){
+  state.diffPeriod=p;
+  document.querySelectorAll('#page-diff .pb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDiff();
+}
+async function _renderCatAvg(){
+  const el=document.getElementById('diff-cat-avg');if(!el)return;
+  const now=new Date(),ym=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  const catMin={},catDays={};
+  CATS.forEach(c=>{catMin[c]=0;catDays[c]=new Set();});
+  for(let d=1;d<=now.getDate();d++){
+    const ds=ym+'-'+String(d).padStart(2,'0');
+    for(let i=0;i<MEMBERS.length;i++){
+      const md=state.memberData[i];
+      if(!md||!md.submitted||!md.submitted[ds]||!md.submitted[ds].report) continue;
+      const stored=reportStore[i+'_'+ds];if(!stored||!stored.length) continue;
+      stored.forEach(t=>{
+        const nt=normalizeTask(t);if(!nt||!nt.startTime||!nt.endTime||!nt.cat||!CATS.includes(nt.cat)) return;
+        const min=Math.max(0,t2m(nt.endTime)-t2m(nt.startTime));
+        catMin[nt.cat]=(catMin[nt.cat]||0)+min;catDays[nt.cat].add(ds+'_'+i);
+      });
+    }
+  }
+  const entries=CATS.map(c=>({cat:c,avgMin:catDays[c].size>0?Math.round(catMin[c]/catDays[c].size):0})).filter(e=>e.avgMin>0).sort((a,b)=>b.avgMin-a.avgMin);
+  if(!entries.length){el.innerHTML='<div style="font-size:13px;color:var(--t3);padding:6px 0;">データなし（報告入力後に反映されます）</div>';return;}
+  const maxMin=Math.max(...entries.map(e=>e.avgMin),1);
+  el.innerHTML=entries.map(({cat,avgMin})=>{
+    const h=Math.floor(avgMin/60),m=avgMin%60,label=h>0?(m>0?h+'h'+m+'m':h+'h'):m+'m',w=Math.round(avgMin/maxMin*100),bc=CB[cat]||'#F9FAFB',cc=CC[cat]||'#6B7280';
+    return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;"><span style="font-size:11px;font-weight:500;padding:2px 7px;border-radius:3px;background:${bc};color:${cc};width:88px;text-align:center;flex-shrink:0;">${cat}</span><div class="bb"><div class="bf" style="width:${w}%;background:${cc};"></div></div><span style="font-size:13px;font-weight:500;min-width:44px;text-align:right;font-family:'DM Mono',monospace;">${label}</span></div>`;
+  }).join('');
+}
+function renderDiff(){
+  const p=state.diffPeriod;
+  const mul=p==='week'?1:4;
+  const overflows=MEMBERS.map((_,i)=>Math.round((i%3===0?2.4:i%3===1?-1.2:1.8)*mul*10)/10);
+  const avgOver=(overflows.reduce((a,b)=>a+b,0)/MEMBERS.length).toFixed(1);
+  const maxOver=Math.max(...overflows);
+  const maxMem=MEMBERS[overflows.indexOf(maxOver)].name;
+  document.getElementById('diff-stats').innerHTML='';
+  const avgLabel=document.getElementById('diff-avg-label');
+  if(avgLabel) avgLabel.innerHTML=`チーム平均: <strong style="color:${avgOver>0?'#DC2626':'#16A34A'};">${avgOver>0?'+':''}${avgOver}h</strong>`;
+  const sorted=[...MEMBERS.map((m,i)=>({m,i,v:overflows[i]}))].sort((a,b)=>b.v-a.v);
+  const maxA=Math.max(...overflows.map(Math.abs));
+  document.getElementById('diff-mbars').innerHTML=sorted.map(({m,i,v})=>{
+    const w=Math.round(Math.abs(v)/maxA*100);
+    const col=v>2?'#DC2626':v>0?'#D97706':v<-1?'#16A34A':'#6B7280';
+    return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+      <div class="av av-sm" style="background:#6B7280;">${m.init}</div>
+      <span style="font-size:12px;min-width:72px;">${m.name}</span>
+      <div class="bb"><div class="bf" style="width:${w}%;background:${col};"></div></div>
+      <span style="font-size:13px;font-weight:500;min-width:44px;text-align:right;font-family:'DM Mono',monospace;color:${col};">${v>0?'+':''}${v}h</span>
+    </div>`;
+  }).join('');
+  _renderCatAvg();
+  const catD={'スタジオ撮影':25,'現像チェック':-5,'打ち合わせ':18,'MTG':12,'梱包作業':30,'プロジェクト推進':22,'その他':5};
+  const maxC=Math.max(...Object.values(catD).map(Math.abs));
+  const sortedCats=[...CATS].filter(c=>catD[c]!==undefined).sort((a,b)=>catD[b]-catD[a]);
+  document.getElementById('diff-cbars').innerHTML=sortedCats.map(cat=>{
+    const v=catD[cat];const w=Math.round(Math.abs(v)/maxC*100);
+    const col=v>15?'#DC2626':v>0?'#D97706':v<-5?'#16A34A':'#6B7280';
+    return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+      <span style="font-size:11px;font-weight:500;padding:2px 7px;border-radius:3px;background:${CB[cat]};color:${CC[cat]};width:88px;text-align:center;flex-shrink:0;">${cat}</span>
+      <div class="bb"><div class="bf" style="width:${w}%;background:${col};"></div></div>
+      <span style="font-size:13px;font-weight:500;min-width:44px;text-align:right;font-family:'DM Mono',monospace;color:${col};">${v>0?'+':''}${v}分</span>
+    </div>`;
+  }).join('');
+  let dd='';
+  MEMBERS.forEach((m,i)=>{
+    dd+=`<div style="margin-bottom:16px;">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border);">
+        <div class="av av-sm" style="background:#6B7280;">${m.init}</div>
+        <span style="font-size:13px;font-weight:500;">${m.name}</span>
+      </div>
+      <div style="font-size:13px;color:var(--t3);padding:4px 0;">データなし（予定・報告入力後に反映されます）</div>
+    </div>`;
+  });
+  document.getElementById('diff-detail').innerHTML=dd;
+}
+
+async function importFromCalendar(){
+  const mi=parseInt(document.getElementById('i-member').value||0);
+  const m=MEMBERS[mi];
+  const mName=m.name;
+  const ds=dateStr(state.inputDate);
+  const btn=document.getElementById('cal-import-btn');
+  if(btn){btn.textContent='読み込み中...';btn.disabled=true;}
+  try{
+    const calId=MEMBERS[mi].calendarId||'';
+    const data=await apiGet({action:'getCalendarEvents',date:ds,memberName:mName,calendarId:calId});
+    if(data.success&&data.events&&data.events.length>0){
+      const tl=document.getElementById('task-list');
+      if(tl){tl.innerHTML='';taskIdx=0;}
+      data.events.forEach(ev=>{
+        addTask();
+        const tb=document.getElementById('task-list').lastElementChild;
+        const ni=tb.querySelector('.task-name');
+        const catSel=tb.querySelector('.task-cat');
+        const startH=tb.querySelector('.t-h.t-start');
+        const startM=tb.querySelector('.t-m.t-start');
+        const endH=tb.querySelector('.t-h.t-end');
+        const endM=tb.querySelector('.t-m.t-end');
+        if(ni)ni.value=ev.title||'';
+        if(catSel)catSel.value=''; // カレンダー取得時はカテゴリ未選択
+        if(startH)startH.value=ev.startH||9;
+        if(startM)startM.value=ev.startM||0;
+        if(endH)endH.value=ev.endH||18;
+        if(endM)endM.value=ev.endM||0;
+        tb.style.borderLeft='3px solid #F59E0B'; // 未選択の目印
+      });
+      renderTimeline();
+      if(btn){btn.textContent='📅 取得完了（'+data.events.length+'件）';btn.style.borderColor='#16A34A';btn.style.color='#15803D';btn.style.background='#F0FDF4';}
+      setTimeout(()=>{if(btn){btn.textContent='📅 カレンダーから取得';btn.style.borderColor='#2563EB';btn.style.color='#1D4ED8';btn.style.background='#EFF6FF';btn.disabled=false;}},3000);
+    } else {
+      const msg=data.error||'予定が見つかりませんでした';
+      if(btn){btn.textContent='📅 '+msg;setTimeout(()=>{btn.textContent='📅 カレンダーから取得';btn.disabled=false;},3000);}
+    }
+  } catch(e){
+    if(btn){btn.textContent='📅 取得失敗';setTimeout(()=>{btn.textContent='📅 カレンダーから取得';btn.disabled=false;},3000);}
+  }
+}
+
+// ============================================================
+// メンバー管理
+// ============================================================
+function updateColorPreview(){
+  const color = document.getElementById('new-member-color').value;
+  const preview = document.getElementById('member-color-preview');
+  const name = document.getElementById('new-member-name').value;
+  if(preview){
+    preview.style.background = color;
+    preview.textContent = name ? name.charAt(0) : '名';
+  }
+}
+
+function showAddMemberForm(editIdx){
+  const form = document.getElementById('add-member-form');
+  const title = document.getElementById('member-form-title');
+  const idxInput = document.getElementById('edit-member-idx');
+  if(editIdx !== undefined && editIdx >= 0){
+    const m = MEMBERS[editIdx];
+    document.getElementById('new-member-name').value = m.name;
+    document.getElementById('new-member-email').value = m.email || '';
+    document.getElementById('new-member-color').value = m.color;
+    title.textContent = 'メンバーを編集';
+    idxInput.value = editIdx;
+    updateColorPreview();
+  } else {
+    document.getElementById('new-member-name').value = '';
+    document.getElementById('new-member-email').value = '';
+    document.getElementById('new-member-color').value = '#2563EB';
+    title.textContent = '新しいメンバーを追加';
+    idxInput.value = -1;
+    updateColorPreview();
+  }
+  form.style.display = 'block';
+  form.scrollIntoView({behavior:'smooth'});
+}
+
+function hideAddMemberForm(){
+  document.getElementById('add-member-form').style.display = 'none';
+}
+
+function saveMember(){
+  const name = (document.getElementById('new-member-name').value || '').trim();
+  const email = (document.getElementById('new-member-email').value || '').trim();
+  const color = document.getElementById('new-member-color').value;
+  const editIdx = parseInt(document.getElementById('edit-member-idx').value);
+
+  if(!name){ alert('名前を入力してください'); return; }
+  if(!email){ alert('メールアドレスを入力してください'); return; }
+
+  // イニシャル自動生成
+  const init = name.charAt(0);
+  // bg色は少し薄く
+  const bg = color + '20';
+
+  if(editIdx >= 0){
+    // 編集
+    MEMBERS[editIdx].name = name;
+    MEMBERS[editIdx].email = email;
+    MEMBERS[editIdx].color = color;
+    MEMBERS[editIdx].bg = bg;
+    MEMBERS[editIdx].init = init;
+  } else {
+    // 新規追加
+    MEMBERS.push({ name, init, color, bg, email, active: false });
+    // stateにも追加
+    state.memberData[MEMBERS.length-1] = {
+      weddingCount:0, targetHours:160, offDays:[], weddingDays:[],
+      submitted:{}, workedHours:0, remainShiftDays:20, reportedWeddingDates:[]
+    };
+  }
+
+  // GASにメンバーリストを保存
+  saveMembersToGAS();
+
+  hideAddMemberForm();
+  renderSettingsPage();
+  // サイドバーも更新
+  rebuildMemberUI();
+
+  const t = document.getElementById('toast-settings');
+  t.textContent = editIdx >= 0 ? '更新しました！' : 'メンバーを追加しました！';
+  t.style.display = 'block';
+  setTimeout(()=>t.style.display='none', 3000);
+}
+
+function deleteMember(idx){
+  if(!confirm(MEMBERS[idx].name + ' を削除しますか？\n※ 過去のデータは保持されます。')) return;
+  MEMBERS.splice(idx, 1);
+  state.memberData.splice(idx, 1);
+  saveMembersToGAS();
+  renderSettingsPage();
+  rebuildMemberUI();
+  const t = document.getElementById('toast-settings');
+  t.textContent = '削除しました';
+  t.style.display = 'block';
+  setTimeout(()=>t.style.display='none', 3000);
+}
+
+async function saveMembersToGAS(){
+  try{
+    const membersData = MEMBERS.map(m=>({
+      name: m.name, init: m.init, color: m.color, bg: m.bg, email: m.email||'', active: m.active||false
+    }));
+    await apiPost({action:'saveMembers', members: membersData});
+  }catch(e){}
+}
+
+async function loadMembersFromGAS(){
+  try{
+    const data = await apiGet({action:'getMembers'});
+    if(data.success && data.members && data.members.length > 0){
+      // 既存MEMBERSを置き換え
+      MEMBERS.length = 0;
+      data.members.forEach(m=>{
+        MEMBERS.push({
+          name: m.name,
+          init: m.init || m.name.charAt(0),
+          color: m.color || '#6B7280',
+          bg: m.bg || '#F9FAFB',
+          email: m.email || '',
+          active: m.active || false
+        });
+      });
+      // memberDataも再構築
+      MEMBERS.forEach((_,i)=>{
+        if(!state.memberData[i]){
+          state.memberData[i]={
+            weddingCount:0,targetHours:160,offDays:[],weddingDays:[],
+            submitted:{},workedHours:0,remainShiftDays:20,reportedWeddingDates:[]
+          };
+        }
+      });
+      rebuildMemberUI();
+    }
+  }catch(e){}
+}
+
+function rebuildMemberUI(){
+  // サイドバーメンバーリスト
+  const sm = document.getElementById('s-members');
+  if(sm){
+    sm.innerHTML = '';
+    const today=dateStr(new Date());
+    MEMBERS.forEach((m,i)=>{
+      const sub=state.memberData[i]?.submitted?.[today]||{};
+      const md=state.memberData[i]||{};
+      const isOff=(md.offDays||[]).includes(today);
+      let badge='';
+      if(isOff){
+        badge=`<span style="font-size:9px;background:#F0FDF4;color:#16A34A;border:1px solid #86EFAC;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">休み</span>`;
+      } else if(sub.report){
+        badge=`<span style="font-size:9px;background:#F0FDF4;color:#16A34A;border:1px solid #86EFAC;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">報告済</span>`;
+      } else if(sub.plan){
+        badge=`<span style="font-size:9px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">報告未入力</span>`;
+      } else {
+        badge=`<span style="font-size:9px;background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">予定未入力</span>`;
+      }
+      sm.innerHTML += `<div class="sm" onclick="showMemberPage(${i});">
+        <div class="sm-av" style="background:#6B7280;">${m.init}</div>
+        <div style="flex:1;min-width:0;">
+          <span class="sm-n">${m.name}</span>${badge}
+        </div>
+      </div>`;
+    });
+  }
+  // 予定入力のメンバーボタン
+  const mb = document.getElementById('member-btns');
+  if(mb){
+    mb.innerHTML = '';
+    MEMBERS.forEach((m,i)=>{
+      const btn = document.createElement('button');
+      btn.textContent = m.name;
+      btn.dataset.idx = i;
+      btn.className = 'member-btn';
+      btn.onclick = ()=>setMember(i,btn);
+      mb.appendChild(btn);
+    });
+    // デフォルト選択なし
+  }
+  // セレクトボックス
+  ['i-member','m-member-sel'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el){
+      el.innerHTML = '';
+      MEMBERS.forEach((m,i)=>el.innerHTML+=`<option value="${i}">${m.name}</option>`);
+    }
+  });
+  // 月初メンバーボタン
+  const mmb = document.getElementById('m-member-btns');
+  if(mmb){
+    mmb.innerHTML = '';
+    MEMBERS.forEach((m,i)=>{
+      const btn = document.createElement('button');
+      btn.textContent = m.name;
+      btn.dataset.idx = i;
+      btn.className = 'member-btn';
+      btn.onclick = ()=>setMemberMonthly(i,btn);
+      mmb.appendChild(btn);
+    });
+    // デフォルト選択なし
+  }
+}
+
+function renderMembersPage(){
+  const list = document.getElementById('mobile-members-list');
+  if(!list) return;
+  list.innerHTML = MEMBERS.map((m,i)=>`
+    <div class="card" style="margin-bottom:10px;display:flex;align-items:center;gap:14px;cursor:pointer;" onclick="showMemberPage(${i})">
+      <div style="width:44px;height:44px;border-radius:50%;background:#6B7280;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700;flex-shrink:0;">${m.init}</div>
+      <div style="flex:1;">
+        <div style="font-size:15px;font-weight:500;">${m.name}</div>
+        <div style="font-size:12px;color:var(--t2);margin-top:2px;">タップして詳細を表示</div>
+      </div>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--t3)" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg>
+    </div>
+  `).join('');
+}
+
+function renderSettingsPage(){
+  const list = document.getElementById('settings-member-list');
+  if(!list) return;
+  list.innerHTML =
+  MEMBERS.map((m,i)=>`
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+      <div class="av av-sm" style="background:#6B7280;flex-shrink:0;">${m.init}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:13px;font-weight:500;">${m.name}</div>
+        <div style="font-size:11px;color:var(--t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${m.email||'メールアドレス未設定'}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;background:${m.active?'#F0FDF4':'#F9FAFB'};border:1px solid ${m.active?'#86EFAC':'var(--border2)'};">
+          <span style="font-size:12px;color:${m.active?'#16A34A':'var(--t3)'};">通知</span>
+          <button onclick="toggleNotification(${i})" style="width:36px;height:20px;border-radius:99px;border:none;background:${m.active?'#16A34A':'#D1D5DB'};position:relative;cursor:pointer;transition:background .2s;">
+            <span style="position:absolute;top:2px;${m.active?'right:2px':'left:2px'};width:16px;height:16px;border-radius:50%;background:#fff;display:block;transition:all .2s;"></span>
+          </button>
+          <span style="font-size:11px;color:${m.active?'#16A34A':'var(--t3)'};">${m.active?'ON':'OFF'}</span>
+        </div>
+        <button class="btn btn-sm" onclick="showAddMemberForm(${i})">編集</button>
+        <button class="btn btn-sm" onclick="deleteMember(${i})" style="color:#DC2626;border-color:#FCA5A5;">削除</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleNotification(idx){
+  MEMBERS[idx].active = !MEMBERS[idx].active;
+  saveMembersToGAS();
+  renderSettingsPage();
+  const t = document.getElementById('toast-settings');
+  t.textContent = MEMBERS[idx].name + ' の通知を' + (MEMBERS[idx].active ? 'ONにしました' : 'OFFにしました');
+  t.style.display = 'block';
+  setTimeout(()=>t.style.display='none', 3000);
+}
+
+
+init();
+sw('input');
+</script>
+
+
+</body></html>
