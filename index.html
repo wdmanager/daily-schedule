@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0064)file:///Users/shunsukekobayashi/Downloads/kuppography_v4_17.html -->
+<!-- saved from url=(0064)file:///Users/shunsukekobayashi/Downloads/kuppography_v4_21.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -305,7 +305,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       </div><div class="sm" onclick="showMemberPage(7);">
         <div class="sm-av" style="background:#5B8DD9;">小</div>
         <div style="flex:1;min-width:0;">
-          <span class="sm-n">小林 俊介</span><span style="font-size:9px;background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">予定未入力</span>
+          <span class="sm-n">小林 俊介</span><span style="font-size:9px;background:#F0FDF4;color:#16A34A;border:1px solid #86EFAC;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">休み</span>
         </div>
       </div></div>
 </nav>
@@ -322,7 +322,11 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
   </div>
 
   <!-- 個人ビューのバナー -->
-  <div id="dash-filter-banner"></div>
+  <div id="dash-filter-banner"><div style="background:#5B8DD915;border:1px solid #5B8DD9;border-radius:var(--rs);padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+        <div class="av" style="background:#5B8DD9;">小</div>
+        <span style="font-size:13px;font-weight:500;flex:1;">小林 俊介 さんの個人ビュー</span>
+        <button class="btn btn-sm" onclick="clearMemberFilter()">← 全員表示に戻る</button>
+      </div></div>
 
   
   <div id="unsub-card" style="display: none; border-left: 3px solid rgb(220, 38, 38);"></div>
@@ -453,16 +457,115 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
         <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
         <button class="btn btn-sm" onclick="goToInput(0,&#39;plan&#39;)" style="margin-left:auto;">予定を編集</button>
         
-      </div><div style="font-size:13px;color:var(--t3);">予定未入力</div></div><div class="dd-member-card">
+      </div><div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
+          <div style="font-size:16px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;">8h20分</div>
+        </div>
+        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
+          <div style="font-size:16px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;">—</div>
+        </div>
+        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
+          <div style="font-size:16px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#6B7280;">±0</div>
+        </div>
+      </div><div style="overflow-x:auto;"><div style="min-width:380px;">
+        <div style="display:flex;padding-left:76px;margin-bottom:3px;">
+          <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">21</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:3.8%;width:11.5%;height:20px;top:0;background:#C095A8;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:3.8%;width:11.5%;height:20px;top:0;background:#C095A8;border-radius:2px;opacity:0.35;"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#faf7f8;color:#C095A8;white-space:nowrap;">プロジェクト推進</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">スキル評価 資料作成</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">08:30〜10:00 (1h30m)</span>
+          </div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:15.4%;width:7.7%;height:20px;top:0;background:#D4A082;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:15.4%;width:7.7%;height:20px;top:0;background:#D4A082;border-radius:2px;opacity:0.35;"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#fcf7f5;color:#D4A082;white-space:nowrap;">FB</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">あかりさん</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">10:00〜11:00 (1h)</span>
+          </div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:23.1%;width:7.7%;height:20px;top:0;background:#D4A082;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:23.1%;width:7.7%;height:20px;top:0;background:#D4A082;border-radius:2px;opacity:0.35;"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#fcf7f5;color:#D4A082;white-space:nowrap;">FB</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">葵</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">11:00〜12:00 (1h)</span>
+          </div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:30.8%;width:7.7%;height:20px;top:0;background:#D4A082;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:30.8%;width:7.7%;height:20px;top:0;background:#D4A082;border-radius:2px;opacity:0.35;"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#fcf7f5;color:#D4A082;white-space:nowrap;">FB</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">千葉</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">12:00〜13:00 (1h)</span>
+          </div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:38.5%;width:7.7%;height:20px;top:0;background:#e59494;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:38.5%;width:7.7%;height:20px;top:0;background:#e59494;border-radius:2px;opacity:0.35;"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#fdf6f6;color:#e59494;white-space:nowrap;">休憩</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">（タスク）</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">13:00〜14:00 (1h)</span>
+          </div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:46.2%;width:5.1%;height:20px;top:0;background:#9DB89F;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:46.2%;width:5.1%;height:20px;top:0;background:#9DB89F;border-radius:2px;opacity:0.35;"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f7f9f7;color:#9DB89F;white-space:nowrap;">現像チェック</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">260502</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">14:00〜14:40 (40m)</span>
+          </div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:51.3%;width:9.0%;height:20px;top:0;background:#e59494;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:51.3%;width:9.0%;height:20px;top:0;background:#e59494;border-radius:2px;opacity:0.35;"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#fdf6f6;color:#e59494;white-space:nowrap;">休憩</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">移動</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">14:40〜15:50 (1h10m)</span>
+          </div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:61.5%;width:7.7%;height:20px;top:0;background:#C9A87C;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:61.5%;width:7.7%;height:20px;top:0;background:#C9A87C;border-radius:2px;opacity:0.35;"></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#fbf8f5;color:#C9A87C;white-space:nowrap;">打ち合わせ</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">赤坂プリンス 下見など</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">16:00〜17:00 (1h)</span>
+          </div>
+        </div><div style="display:flex;gap:10px;padding-left:76px;margin-top:4px;">
+        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>予定</span>
+        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.35;display:inline-block;"></span>実績</span>
+      </div></div></div></div><div class="dd-member-card">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div class="av" style="background:#C96B6B;">佐</div>
         <span style="font-size:14px;font-weight:500;">佐々木 大翔</span>
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">休み</span>
         
         
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
         <button class="btn btn-sm" onclick="goToInput(1,&#39;plan&#39;)" style="margin-left:auto;">予定を編集</button>
         
-      </div><div style="font-size:13px;color:var(--t3);">休み登録日のため入力不要です</div></div><div class="dd-member-card">
+      </div><div style="font-size:13px;color:var(--t3);">予定未入力</div></div><div class="dd-member-card">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div class="av" style="background:#D4845A;">坂</div>
         <span style="font-size:14px;font-weight:500;">坂本 楓花</span>
@@ -505,96 +608,66 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       </div><div style="overflow-x:auto;"><div style="min-width:380px;">
         <div style="display:flex;padding-left:76px;margin-bottom:3px;">
           <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">21</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="予定記入">予定記入</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">10:00〜10:15 (15m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:15.4%;width:1.9%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:15.4%;width:1.9%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:15.4%;width:1.9%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-            <div style="position:absolute;left:15.4%;width:1.9%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;white-space:nowrap;">その他</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">予定記入</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">10:00〜10:15 (15m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="納品メール作成">納品メール作成</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">10:15〜12:15 (2h)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:17.3%;width:15.4%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:17.3%;width:15.4%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:17.3%;width:15.4%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#A39990;padding:0 3px;white-space:nowrap;font-weight:500;">2h</span>
-            </div>
-            <div style="position:absolute;left:17.3%;width:15.4%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;white-space:nowrap;">その他</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">納品メール作成</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">10:15〜12:15 (2h)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f7f9f7;color:#9DB89F;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">現像チェック</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="260523kw">260523kw</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">12:15〜14:00 (1h45m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:32.7%;width:13.5%;height:20px;top:0;background:#9DB89F;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:32.7%;width:13.5%;height:20px;top:0;background:#9DB89F;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:32.7%;width:13.5%;height:12px;top:1px;background:#9DB89F;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#9DB89F;padding:0 3px;white-space:nowrap;font-weight:500;">1h45m</span>
-            </div>
-            <div style="position:absolute;left:32.7%;width:13.5%;height:12px;top:13px;background:#9DB89F;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f7f9f7;color:#9DB89F;white-space:nowrap;">現像チェック</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">260523kw</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">12:15〜14:00 (1h45m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="カタログ作成">カタログ作成</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">14:00〜14:30 (30m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:46.2%;width:3.8%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:46.2%;width:3.8%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:46.2%;width:3.8%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-            <div style="position:absolute;left:46.2%;width:3.8%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;white-space:nowrap;">その他</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">カタログ作成</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">14:00〜14:30 (30m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#fdf6f6;color:#e59494;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">休憩</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="移動兼休憩">移動兼休憩</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">14:30〜16:00 (1h30m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:50.0%;width:11.5%;height:20px;top:0;background:#e59494;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:50.0%;width:11.5%;height:20px;top:0;background:#e59494;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:50.0%;width:11.5%;height:12px;top:1px;background:#e59494;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#e59494;padding:0 3px;white-space:nowrap;font-weight:500;">1h30m</span>
-            </div>
-            <div style="position:absolute;left:50.0%;width:11.5%;height:12px;top:13px;background:#e59494;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#fdf6f6;color:#e59494;white-space:nowrap;">休憩</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">移動兼休憩</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">14:30〜16:00 (1h30m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#faf7f8;color:#C095A8;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">プロジェクト推進</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="赤坂プリンス訪問">赤坂プリンス訪問</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">16:00〜17:30 (1h30m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:61.5%;width:11.5%;height:20px;top:0;background:#C095A8;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:61.5%;width:11.5%;height:20px;top:0;background:#C095A8;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:61.5%;width:11.5%;height:12px;top:1px;background:#C095A8;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#C095A8;padding:0 3px;white-space:nowrap;font-weight:500;">1h30m</span>
-            </div>
-            <div style="position:absolute;left:61.5%;width:11.5%;height:12px;top:13px;background:#C095A8;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#faf7f8;color:#C095A8;white-space:nowrap;">プロジェクト推進</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">赤坂プリンス訪問</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">16:00〜17:30 (1h30m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
         </div><div style="display:flex;gap:10px;padding-left:76px;margin-top:4px;">
         <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>予定</span>
         <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.35;display:inline-block;"></span>実績</span>
@@ -623,126 +696,86 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       </div><div style="overflow-x:auto;"><div style="min-width:380px;">
         <div style="display:flex;padding-left:76px;margin-bottom:3px;">
           <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">21</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="5/31バックアップ（スタジオ&amp;IWAI）">5/31バックアップ（スタジオ&amp;IWAI）</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">10:00〜10:30 (30m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:15.4%;width:3.8%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:15.4%;width:3.8%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:15.4%;width:3.8%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-            <div style="position:absolute;left:15.4%;width:3.8%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;white-space:nowrap;">その他</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">5/31バックアップ（スタジオ&amp;IWAI）</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">10:00〜10:30 (30m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="掃除水やり">掃除水やり</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">10:30〜11:00 (30m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:19.2%;width:3.8%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:19.2%;width:3.8%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:19.2%;width:3.8%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-            <div style="position:absolute;left:19.2%;width:3.8%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;white-space:nowrap;">その他</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">掃除水やり</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">10:30〜11:00 (30m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="スタジオ練習分セレクト現像提出">スタジオ練習分セレクト現像提出</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">11:00〜12:30 (1h30m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:23.1%;width:11.5%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:23.1%;width:11.5%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:23.1%;width:11.5%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#A39990;padding:0 3px;white-space:nowrap;font-weight:500;">1h30m</span>
-            </div>
-            <div style="position:absolute;left:23.1%;width:11.5%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;white-space:nowrap;">その他</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">スタジオ練習分セレクト現像提出</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">11:00〜12:30 (1h30m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#fdf6f6;color:#e59494;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">休憩</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="休憩">休憩</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">12:30〜13:30 (1h)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:34.6%;width:7.7%;height:20px;top:0;background:#e59494;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:34.6%;width:7.7%;height:20px;top:0;background:#e59494;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:34.6%;width:7.7%;height:12px;top:1px;background:#e59494;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#e59494;padding:0 3px;white-space:nowrap;font-weight:500;">1h</span>
-            </div>
-            <div style="position:absolute;left:34.6%;width:7.7%;height:12px;top:13px;background:#e59494;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#fdf6f6;color:#e59494;white-space:nowrap;">休憩</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">休憩</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">12:30〜13:30 (1h)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="IWAIセレクト5/30">IWAIセレクト5/30</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">13:30〜15:00 (1h30m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:42.3%;width:11.5%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:42.3%;width:11.5%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:42.3%;width:11.5%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#A39990;padding:0 3px;white-space:nowrap;font-weight:500;">1h30m</span>
-            </div>
-            <div style="position:absolute;left:42.3%;width:11.5%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;white-space:nowrap;">その他</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">IWAIセレクト5/30</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">13:30〜15:00 (1h30m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="IWAI &amp;スタジオFB記入">IWAI &amp;スタジオFB記入</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">15:00〜16:00 (1h)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:53.8%;width:7.7%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:53.8%;width:7.7%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:53.8%;width:7.7%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#A39990;padding:0 3px;white-space:nowrap;font-weight:500;">1h</span>
-            </div>
-            <div style="position:absolute;left:53.8%;width:7.7%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;white-space:nowrap;">その他</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">IWAI &amp;スタジオFB記入</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">15:00〜16:00 (1h)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="コミュニケーターヘルプ">コミュニケーターヘルプ</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">16:00〜17:30 (1h30m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:61.5%;width:11.5%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:61.5%;width:11.5%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:61.5%;width:11.5%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#A39990;padding:0 3px;white-space:nowrap;font-weight:500;">1h30m</span>
-            </div>
-            <div style="position:absolute;left:61.5%;width:11.5%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;white-space:nowrap;">その他</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">コミュニケーターヘルプ</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">16:00〜17:30 (1h30m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="IWAIセレクト5/31">IWAIセレクト5/31</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">17:30〜19:00 (1h30m)</div>
+        </div><div style="margin-bottom:8px;">
+          <div style="flex:1;position:relative;height:20px;background:var(--bg);border-radius:3px;overflow:visible;margin-bottom:3px;">
+            <div style="position:absolute;left:73.1%;width:11.5%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:1;"></div>
+            <div style="position:absolute;left:73.1%;width:11.5%;height:20px;top:0;background:#A39990;border-radius:2px;opacity:0.35;"></div>
           </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:73.1%;width:11.5%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#A39990;padding:0 3px;white-space:nowrap;font-weight:500;">1h30m</span>
-            </div>
-            <div style="position:absolute;left:73.1%;width:11.5%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
+          <div style="display:flex;align-items:baseline;gap:6px;padding:0 2px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;white-space:nowrap;">その他</span>
+            <span style="font-size:11px;color:var(--t1);font-weight:500;word-break:break-all;">IWAIセレクト5/31</span>
+            <span style="font-size:10px;color:var(--t3);white-space:nowrap;">17:30〜19:00 (1h30m)</span>
           </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
         </div><div style="display:flex;gap:10px;padding-left:76px;margin-top:4px;">
         <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>予定</span>
         <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.35;display:inline-block;"></span>実績</span>
@@ -759,136 +792,12 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
         <div class="av" style="background:#5B8DD9;">小</div>
         <span style="font-size:14px;font-weight:500;">小林 俊介</span>
+        <span class="badge" style="background:#FEF2F2;color:#DC2626;">休み</span>
         
         
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
         <button class="btn btn-sm" onclick="goToInput(7,&#39;plan&#39;)" style="margin-left:auto;">予定を編集</button>
         
-      </div><div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
-        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
-          <div style="font-size:16px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;">6h30分</div>
-        </div>
-        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
-          <div style="font-size:16px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;">—</div>
-        </div>
-        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
-          <div style="font-size:16px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#6B7280;">±0</div>
-        </div>
-      </div><div style="overflow-x:auto;"><div style="min-width:380px;">
-        <div style="display:flex;padding-left:76px;margin-bottom:3px;">
-          <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">21</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="バックアップ、slack返信、レイアウトチェック、各所連絡ごとなど">バックアップ、slack返信、レイアウトチェック、各所連絡ごとなど</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">10:30〜12:00 (1h30m)</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:19.2%;width:11.5%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#A39990;padding:0 3px;white-space:nowrap;font-weight:500;">1h30m</span>
-            </div>
-            <div style="position:absolute;left:19.2%;width:11.5%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f7f9f7;color:#9DB89F;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">現像チェック</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="1件途中から">1件途中から</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">12:00〜13:00 (1h)</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:30.8%;width:7.7%;height:12px;top:1px;background:#9DB89F;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#9DB89F;padding:0 3px;white-space:nowrap;font-weight:500;">1h</span>
-            </div>
-            <div style="position:absolute;left:30.8%;width:7.7%;height:12px;top:13px;background:#9DB89F;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#fdf6f6;color:#e59494;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">休憩</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="（タスク）">（タスク）</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">13:00〜14:00 (1h)</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:38.5%;width:7.7%;height:12px;top:1px;background:#e59494;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#e59494;padding:0 3px;white-space:nowrap;font-weight:500;">1h</span>
-            </div>
-            <div style="position:absolute;left:38.5%;width:7.7%;height:12px;top:13px;background:#e59494;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f9f8fb;color:#B0A3C7;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">MTG</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="【定例】久保小林1on1">【定例】久保小林1on1</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">14:00〜15:00 (1h)</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:46.2%;width:7.7%;height:12px;top:1px;background:#B0A3C7;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#B0A3C7;padding:0 3px;white-space:nowrap;font-weight:500;">1h</span>
-            </div>
-            <div style="position:absolute;left:46.2%;width:7.7%;height:12px;top:13px;background:#B0A3C7;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f7f9f7;color:#9DB89F;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">現像チェック</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="1件">1件</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">15:00〜16:00 (1h)</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:53.8%;width:7.7%;height:12px;top:1px;background:#9DB89F;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              <span style="font-size:8px;color:#9DB89F;padding:0 3px;white-space:nowrap;font-weight:500;">1h</span>
-            </div>
-            <div style="position:absolute;left:53.8%;width:7.7%;height:12px;top:13px;background:#9DB89F;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="ルック撮影について考える">ルック撮影について考える</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">16:00〜16:30 (30m)</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:61.5%;width:3.8%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-            <div style="position:absolute;left:61.5%;width:3.8%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;">
-          <div style="width:70px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#f8f7f6;color:#A39990;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">その他</div>
-            <div style="font-size:10px;color:var(--t2);word-break:break-all;line-height:1.3;" title="インスタ投稿作成">インスタ投稿作成</div>
-            <div style="font-size:9px;color:var(--t3);margin-top:1px;">16:30〜17:00 (30m)</div>
-          </div>
-          <div style="flex:1;position:relative;height:26px;background:var(--bg);border-radius:3px;overflow:visible;">
-            <div style="position:absolute;left:65.4%;width:3.8%;height:12px;top:1px;background:#A39990;opacity:.3;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-            <div style="position:absolute;left:65.4%;width:3.8%;height:12px;top:13px;background:#A39990;border-radius:2px;display:flex;align-items:center;overflow:hidden;">
-              
-            </div>
-          </div>
-          <div style="font-size:11px;font-weight:500;min-width:36px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#A09890;">—</div>
-        </div><div style="display:flex;gap:10px;padding-left:76px;margin-top:4px;">
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;display:inline-block;"></span>予定</span>
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:6px;border-radius:1px;background:#6B7280;opacity:.35;display:inline-block;"></span>実績</span>
-      </div></div></div></div></div>
+      </div><div style="font-size:13px;color:var(--t3);">休み登録日のため入力不要です</div></div></div>
   </div>
 </div>
 
@@ -1229,7 +1138,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
 <div class="view" id="page-summary">
   <div class="ph">
     <div><div class="pt">月間サマリー</div><div class="ps">残りシフト日数から1日あたりの必要ペースを算出</div></div>
-    <select id="sum-month" onchange="renderSummary()" style="width:auto;padding:7px 10px;font-size:13px;"><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option></select>
+    <select id="sum-month" onchange="renderSummary()" style="width:auto;padding:7px 10px;font-size:13px;"><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-0">2026年1月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-1">2026年2月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option><option value="2026-5">2026年6月</option><option value="2026-4">2026年5月</option><option value="2026-3">2026年4月</option><option value="2026-2">2026年3月</option></select>
   </div>
   <div class="sg" id="sum-stats">
     <div class="sc"><div class="sl">今月の残り日数</div><div class="sv">19<span style="font-size:16px;color:var(--t3);">日</span></div><div class="ss">シフトは個人ごとに異なります</div></div>
@@ -1798,8 +1707,8 @@ function formatDate(d){return d.toLocaleDateString('ja-JP',{year:'numeric',month
 
 // Nav
 function sw(name){
-  // ナビゲーションで画面切替時は個人ビューを解除
-  state.filterMember=null;
+  // dashboardへの切替以外は個人ビューを解除
+  if(name!=='dashboard') state.filterMember=null;
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   document.querySelectorAll('.nav').forEach((b,i)=>b.classList.toggle('active',['input','monthly','dashboard','diff','summary','usage','settings'][i]===name));
@@ -1996,14 +1905,7 @@ function init(){
   state.selectedDate=now;
 
   // Sidebar members
-  const sm=document.getElementById('s-members');
-  sm.innerHTML=''; // clear first
-  MEMBERS.forEach((m,i)=>{
-    sm.innerHTML+=`<div class="sm" onclick="showMemberPage(${i});">
-      <div class="sm-av" style="background:${m.color};">${m.init}</div>
-      <span class="sm-n">${m.name}</span>
-    </div>`;
-  });
+  rebuildMemberUI();
 
   // Selects
   ['i-member','m-member-sel'].forEach(id=>{
@@ -2261,6 +2163,7 @@ function renderDashboard(){
     document.getElementById('dash-personal-pace').innerHTML='';
   }
 
+  if(!isFiltered){
   // Hours
   let hh='';
   indices.forEach(i=>{
@@ -2305,6 +2208,7 @@ function renderDashboard(){
   });
   document.getElementById('dash-overtime').innerHTML=ot;
 
+  }
   // Day detail
   document.getElementById('day-detail-title').textContent=`${sel.getMonth()+1}月${sel.getDate()}日（${['日','月','火','水','木','金','土'][sel.getDay()]}）のタスク詳細`;
   document.getElementById('day-detail-body').innerHTML='<div style="font-size:13px;color:var(--t3);padding:10px 0;">読み込み中...</div>';
@@ -3345,22 +3249,66 @@ function setDiffP(p,btn){
   btn.classList.add('active');
   renderDiff();
 }
-function renderDiff(){
+async function renderDiff(){
   const p=state.diffPeriod;
-  const mul=p==='week'?1:4;
-  const overflows=MEMBERS.map((_,i)=>Math.round((i%3===0?2.4:i%3===1?-1.2:1.8)*mul*10)/10);
+  // GASから当月の予定・実績データを集計
+  const now=new Date();
+  const ym=_ymStr(now.getFullYear(), now.getMonth());
+  const daysInMonth=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+  const today=now.getDate();
+
+  // メンバーごとの予定合計・実績合計を集計
+  const memberStats=await Promise.all(MEMBERS.map(async(m,i)=>{
+    let planMin=0, actMin=0;
+    const days=p==='week'?7:today;
+    const startD=p==='week'?Math.max(1,today-6):1;
+    for(let d=startD;d<=today;d++){
+      const ds=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      try{
+        const plan=await apiGet({action:'getPlan',date:ds,memberName:m.name});
+        if(plan.success&&plan.tasks) plan.tasks.forEach(t=>{
+          if(!t.startTime||!t.endTime) return;
+          const [sh,sm2]=t.startTime.split(':').map(Number);
+          const [eh,em]=t.endTime.split(':').map(Number);
+          const mins=(eh*60+em)-(sh*60+sm2);
+          if(mins>0) planMin+=mins;
+        });
+        const rep=await apiGet({action:'getReport',date:ds,memberName:m.name});
+        if(rep.success&&rep.tasks) rep.tasks.forEach(t=>{
+          if(!t.startTime||!t.endTime) return;
+          const [sh,sm2]=t.startTime.split(':').map(Number);
+          const [eh,em]=t.endTime.split(':').map(Number);
+          const mins=(eh*60+em)-(sh*60+sm2);
+          if(mins>0) actMin+=mins;
+        });
+      }catch(e){}
+    }
+    return {m,i,planMin,actMin,diff:actMin-planMin};
+  }));
+
+  const hasData=memberStats.some(s=>s.planMin>0||s.actMin>0);
+  if(!hasData){
+    document.getElementById('diff-stats').innerHTML='<div style="font-size:13px;color:var(--t3);">データがありません。予定・報告入力後に表示されます。</div>';
+    document.getElementById('diff-mbars').innerHTML='';
+    document.getElementById('diff-cbars').innerHTML='';
+    document.getElementById('diff-detail').innerHTML='';
+    return;
+  }
+
+  const overflows=memberStats.map(s=>Math.round(s.diff/60*10)/10);
   const avgOver=(overflows.reduce((a,b)=>a+b,0)/MEMBERS.length).toFixed(1);
-  const maxOver=Math.max(...overflows);
-  const maxMem=MEMBERS[overflows.indexOf(maxOver)].name;
+  const maxOver=Math.max(...overflows.map(Math.abs));
+  const maxMem=MEMBERS[overflows.map(Math.abs).indexOf(maxOver)].name;
   document.getElementById('diff-stats').innerHTML=`
-    <div class="sc"><div class="sl">平均オーバー</div><div class="sv" style="color:${avgOver>0?'#DC2626':'#16A34A'};">${avgOver>0?'+':''}${avgOver}h</div></div>
-    <div class="sc"><div class="sl">最大ズレ（${maxMem}）</div><div class="sv" style="color:#DC2626;">+${maxOver}h</div></div>
+    <div class="sc"><div class="sl">平均差分</div><div class="sv" style="color:${avgOver>0?'#D97706':'#16A34A'};">${avgOver>0?'+':''}${avgOver}h</div></div>
+    <div class="sc"><div class="sl">最大差分（${maxMem}）</div><div class="sv">${maxOver.toFixed(1)}h</div></div>
   `;
-  const sorted=[...MEMBERS.map((m,i)=>({m,i,v:overflows[i]}))].sort((a,b)=>b.v-a.v);
-  const maxA=Math.max(...overflows.map(Math.abs));
-  document.getElementById('diff-mbars').innerHTML=sorted.map(({m,i,v})=>{
+  const sorted=[...memberStats].sort((a,b)=>Math.abs(b.diff)-Math.abs(a.diff));
+  const maxA=Math.max(...overflows.map(Math.abs))||1;
+  document.getElementById('diff-mbars').innerHTML=sorted.map(({m,diff})=>{
+    const v=Math.round(diff/60*10)/10;
     const w=Math.round(Math.abs(v)/maxA*100);
-    const col=v>2?'#DC2626':v>0?'#D97706':v<-1?'#16A34A':'#6B7280';
+    const col=v>2?'#D97706':v<-2?'#2563EB':'#16A34A';
     return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
       <div class="av av-sm" style="background:${m.color};">${m.init}</div>
       <span style="font-size:12px;min-width:72px;">${m.name}</span>
@@ -3368,30 +3316,23 @@ function renderDiff(){
       <span style="font-size:13px;font-weight:500;min-width:44px;text-align:right;font-family:'DM Mono',monospace;color:${col};">${v>0?'+':''}${v}h</span>
     </div>`;
   }).join('');
-  const catD={'スタジオ撮影':25,'現像チェック':-5,'打ち合わせ':18,'MTG':12,'梱包作業':30,'プロジェクト推進':22,'その他':5};
-  const maxC=Math.max(...Object.values(catD).map(Math.abs));
-  const sortedCats=[...CATS].sort((a,b)=>catD[b]-catD[a]);
-  document.getElementById('diff-cbars').innerHTML=sortedCats.map(cat=>{
-    const v=catD[cat];const w=Math.round(Math.abs(v)/maxC*100);
-    const col=v>15?'#DC2626':v>0?'#D97706':v<-5?'#16A34A':'#6B7280';
-    return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
-      <span style="font-size:11px;font-weight:500;padding:2px 7px;border-radius:3px;background:${CB[cat]};color:${CC[cat]};width:88px;text-align:center;flex-shrink:0;">${cat}</span>
-      <div class="bb"><div class="bf" style="width:${w}%;background:${col};"></div></div>
-      <span style="font-size:13px;font-weight:500;min-width:44px;text-align:right;font-family:'DM Mono',monospace;color:${col};">${v>0?'+':''}${v}分</span>
-    </div>`;
-  }).join('');
-  let dd='';
-  MEMBERS.forEach((m,i)=>{
-    dd+=`<div style="margin-bottom:16px;">
-      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid ${m.color}20;">
+  document.getElementById('diff-cbars').innerHTML='';
+  document.getElementById('diff-detail').innerHTML=memberStats.map(({m,planMin,actMin,diff})=>{
+    const pH=(planMin/60).toFixed(1);
+    const aH=(actMin/60).toFixed(1);
+    const dH=Math.round(diff/60*10)/10;
+    const col=dH>2?'#D97706':dH<-2?'#2563EB':'#16A34A';
+    return`<div style="margin-bottom:16px;">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;padding-bottom:6px;border-bottom:2px solid ${m.color}20;">
         <div class="av av-sm" style="background:${m.color};">${m.init}</div>
         <span style="font-size:13px;font-weight:500;color:${m.color};">${m.name}</span>
+        <span style="margin-left:auto;font-size:13px;font-weight:500;color:${col};">${dH>0?'+':''}${dH}h</span>
       </div>
-      <div style="font-size:13px;color:var(--t3);padding:4px 0;">データなし（予定・報告入力後に反映されます）</div>
+      <div style="font-size:12px;color:var(--t2);">予定: ${pH}h　実績: ${aH}h</div>
     </div>`;
-  });
-  document.getElementById('diff-detail').innerHTML=dd;
+  }).join('');
 }
+
 
 async function importFromCalendar(){
   const mi=parseInt(document.getElementById('i-member').value||0);
