@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0109)file:///Users/shunsukekobayashi/Downloads/kuppography___%E3%83%81%E3%83%BC%E3%83%A0%E7%AE%A1%E7%90%86_36.html -->
+<!-- saved from url=(0109)file:///Users/shunsukekobayashi/Downloads/kuppography___%E3%83%81%E3%83%BC%E3%83%A0%E7%AE%A1%E7%90%86_42.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,7 +123,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.6;}
 .tl-wrap{position:relative;padding:4px 0 0;margin-bottom:14px;}
 .tl-hours{position:relative;height:18px;margin-bottom:3px;}
 .tl-hour{position:absolute;top:0;font-size:10px;color:var(--t2);transform:translateX(-50%);font-family:'DM Mono',monospace;white-space:nowrap;font-weight:500;}
-.tl-track{position:relative;height:46px;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--border);}
+.tl-track{position:relative;height:80px;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--border);}
 .tl-tick{position:absolute;top:0;bottom:0;width:1px;background:rgba(160,152,144,.35);}
 .tl-tick.half{background:rgba(160,152,144,.18);}
 .tl-block{position:absolute;top:4px;bottom:4px;border-radius:4px;padding:0 8px;font-size:11px;font-weight:500;color:#fff;display:flex;align-items:center;overflow:hidden;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.1);}
@@ -305,7 +305,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       </div><div class="sm" onclick="showMemberPage(7);">
         <div class="sm-av" style="background:#6B7280;">小</div>
         <div style="flex:1;min-width:0;">
-          <span class="sm-n">小林 俊介</span><span style="font-size:9px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">報告未入力</span>
+          <span class="sm-n">小林 俊介</span><span style="font-size:9px;background:#F0FDF4;color:#16A34A;border:1px solid #86EFAC;border-radius:99px;padding:1px 5px;margin-left:4px;white-space:nowrap;">報告済</span>
         </div>
       </div></div>
 </nav>
@@ -322,54 +322,112 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
   </div>
 
   <!-- 個人ビューのバナー -->
-  <div id="dash-filter-banner"><div style="background:var(--bg);border:1px solid var(--border2);border-radius:var(--rs);padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
-        <div class="av" style="background:#6B7280;">佐</div>
-        <span style="font-size:13px;font-weight:500;flex:1;">佐々木 大翔 さんの個人ビュー</span>
-        <button class="btn btn-sm" onclick="clearMemberFilter()">← 全員表示に戻る</button>
-      </div></div>
+  <div id="dash-filter-banner"></div>
 
   
   <div id="unsub-card" style="display: none; border-left: 3px solid rgb(220, 38, 38);"></div>
 
-  <div class="sg" id="dash-stats" style="display: none;">
-      <div class="sc"><div class="sl">予定入力</div><div class="sv">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
-      <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:#DC2626;">0<span style="font-size:14px;color:var(--t3);">/8</span></div></div>
-      <div class="sc"><div class="sl">チーム平均超過</div><div class="sv" style="color:#16A34A;">0<span style="font-size:16px;color:var(--t3);">分</span></div></div>
+  <div class="sg" id="dash-stats" style="">
+      <div class="sc"><div class="sl">予定入力</div><div class="sv">3<span style="font-size:14px;color:var(--t3);">/7</span></div></div>
+      <div class="sc"><div class="sl">終業報告</div><div class="sv" style="color:#DC2626;">1<span style="font-size:14px;color:var(--t3);">/7</span></div></div>
     </div>
 
   <!-- 個人ビュー時のペース情報 -->
-  <div id="dash-personal-pace" style="margin-bottom:14px;">
-      <div class="pace-card" style="border-left:3px solid var(--border2);">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-          <div class="av av-sm" style="background:#6B7280;">佐</div>
-          <span style="font-size:13px;font-weight:500;">佐々木 大翔</span>
-          <span class="badge" style="background:#F0FDF4;color:#16A34A;margin-left:auto;">順調</span>
-        </div>
-        <div style="font-size:11px;color:var(--t3);margin-bottom:10px;">残りシフト: 16日</div>
-        <div class="pace-bar"><div class="pace-fill" style="width:19%;background:#6B7280;opacity:.8;"></div></div>
-        <div class="pace-nums"><span>実績 32h / 目標 168h（19%）</span><span>残り 136h</span></div>
-        <div class="pace-alert" style="background:#F0FDF4;">
-          <span style="font-size:12px;color:#16A34A;">必要ペース</span>
-          <span style="font-size:20px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">8.5h<span style="font-size:12px;font-weight:400;">/日</span></span>
-        </div>
-      </div></div>
+  <div id="dash-personal-pace" style="margin-bottom:14px;"></div>
 
   <div class="g2">
-    <div class="card" id="dash-hours-card" style="display: none;">
+    <div class="card" id="dash-hours-card" style="">
       <div class="ct">月間勤務時間 進捗</div>
       <div id="dash-hours"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">飯</div>
+      <span style="font-size:12px;min-width:44px;">飯倉 孝史</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#6B7280;">佐</div>
       <span style="font-size:12px;min-width:44px;">佐々木 大翔</span>
-      <div class="bb"><div class="bf" style="width:19%;background:#6B7280;opacity:.8;"></div></div>
-      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">32/168h</span>
-      <span style="font-size:11px;color:#2563EB;min-width:28px;">19%</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">坂</div>
+      <span style="font-size:12px;min-width:44px;">坂本 楓花</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">山</div>
+      <span style="font-size:12px;min-width:44px;">山口 葵</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">川</div>
+      <span style="font-size:12px;min-width:44px;">川上 輝</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">横</div>
+      <span style="font-size:12px;min-width:44px;">横山 大燿</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">片</div>
+      <span style="font-size:12px;min-width:44px;">片倉 来波</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">小</div>
+      <span style="font-size:12px;min-width:44px;">小林 俊介</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;opacity:.8;"></div></div>
+      <span style="font-size:12px;font-weight:600;min-width:64px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;">0/160h</span>
+      <span style="font-size:11px;color:#2563EB;min-width:28px;">0%</span>
     </div></div>
     </div>
-    <div class="card" id="dash-overtime-card" style="display: none;">
+    <div class="card" id="dash-overtime-card" style="">
       <div class="ct">本日 予定超過時間</div>
       <div id="dash-overtime"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">飯</div>
+      <span style="font-size:12px;min-width:68px;">飯倉 孝史</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <div class="av" style="background:#6B7280;">佐</div>
       <span style="font-size:12px;min-width:68px;">佐々木 大翔</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">坂</div>
+      <span style="font-size:12px;min-width:68px;">坂本 楓花</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">山</div>
+      <span style="font-size:12px;min-width:68px;">山口 葵</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">川</div>
+      <span style="font-size:12px;min-width:68px;">川上 輝</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">横</div>
+      <span style="font-size:12px;min-width:68px;">横山 大燿</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">片</div>
+      <span style="font-size:12px;min-width:68px;">片倉 来波</span>
+      <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
+      <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
+    </div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <div class="av" style="background:#6B7280;">小</div>
+      <span style="font-size:12px;min-width:68px;">小林 俊介</span>
       <div class="bb"><div class="bf" style="width:0%;background:#6B7280;"></div></div>
       <span style="font-size:13px;font-weight:700;min-width:52px;text-align:right;font-family:&#39;DM Mono&#39;,monospace;color:#16A34A;">±0</span>
     </div></div>
@@ -385,148 +443,7 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
         <button class="btn btn-sm" onclick="shiftDay(1)">翌日 ▶</button>
       </div>
     </div>
-    <div id="day-detail-body"><div class="dd-member-card" style="padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:8px;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-        <div class="av" style="background:#6B7280;">佐</div>
-        <span style="font-size:14px;font-weight:500;">佐々木 大翔</span>
-        
-        
-        <span class="badge" style="background:#FEF2F2;color:#DC2626;">未提出</span>
-        <button class="btn btn-sm" onclick="goToInput(1,&#39;plan&#39;)" style="margin-left:auto;">予定を編集</button>
-        
-      </div><div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
-        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">予定合計</div>
-          <div style="font-size:16px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;">8h45分</div>
-        </div>
-        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">実績合計</div>
-          <div style="font-size:16px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;">—</div>
-        </div>
-        <div style="background:var(--bg);border-radius:var(--rs);padding:8px 14px;text-align:center;flex:1;min-width:80px;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">超過</div>
-          <div style="font-size:16px;font-weight:500;font-family:&#39;DM Mono&#39;,monospace;color:#6B7280;">±0</div>
-        </div>
-      </div><div style="overflow-x:auto;"><div style="min-width:380px;">
-        <div style="display:flex;padding-left:76px;margin-bottom:3px;">
-          <div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">8</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">9</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">10</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">11</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">12</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">13</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">14</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">15</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">16</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">17</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">18</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">19</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">20</div><div style="flex:1;font-size:9px;color:var(--t3);border-left:1px solid var(--border);padding-left:2px;">21</div>
-        </div><div style="margin-bottom:10px;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap;">
-            <span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;border:1.5px solid #4B5563;color:#1F2937;background:#F8FAFC;white-space:nowrap;flex-shrink:0;">その他</span>
-            <span style="font-size:12px;color:var(--text);font-weight:600;word-break:break-all;">スケジュール、バックアップ、カタログ共有、Slack、集合写真合成など</span>
-            <span style="font-size:12px;color:var(--t2);white-space:nowrap;">10:30〜11:30 <span style="color:var(--t3);font-size:10px;">(1h)</span></span>
-            
-            <span style="font-size:11px;color:var(--t2);">実績なし</span>
-            
-          </div>
-          <div style="position:relative;height:12px;background:#E2E8F0;border-radius:3px;">
-            <div style="position:absolute;left:19.2%;width:7.7%;height:12px;top:0;background:#c8c8c8;border-radius:2px;"></div>
-            
-            
-          </div>
-        </div><div style="margin-bottom:10px;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap;">
-            <span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;border:1.5px solid #16A34A;color:#16A34A;background:#F0FDF4;white-space:nowrap;flex-shrink:0;">休憩</span>
-            <span style="font-size:12px;color:var(--text);font-weight:600;word-break:break-all;">（タスク）</span>
-            <span style="font-size:12px;color:var(--t2);white-space:nowrap;">11:30〜12:30 <span style="color:var(--t3);font-size:10px;">(1h)</span></span>
-            
-            <span style="font-size:11px;color:var(--t2);">実績なし</span>
-            
-          </div>
-          <div style="position:relative;height:12px;background:#E2E8F0;border-radius:3px;">
-            <div style="position:absolute;left:26.9%;width:7.7%;height:12px;top:0;background:rgba(74,222,128,0.4);border-radius:2px;"></div>
-            
-            
-          </div>
-        </div><div style="margin-bottom:10px;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap;">
-            <span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;border:1.5px solid #4B5563;color:#1F2937;background:#F8FAFC;white-space:nowrap;flex-shrink:0;">現像チェック</span>
-            <span style="font-size:12px;color:var(--text);font-weight:600;word-break:break-all;">現像チェック&amp;納品</span>
-            <span style="font-size:12px;color:var(--t2);white-space:nowrap;">12:30〜15:30 <span style="color:var(--t3);font-size:10px;">(3h)</span></span>
-            
-            <span style="font-size:11px;color:var(--t2);">実績なし</span>
-            
-          </div>
-          <div style="position:relative;height:12px;background:#E2E8F0;border-radius:3px;">
-            <div style="position:absolute;left:34.6%;width:23.1%;height:12px;top:0;background:#c8c8c8;border-radius:2px;"></div>
-            
-            
-          </div>
-        </div><div style="margin-bottom:10px;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap;">
-            <span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;border:1.5px solid #4B5563;color:#1F2937;background:#F8FAFC;white-space:nowrap;flex-shrink:0;">プロジェクト推進</span>
-            <span style="font-size:12px;color:var(--text);font-weight:600;word-break:break-all;">吉川さん連絡&amp;社内共有</span>
-            <span style="font-size:12px;color:var(--t2);white-space:nowrap;">15:30〜16:00 <span style="color:var(--t3);font-size:10px;">(30m)</span></span>
-            
-            <span style="font-size:11px;color:var(--t2);">実績なし</span>
-            
-          </div>
-          <div style="position:relative;height:12px;background:#E2E8F0;border-radius:3px;">
-            <div style="position:absolute;left:57.7%;width:3.8%;height:12px;top:0;background:#c8c8c8;border-radius:2px;"></div>
-            
-            
-          </div>
-        </div><div style="margin-bottom:10px;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap;">
-            <span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;border:1.5px solid #4B5563;color:#1F2937;background:#F8FAFC;white-space:nowrap;flex-shrink:0;">プロジェクト推進</span>
-            <span style="font-size:12px;color:var(--text);font-weight:600;word-break:break-all;">圡田さんフィードバックシート 記入</span>
-            <span style="font-size:12px;color:var(--t2);white-space:nowrap;">16:00〜16:30 <span style="color:var(--t3);font-size:10px;">(30m)</span></span>
-            
-            <span style="font-size:11px;color:var(--t2);">実績なし</span>
-            
-          </div>
-          <div style="position:relative;height:12px;background:#E2E8F0;border-radius:3px;">
-            <div style="position:absolute;left:61.5%;width:3.8%;height:12px;top:0;background:#c8c8c8;border-radius:2px;"></div>
-            
-            
-          </div>
-        </div><div style="margin-bottom:10px;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap;">
-            <span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;border:1.5px solid #4B5563;color:#1F2937;background:#F8FAFC;white-space:nowrap;flex-shrink:0;">現像チェック</span>
-            <span style="font-size:12px;color:var(--text);font-weight:600;word-break:break-all;">パレス現像チェック</span>
-            <span style="font-size:12px;color:var(--t2);white-space:nowrap;">16:30〜19:00 <span style="color:var(--t3);font-size:10px;">(2h30m)</span></span>
-            
-            <span style="font-size:11px;color:var(--t2);">実績なし</span>
-            
-          </div>
-          <div style="position:relative;height:12px;background:#E2E8F0;border-radius:3px;">
-            <div style="position:absolute;left:65.4%;width:19.2%;height:12px;top:0;background:#c8c8c8;border-radius:2px;"></div>
-            
-            
-          </div>
-        </div><div style="margin-bottom:10px;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap;">
-            <span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;border:1.5px solid #4B5563;color:#1F2937;background:#F8FAFC;white-space:nowrap;flex-shrink:0;">打ち合わせ</span>
-            <span style="font-size:12px;color:var(--text);font-weight:600;word-break:break-all;">◯ひろと打合せ パレス 260627</span>
-            <span style="font-size:12px;color:var(--t2);white-space:nowrap;">19:00〜20:00 <span style="color:var(--t3);font-size:10px;">(1h)</span></span>
-            
-            <span style="font-size:11px;color:var(--t2);">実績なし</span>
-            
-          </div>
-          <div style="position:relative;height:12px;background:#E2E8F0;border-radius:3px;">
-            <div style="position:absolute;left:84.6%;width:7.7%;height:12px;top:0;background:#c8c8c8;border-radius:2px;"></div>
-            
-            
-          </div>
-        </div><div style="margin-bottom:10px;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap;">
-            <span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;border:1.5px solid #4B5563;color:#1F2937;background:#F8FAFC;white-space:nowrap;flex-shrink:0;">打ち合わせ</span>
-            <span style="font-size:12px;color:var(--text);font-weight:600;word-break:break-all;">打ち合わせメモまとめ</span>
-            <span style="font-size:12px;color:var(--t2);white-space:nowrap;">20:00〜20:15 <span style="color:var(--t3);font-size:10px;">(15m)</span></span>
-            
-            <span style="font-size:11px;color:var(--t2);">実績なし</span>
-            
-          </div>
-          <div style="position:relative;height:12px;background:#E2E8F0;border-radius:3px;">
-            <div style="position:absolute;left:92.3%;width:1.9%;height:12px;top:0;background:#c8c8c8;border-radius:2px;"></div>
-            
-            
-          </div>
-        </div><div style="display:flex;gap:12px;margin-top:6px;padding-top:6px;border-top:1px solid var(--border);">
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:8px;border-radius:1px;background:#6B7280;opacity:.85;display:inline-block;"></span>予定</span>
-        <span style="font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;"><span style="width:14px;height:8px;border-radius:1px;background:#2563EB;opacity:.5;display:inline-block;"></span>実績</span>
-        <span style="font-size:10px;color:#DC2626;display:flex;align-items:center;gap:3px;"><span style="width:14px;height:8px;border-radius:1px;background:#DC2626;display:inline-block;"></span>超過</span>
-      </div></div></div></div></div>
+    <div id="day-detail-body"><div style="font-size:13px;color:var(--t3);padding:10px 0;">読み込み中...</div></div>
   </div>
 </div>
 
@@ -568,8 +485,8 @@ pre{background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);
       </div>
     </div>
     <div class="tl-wrap" id="timeline-wrap">
-      <div class="tl-hours" id="tl-hours"><span class="tl-hour" style="left:0%;">8</span><span class="tl-hour" style="left:8.333333333333332%;">9</span><span class="tl-hour" style="left:16.666666666666664%;">10</span><span class="tl-hour" style="left:25%;">11</span><span class="tl-hour" style="left:33.33333333333333%;">12</span><span class="tl-hour" style="left:41.66666666666667%;">13</span><span class="tl-hour" style="left:50%;">14</span><span class="tl-hour" style="left:58.333333333333336%;">15</span><span class="tl-hour" style="left:66.66666666666666%;">16</span><span class="tl-hour" style="left:75%;">17</span><span class="tl-hour" style="left:83.33333333333334%;">18</span><span class="tl-hour" style="left:91.66666666666666%;">19</span><span class="tl-hour" style="left:100%;">20</span></div>
-      <div class="tl-track" id="tl-track"><div class="tl-tick" style="left:8.333333333333332%;"></div><div class="tl-tick" style="left:16.666666666666664%;"></div><div class="tl-tick" style="left:25%;"></div><div class="tl-tick" style="left:33.33333333333333%;"></div><div class="tl-tick" style="left:41.66666666666667%;"></div><div class="tl-tick" style="left:50%;"></div><div class="tl-tick" style="left:58.333333333333336%;"></div><div class="tl-tick" style="left:66.66666666666666%;"></div><div class="tl-tick" style="left:75%;"></div><div class="tl-tick" style="left:83.33333333333334%;"></div><div class="tl-tick" style="left:91.66666666666666%;"></div><div class="tl-tick half" style="left:4.166666666666666%;"></div><div class="tl-tick half" style="left:12.5%;"></div><div class="tl-tick half" style="left:20.833333333333336%;"></div><div class="tl-tick half" style="left:29.166666666666668%;"></div><div class="tl-tick half" style="left:37.5%;"></div><div class="tl-tick half" style="left:45.83333333333333%;"></div><div class="tl-tick half" style="left:54.166666666666664%;"></div><div class="tl-tick half" style="left:62.5%;"></div><div class="tl-tick half" style="left:70.83333333333334%;"></div><div class="tl-tick half" style="left:79.16666666666666%;"></div><div class="tl-tick half" style="left:87.5%;"></div><div class="tl-tick half" style="left:95.83333333333334%;"></div></div>
+      <div class="tl-hours" id="tl-hours"><span class="tl-hour" style="left:0%;">8</span><span class="tl-hour" style="left:7.142857142857142%;">9</span><span class="tl-hour" style="left:14.285714285714285%;">10</span><span class="tl-hour" style="left:21.428571428571427%;">11</span><span class="tl-hour" style="left:28.57142857142857%;">12</span><span class="tl-hour" style="left:35.714285714285715%;">13</span><span class="tl-hour" style="left:42.857142857142854%;">14</span><span class="tl-hour" style="left:50%;">15</span><span class="tl-hour" style="left:57.14285714285714%;">16</span><span class="tl-hour" style="left:64.28571428571429%;">17</span><span class="tl-hour" style="left:71.42857142857143%;">18</span><span class="tl-hour" style="left:78.57142857142857%;">19</span><span class="tl-hour" style="left:85.71428571428571%;">20</span><span class="tl-hour" style="left:92.85714285714286%;">21</span><span class="tl-hour" style="left:100%;">22</span></div>
+      <div class="tl-track" id="tl-track"><div class="tl-tick" style="left:7.142857142857142%;"></div><div class="tl-tick" style="left:14.285714285714285%;"></div><div class="tl-tick" style="left:21.428571428571427%;"></div><div class="tl-tick" style="left:28.57142857142857%;"></div><div class="tl-tick" style="left:35.714285714285715%;"></div><div class="tl-tick" style="left:42.857142857142854%;"></div><div class="tl-tick" style="left:50%;"></div><div class="tl-tick" style="left:57.14285714285714%;"></div><div class="tl-tick" style="left:64.28571428571429%;"></div><div class="tl-tick" style="left:71.42857142857143%;"></div><div class="tl-tick" style="left:78.57142857142857%;"></div><div class="tl-tick" style="left:85.71428571428571%;"></div><div class="tl-tick" style="left:92.85714285714286%;"></div><div class="tl-tick half" style="left:3.571428571428571%;"></div><div class="tl-tick half" style="left:10.714285714285714%;"></div><div class="tl-tick half" style="left:17.857142857142858%;"></div><div class="tl-tick half" style="left:25%;"></div><div class="tl-tick half" style="left:32.142857142857146%;"></div><div class="tl-tick half" style="left:39.285714285714285%;"></div><div class="tl-tick half" style="left:46.42857142857143%;"></div><div class="tl-tick half" style="left:53.57142857142857%;"></div><div class="tl-tick half" style="left:60.71428571428571%;"></div><div class="tl-tick half" style="left:67.85714285714286%;"></div><div class="tl-tick half" style="left:75%;"></div><div class="tl-tick half" style="left:82.14285714285714%;"></div><div class="tl-tick half" style="left:89.28571428571429%;"></div><div class="tl-tick half" style="left:96.42857142857143%;"></div></div>
       <div class="tl-summary"><span id="tl-summary-left">タスクを追加するとタイムラインに表示されます</span><span id="tl-summary-right"></span></div>
     </div>
     <div id="task-list" data-dnd-init="1"><div style="font-size:13px;color:var(--t3);padding:20px 0;text-align:center;">メンバーを選択してください</div></div>
@@ -1239,6 +1156,7 @@ function sw(name){
 
 function showMemberPage(mi){
   state.filterMember=mi;
+  document.getElementById('page-dashboard').dataset.filterMember=mi;
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById('page-dashboard').classList.add('active');
   document.querySelectorAll('.nav').forEach((b,i)=>b.classList.toggle('active',['input','monthly','dashboard','diff','summary','usage'][i]==='dashboard'));
@@ -1255,6 +1173,7 @@ function showMemberPage(mi){
 
 function clearMemberFilter(){
   state.filterMember=null;
+  delete document.getElementById('page-dashboard').dataset.filterMember;
   renderDashboard();
 }
 
@@ -1568,7 +1487,9 @@ function renderDashboard(){
     try{_renderDashboardNoSync();}catch(e){}
   });
 
-  // 個人ビューの場合、対象メンバーのインデックスだけを使う
+  // 個人ビューの場合、対象メンバーのインデックスだけを使う（data属性を優先して読む）
+  const _fmAttr=document.getElementById('page-dashboard')?.dataset?.filterMember;
+  if(_fmAttr!==undefined && _fmAttr!=='') state.filterMember=parseInt(_fmAttr);
   const fm=state.filterMember;
   const isFiltered=(fm!==null&&fm!==undefined);
   const indices=isFiltered?[fm]:MEMBERS.map((_,i)=>i);
@@ -1611,6 +1532,7 @@ function renderDashboard(){
     return !(state.memberData[i].submitted[ds]&&state.memberData[i].submitted[ds].report);
   });
   const uc=document.getElementById('unsub-card');
+  if(!uc) return;
   if(notSub.length===0){
     uc.style.borderLeft='3px solid #16A34A';
     document.getElementById('unsub-list').innerHTML=`<div style="font-size:13px;color:var(--green);display:flex;align-items:center;gap:6px;"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#16A34A" stroke-width="1.5"><path d="M2 7l4 4 6-7"/></svg>${isFiltered?'提出済みです':'全員提出済みです'}</div>`;
@@ -1748,7 +1670,7 @@ let breakMin=0;
 // タイムライン表示
 // ============================================================
 const TL_START=8;   // 8:00
-const TL_END=20;    // 20:00
+const TL_END=22;    // 22:00
 const TL_RANGE=(TL_END-TL_START)*60; // 分
 
 function renderTimeline(){
@@ -1802,9 +1724,10 @@ function renderTimeline(){
     ticks+=`<div class="tl-tick half" style="left:${left}%;"></div>`;
   }
 
-  // ブロック描画
+  // ブロック描画（2段レイアウト）
   let blocks='';
   let totalMin=0;
+  let row0End=[];
   items.forEach(it=>{
     const sClamped=Math.max(it.sMin, TL_START*60);
     const eClamped=Math.min(it.eMin, TL_END*60);
@@ -1815,7 +1738,10 @@ function renderTimeline(){
     const cls='tl-block'+(bg?'':' no-cat');
     const label=(it.name||it.cat||'無題');
     const title=label+' ('+m2t(it.sMin)+'–'+m2t(it.eMin)+(it.cat?' / '+it.cat:'')+')';
-    blocks+=`<div class="${cls}" style="left:${leftPct}%;width:${widthPct}%;${bg?'background:'+bg+';':''}" title="${title.replace(/"/g,'&quot;')}">${label}</div>`;
+    const useRow1=(items.indexOf(it)%2===1);
+    const top=useRow1?'42px':'4px';
+    const bottom=useRow1?'4px':'42px';
+    blocks+=`<div class="${cls}" style="left:${leftPct}%;width:${widthPct}%;top:${top};bottom:${bottom};${bg?'background:'+bg+';':''}" title="${title.replace(/"/g,'&quot;')}">${label}</div>`;
     totalMin+=(it.eMin-it.sMin);
   });
 
@@ -2301,7 +2227,9 @@ let _dayDetailGen=0;
 async function renderDayDetailAsync(sel){
   const gen=++_dayDetailGen;
   const ds=dateStr(sel);
-  const TL_S=8,TL_E=21,TL_R=TL_E-TL_S;
+  const TL_S=8,TL_E=22,TL_R=TL_E-TL_S;
+  const _fmAttr2=document.getElementById('page-dashboard')?.dataset?.filterMember;
+  if(_fmAttr2!==undefined && _fmAttr2!=='') state.filterMember=parseInt(_fmAttr2);
   const fm=state.filterMember;
   const targetIndices=(fm!==null&&fm!==undefined)?[fm]:MEMBERS.map((_,i)=>i);
   let dd='';
@@ -2468,10 +2396,10 @@ async function loadAllMonthlySetup(){
       }
     }catch(e){}
   }));
-  // ダッシュボードページ表示中のみ再描画（filterMember維持）
+  // ダッシュボードページ表示中のみ軽量更新（filterMember維持のためrenderDashboardは呼ばない）
   try{
     const dp=document.getElementById('page-dashboard');
-    if(dp&&dp.classList.contains('active')&&typeof renderDashboard==='function') renderDashboard();
+    if(dp&&dp.classList.contains('active')&&typeof _renderDashboardNoSync==='function') _renderDashboardNoSync();
   }catch(e){}
   try{
     const sel=document.getElementById('m-member-sel');
