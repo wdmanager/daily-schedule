@@ -364,6 +364,82 @@ body:not(.is-manager) .self-label{display:block;}
 @media (max-width:767px){
   input:not([type=color]):not([type=radio]):not([type=checkbox]):not([type=file]):not([type=hidden]),select,textarea{font-size:16px!important;}
 }
+/* カレンダー：Googleカレンダーから自動登録した休み */
+.cal-d{position:relative;}
+.gcal-panel{background:var(--white);padding:20px 22px;margin-top:16px;}
+.gcal-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:9px 0;border-bottom:1px solid var(--divider);font-size:var(--fs-md);cursor:pointer;}
+.gcal-row:last-of-type{border-bottom:none;}
+.gcal-row input{accent-color:var(--btn);margin:0;align-self:center;}
+.gcal-row.done{cursor:default;color:var(--t3);}
+.gcal-date{min-width:7.5em;}
+.gcal-title{flex:1;min-width:8em;font-size:var(--fs-sm);}
+/* 終業報告：プロジェクトのタスク */
+.proj-box{margin-top:12px;padding-top:12px;border-top:1px dashed var(--divider);}
+.proj-lbl{display:block;font-size:var(--fs-sm);margin-bottom:4px;}
+.tb .proj-box textarea{min-height:56px;}
+.proj-status{display:flex;align-items:center;flex-wrap:wrap;margin-top:10px;}
+.proj-status .proj-lbl{margin:0 10px 0 0;}
+.ps-btn{padding:6px 18px;border:1px solid var(--btn);background:var(--white);color:var(--ink);font-family:var(--font);font-size:var(--fs-sm);letter-spacing:.04em;cursor:pointer;transition:background .18s ease,color .18s ease;}
+.ps-btn + .ps-btn{border-left:none;}
+.ps-btn:hover{background:var(--gray);}
+.ps-btn.on{background:var(--btn);color:var(--white);}
+.ps-btn.on[data-v="ヘルプ"]{background:var(--error-ink);border-color:var(--error-ink);color:var(--white);}
+.proj-err{display:none;margin-top:8px;font-size:var(--fs-sm);color:var(--error-ink);}
+.tb.proj-invalid .proj-err{display:block;}
+.tb.proj-invalid .proj-status .ps-btn:not(.on){border-color:var(--error-ink);}
+.field-bad{border-bottom-color:var(--error-ink)!important;background:var(--error-bg)!important;}
+.cal-d[role=button]:focus-visible{outline:2px solid var(--btn);outline-offset:-2px;}
+.btn:disabled:hover{background:transparent;color:var(--btn);}
+.btn-p:disabled:hover{background:var(--btn);color:var(--white);}
+/* 相談・報告 */
+[hidden]{display:none!important;}
+.nav-badge{margin-left:auto;min-width:18px;height:18px;padding:0 5px;background:var(--error-ink);color:#fff;font-size:11px;line-height:18px;text-align:center;letter-spacing:0;}
+.more-item .nav-badge{margin-left:auto;}
+.mnav-dot{position:absolute;top:8px;left:calc(50% + 8px);width:7px;height:7px;background:var(--error-ink);}
+body.is-manager .member-only{display:none!important;}
+.nav .nav-badge + .nav-badge{margin-left:6px;}
+.nav-badge.help{background:var(--error-ink);}
+.cs-badge.help{background:var(--error-ink);color:var(--white);}
+.pj-card{background:var(--white);padding:16px 18px;margin-bottom:10px;border-left:3px solid var(--btn);}
+.pj-card:last-child{margin-bottom:0;}
+.pj-card.help{border-left-color:var(--error-ink);}
+.pj-card.help .pj-name{color:var(--error-ink);}
+.pj-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.pj-name{font-size:var(--fs-lg);flex:1;min-width:8em;word-break:break-word;}
+.pj-latest{white-space:pre-wrap;word-break:break-word;font-size:var(--fs-md);margin-top:8px;}
+.pj-tl{margin-top:10px;font-size:var(--fs-sm);}
+.pj-tl summary{cursor:pointer;text-decoration:underline;text-underline-offset:4px;}
+.pj-tl ol{list-style:none;margin-top:8px;}
+.pj-ev{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:7px 0;border-top:1px solid var(--divider);}
+.pj-ev-text{flex:1;min-width:12em;white-space:pre-wrap;word-break:break-word;font-size:var(--fs-sm);}
+.pj-ev-reply{display:block;margin-top:4px;padding-left:10px;border-left:2px solid var(--btn);}
+.ib-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+.ib-filters .form-label{margin-bottom:4px;}
+@media (max-width:767px){ .ib-filters{grid-template-columns:1fr 1fr;} }
+.cs-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;width:100%;padding:12px 0;border:none;border-bottom:1px solid var(--divider);background:none;text-align:left;font-family:var(--font);font-size:var(--fs-md);color:var(--ink);cursor:pointer;letter-spacing:var(--ls-body);}
+.cs-row:last-child{border-bottom:none;}
+.cs-row:hover .cs-proj{text-decoration:underline;text-underline-offset:4px;}
+.cs-row.open{background:var(--white);padding-left:10px;padding-right:10px;}
+.cs-meta{font-size:var(--fs-sm);white-space:nowrap;}
+.cs-proj{flex:1;min-width:8em;}
+.cs-first{width:100%;font-size:var(--fs-sm);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cs-badge{display:inline-block;font-size:var(--fs-sm);line-height:1.5;padding:1px 8px;background:var(--white);white-space:nowrap;}
+.cs-badge.unread,.cs-badge.urgent{background:var(--error-bg);color:var(--error-ink);}
+.cs-badge.done{background:var(--btn);color:var(--white);}
+.cs-body{white-space:pre-wrap;word-break:break-word;background:var(--white);padding:14px 16px;font-size:var(--fs-md);margin:10px 0 16px;}
+.cs-reply{white-space:pre-wrap;word-break:break-word;background:var(--white);border-left:3px solid var(--btn);padding:10px 14px;font-size:var(--fs-md);margin-top:8px;}
+.cs-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;}
+.cs-filters .form-label{margin-bottom:4px;}
+.cs-item{padding:16px 0;border-bottom:1px solid var(--divider);}
+.cs-item:last-child{border-bottom:none;}
+.cs-proj-row{display:grid;grid-template-columns:minmax(8em,1.2fr) auto auto auto minmax(0,2fr);gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--divider);font-size:var(--fs-md);}
+.cs-proj-row:last-child{border-bottom:none;}
+.cs-proj-row .cs-first{width:auto;}
+@media (max-width:767px){
+  .cs-filters{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .cs-proj-row{grid-template-columns:1fr auto;}
+  .cs-proj-row .cs-first{grid-column:1 / -1;}
+}
 </style>
 <style id="_goober"> .go1475592160{height:0;}.go1671063245{height:auto;}.go1888806478{display:flex;flex-wrap:wrap;flex-grow:1;}@media (min-width:600px){.go1888806478{flex-grow:initial;min-width:288px;}}.go167266335{background-color:#313131;font-size:0.875rem;line-height:1.43;letter-spacing:0.01071em;color:#fff;align-items:center;padding:6px 16px;border-radius:4px;box-shadow:0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);}.go3162094071{padding-left:20px;}.go3844575157{background-color:#313131;}.go1725278324{background-color:#43a047;}.go3651055292{background-color:#d32f2f;}.go4215275574{background-color:#ff9800;}.go1930647212{background-color:#2196f3;}.go946087465{display:flex;align-items:center;padding:8px 0;}.go703367398{display:flex;align-items:center;margin-left:auto;padding-left:16px;margin-right:-8px;}.go3963613292{width:100%;position:relative;transform:translateX(0);top:0;right:0;bottom:0;left:0;min-width:288px;}.go1141946668{box-sizing:border-box;display:flex;max-height:100%;position:fixed;z-index:1400;height:auto;width:auto;transition:top 300ms ease 0ms,right 300ms ease 0ms,bottom 300ms ease 0ms,left 300ms ease 0ms,max-width 300ms ease 0ms;pointer-events:none;max-width:calc(100% - 40px);}.go1141946668 .notistack-CollapseWrapper{padding:6px 0px;transition:padding 300ms ease 0ms;}@media (max-width:599.95px){.go1141946668{width:100%;max-width:calc(100% - 32px);}}.go3868796639 .notistack-CollapseWrapper{padding:2px 0px;}.go3118922589{top:14px;flex-direction:column;}.go1453831412{bottom:14px;flex-direction:column-reverse;}.go4027089540{left:20px;}@media (min-width:600px){.go4027089540{align-items:flex-start;}}@media (max-width:599.95px){.go4027089540{left:16px;}}.go2989568495{right:20px;}@media (min-width:600px){.go2989568495{align-items:flex-end;}}@media (max-width:599.95px){.go2989568495{right:16px;}}.go4034260886{left:50%;transform:translateX(-50%);}@media (min-width:600px){.go4034260886{align-items:center;}}</style></head>
 <body class="locked">
@@ -406,6 +482,14 @@ body:not(.is-manager) .self-label{display:block;}
     <button class="nav" onclick="sw(&#39;monthly&#39;)">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"></rect><path d="M5 2v2M11 2v2M2 7h12"></path></svg>
       カレンダー
+    </button>
+    <button class="nav member-only" id="nav-consult" onclick="sw(&#39;consult&#39;)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3.5" width="12" height="9"></rect><path d="M2 4l6 5 6-5"></path></svg>
+      相談<span class="nav-badge" id="consult-badge" hidden></span>
+    </button>
+    <button class="nav mgr-only" id="nav-inbox" onclick="sw(&#39;inbox&#39;)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9l2-6h8l2 6v4H2z"></path><path d="M2 9h3.5l1 1.5h3l1-1.5H14"></path></svg>
+      受信箱<span class="nav-badge" id="inbox-badge" hidden></span><span class="nav-badge help" id="inbox-help-badge" hidden></span>
     </button>
   </div>
   <div class="s-sec" style="margin-top:8px;">
@@ -484,6 +568,7 @@ body:not(.is-manager) .self-label{display:block;}
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
       <input type="date" id="dash-pick" onchange="onDatePick()" style="width:auto;padding:6px 10px;font-size:var(--fs-md);">
       <button class="btn btn-sm" onclick="goToday()">今日</button>
+      <button class="btn btn-sm" type="button" onclick="refreshData()" title="最新のデータを読み直す">更新</button>
     </div>
   </div>
 
@@ -613,6 +698,8 @@ body:not(.is-manager) .self-label{display:block;}
       </div>
     </div>
     <div id="toast-input" class="toast" style="margin-top:14px;margin-bottom:0;"></div>
+    <div id="projlog-warn" class="load-err" style="margin-top:14px;margin-bottom:0;" hidden></div>
+    <datalist id="dl-proj-names"></datalist>
     <div style="display:flex;justify-content:flex-end;margin-top:14px;">
       <button class="btn btn-p" id="submit-input-btn" onclick="submitInput()" disabled>送信する</button>
     </div>
@@ -662,10 +749,14 @@ body:not(.is-manager) .self-label{display:block;}
       <button class="btn btn-sm" onclick="nextMonth()">▶</button>
     </div>
     <div class="cal" id="cal-header"><div class="cal-h" style="color:var(--t3);">月</div><div class="cal-h" style="color:var(--t3);">火</div><div class="cal-h" style="color:var(--t3);">水</div><div class="cal-h" style="color:var(--t3);">木</div><div class="cal-h" style="color:var(--t3);">金</div><div class="cal-h" style="color:#474747;">土</div><div class="cal-h" style="color:#a23c3c;">日</div></div>
+    <div id="monthly-load-err" style="display:none;margin-bottom:10px;"></div>
     <div class="cal" id="cal-body"><div class="cal-d other-m">31</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-01&#39;,0)">1</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-02&#39;,0)">2</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-03&#39;,0)">3</div><div class="cal-d today" onclick="toggleDay(&#39;2026-09-04&#39;,0)">4</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-09-05&#39;,0)">5</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-09-06&#39;,0)">6</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-07&#39;,0)">7</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-08&#39;,0)">8</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-09&#39;,0)">9</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-10&#39;,0)">10</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-11&#39;,0)">11</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-09-12&#39;,0)">12</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-09-13&#39;,0)">13</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-14&#39;,0)">14</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-15&#39;,0)">15</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-16&#39;,0)">16</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-17&#39;,0)">17</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-18&#39;,0)">18</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-09-19&#39;,0)">19</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-09-20&#39;,0)">20</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-21&#39;,0)">21</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-22&#39;,0)">22</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-23&#39;,0)">23</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-24&#39;,0)">24</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-25&#39;,0)">25</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-09-26&#39;,0)">26</div><div class="cal-d weekend" onclick="toggleDay(&#39;2026-09-27&#39;,0)">27</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-28&#39;,0)">28</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-29&#39;,0)">29</div><div class="cal-d" onclick="toggleDay(&#39;2026-09-30&#39;,0)">30</div><div class="cal-d other-m">1</div><div class="cal-d other-m">2</div><div class="cal-d other-m">3</div><div class="cal-d other-m">4</div></div>
-    <div style="display:flex;justify-content:flex-end;margin-top:14px;">
-      <button class="btn btn-p" onclick="saveMonthly()">保存する</button>
+    <div style="display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:14px;">
+      <button class="btn" id="gcal-off-btn" type="button" onclick="loadOffDaysFromGoogle()">Googleカレンダーから休みを読み込む</button>
+      <button class="btn btn-p" id="monthly-save-btn" type="button" onclick="saveMonthly()">保存する</button>
     </div>
+    <div style="font-size:var(--fs-sm);margin-top:10px;">Googleカレンダーで、タイトルに「休み」「有休」「リフ休」を含む終日または4時間以上の予定を探します。見つかった日を確認してから、選んだ日だけ休みに登録します（自動では登録しません）。</div>
+    <div id="gcal-panel" class="gcal-panel" hidden></div>
   </div>
 
   </div><!-- /#monthly-content -->
@@ -675,7 +766,7 @@ body:not(.is-manager) .self-label{display:block;}
 <div class="view" id="page-summary">
   <div class="ph">
     <div><div class="pt">月間サマリー</div><div class="ps">残りシフト日数から1日あたりの必要ペースを算出</div></div>
-    <select id="sum-month" onchange="renderSummary()" style="width:auto;padding:7px 10px;font-size:var(--fs-md);"></select>
+    <div style="display:flex;gap:8px;align-items:center;"><select id="sum-month" onchange="renderSummary()" style="width:auto;padding:7px 10px;font-size:var(--fs-md);"></select><button class="btn btn-sm" type="button" onclick="refreshData()" title="最新のデータを読み直す">更新</button></div>
   </div>
   <div class="sg" id="sum-stats">
     <div class="sc"><div class="sl">今月の残り日数</div><div class="sv">29<span style="font-size:var(--fs-lg);color:var(--t3);">日</span></div><div class="ss">シフトは個人ごとに異なります</div></div>
@@ -690,7 +781,7 @@ body:not(.is-manager) .self-label{display:block;}
 <div class="view" id="page-diff">
   <div class="ph">
     <div><div class="pt">分析</div><div class="ps">予定 vs 実績のギャップ</div></div>
-    <select id="diff-month" onchange="renderDiff()" style="width:auto;padding:7px 10px;font-size:var(--fs-md);"></select>
+    <div style="display:flex;gap:8px;align-items:center;"><select id="diff-month" onchange="renderDiff()" style="width:auto;padding:7px 10px;font-size:var(--fs-md);"></select><button class="btn btn-sm" type="button" onclick="refreshData()" title="最新のデータを読み直す">更新</button></div>
   </div>
   <div id="diff-stats"></div>
   <div class="card" style="margin-bottom:12px;">
@@ -751,6 +842,10 @@ body:not(.is-manager) .self-label{display:block;}
         <div style="font-size:var(--fs-sm);color:var(--t2);margin-bottom:4px;">メールアドレス（任意）</div>
         <input type="text" id="new-member-email" placeholder="例：tanaka@kuppography.com">
       </div>
+      <div>
+        <div style="font-size:var(--fs-sm);color:var(--t2);margin-bottom:4px;">Slack メンバーID（任意・リマインド用）</div>
+        <input type="text" id="new-member-slack" placeholder="例：U01ABCDEF2" maxlength="20" autocomplete="off">
+      </div>
     </div>
     <div style="margin-bottom:16px;">
       <div style="font-size:var(--fs-sm);color:var(--t2);margin-bottom:4px;">アバターカラー</div>
@@ -777,7 +872,7 @@ body:not(.is-manager) .self-label{display:block;}
       <div class="ct" style="margin-bottom:0;">カテゴリ</div>
       <button class="btn btn-sm" onclick="const f=document.getElementById(&#39;cat-add-form&#39;);f.style.display=f.style.display===&#39;none&#39;?&#39;&#39;:&#39;none&#39;">＋ 追加</button>
     </div>
-    <div style="font-size:var(--fs-sm);margin-bottom:12px;">「休憩」に印をつけたカテゴリは実働時間から差し引きます。名前を変えても、過去の記録は新しい名前で集計されます。</div>
+    <div style="font-size:var(--fs-sm);margin-bottom:12px;">「休憩」に印をつけたカテゴリは実働時間から差し引きます。「プロジェクト」に印をつけたカテゴリは、終業報告でプロジェクト名・進捗・状況（順調／ヘルプ）の入力が必要になります。名前を変えても、過去の記録は新しい名前で集計されます。</div>
     <div id="cat-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
     <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:0;">
       <input type="color" value="#c8c8c8" onchange="updateCategoryColor(0,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:0;cursor:pointer;flex-shrink:0;">
@@ -872,7 +967,7 @@ body:not(.is-manager) .self-label{display:block;}
   <!-- バックアップ（管理者のみ） -->
   <div class="card mgr-only" id="backup-card">
     <div class="ct">バックアップ</div>
-    <div style="font-size:var(--fs-sm);margin-bottom:16px;">予定・報告・カレンダー・出退勤・設定のデータを JSON ファイルに書き出します。報告は表計算ソフトで開ける CSV（日付・メンバー・カテゴリ・内容・開始・終了・分）も一緒に書き出します。</div>
+    <div style="font-size:var(--fs-sm);margin-bottom:16px;">予定・報告・カレンダー・出退勤・相談・プロジェクト進捗・設定のデータを JSON ファイルに書き出します。報告は表計算ソフトで開ける CSV（日付・メンバー・カテゴリ・内容・開始・終了・分）も一緒に書き出します。</div>
     <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:16px;">
       <label class="radio-lbl" style="font-size:var(--fs-md);"><input type="radio" name="export-scope" value="month" checked>今月のみ</label>
       <label class="radio-lbl" style="font-size:var(--fs-md);"><input type="radio" name="export-scope" value="all">すべて</label>
@@ -881,10 +976,74 @@ body:not(.is-manager) .self-label{display:block;}
       <button class="btn btn-p" id="export-btn" type="button" onclick="exportData()">データを書き出す</button>
       <label class="btn" style="display:inline-block;cursor:pointer;">バックアップから復元<input type="file" id="restore-file" accept=".json,application/json" style="display:none;" onchange="restoreFromFile(this)"></label>
     </div>
-    <div style="font-size:var(--fs-sm);margin-top:14px;">復元すると、ファイルに入っているデータで同じ日付・メンバーのデータを上書きします（ファイルにないデータは消えません）。元に戻せないので注意してください。</div>
+    <label class="radio-lbl" style="font-size:var(--fs-md);margin-top:14px;"><input type="checkbox" id="restore-settings">設定（メンバー・カテゴリなど）も復元する</label>
+    <div style="font-size:var(--fs-sm);margin-top:10px;">復元すると、ファイルに入っているデータで同じ日付・メンバーのデータを上書きします（ファイルにないデータは消えません）。設定はチェックしたときだけ復元します。元に戻せないので注意してください。</div>
     <div id="toast-backup" class="toast" style="margin-top:14px;margin-bottom:0;"></div>
   </div>
 
+</div>
+
+<!-- 相談（メンバー） -->
+<div class="view" id="page-consult">
+  <div class="ph">
+    <div><div class="pt">相談</div><div class="ps">プロジェクトのことを小林さんに相談できます（ほかのメンバーには見えません）</div></div>
+    <button class="btn btn-sm" type="button" onclick="loadConsultations(true)">更新</button>
+  </div>
+  <div id="consult-load-err"></div>
+  <div class="card">
+    <div class="ct">新しく相談する</div>
+    <div class="form-group">
+      <label class="form-label" for="cs-project">プロジェクト名</label>
+      <input type="text" id="cs-project" list="dl-projects" maxlength="100" autocomplete="off" placeholder="例）ふたりのポートレート">
+      <datalist id="dl-projects"></datalist>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="cs-body">相談内容</label>
+      <textarea id="cs-body" maxlength="5000" style="min-height:140px;" placeholder="例）認知拡大に向けての施策について行き詰まっています。"></textarea>
+    </div>
+    <div id="toast-consult" class="toast" style="margin-top:14px;margin-bottom:0;"></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:14px;">
+      <button class="btn btn-p" id="cs-submit" type="button" onclick="submitConsultation()">送信する</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">これまでの相談</div>
+    <div id="cs-history"></div>
+  </div>
+</div>
+
+<!-- 受信箱（管理者のみ） -->
+<div class="view" id="page-inbox">
+  <div class="ph">
+    <div><div class="pt">受信箱</div><div class="ps">メンバーからの相談と、終業報告のプロジェクト進捗</div></div>
+    <button class="btn btn-sm" type="button" onclick="refreshInbox()">更新</button>
+  </div>
+  <div id="inbox-load-err"></div>
+  <div style="display:flex;gap:6px;margin-bottom:16px;" role="tablist">
+    <button class="pb active" id="ib-tab-consult" type="button" role="tab" onclick="setInboxTab('consult')">相談</button>
+    <button class="pb" id="ib-tab-progress" type="button" role="tab" onclick="setInboxTab('progress')">プロジェクト進捗</button>
+  </div>
+  <div id="cs-inbox">
+    <div class="card" style="padding:20px 24px;">
+      <div class="ib-filters">
+        <div><label class="form-label" for="cs-f-member">メンバー</label><select id="cs-f-member" onchange="renderConsultInbox()"></select></div>
+        <div><label class="form-label" for="cs-f-status">状態</label><select id="cs-f-status" onchange="renderConsultInbox()"></select></div>
+        <div><label class="form-label" for="cs-f-project">プロジェクト</label><select id="cs-f-project" onchange="renderConsultInbox()"></select></div>
+      </div>
+    </div>
+    <div class="card" id="cs-detail" style="display:none;"></div>
+    <div class="card"><div id="cs-list"></div></div>
+  </div>
+  <div id="pj-view" style="display:none;">
+    <div class="card" style="padding:20px 24px;">
+      <div class="ib-filters">
+        <div><label class="form-label" for="pj-f-member">メンバー</label><select id="pj-f-member" onchange="renderProjectProgress()"></select></div>
+        <div><label class="form-label" for="pj-f-status">状況</label><select id="pj-f-status" onchange="renderProjectProgress()"><option value="">すべて</option><option value="help">ヘルプのみ</option></select></div>
+        <div><label class="form-label" for="pj-f-period">期間</label><select id="pj-f-period" onchange="renderProjectProgress()"><option value="30">最近30日</option><option value="90">最近90日</option><option value="all">すべて</option></select></div>
+      </div>
+    </div>
+    <div id="pj-list"></div>
+  </div>
 </div>
 
 <!-- メンバー一覧ページ（スマホ用） -->
@@ -921,13 +1080,19 @@ body:not(.is-manager) .self-label{display:block;}
   </button>
   <button class="mobile-nav-btn" id="mnav-more" onclick="toggleMoreSheet()" aria-haspopup="true" aria-controls="more-sheet">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="12" r="1.3"></circle><circle cx="12" cy="12" r="1.3"></circle><circle cx="19" cy="12" r="1.3"></circle></svg>
-    <span>その他</span>
+    <span>その他</span><span class="mnav-dot" id="mnav-more-dot" hidden></span>
   </button>
 </nav>
 <div id="more-sheet" onclick="if(event.target===this||event.target.classList.contains('more-backdrop'))closeMoreSheet()">
   <div class="more-backdrop"></div>
   <div class="more-panel" role="menu">
     <div class="more-mail" id="more-user-mail"></div>
+    <button class="more-item member-only" id="more-consult" role="menuitem" onclick="sw('consult')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14"></rect><path d="M3 6l9 7 9-7"></path></svg>相談<span class="nav-badge" id="consult-badge-m" hidden></span>
+    </button>
+    <button class="more-item mgr-only" id="more-inbox" role="menuitem" onclick="sw('inbox')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 13l3-8h12l3 8v6H3z"></path><path d="M3 13h5l1.5 2h5L16 13h5"></path></svg>受信箱<span class="nav-badge" id="inbox-badge-m" hidden></span><span class="nav-badge help" id="inbox-help-badge-m" hidden style="margin-left:6px;"></span>
+    </button>
     <button class="more-item" id="more-usage" role="menuitem" onclick="sw('usage')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M9 10c0-1.7 1.3-3 3-3s3 1.3 3 3c0 1.5-2 2-2 3.5M12 16v.5"></path></svg>使い方
     </button>
@@ -1001,6 +1166,7 @@ function rebuildCategoryMaps(){
     const current=resolveCat(sel.value);
     sel.innerHTML='<option value="">カテゴリ選択</option>'+CATS.map(c=>`<option value="${esc(c)}"${c===current?' selected':''}>${esc(c)}</option>`).join('');
   });
+  document.querySelectorAll('#task-list .tb').forEach(_updateProjBox);
   renderCategoryList();
   renderTimeline();
 }
@@ -1138,37 +1304,17 @@ async function _fsDispatch(p) {
     return {success:true};
   }
 
-  // ── 日別ステータス（ダッシュボード用）────────────
-  if(action === 'getDayStatus') {
-    const status = await Promise.all(MEMBERS.map(async m => {
-      const [pSnap, rSnap] = await Promise.all([
-        _db.collection('plans').doc(m.name + '_' + p.date).get(),
-        _db.collection('reports').doc(m.name + '_' + p.date).get()
-      ]);
-      return {
-        name: m.name,
-        hasPlan:   pSnap.exists && (pSnap.data().tasks||[]).length > 0,
-        hasReport: rSnap.exists && (rSnap.data().tasks||[]).length > 0
-      };
-    }));
-    return {success:true, status};
-  }
-
-  // ── 月初設定 ───────────────────────────────────────
+  // ── 月初設定（休みなど）。保存は merge（送った項目だけ書き換え、婚礼日などは消さない）──
   if(action === 'getMonthlySetup') {
     const snap = await _db.collection('monthly').doc(p.memberName + '_' + p.ym).get();
-    if(snap.exists) return {success:true, ...snap.data()};
-    return {success:false};
+    if(snap.exists) return {success:true, exists:true, ...snap.data()};
+    return {success:true, exists:false};
   }
   if(action === 'saveMonthlySetup') {
-    const offDays   = typeof p.offDays==='string'   ? JSON.parse(p.offDays)   : (p.offDays   || []);
-    const weddingDays = typeof p.weddingDays==='string' ? JSON.parse(p.weddingDays) : (p.weddingDays || []);
-    await _db.collection('monthly').doc(p.memberName + '_' + p.ym).set({
-      targetHours: Number(p.targetHours)||160,
-      weddingCount: Number(p.weddingCount)||0,
-      remainShiftDays: Number(p.remainShiftDays)||20,
-      offDays, weddingDays, updatedAt: new Date()
-    });
+    const data = {updatedAt: new Date()};
+    if(Array.isArray(p.offDays)) data.offDays = p.offDays;
+    if(typeof p.targetHours==='number' && isFinite(p.targetHours)) data.targetHours = p.targetHours;
+    await _db.collection('monthly').doc(p.memberName + '_' + p.ym).set(data, {merge:true});
     return {success:true};
   }
 
@@ -1228,34 +1374,18 @@ async function _fsDispatch(p) {
     return {success:true, docs};
   }
 
-  // ── 月別 報告済み日一覧（カレンダー表示用）──────────
-  if(action === 'getMonthReportStatus') {
-    const prefix = p.memberName + '_' + p.ym;
-    const snaps = await _db.collection('reports')
-      .where(firebase.firestore.FieldPath.documentId(), '>=', prefix + '-01')
-      .where(firebase.firestore.FieldPath.documentId(), '<=', prefix + '-31')
-      .get();
-    const days = {};
-    snaps.forEach(doc => {
-      const d = doc.data();
-      if(d.tasks && d.tasks.length > 0){
-        const m = doc.id.match(/(\d{4}-\d{2}-\d{2})$/);
-        if(m) days[m[1]] = true;
-      }
-    });
-    return {success:true, days};
-  }
-
   console.warn('Unknown action:', action);
   return {success:false};
 }
 
-// 月単位の取得結果キャッシュ（60秒）。保存時に該当メンバー・月を無効化する
+// 読み込みのキャッシュ（5分）。自分の保存時は該当メンバー・日付を無効化。「更新」ボタンで全部読み直す
+const _CACHE_TTL=5*60*1000;
 const _monthCache={};
+const _dayCache={};
 function fetchMonthDocs(coll, name, ym){
   const k=coll+'|'+name+'|'+ym;
   const c=_monthCache[k];
-  if(c && Date.now()-c.t<60000) return c.p;
+  if(c && Date.now()-c.t<_CACHE_TTL) return c.p;
   const pr=apiGet({action:'getMonthDocs', coll, memberName:name, ym}).then(d=>{
     if(!d || !d.success){ delete _monthCache[k]; return {}; }
     return d.docs||{};
@@ -1266,6 +1396,37 @@ function fetchMonthDocs(coll, name, ym){
 function _invalidateCache(name, ds){
   const ym=String(ds||'').slice(0,7);
   Object.keys(_monthCache).forEach(k=>{ if(k.endsWith('|'+name+'|'+ym)) delete _monthCache[k]; });
+  Object.keys(_dayCache).forEach(k=>{ if(k.endsWith('|'+name+'|'+ds)) delete _dayCache[k]; });
+}
+function _clearReadCaches(){
+  Object.keys(_monthCache).forEach(k=>delete _monthCache[k]);
+  Object.keys(_dayCache).forEach(k=>delete _dayCache[k]);
+}
+// 1日分の予定/報告（無ければ null）。その月をまとめて読み込み済みならそれを使い、読み込み回数を減らす
+async function getDayDoc(coll, name, ds){
+  const mc=_monthCache[coll+'|'+name+'|'+String(ds).slice(0,7)];
+  if(mc && Date.now()-mc.t<_CACHE_TTL){
+    try{ const docs=await mc.p; const d=docs[ds]; return d&&d.tasks&&d.tasks.length?d:null; }catch(e){ /* 1日分で読み直す */ }
+  }
+  const k=coll+'|'+name+'|'+ds;
+  const c=_dayCache[k];
+  if(c && Date.now()-c.t<_CACHE_TTL) return c.p;
+  const pr=apiGet({action:coll==='plans'?'getPlan':'getReport', date:ds, memberName:name})
+    .then(d=>d&&d.tasks&&d.tasks.length?d:null, e=>{ delete _dayCache[k]; throw e; });
+  _dayCache[k]={t:Date.now(), p:pr};
+  return pr;
+}
+// 「更新」ボタン：キャッシュを捨てて表示中の画面を読み直す
+function refreshData(){
+  _clearReadCaches();
+  state.dayOver=null;
+  refreshWorkStats();
+  loadKintai();
+  if(_curView==='dashboard') renderDashboard();
+  if(_curView==='summary') renderSummary();
+  if(_curView==='diff') renderDiff();
+  if(_curView==='consult') loadConsultations(true);
+  if(_curView==='inbox') refreshInbox();
 }
 
 // ============================================================
@@ -1278,16 +1439,19 @@ function _roundTo15(date){
   return {h:rh, m:rm, str:rh+':'+String(rm).padStart(2,'0')};
 }
 
+const _attErr={}; // 出退勤の読み込みに失敗した 「mi_日付」
 async function loadAttendance(mi, ds){
   const key=mi+'_'+ds;
   if(state.attendanceData[key]) return state.attendanceData[key];
+  delete _attErr[key];
   try{
     const data=await apiGet({action:'getAttendance', memberName:MEMBERS[mi].name, date:ds});
     state.attendanceData[key]=data.success?{start:data.start||null,end:data.end||null}:{start:null,end:null};
     return state.attendanceData[key];
   }catch(e){
     console.warn('出退勤の読み込みに失敗しました', e); // 失敗はキャッシュしない（次回また読む）
-    return {start:null,end:null};
+    _attErr[key]=_errText(e);
+    return null;
   }
 }
 
@@ -1296,7 +1460,15 @@ function _isTodayDs(ds){ return ds===dateStr(new Date()); }
 function renderAttendanceUI(mi, ds, isRep){
   const area=document.getElementById('attendance-area');
   if(!area) return;
-  const att=state.attendanceData[mi+'_'+ds]||{start:null,end:null};
+  if(!state.attendanceData[mi+'_'+ds]){
+    // 読み込めていない（または読み込み中）ときは「未打刻」と表示せず、打刻もさせない（既存の打刻を上書きしないため）
+    area.style.cssText='display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0;margin-bottom:10px;';
+    area.innerHTML=_attErr[mi+'_'+ds]!==undefined
+      ?`<div class="load-err" style="flex:1;margin-bottom:0;"><span>出退勤の記録を読み込めませんでした（${esc(_attErr[mi+'_'+ds])}）。読み込めるまで打刻できません。</span><button class="btn btn-sm" type="button" onclick="_retryAttendance()">再読み込み</button></div>`
+      :'<span style="font-size:var(--fs-sm);color:var(--t3);">出退勤を読み込み中...</span>';
+    return;
+  }
+  const att=state.attendanceData[mi+'_'+ds];
   const today=_isTodayDs(ds);
   // 打刻ボタンは入力日が今日のときのみ有効
   const dis=(today&&canEdit(mi))?'':' disabled title="打刻は当日のみ可能です" style="opacity:.45;cursor:not-allowed;"';
@@ -1320,6 +1492,13 @@ function _selectedInputMember(){
   return MEMBERS[mi]?mi:-1;
 }
 
+function _retryAttendance(){
+  const mi=_selectedInputMember(); if(mi<0) return;
+  const ds=dateStr(state.inputDate), it=document.getElementById('i-type'), gen=_inputGen;
+  delete _attErr[mi+'_'+ds];
+  renderAttendanceUI(mi, ds, !!(it&&it.value==='report'));
+  loadAttendance(mi, ds).then(()=>{ if(gen===_inputGen) renderAttendanceUI(mi, ds, !!(it&&it.value==='report')); });
+}
 // 打刻：保存できたときだけ画面に反映する（失敗したらエラー表示）
 async function _saveClock(kind){
   const mi=_selectedInputMember();
@@ -1329,6 +1508,10 @@ async function _saveClock(kind){
   if(!_isTodayDs(ds)){ showError('打刻は当日のみ可能です'); return; }
   const {str}=_roundTo15(new Date());
   const key=mi+'_'+ds;
+  const cur=state.attendanceData[key];
+  if(!cur){ showError('出退勤の記録を読み込めていないため打刻できません。「再読み込み」を押してください'); return; }
+  const label=kind==='start'?'出勤':'退勤';
+  if(cur[kind] && cur[kind]!==str && !confirm(`すでに ${cur[kind]} で${label}打刻しています。${str} に上書きしますか？`)) return;
   const btns=[...document.querySelectorAll('#attendance-area .att-btn')];
   btns.forEach(b=>b.disabled=true);
   try{
@@ -1349,16 +1532,19 @@ async function clockIn(){ return _saveClock('start'); }
 async function clockOut(){ return _saveClock('end'); }
 
 async function loadMonthReportStatus(mi, ym){
+  const name=MEMBERS[mi]&&MEMBERS[mi].name;
+  if(!name) return;
   try{
-    const data=await apiGet({action:'getMonthReportStatus', memberName:MEMBERS[mi].name, ym});
-    if(data.success && data.days){
-      if(!state.memberData[mi]) return;
-      state.memberData[mi].reportedDays=Object.assign(state.memberData[mi].reportedDays||{}, data.days);
-      // 取得中に別メンバー・別月へ切り替えていたら再描画しない
-      const sel=document.getElementById('m-member-sel');
-      if(sel && parseInt(sel.value||0)===mi && _ymStr(state.calYear,state.calMonth)===ym) renderCalendar(mi);
-    }
-  }catch(e){}
+    const docs=await fetchMonthDocs('reports', name, ym); // サマリー・分析と同じキャッシュを使う
+    const i=MEMBERS.findIndex(m=>m.name===name);
+    if(i<0||!state.memberData[i]) return;
+    const days={};
+    Object.keys(docs).forEach(ds=>{ if((docs[ds].tasks||[]).length) days[ds]=true; });
+    state.memberData[i].reportedDays=Object.assign(state.memberData[i].reportedDays||{}, days);
+    // 取得中に別メンバー・別月へ切り替えていたら再描画しない
+    const sel=document.getElementById('m-member-sel');
+    if(sel && parseInt(sel.value||0)===i && _ymStr(state.calYear,state.calMonth)===ym) renderCalendar(i);
+  }catch(e){ /* 表示の補助情報なので、エラーは fetchMonthDocs が表示済み */ }
 }
 
 
@@ -1396,7 +1582,9 @@ function normalizeTask(t){
     startH:sH===null?'':String(sH), startM:sH===null?'':String(sM),
     endH:eH===null?'':String(eH),   endM:eH===null?'':String(eM),
     startTime:sH===null?'':pad(sH)+':'+pad(sM),
-    endTime:eH===null?'':pad(eH)+':'+pad(eM)
+    endTime:eH===null?'':pad(eH)+':'+pad(eM),
+    progress:typeof t.progress==='string'?t.progress:'',
+    projectStatus:(t.projectStatus==='順調'||t.projectStatus==='ヘルプ')?t.projectStatus:''
   };
 }
 function _normalizeTasks(arr){ return (Array.isArray(arr)?arr:[]).map(normalizeTask).filter(Boolean); }
@@ -1405,6 +1593,8 @@ function _tasksForSave(arr){
     const n=normalizeTask(t); if(!n) return null;
     const o={cat:n.cat,name:n.name,startH:n.startH,startM:n.startM,endH:n.endH,endM:n.endM,startTime:n.startTime,endTime:n.endTime,note:n.note};
     if(t.status) o.status=t.status;
+    if(n.progress) o.progress=n.progress;
+    if(n.projectStatus) o.projectStatus=n.projectStatus;
     return o;
   }).filter(Boolean);
 }
@@ -1445,6 +1635,7 @@ function formatDate(d){return d.toLocaleDateString('ja-JP',{year:'numeric',month
 // HTMLエスケープ（innerHTMLに入れるユーザー入力用）
 function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function safeColor(c){return /^#[0-9a-fA-F]{6}$/.test(String(c||''))?c:'#474747';}
+function safeBg(c){return /^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/.test(String(c||''))?c:'#dfe0e1';}
 function fmtH(h){return String(Math.round((h||0)*10)/10);}
 // ===== 勤怠レポート パーサー（GAS とブラウザで同じコード。DOM を使わず正規表現だけで読む） =====
 // 名前の表記ゆれをそろえる（空白を除く・旧字体をそろえる・全角半角を統一）
@@ -1780,7 +1971,6 @@ function minuteBreakdown(tasks){
   return {work, brk, span};
 }
 function workMinutes(tasks){ return minuteBreakdown(tasks).work; }
-function breakMinutes(tasks){ return minuteBreakdown(tasks).brk; }
 // 保存済みの workMinutes（数値）があればそれを使い、無ければタスクから計算
 function docWorkMinutes(doc){
   if(doc && typeof doc.workMinutes==='number' && isFinite(doc.workMinutes) && Array.isArray(doc.tasks) && doc.tasks.length) return doc.workMinutes;
@@ -1809,11 +1999,12 @@ function _highlightNav(name){
   });
   _MNAV_MAIN.forEach(n=>{ const mb=document.getElementById('mnav-'+n); if(mb) mb.classList.toggle('active', n===name); });
   const more=document.getElementById('mnav-more');
-  if(more) more.classList.toggle('active', ['usage','members','settings'].includes(name));
-  ['usage','members','settings'].forEach(n=>{ const it=document.getElementById('more-'+n); if(it) it.classList.toggle('active', n===name); });
+  if(more) more.classList.toggle('active', ['usage','members','settings','consult','inbox'].includes(name));
+  ['usage','members','settings','consult','inbox'].forEach(n=>{ const it=document.getElementById('more-'+n); if(it) it.classList.toggle('active', n===name); });
 }
 function sw(name){
-  if(name==='settings' && !IS_MANAGER) name='input';
+  if((name==='settings'||name==='inbox') && !IS_MANAGER) name='input';
+  if(name==='consult' && IS_MANAGER) name='inbox';
   closeMoreSheet();
   // 入力中の内容がある状態で入力画面を離れる（または再表示する）ときは確認
   if(_curView==='input' && !_confirmDiscard()) return;
@@ -1830,6 +2021,8 @@ function sw(name){
   if(name==='usage'){loadUsageContent();}
   if(name==='settings'){renderSettingsPage();renderCategoryList();renderKintaiStatus();}
   if(name==='members')renderMembersPage();
+  if(name==='consult'){ _csNewThisView={}; renderConsultPage(); loadConsultations(); }
+  if(name==='inbox'){ renderInbox(); loadConsultations(); loadProjectLogs(); }
   window.scrollTo(0,0);
 }
 function toggleMoreSheet(){ const sh=document.getElementById('more-sheet'); if(sh) sh.classList.toggle('open'); }
@@ -1919,14 +2112,10 @@ function _fillTaskBlock(tb, t){
   set('.task-name', n.name||'');
   if(n.startH!=='' && n.startH!==undefined) _setTime(tb,'t-start',n.startH,n.startM||0);
   if(n.endH!=='' && n.endH!==undefined) _setTime(tb,'t-end',n.endH,n.endM||0);
-  const ta=tb.querySelector('textarea'); if(ta) ta.value=n.note||'';
   tb.dataset.note=n.note||''; // 備考欄はUIにないため保持して再保存時に消さない
-}
-
-function savePlanToStore(){
-  const mi=parseInt(document.getElementById('i-member').value||0);
-  const ds=dateStr(state.inputDate);
-  planStore[mi+'_'+ds]=_formTasks();
+  const pr=tb.querySelector('.task-progress'); if(pr) pr.value=n.progress||'';
+  _setProjStatusValue(tb, n.projectStatus||'');
+  _updateProjBox(tb);
 }
 
 function setMember(idx, btn){
@@ -2001,9 +2190,10 @@ function init(){
   // Firestore からカテゴリ・勤怠レポート・月初設定を読み込む（メンバーはログイン時に読み込み済み）
   loadCategoriesFromGAS();
   loadKintai(); // 勤怠レポート（今月）
-  loadAllMonthlySetup().finally(()=>refreshWorkStats());
-  // タスクのドラッグ&ドロップ並び替えを有効化
-  initTaskDnD();
+  // 今月の報告（月単位で1回）→ 今日の提出状況（報告はキャッシュから・予定だけ読む）
+  loadAllMonthlySetup().finally(()=>refreshWorkStats().finally(()=>_syncDayStatus(dateStr(new Date()))));
+  loadConsultations();
+  if(IS_MANAGER) loadProjectLogs(); else loadMyProjectNames();
   const dp=document.getElementById('dash-pick');
   dp.value=dateStr(now);
   state.selectedDate=now;
@@ -2016,7 +2206,6 @@ function init(){
   _buildMonthOptions(document.getElementById('sum-month'), 6);
   _buildMonthOptions(document.getElementById('diff-month'), 6);
 
-  renderDashboard();
   renderUsagePage();
   // 入力中の内容を消さないための確認・日付の切り替わり検知
   const card=document.querySelector('#page-input .card');
@@ -2067,10 +2256,9 @@ let _syncGen=0;
 async function _syncDayStatus(ds){
   const gen=++_syncGen;
   try{
-    const data = await apiGet({action:'getDayStatus', date:ds});
+    const res=await Promise.all(MEMBERS.map(m=>Promise.all([getDayDoc('plans',m.name,ds), getDayDoc('reports',m.name,ds)]).then(([p,r])=>({name:m.name, hasPlan:!!p, hasReport:!!r}))));
     if(gen!==_syncGen) return;
-    if(!data||!data.success||!data.status) return;
-    data.status.forEach(s=>{
+    res.forEach(s=>{
       const i = MEMBERS.findIndex(m=>m.name===s.name);
       if(i<0||!state.memberData[i]) return;
       if(!state.memberData[i].submitted[ds]) state.memberData[i].submitted[ds]={plan:false,report:false};
@@ -2321,9 +2509,6 @@ function _paceCardHTML({m,target,worked,remDays,closed,official,overUnder,projec
     </div>`;
 }
 
-// 休憩は「休憩」カテゴリタスクの合計時間から自動算出するため手動入力UIは廃止
-let breakMin=0;
-
 // ============================================================
 // タイムライン表示
 // ============================================================
@@ -2450,7 +2635,6 @@ function _formTasks(){
 function calcWorkHours(){
   renderTimeline();
   const b=minuteBreakdown(_formTasks());
-  breakMin=b.brk;
   const bh=Math.floor(b.brk/60),bm=b.brk%60;
   const tDisp=document.getElementById('task-sum-display');
   const bDisp=document.getElementById('break-display');
@@ -2484,7 +2668,6 @@ function renderInputForm(){
   const sb=document.getElementById('report-shortcut-btns');
   if(sb)sb.style.display=isRep?'flex':'none';
   if(isRep){
-    breakMin=0;
     setTimeout(calcWorkHours,50);
   }
   const md=state.memberData[mi]||{offDays:[]};
@@ -2669,7 +2852,7 @@ function addTask(){
     <button class="rm" type="button" title="削除" onclick="confirmRemoveTask(this);">×</button>
     <div class="tb-h" style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
       <select class="task-cat" onchange="onCatChange(this);renderTimeline();calcWorkHours();" style="width:auto;padding:6px 9px;font-size:var(--fs-sm);"><option value="">カテゴリ選択</option>${CATS.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('')}</select>
-      <input type="text" class="task-name" placeholder="内容" oninput="renderTimeline()" style="flex:1;min-width:120px;" />
+      <input type="text" class="task-name" placeholder="内容" oninput="renderTimeline();_clearProjErr(this.closest('.tb'))" style="flex:1;min-width:120px;" maxlength="100" />
     </div>
     <div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap;">
       ${_timeInputsHTML('t-start', prevH, prevM)}
@@ -2686,12 +2869,22 @@ function addTask(){
       <button class="dur-btn" onclick="setDuration(this.closest('.tb'),120)" type="button">2h</button>
       <button class="dur-btn" onclick="setDuration(this.closest('.tb'),180)" type="button">3h</button>
     </div>
+    <div class="proj-box" hidden>
+      <label class="proj-lbl">進捗・進めた内容（必須）<textarea class="task-progress" rows="2" maxlength="2000" placeholder="例：セレクト80枚まで完了。明日は色調整" oninput="_clearProjErr(this.closest('.tb'))"></textarea></label>
+      <div class="proj-status" role="radiogroup" aria-label="状況">
+        <span class="proj-lbl">状況（必須）</span>
+        <button type="button" class="ps-btn" data-v="順調" role="radio" aria-checked="false" onclick="setProjStatus(this)">順調</button>
+        <button type="button" class="ps-btn" data-v="ヘルプ" role="radio" aria-checked="false" onclick="setProjStatus(this)">ヘルプ</button>
+      </div>
+      <div class="proj-err"></div>
+    </div>
   `;
   // 初期設定は「カテゴリ選択」(未選択)
   const catSel=div.querySelector('.task-cat');
   if(catSel) catSel.value='';
   if(tl)tl.appendChild(div);
   attachDnD(div);
+  _updateProjBox(div);
   renderTimeline();
 }
 
@@ -2706,56 +2899,10 @@ function confirmRemoveTask(el){
 // ============================================================
 // タスクブロックのドラッグ&ドロップ並び替え
 // ============================================================
-let _dragTb=null;
-let _touchDragTb=null;
-let _touchGhost=null;
-
-function _clearDropMarkers(){
-  document.querySelectorAll('.tb.drop-above, .tb.drop-below').forEach(t=>{
-    t.classList.remove('drop-above');t.classList.remove('drop-below');
-  });
-}
-function _insertByY(list, movingTb, clientY){
-  const tbs=[...list.querySelectorAll('.tb')].filter(t=>t!==movingTb);
-  _clearDropMarkers();
-  for(const tb of tbs){
-    const rect=tb.getBoundingClientRect();
-    if(clientY < rect.top+rect.height/2){
-      list.insertBefore(movingTb, tb);
-      tb.classList.add('drop-above');
-      return;
-    }
-  }
-  list.appendChild(movingTb);
-  const last=tbs[tbs.length-1];
-  if(last) last.classList.add('drop-below');
-}
 // --- HTML5 DnD (PC)
 let _dragSrc = null;
 
-function initTaskDnD(){
-  const list = document.getElementById('task-list');
-  if(!list || list.dataset.dndInit==='1') return;
-  list.dataset.dndInit = '1';
-}
-
 // タスクブロックにドラッグイベントを付与（addTask内で呼ぶ）
-function sortTasksByTime(){
-  const list = document.getElementById('task-list');
-  if(!list) return;
-  const items = [...list.children];
-  items.sort((a, b)=>{
-    const getTime = el => {
-      if(!el.querySelector || !el.classList.contains('tb')) return 999*60;
-      const t=_readTime(el,'t-start');
-      return (t.empty||!t.valid) ? 999*60 : t.min;
-    };
-    return getTime(a) - getTime(b);
-  });
-  items.forEach(item => list.appendChild(item));
-  renderTimeline && renderTimeline();
-}
-
 function attachDnD(tb){
   const handle = tb.querySelector('.drag-handle');
   if(!handle) return;
@@ -2849,8 +2996,44 @@ function attachDnD(tb){
 }
 
 // カテゴリ変更時のフック（将来の拡張用）
+// ===== 終業報告：プロジェクトのカテゴリのタスクは「進捗・状況」も入力 =====
+// isProject が未設定のカテゴリは、名前に「プロジェクト」を含むものをプロジェクト扱い
+function isProjectCat(cat){
+  const n=resolveCat(cat); if(!n) return false;
+  const c=CATEGORIES.find(x=>x.name===n);
+  if(c && typeof c.isProject==='boolean') return c.isProject;
+  return /プロジェクト/.test(n);
+}
+function _isReportMode(){ const it=document.getElementById('i-type'); return !!(it&&it.value==='report'); }
+function _updateProjBox(tb){
+  if(!tb) return;
+  const box=tb.querySelector('.proj-box'); if(!box) return;
+  const cat=tb.querySelector('.task-cat');
+  const on=_isReportMode() && isProjectCat(cat&&cat.value);
+  box.hidden=!on;
+  tb.classList.toggle('is-project', on);
+  const ni=tb.querySelector('.task-name');
+  if(ni){ ni.placeholder=on?'プロジェクト名（必須）':'内容'; if(on) ni.setAttribute('list','dl-proj-names'); else ni.removeAttribute('list'); }
+  if(!on) _clearProjErr(tb);
+}
+function _setProjStatusValue(tb, v){
+  tb.dataset.pstatus=(v==='順調'||v==='ヘルプ')?v:'';
+  tb.querySelectorAll('.ps-btn').forEach(b=>{ const on=b.dataset.v===tb.dataset.pstatus; b.classList.toggle('on', on); b.setAttribute('aria-checked', on?'true':'false'); });
+}
+function setProjStatus(btn){
+  const tb=btn.closest('.tb'); if(!tb) return;
+  _setProjStatusValue(tb, btn.dataset.v);
+  _setDirty(true);
+  _clearProjErr(tb);
+}
+function _clearProjErr(tb){
+  if(!tb||!tb.classList.contains('proj-invalid')) return;
+  tb.classList.remove('proj-invalid');
+  tb.querySelectorAll('.field-bad').forEach(el=>el.classList.remove('field-bad'));
+}
 function onCatChange(sel){
   const tb=sel&&sel.closest('.tb'); if(tb&&sel.value) tb.classList.remove('cal-unset');
+  _updateProjBox(tb);
   const it=document.getElementById('i-type');
   if(it&&it.value==='report') calcWorkHours();
 }
@@ -2878,6 +3061,7 @@ async function loadTasksFromGAS(isRep,mi){
   if(!tl)return;
   if(isRep && data.success){
     const rr=document.getElementById('report-reason'); if(rr) rr.value=data.reason||'';
+    _loadedReports[mName+'_'+ds]=[];
   }
   if(data.success&&data.tasks&&data.tasks.length>0){
     tl.innerHTML='';taskIdx=0;
@@ -2886,7 +3070,7 @@ async function loadTasksFromGAS(isRep,mi){
       addTask();
       _fillTaskBlock(tl.lastElementChild, t);
     });
-    if(isRep)setTimeout(calcWorkHours,100);
+    if(isRep){ setTimeout(calcWorkHours,100); _loadedReports[mName+'_'+ds]=tasks; }
     setTimeout(renderTimeline,120);
     if(!isRep) planStore[mi+'_'+ds]=tasks;
   } else {
@@ -2895,6 +3079,47 @@ async function loadTasksFromGAS(isRep,mi){
   }
   _setDirty(false);
   _setInputReady(true);
+}
+
+// ===== プロジェクト進捗の記録 projectLogs/{名前}_{日付}_{番号} =====
+const _loadedReports={}; // 名前_日付 → 前回保存（読み込み）した報告のタスク（不要になった記録の削除用）
+let _pendingProjLogs=null;
+function _projKey(s){ s=String(s==null?'':s); if(s.normalize) s=s.normalize('NFKC'); return s.replace(/\s+/g,'').toLowerCase(); }
+async function _saveProjectLogs(mi, ds, tasks, prevTasks, isRetry){
+  const m=MEMBERS[mi]; if(!m) return;
+  const email=String(m.email||'').trim().toLowerCase();
+  const proj=tasks.filter(t=>isProjectCat(t.cat) && t.progress && t.projectStatus);
+  const prev=(prevTasks||[]).filter(t=>t && (t.progress || t.projectStatus));
+  const warn=document.getElementById('projlog-warn');
+  if(!proj.length && !prev.length){ if(warn&&!isRetry) warn.hidden=true; return; }
+  try{
+    const b=_db.batch();
+    proj.forEach((t,i)=>{
+      const p=prev[i];
+      const same=!isRetry && p && p.projectStatus===t.projectStatus && _projKey(p.name)===_projKey(t.name);
+      const data={authorEmail:email, authorName:m.name, date:ds, project:String(t.name).trim(), progress:t.progress, status:t.projectStatus, category:resolveCat(t.cat), updatedAt:new Date()};
+      if(!same){ data.createdAt=new Date(); data.notified=t.projectStatus!=='ヘルプ'; } // ヘルプは Slack で管理者に通知（通知済みにしない）
+      b.set(_db.collection('projectLogs').doc(`${m.name}_${ds}_${i}`), data, {merge:true});
+    });
+    for(let i=proj.length;i<prev.length;i++) b.delete(_db.collection('projectLogs').doc(`${m.name}_${ds}_${i}`));
+    await b.commit();
+    _pendingProjLogs=null;
+    if(warn) warn.hidden=true;
+    _plogLoadedAt=0; // 次に開いたとき読み直す
+    proj.forEach(t=>_addMyProjectName(t.name));
+    if(isRetry) _toast('toast-input','プロジェクトの進捗を記録しました', false, 4000);
+  }catch(e){
+    console.error('プロジェクト進捗の記録エラー:', e);
+    _pendingProjLogs={mi, ds, tasks};
+    if(warn){
+      warn.innerHTML=`<span>終業報告は保存しましたが、プロジェクトの進捗を記録できませんでした（${esc(_errText(e))}）。</span><button class="btn btn-sm" type="button" onclick="retryProjectLogs()">進捗の記録を再送</button>`;
+      warn.hidden=false;
+    }
+  }
+}
+function retryProjectLogs(){
+  const p=_pendingProjLogs; if(!p) return;
+  _saveProjectLogs(p.mi, p.ds, p.tasks, [], true);
 }
 // 入力フォームの状態
 let _inputLoadOK=false;   // 保存済みデータの読み込みに成功したか（成功するまで送信不可）
@@ -3004,10 +3229,10 @@ async function submitInput(){
   const ds=dateStr(state.inputDate);
   const tasks=[];
   let timeErr=false, catErr=false, fmtErr=false;
+  const projErr=[];
   document.querySelectorAll('#task-list .tb').forEach(tb=>{
     const catSel=tb.querySelector('.task-cat');
     const ni=tb.querySelector('.task-name');
-    const ta=tb.querySelector('textarea');
     // 入力欄の形式チェック（範囲外の時刻は赤く表示）
     tb.querySelectorAll('.tpair input').forEach(el=>{ const st=_timeFieldState(el); _markTimeInvalid(el,!st.valid); if(!st.valid) fmtErr=true; });
     const st=_readTime(tb,'t-start'), et=_readTime(tb,'t-end');
@@ -3018,8 +3243,20 @@ async function submitInput(){
       startM:st.empty||!st.valid?'0':String(st.m),
       endH:et.empty||!et.valid?'':String(et.h),
       endM:et.empty||!et.valid?'0':String(et.m),
-      note:ta?ta.value:(tb.dataset.note||'')
+      note:tb.dataset.note||''
     };
+    // 終業報告のプロジェクトのタスク：プロジェクト名（内容欄）・進捗・状況が必須
+    if(isRep && isProjectCat(task.cat)){
+      const pr=tb.querySelector('.task-progress'), err=tb.querySelector('.proj-err');
+      task.name=task.name.trim();
+      task.progress=(pr&&pr.value||'').trim();
+      task.projectStatus=tb.dataset.pstatus||'';
+      const miss=[];
+      if(!task.name){ miss.push('プロジェクト名（内容欄）'); if(ni) ni.classList.add('field-bad'); }
+      if(!task.progress){ miss.push('進捗・進めた内容'); if(pr) pr.classList.add('field-bad'); }
+      if(!task.projectStatus) miss.push('状況（順調／ヘルプ）');
+      if(miss.length){ projErr.push((task.name||resolveCat(task.cat))+'：'+miss.join('・')); tb.classList.add('proj-invalid'); if(err) err.textContent=miss.join('・')+'を入力してください'; }
+    }
     // バリデーション: カテゴリ必須
     if(!task.cat){catErr=true;if(catSel)catSel.style.borderColor='#a23c3c';}
     else if(catSel)catSel.style.borderColor='';
@@ -3033,6 +3270,11 @@ async function submitInput(){
   if(fmtErr){showError('時刻の入力が正しくありません（時は6〜23、分は0〜59）');return;}
   if(catErr){showError('カテゴリを選択してください');return;}
   if(timeErr){showError('開始・終了時刻を入力し、終了は開始より後にしてください');return;}
+  if(projErr.length){
+    showError('プロジェクトのタスクは「プロジェクト名・進捗・状況」が必要です（'+projErr.slice(0,2).join(' ／ ')+(projErr.length>2?' ほか':'')+'）');
+    const first=document.querySelector('#task-list .tb.proj-invalid'); if(first&&first.scrollIntoView) first.scrollIntoView({block:'center'});
+    return;
+  }
   // 予定入力は打刻不要。当日の終業報告で退勤打刻がない場合のみ確認する
   if(isRep && _isTodayDs(ds)){
     const att=state.attendanceData[mi+'_'+ds]||{};
@@ -3071,6 +3313,10 @@ async function submitInput(){
     state.memberData[mi].reportedDays=state.memberData[mi].reportedDays||{};
     state.memberData[mi].reportedDays[ds]=true;
     refreshWorkStats(); // 月間実績を再集計
+    // プロジェクトの進捗を projectLogs にも記録（報告の保存に成功したときだけ）
+    const prevProj=(_loadedReports[mName+'_'+ds]||[]);
+    _loadedReports[mName+'_'+ds]=tasks.map(t=>({...t}));
+    _saveProjectLogs(mi, ds, tasks, prevProj);
   } else {
     state.memberData[mi].submitted[ds].plan=true;
     planStore[mi+'_'+ds]=tasks.map(t=>({...t}));
@@ -3097,12 +3343,10 @@ async function renderDayDetailAsync(sel){
   // 全メンバー分を並列取得
   let fetched;
   try{
+    const wrap=d=>d?{success:true, ...d}:{success:true, tasks:[]};
     fetched=await Promise.all(targetIndices.map(i=>{
       const m=MEMBERS[i];
-      return Promise.all([
-        apiGet({action:'getPlan',date:ds,memberName:m.name}),
-        apiGet({action:'getReport',date:ds,memberName:m.name})
-      ]);
+      return Promise.all([getDayDoc('plans',m.name,ds).then(wrap), getDayDoc('reports',m.name,ds).then(wrap)]);
     }));
   }catch(e){
     if(gen!==_dayDetailGen) return;
@@ -3266,43 +3510,56 @@ function _ymStr(y,m){return y+'-'+String(m+1).padStart(2,'0');}
 function _filterByYm(arr,ym){return (arr||[]).filter(ds=>String(ds).startsWith(ym));}
 
 // 全メンバーの当月月初設定（休み日等）をGASから読み込み、state.memberDataに反映
+// ===== 月ごとの休み（monthly/{名前}_{YYYY-MM}）=====
+// 読み込みに成功した「メンバー×月」だけ変更・保存できる（読み込めないまま保存すると既定値で上書きしてしまうため）
+const _monthLoad={}; // 名前|YYYY-MM → 'loading' | 'ok' | 'error'
+function _mlKey(name,ym){ return name+'|'+ym; }
+function _applyMonthlyDoc(md, ym, data){
+  const ex=!!(data&&data.exists);
+  const arr=v=>Array.isArray(v)?v.filter(x=>typeof x==='string'&&x.indexOf(ym)===0):[];
+  if(ex && typeof data.targetHours==='number' && data.targetHours>0) md.targetHours=data.targetHours;
+  if(ex && typeof data.weddingCount==='number') md.weddingCount=data.weddingCount;
+  if(ex && typeof data.remainShiftDays==='number' && data.remainShiftDays>0) md.remainShiftDays=data.remainShiftDays;
+  md.offDays=(md.offDays||[]).filter(d=>String(d).indexOf(ym)!==0).concat(ex?arr(data.offDays):[]);
+  md.weddingDays=(md.weddingDays||[]).filter(d=>String(d).indexOf(ym)!==0).concat(ex?arr(data.weddingDays):[]);
+}
+function _monthTargetHours(md, ym){
+  const [y,m]=ym.split('-').map(Number);
+  return (new Date(y,m,0).getDate()-(md.offDays||[]).filter(d=>String(d).indexOf(ym)===0).length)*8;
+}
+// 全メンバーの今月分（ダッシュボード・サマリーの休み判定用）
 async function loadAllMonthlySetup(){
-  const now=new Date();
-  const ym=_ymStr(now.getFullYear(), now.getMonth());
+  const ym=_curYm();
   await Promise.all(MEMBERS.map(async (m)=>{
+    const k=_mlKey(m.name, ym);
+    if(_monthLoad[k]!=='ok') _monthLoad[k]='loading';
     try{
       const data=await apiGet({action:'getMonthlySetup', ym, memberName:m.name});
-      if(!data || !data.success) return;
       // 取得中にメンバー一覧が入れ替わってもずれないよう名前で引き直す
       const i=MEMBERS.findIndex(x=>x.name===m.name);
       const md=state.memberData[i];
       if(!md) return;
-      if(typeof data.targetHours==='number' && data.targetHours>0) md.targetHours=data.targetHours;
-      if(typeof data.weddingCount==='number') md.weddingCount=data.weddingCount;
-      if(typeof data.remainShiftDays==='number' && data.remainShiftDays>0) md.remainShiftDays=data.remainShiftDays;
-      if(Array.isArray(data.offDays)){
-        md.offDays=(md.offDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.offDays);
-      }
-      if(Array.isArray(data.weddingDays)){
-        md.weddingDays=(md.weddingDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.weddingDays);
-      }
-    }catch(e){}
+      if(_offDaysSaveTimers[k]) return; // 保存待ちの変更があるときは上書きしない
+      _applyMonthlyDoc(md, ym, data);
+      _monthLoad[k]='ok';
+    }catch(e){
+      if(_monthLoad[k]!=='ok') _monthLoad[k]='error';
+      _notifyReadError(e);
+    }
   }));
   // ダッシュボードページ表示中のみ軽量更新（filterMember維持のためrenderDashboardは呼ばない）
   try{
     const dp=document.getElementById('page-dashboard');
-    if(dp&&dp.classList.contains('active')&&typeof _renderDashboardNoSync==='function') _renderDashboardNoSync();
+    if(dp&&dp.classList.contains('active')) _renderDashboardNoSync();
   }catch(e){}
   try{
     const sel=document.getElementById('m-member-sel');
     const mmb=document.getElementById('m-member-btns');
-    if(sel && mmb && mmb.querySelector('.member-btn.active')){
-      renderCalendar(parseInt(sel.value||0));
-    }
+    if(sel && mmb && mmb.querySelector('.member-btn.active')){ const mi=parseInt(sel.value||0); _renderMonthlyStatus(mi); renderCalendar(mi); }
   }catch(e){}
-  // 日次詳細も更新
+  // 日次詳細も更新（ダッシュボード表示中のみ）
   try{
-    if(state.selectedDate && typeof renderDayDetailAsync==='function') renderDayDetailAsync(state.selectedDate);
+    if(_curView==='dashboard' && state.selectedDate) renderDayDetailAsync(state.selectedDate);
   }catch(e){}
 }
 
@@ -3315,46 +3572,44 @@ async function renderMonthly(){
   if(!md||!MEMBERS[mi]) return;
   const gen=++_monthlyGen;
   const mName=MEMBERS[mi].name;
-  // まず現在値でUI反映（ロード中の白紙を防止）
-  const th=document.getElementById('target-hours');
-  const wc=document.getElementById('wedding-count');
-  const rs=document.getElementById('remain-shift');
-    renderCalendar(mi);
-  // GASから当月分の月初設定を読込
+  closeOffDaysPanel();
   if(typeof state.calYear!=='number'||isNaN(state.calYear)){
     const n=new Date();state.calYear=n.getFullYear();state.calMonth=n.getMonth();
   }
   const ym=_ymStr(state.calYear, state.calMonth);
+  const k=_mlKey(mName, ym);
+  if(_monthLoad[k]!=='ok') _monthLoad[k]='loading';
+  _renderMonthlyStatus(mi);
+  renderCalendar(mi);
   try{
     const data=await apiGet({action:'getMonthlySetup', ym, memberName:mName});
     if(gen!==_monthlyGen) return; // 取得中にメンバー/月が切り替わった
-    if(data && data.success){
-      if(typeof data.targetHours==='number' && data.targetHours>0) md.targetHours=data.targetHours;
-      if(typeof data.weddingCount==='number') md.weddingCount=data.weddingCount;
-      if(typeof data.remainShiftDays==='number' && data.remainShiftDays>0) md.remainShiftDays=data.remainShiftDays;
-      if(Array.isArray(data.offDays)){
-        md.offDays=(md.offDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.offDays);
-      }
-      if(Array.isArray(data.weddingDays)){
-        md.weddingDays=(md.weddingDays||[]).filter(d=>!String(d).startsWith(ym)).concat(data.weddingDays);
-      }
-      // GAS読み込み後に総労働時間を再計算
-      const ymNow=_ymStr(state.calYear, state.calMonth);
-      const daysInMonth=new Date(state.calYear, state.calMonth+1, 0).getDate();
-      const offCount2=(md.offDays||[]).filter(d=>d.startsWith(ymNow)).length;
-      const autoHours=(daysInMonth - offCount2)*8;
-      md.targetHours=autoHours;
-      if(th)th.value=autoHours;
-      if(wc)wc.value=md.weddingCount;
-      if(rs)rs.value=md.remainShiftDays;
-      updateWeddingHours();
-      renderCalendar(mi);
-    }
-  }catch(e){/* オフライン時はローカル状態のみ */}
+    if(!_offDaysSaveTimers[k]) _applyMonthlyDoc(md, ym, data); // 保存待ちの変更があるときは手元を優先
+    _monthLoad[k]='ok';
+    md.targetHours=_monthTargetHours(md, ym);
+    const th=document.getElementById('target-hours'); if(th) th.value=md.targetHours;
+  }catch(e){
+    if(gen!==_monthlyGen) return;
+    console.error('カレンダーの読み込みエラー:', e);
+    if(_monthLoad[k]!=='ok'){ _monthLoad[k]='error'; _monthLoad[k+'|err']=_errText(e); }
+  }
+  _renderMonthlyStatus(mi);
+  renderCalendar(mi);
   // 当月の報告済み日を取得してカレンダーに反映
   loadMonthReportStatus(mi, ym);
 }
-function updateWeddingHours(){/* 削除済みUI用の空関数 */}
+// 読み込み状態の表示（失敗時は再読み込みボタン。読み込めるまで変更・保存できない）
+function _renderMonthlyStatus(mi){
+  const m=MEMBERS[mi]; if(!m) return;
+  const ym=_ymStr(state.calYear, state.calMonth), k=_mlKey(m.name, ym), st=_monthLoad[k];
+  const box=document.getElementById('monthly-load-err');
+  if(box){
+    if(st==='error'){ box.innerHTML=`<div class="load-err"><span>${esc(ym.replace('-','年'))}月の休みを読み込めませんでした（${esc(_monthLoad[k+'|err']||'通信エラー')}）。上書きを防ぐため、読み込めるまで変更できません。</span><button class="btn btn-sm" type="button" onclick="renderMonthly()">再読み込み</button></div>`; box.style.display=''; }
+    else { box.innerHTML=''; box.style.display='none'; }
+  }
+  const ready=st==='ok' && canEdit(mi);
+  ['monthly-save-btn','gcal-off-btn'].forEach(id=>{ const b=document.getElementById(id); if(b) b.disabled=!ready; });
+}
 
 // ============================================================
 // 使用方法ページ（編集可能）
@@ -3480,12 +3735,15 @@ function renderCalendar(mi){
   const total=new Date(calY,calM+1,0).getDate();
   const prev=new Date(calY,calM,0).getDate();
   const today=new Date();
+  const ym=_ymStr(calY,calM);
+  const editable=!!MEMBERS[mi] && canEdit(mi) && _monthLoad[_mlKey(MEMBERS[mi].name, ym)]==='ok';
+  const wd='日月火水木金土';
   let html='';let cells=0;
-  for(let i=0;i<first;i++){html+=`<div class="cal-d other-m">${prev-first+1+i}</div>`;cells++;}
+  for(let i=0;i<first;i++){html+=`<div class="cal-d other-m" aria-hidden="true">${prev-first+1+i}</div>`;cells++;}
   for(let d=1;d<=total;d++){
     const day=new Date(calY,calM,d).getDay();
-    const ds=`${calY}-${String(calM+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const isOff=md.offDays.includes(ds);
+    const ds=`${ym}-${String(d).padStart(2,'0')}`;
+    const isOff=(md.offDays||[]).includes(ds);
     const isSubmitted=(state.memberData[mi]?.reportedDays||{})[ds];
     const isTod=today.getFullYear()===calY&&today.getMonth()===calM&&today.getDate()===d;
     let cls='cal-d'+(isOff?' off submitted':(day===0||day===6)?' weekend':'');
@@ -3494,60 +3752,147 @@ function renderCalendar(mi){
     let stamp='';
     if(isOff) stamp='<span style="font-size:var(--fs-sm);display:block;">休</span>';
     else if(isSubmitted) stamp='<span class="cal-済">済</span>';
-    html+=canEdit(mi)?`<div class="${cls}" onclick="toggleDay('${ds}',${mi})">${d}${stamp}</div>`:`<div class="${cls}" style="cursor:default;">${d}${stamp}</div>`;
+    const label=`${calM+1}月${d}日（${wd[day]}）${isOff?'休み':'勤務日'}${isSubmitted&&!isOff?'・報告済み':''}${isTod?'・今日':''}`;
+    html+=editable
+      ?`<div class="${cls}" data-ds="${ds}" role="button" tabindex="0" aria-pressed="${isOff}" aria-label="${esc(label)}" onclick="toggleDay('${ds}',${mi})" onkeydown="_calKey(event,'${ds}',${mi})">${d}${stamp}</div>`
+      :`<div class="${cls}" data-ds="${ds}" aria-label="${esc(label)}" style="cursor:default;">${d}${stamp}</div>`;
     cells++;
   }
   const rem=cells%7===0?0:7-(cells%7);
-  for(let i=1;i<=rem;i++)html+=`<div class="cal-d other-m">${i}</div>`;
+  for(let i=1;i<=rem;i++)html+=`<div class="cal-d other-m" aria-hidden="true">${i}</div>`;
   body.innerHTML=html;
 }
+// キーボード操作（Enter / スペースで休みの切り替え）
+function _calKey(e, ds, mi){
+  if(e.key!=='Enter' && e.key!==' ' && e.key!=='Spacebar') return;
+  e.preventDefault();
+  toggleDay(ds, mi);
+  const el=document.querySelector('#cal-body [data-ds="'+ds+'"]'); if(el) el.focus();
+}
 const _offDaysSaveTimers={}; // メンバー×月ごとのデバウンスタイマー
+// 保存：送った項目だけ書き換える（merge）。読み込みに成功していない月は保存しない
 async function _persistMonthly(mi, ym){
   const md=state.memberData[mi];
   if(!md||!MEMBERS[mi]) return;
   ym=ym||_ymStr(state.calYear, state.calMonth);
-  // 失敗は呼び出し元へ伝える（エラー表示は呼び出し側）
+  if(_monthLoad[_mlKey(MEMBERS[mi].name, ym)]!=='ok'){
+    const e=new Error('not loaded'); e.userMessage='この月の休みを読み込めていないため保存できません。「再読み込み」を押してください'; throw e;
+  }
   await apiPost({
-    action:'saveMonthlySetup',
-    ym,
-    memberName:MEMBERS[mi].name,
+    action:'saveMonthlySetup', ym, memberName:MEMBERS[mi].name,
     targetHours:md.targetHours,
-    weddingCount:md.weddingCount,
-    remainShiftDays:md.remainShiftDays,
-    offDays:_filterByYm(md.offDays, ym),
-    weddingDays:_filterByYm(md.weddingDays, ym)
+    offDays:_filterByYm(md.offDays, ym)
   });
 }
-function toggleDay(ds,mi){
-  const md=state.memberData[mi];
-  if(!md) return;
-  if(!canEdit(mi)){ showError('自分以外のカレンダーは変更できません'); return; }
-  md.offDays=md.offDays||[];
-  const isOff=md.offDays.includes(ds);
-  if(!isOff) md.offDays.push(ds);
-  else md.offDays=md.offDays.filter(x=>x!==ds);
-  renderCalendar(mi);
-  // 休み変更で総労働時間を再計算
-  const _ym2=_ymStr(state.calYear,state.calMonth);
-  const _days2=new Date(state.calYear,state.calMonth+1,0).getDate();
-  const _off2=(state.memberData[mi].offDays||[]).filter(d=>d.startsWith(_ym2)).length;
-  const _h2=(_days2-_off2)*8;
-  state.memberData[mi].targetHours=_h2;
-  const _thEl=document.getElementById('target-hours');
-  if(_thEl)_thEl.value=_h2;
-  // デバウンス付きで自動保存
+function _scheduleMonthlySave(mi, ym){
   const name=MEMBERS[mi].name;
-  const tk=name+'|'+_ym2;
+  const tk=_mlKey(name, ym);
   clearTimeout(_offDaysSaveTimers[tk]);
   _offDaysSaveTimers[tk]=setTimeout(()=>{
     delete _offDaysSaveTimers[tk];
     const i=MEMBERS.findIndex(m=>m.name===name);
-    if(i>=0) _persistMonthly(i, _ym2).catch(e=>{
+    if(i>=0) _persistMonthly(i, ym).catch(e=>{
       console.error('休みの保存エラー:', e);
-      showError('休みの登録を保存できませんでした（'+_errText(e)+'）。表示をサーバーの内容に戻します。もう一度登録してください');
+      showError(e&&e.userMessage?e.userMessage:'休みの登録を保存できませんでした（'+_errText(e)+'）。表示をサーバーの内容に戻します。もう一度登録してください');
       renderMonthly();
     });
   }, 400);
+}
+function toggleDay(ds,mi){
+  const md=state.memberData[mi];
+  if(!md||!MEMBERS[mi]) return;
+  if(!canEdit(mi)){ showError('自分以外のカレンダーは変更できません'); return; }
+  const ym=String(ds).slice(0,7);
+  const st=_monthLoad[_mlKey(MEMBERS[mi].name, ym)];
+  if(st!=='ok'){ showError(st==='loading'?'読み込み中です。少し待ってからもう一度押してください':'この月の休みを読み込めていないため変更できません。「再読み込み」を押してください'); return; }
+  md.offDays=md.offDays||[];
+  const isOff=md.offDays.includes(ds);
+  if(!isOff) md.offDays.push(ds);
+  else md.offDays=md.offDays.filter(x=>x!==ds);
+  // 休み変更で総労働時間を再計算
+  md.targetHours=_monthTargetHours(md, ym);
+  const _thEl=document.getElementById('target-hours');
+  if(_thEl)_thEl.value=md.targetHours;
+  renderCalendar(mi);
+  _scheduleMonthlySave(mi, ym);
+}
+// ===== Googleカレンダーから休みを読み込む（確認してから、選んだ日だけ登録。自動では登録・削除しない） =====
+let _gcalPanel=null; // {mi, name, ym, items:[{date, titles, registered}]}
+function _jpDay(ds){ const d=new Date(ds+'T00:00:00'); return `${d.getMonth()+1}月${d.getDate()}日（${'日月火水木金土'[d.getDay()]}）`; }
+function closeOffDaysPanel(){ _gcalPanel=null; const p=document.getElementById('gcal-panel'); if(p){ p.hidden=true; p.innerHTML=''; } }
+async function loadOffDaysFromGoogle(){
+  const sel=document.getElementById('m-member-sel');
+  const mi=parseInt(sel&&sel.value||0);
+  const m=MEMBERS[mi], md=state.memberData[mi];
+  if(!m||!md||!canEdit(mi)) return;
+  const ym=_ymStr(state.calYear, state.calMonth), k=_mlKey(m.name, ym);
+  if(_monthLoad[k]!=='ok'){ _toast('toast-monthly','この月の休みを読み込めていないため使えません。「再読み込み」を押してください',true); return; }
+  const calId=m.calendarId||m.email||'';
+  if(!calId){ _toast('toast-monthly','メールアドレス（カレンダー）が登録されていません',true); return; }
+  closeOffDaysPanel();
+  const btn=document.getElementById('gcal-off-btn');
+  if(btn) btn.disabled=true;
+  _toast('toast-monthly','Googleカレンダーを確認しています...',false,60000);
+  try{
+    const data=await _calApi({action:'offdays', calendarId:calId, ym});
+    if(!data || !data.success){ const e=new Error('calendar'); e.userMessage=(data&&data.error)||'Googleカレンダーを読み込めませんでした'; throw e; }
+    if(parseInt(sel.value||0)!==mi || _ymStr(state.calYear, state.calMonth)!==ym) return; // 途中で切り替えた
+    const items=(Array.isArray(data.items)?data.items:(data.dates||[]).map(d=>({date:d,titles:[]})))
+      .filter(x=>x && typeof x.date==='string' && x.date.indexOf(ym)===0)
+      .map(x=>({date:x.date, titles:Array.isArray(x.titles)?x.titles.map(String):[], registered:(md.offDays||[]).includes(x.date)}));
+    const t=document.getElementById('toast-monthly'); if(t) t.style.display='none';
+    if(!items.length){ _toast('toast-monthly','Googleカレンダーに、この月の休みの予定は見つかりませんでした', false, 6000); return; }
+    _gcalPanel={mi, name:m.name, ym, items};
+    _renderOffDaysPanel();
+  }catch(e){
+    console.error('休みの読み込みエラー:', e);
+    _toast('toast-monthly', e&&e.userMessage?e.userMessage:'読み込みに失敗しました（'+_errText(e)+'）', true);
+  }finally{ _renderMonthlyStatus(mi); }
+}
+function _renderOffDaysPanel(){
+  const p=document.getElementById('gcal-panel'); if(!p||!_gcalPanel) return;
+  const g=_gcalPanel, nNew=g.items.filter(x=>!x.registered).length;
+  p.innerHTML=`<div class="ct" style="margin-bottom:6px;">Googleカレンダーで見つかった休み（${esc(g.ym.replace('-','年'))}月・${esc(g.name)}）</div>
+    <div style="font-size:var(--fs-sm);margin-bottom:10px;">休みに登録する日にチェックを入れてください。${nNew?'':'見つかった日はすべて登録済みです。'}</div>
+    ${g.items.map((x,i)=>`<label class="gcal-row${x.registered?' done':''}">
+      <input type="checkbox" class="gcal-chk" data-i="${i}" ${x.registered?'disabled':'checked'} aria-label="${esc(_jpDay(x.date))}">
+      <span class="gcal-date">${esc(_jpDay(x.date))}</span>
+      <span class="gcal-title">${esc(x.titles.join('、'))}</span>
+      ${x.registered?'<span class="cs-badge">登録済み</span>':''}
+    </label>`).join('')}
+    <div style="display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:14px;">
+      <button class="btn" type="button" onclick="closeOffDaysPanel()">キャンセル</button>
+      <button class="btn btn-p" type="button" id="gcal-apply-btn" onclick="applyOffDaysFromPanel()" ${nNew?'':'disabled'}>選んだ日を休みに登録</button>
+    </div>`;
+  p.hidden=false;
+  p.scrollIntoView && p.scrollIntoView({block:'nearest'});
+}
+async function applyOffDaysFromPanel(){
+  const g=_gcalPanel; if(!g) return;
+  const mi=MEMBERS.findIndex(m=>m.name===g.name), md=state.memberData[mi];
+  if(mi<0||!md||!canEdit(mi)) return;
+  const picked=[...document.querySelectorAll('#gcal-panel .gcal-chk:checked')].map(c=>g.items[+c.dataset.i]).filter(x=>x&&!x.registered).map(x=>x.date);
+  if(!picked.length){ _toast('toast-monthly','登録する日が選ばれていません', true); return; }
+  const k=_mlKey(g.name, g.ym);
+  if(_monthLoad[k]!=='ok'){ _toast('toast-monthly','この月の休みを読み込めていないため登録できません', true); return; }
+  const btn=document.getElementById('gcal-apply-btn'); if(btn) btn.disabled=true;
+  const prev=(md.offDays||[]).slice();
+  md.offDays=[...new Set(prev.concat(picked))];
+  md.targetHours=_monthTargetHours(md, g.ym);
+  clearTimeout(_offDaysSaveTimers[k]); delete _offDaysSaveTimers[k];
+  try{
+    await _persistMonthly(mi, g.ym);
+  }catch(e){
+    md.offDays=prev; md.targetHours=_monthTargetHours(md, g.ym);
+    console.error('休みの登録エラー:', e);
+    _toast('toast-monthly', e&&e.userMessage?e.userMessage:'登録できませんでした（'+_errText(e)+'）。もう一度お試しください', true);
+    if(btn) btn.disabled=false;
+    return;
+  }
+  const th=document.getElementById('target-hours'); if(th) th.value=md.targetHours;
+  closeOffDaysPanel();
+  renderCalendar(mi);
+  _toast('toast-monthly', `${picked.length}日を休みに登録しました`, false, 6000);
 }
 function prevMonth(){state.calMonth--;if(state.calMonth<0){state.calMonth=11;state.calYear--;}renderMonthly();}
 function nextMonth(){state.calMonth++;if(state.calMonth>11){state.calMonth=0;state.calYear++;}renderMonthly();}
@@ -3569,6 +3914,7 @@ function renderCategoryList(){
       <input type="text" value="${esc(c.name)}" onchange="updateCategoryName(${i},this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:var(--fs-md);background:var(--surface);">
       <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:0;background:${safeColor(c.color)};color:#fff;font-size:var(--fs-sm);font-weight:400;white-space:nowrap;">${esc(c.name)}</span>
       <label class="radio-lbl" title="実働時間から差し引くカテゴリ"><input type="radio" name="cat-break" ${c.isBreak?'checked':''} onchange="setBreakCategory(${i})">休憩</label>
+      <label class="radio-lbl" title="終業報告でプロジェクト名・進捗・状況を入力するカテゴリ"><input type="checkbox" ${isProjectCat(c.name)?'checked':''} onchange="setProjectCategory(${i},this.checked)">プロジェクト</label>
       <button onclick="removeCategory(${i})" title="${c.isBreak?'休憩カテゴリは削除できません':'削除'}" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:var(--fs-lg);padding:2px 6px;line-height:1;">×</button>
     </div>
   `).join('');
@@ -3646,6 +3992,17 @@ async function setBreakCategory(idx){
   });
   if(ok){ flashCategoryToast(); Object.keys(_monthCache).forEach(k=>delete _monthCache[k]); refreshWorkStats(); }
 }
+// 終業報告で進捗を入力するカテゴリ（プロジェクト）の切り替え
+async function setProjectCategory(idx, on){
+  const c=CATEGORIES[idx]; if(!c) return;
+  const ok=await _mutateCategories(list=>{
+    const x=list.find(y=>y.name===c.name);
+    if(!x) throw _catErr('「'+c.name+'」が見つかりません');
+    x.isProject=!!on;
+    return list;
+  });
+  if(ok) flashCategoryToast(); else renderCategoryList();
+}
 function flashCategoryToast(){
   _toast('toast-category','保存しました',false,1800);
 }
@@ -3655,23 +4012,21 @@ async function saveMonthly(){
   if(!state.memberData[mi]||!MEMBERS[mi]) return;
   if(!canEdit(mi)){ showError('自分以外のカレンダーは変更できません'); return; }
   const thEl=document.getElementById('target-hours');
-  const rsEl=document.getElementById('remain-shift');
   state.memberData[mi].targetHours=parseInt(thEl?thEl.value:160)||160;
-  if(rsEl) state.memberData[mi].remainShiftDays=parseInt(rsEl.value)||20;
   const ym=_ymStr(state.calYear, state.calMonth);
-  const tk=MEMBERS[mi].name+'|'+ym;
+  const tk=_mlKey(MEMBERS[mi].name, ym);
   clearTimeout(_offDaysSaveTimers[tk]); delete _offDaysSaveTimers[tk]; // 自動保存待ちをまとめて保存
-  const btn=document.querySelector('#page-monthly .btn-p');
+  const btn=document.getElementById('monthly-save-btn');
   if(btn) btn.disabled=true;
   try{
     await _persistMonthly(mi, ym);
     _toast('toast-monthly','保存しました！',false,3000);
   }catch(e){
     console.error('カレンダー保存エラー:', e);
-    const msg='保存に失敗しました（'+_errText(e)+'）。もう一度「保存する」を押してください';
+    const msg=e&&e.userMessage?e.userMessage:'保存に失敗しました（'+_errText(e)+'）。もう一度「保存する」を押してください';
     _toast('toast-monthly',msg,true);
     showError(msg);
-  }finally{ if(btn) btn.disabled=false; }
+  }finally{ _renderMonthlyStatus(mi); }
 }
 
 // ============================================================
@@ -3935,6 +4290,14 @@ async function renderDiff(){
 // GoogleカレンダーのGAS（kobashun@kuppography.com で公開したWebアプリのURL）
 const CALENDAR_API_URL='https://script.google.com/macros/s/AKfycbww_OdPvrZUo4gbGK9586xBtPmXP_oUiieGPQ3MnpjP8VYDGLnmylkapH-oTGEUeTkV/exec';
 
+// カレンダー GAS を呼ぶ。ID トークンは URL ではなく本文で送る（text/plain なので事前確認の通信が起きない）
+async function _calApi(payload){
+  const user=firebase.auth().currentUser;
+  if(!user){ const e=new Error('signed out'); e.userMessage='ログインし直してください'; throw e; }
+  const idToken=await user.getIdToken();
+  const res=await fetch(CALENDAR_API_URL,{method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(Object.assign({}, payload, {idToken}))});
+  return await res.json();
+}
 async function importFromCalendar(){
   const btn=document.getElementById('cal-import-btn');
   const label='📅 カレンダーから取得';
@@ -3955,11 +4318,7 @@ async function importFromCalendar(){
   if(btn){btn.textContent='読み込み中...';btn.disabled=true;}
   try{
     // ログイン中の本人であることを GAS 側で確認するため、Firebase の ID トークンを付けて送る
-    const user=firebase.auth().currentUser;
-    if(!user){ flash('ログインし直してください'); return; }
-    const idToken=await user.getIdToken();
-    const res=await fetch(CALENDAR_API_URL+'?date='+encodeURIComponent(ds)+'&calendarId='+encodeURIComponent(calId)+'&idToken='+encodeURIComponent(idToken));
-    const data=await res.json();
+    const data=await _calApi({action:'events', date:ds, calendarId:calId});
     // 読み込み中に日付やメンバーを切り替えた場合は反映しない
     if(dateStr(state.inputDate)!==ds || _selectedInputMember()!==mi){ if(btn){btn.textContent=label;btn.disabled=false;} return; }
     if(data.success&&data.events&&data.events.length>0){
@@ -4013,6 +4372,7 @@ function showAddMemberForm(editIdx){
     const m = MEMBERS[editIdx];
     document.getElementById('new-member-name').value = m.name;
     document.getElementById('new-member-email').value = m.email || '';
+    document.getElementById('new-member-slack').value = m.slackId || '';
     document.getElementById('new-member-color').value = m.color;
     title.textContent = 'メンバーを編集';
     idxInput.value = editIdx;
@@ -4020,6 +4380,7 @@ function showAddMemberForm(editIdx){
   } else {
     document.getElementById('new-member-name').value = '';
     document.getElementById('new-member-email').value = '';
+    document.getElementById('new-member-slack').value = '';
     document.getElementById('new-member-color').value = '#474747';
     title.textContent = '新しいメンバーを追加';
     idxInput.value = -1;
@@ -4037,6 +4398,7 @@ async function saveMember(){
   if(!IS_MANAGER) return;
   const name = (document.getElementById('new-member-name').value || '').trim();
   const email = (document.getElementById('new-member-email').value || '').trim();
+  const slackId = (document.getElementById('new-member-slack').value || '').trim().toUpperCase();
   const color = safeColor(document.getElementById('new-member-color').value);
   const editIdx = parseInt(document.getElementById('edit-member-idx').value);
 
@@ -4044,6 +4406,7 @@ async function saveMember(){
   if(/[_\/]/.test(name)){ alert('名前に「_」や「/」は使えません'); return; }
   if(MEMBERS.some((m,i)=>m.name===name && i!==editIdx)){ alert('同じ名前のメンバーが既にいます'); return; }
   if(email && MEMBERS.some((m,i)=>i!==editIdx && String(m.email||'').trim().toLowerCase()===email.toLowerCase())){ alert('同じメールアドレスのメンバーが既にいます'); return; }
+  if(slackId && !/^[UW][A-Z0-9]{6,19}$/.test(slackId)){ alert('Slack メンバーIDは「U」で始まる英数字です（Slack のプロフィール →「︙」→「メンバーIDをコピー」）'); return; }
 
   const init = name.charAt(0);
   const bg = color + '20';
@@ -4055,7 +4418,7 @@ async function saveMember(){
       const oldName = MEMBERS[editIdx].name;
       const renamed = name !== oldName;
       if(renamed && !confirm('名前を「'+oldName+'」から「'+name+'」に変更します。\n\n過去の予定・報告・カレンダー・出退勤のデータも新しい名前に引き継ぎます（旧名のデータは消さずに残します）。\n変更しますか？')) return;
-      const fields={email,color,bg,init};
+      const fields={email,color,bg,init,slackId};
       if(renamed){
         const n=await renameMemberData(oldName, name, fields);
         ok=n!==null;
@@ -4072,7 +4435,7 @@ async function saveMember(){
       }
     } else {
       ok=await _mutateMembers(list=>{
-        if(!list.some(m=>m.name===name)) list.push({name, init, color, bg, email, active:false});
+        if(!list.some(m=>m.name===name)) list.push({name, init, color, bg, email, slackId, active:false});
         return list;
       });
       msg='メンバーを追加しました！';
@@ -4134,6 +4497,22 @@ async function renameMemberData(oldName, newName, fields){
   refreshWorkStats();
   return n;
 }
+// 一度だけの移行：Slack メンバーID（リマインド用）を名前で設定（未設定の人だけ）
+const _SLACK_ID_SEED={'佐々木 大翔':'U01SA4Z8PPX','坂本 楓花':'U04JXE7SQJZ','山口 葵':'U04K2S6R2JY','川上 輝':'U09MV7Y6C80','横山 大曜':'U09M8KQ2G4W','片倉 来波':'U09MN4TKWP3','小林 俊介':'U01SYFBMR4N'};
+async function ensureSlackIds(){
+  if(!IS_MANAGER) return;
+  try{
+    const ref=_db.collection('settings').doc('migrations');
+    const snap=await ref.get();
+    if(snap.exists && snap.data().slackIdsFilled) return;
+    const ok=await _mutateMembers(list=>{ list.forEach(m=>{ if(m && !m.slackId && _SLACK_ID_SEED[m.name]) m.slackId=_SLACK_ID_SEED[m.name]; }); return list; });
+    if(!ok) return;
+    await ref.set({slackIdsFilled:true, slackIdsAt:new Date()},{merge:true});
+  }catch(e){
+    console.warn('Slack ID の設定に失敗しました', e);
+    showError('Slack ID の初期設定に失敗しました（'+_errText(e)+'）。次回ログイン時に再試行します');
+  }
+}
 // 一度だけの移行：「横山 大燿」→「横山 大曜」（管理者のログイン時に実行）
 async function runMigrations(){
   if(!IS_MANAGER) return;
@@ -4180,6 +4559,7 @@ async function deleteMember(idx){
 function _serializeMember(m){
   const o = { name: m.name, init: m.init, color: m.color, bg: m.bg, email: m.email||'', active: !!m.active };
   if(m.calendarId) o.calendarId = m.calendarId;
+  if(m.slackId) o.slackId = m.slackId;
   return o;
 }
 // メンバー一覧はトランザクションで「サーバー最新版に変更を適用」して保存（別端末の変更を消さない）
@@ -4210,7 +4590,6 @@ async function _mutateMembers(fn){
   }
   return true;
 }
-async function saveMembersToGAS(){ return _mutateMembers(()=>MEMBERS.map(_serializeMember)); }
 
 // ログイン用の索引 settings/memberIndex {byEmail:{小文字のメール: 名前}}（セキュリティルールが参照）
 function _buildMemberIndex(list){
@@ -4250,7 +4629,8 @@ function _applyMembersList(list){
       name:String(m.name),
       init:m.init||String(m.name).charAt(0),
       color:safeColor(m.color||prev.color),
-      bg:m.bg||prev.bg||'#dfe0e1',
+      bg:safeBg(m.bg||prev.bg),
+      slackId:/^[UW][A-Z0-9]{6,19}$/.test(String(m.slackId||''))?String(m.slackId):'',
       email:m.email||'',
       active:!!m.active,
       calendarId:m.calendarId||prev.calendarId||''
@@ -4387,41 +4767,6 @@ function renderMembersPage(){
 // ============================================================
 // 管理者セクション
 // ============================================================
-const ADMIN_MEMBER_NAME = '小林 俊介';
-
-function checkAdminVisibility(){
-  // 入力フォームで選択されているメンバーが小林なら管理者ボタンを表示
-  const miEl = document.getElementById('i-member');
-  const mi = miEl ? parseInt(miEl.value||0) : 0;
-  const isAdmin = MEMBERS[mi] && MEMBERS[mi].name === ADMIN_MEMBER_NAME;
-  const btn = document.getElementById('admin-toggle-btn');
-  if(btn) btn.style.display = isAdmin ? '' : 'none';
-  if(!isAdmin){
-    const sec = document.getElementById('admin-section');
-    if(sec) sec.style.display = 'none';
-  }
-}
-
-function toggleAdminSection(){
-  const sec = document.getElementById('admin-section');
-  if(!sec) return;
-  const open = sec.style.display !== 'none';
-  sec.style.display = open ? 'none' : '';
-  const btn = document.getElementById('admin-toggle-btn');
-  if(btn) btn.textContent = open ? '管理者設定' : '閉じる';
-}
-
-// メール通知は廃止。GAS側が送らないよう設定をOFFに固定
-async function disableEmailNotification(){
-  try{
-    const ref=_db.collection('settings').doc('email_config');
-    const snap=await ref.get();
-    if(!snap.exists || snap.data().enabled!==false){
-      await ref.set({enabled:false, updatedAt:new Date()},{merge:true});
-    }
-  }catch(e){}
-}
-
 function renderSettingsPage(){
   const list = document.getElementById('settings-member-list');
   if(!list) return;
@@ -4431,7 +4776,7 @@ function renderSettingsPage(){
       <div class="av av-sm" style="background:#474747;flex-shrink:0;">${esc(m.init)}</div>
       <div style="flex:1;min-width:0;">
         <div style="font-size:var(--fs-md);font-weight:400;">${esc(m.name)}</div>
-        <div style="font-size:var(--fs-sm);color:var(--t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(m.email||'')}</div>
+        <div style="font-size:var(--fs-sm);color:var(--t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(m.email||'')}${String(m.email||'').toLowerCase()===MANAGER_EMAIL?'':(m.slackId?` ・Slack ${esc(m.slackId)}`:' ・<span style="color:#a23c3c;">Slack ID未設定</span>')}</div>
       </div>
       <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
                 <button class="btn btn-sm" onclick="showAddMemberForm(${i})">編集</button>
@@ -4530,7 +4875,7 @@ async function _onAuth(user){
   document.body.classList.remove('locked');
   init();
   sw('input');
-  if(IS_MANAGER){ ensureMemberIndex(); disableEmailNotification(); }
+  if(IS_MANAGER){ ensureMemberIndex().then(()=>ensureSlackIds()); }
 }
 // ログイン中のアカウントに対応するメンバー（メールアドレスで照合）
 function _refreshMe(){
@@ -4568,10 +4913,322 @@ function boot(){
   auth.onAuthStateChanged(u=>{ _onAuth(u); });
 }
 
+
+// ============================================================
+// 相談（メンバー → 管理者だけに届く）consultations/{自動ID}
+// 受信箱（管理者だけ）：相談の一覧・返信と、プロジェクト進捗（終業報告の projectLogs）
+// ============================================================
+const CS_STATUSES=['未読','確認済み','対応中','完了'];
+const CS_SEEN_KEY='kup_consult_seen';
+let _csNewThisView={}; // この画面を開いている間は「新しい返信」の印を残す
+let CONSULTS=[], _consultLoaded=false, _consultErr='', _inboxTab='consult', _consultOpenId=null, _consultLoading=null;
+function _tsMs(v){ if(!v) return 0; if(typeof v.toDate==='function') return v.toDate().getTime(); if(v instanceof Date) return v.getTime(); const d=new Date(v); return isNaN(d)?0:d.getTime(); }
+function _fmtTs(v){ const t=_tsMs(v); if(!t) return ''; const d=new Date(t); return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; }
+function _fmtDs(ds){ const m=String(ds||'').match(/^\d{4}-(\d{2})-(\d{2})/); return m?`${Number(m[1])}/${Number(m[2])}`:''; }
+function _firstLine(t){ return String(t||'').split(/\r?\n/).map(x=>x.trim()).find(x=>x)||''; }
+function _csSeen(){ try{ return JSON.parse(localStorage.getItem(CS_SEEN_KEY)||'{}')||{}; }catch(e){ return {}; } }
+function _csHasNewReply(c, seen){ return !!(c.managerReply && _tsMs(c.replyAt) > (seen[c.id]||0)); }
+async function loadConsultations(force){
+  if(!_booted) return;
+  if(_consultLoading && !force) return _consultLoading;
+  const run=(async()=>{
+    try{
+      const col=_db.collection('consultations');
+      // メンバーは自分の分だけ（ルールでもほかの人の分は読めない）
+      const snap=await (IS_MANAGER?col.get():col.where('authorEmail','==',AUTH_EMAIL).get());
+      const list=[]; snap.forEach(d=>list.push(Object.assign({id:d.id}, d.data())));
+      list.sort((a,b)=>_tsMs(b.createdAt)-_tsMs(a.createdAt));
+      CONSULTS=list; _consultLoaded=true; _consultErr='';
+      list.forEach(c=>{ if(c.authorEmail===AUTH_EMAIL) _addMyProjectName(c.project); });
+    }catch(e){
+      console.error('相談の読み込みエラー:', e);
+      _consultErr=_errText(e);
+    }
+    _updateConsultBadge();
+    if(_curView==='consult') renderConsultPage();
+    if(_curView==='inbox') renderInbox();
+  })();
+  _consultLoading=run;
+  try{ await run; }finally{ if(_consultLoading===run) _consultLoading=null; }
+}
+function _setBadge(id, n, label){ const b=document.getElementById(id); if(!b) return; b.textContent=n>99?'99+':label?label+' '+n:String(n); b.hidden=!n; }
+function _updateConsultBadge(){
+  let n=0, help=0;
+  if(IS_MANAGER){ n=CONSULTS.filter(c=>c.status==='未読').length; help=_helpProjects30().length; }
+  else { const seen=_csSeen(); n=CONSULTS.filter(c=>_csHasNewReply(c, seen)).length; }
+  _setBadge('consult-badge', IS_MANAGER?0:n); _setBadge('consult-badge-m', IS_MANAGER?0:n);
+  _setBadge('inbox-badge', IS_MANAGER?n:0); _setBadge('inbox-badge-m', IS_MANAGER?n:0);
+  _setBadge('inbox-help-badge', IS_MANAGER?help:0, 'ヘルプ'); _setBadge('inbox-help-badge-m', IS_MANAGER?help:0, 'ヘルプ');
+  const dot=document.getElementById('mnav-more-dot'); if(dot) dot.hidden=!(n||help);
+}
+// ---- メンバー：相談 ----
+const _myProjectNames=new Set();
+function _addMyProjectName(p){
+  p=String(p||'').trim(); if(!p) return;
+  if([..._myProjectNames].some(x=>_projKey(x)===_projKey(p))) return;
+  _myProjectNames.add(p);
+  const opts=[..._myProjectNames].sort().map(x=>`<option value="${esc(x)}"></option>`).join('');
+  ['dl-projects','dl-proj-names'].forEach(id=>{ const dl=document.getElementById(id); if(dl) dl.innerHTML=opts; });
+}
+// 自分のプロジェクト名の候補（相談・終業報告の進捗から）
+async function loadMyProjectNames(){
+  if(!_booted || !AUTH_EMAIL) return;
+  try{
+    const snap=await _db.collection('projectLogs').where('authorEmail','==',AUTH_EMAIL).limit(300).get();
+    snap.forEach(d=>_addMyProjectName((d.data()||{}).project));
+  }catch(e){ console.warn('プロジェクト名の候補を読み込めませんでした', e); }
+}
+function renderConsultPage(){
+  const err=document.getElementById('consult-load-err');
+  if(err) err.innerHTML=_consultErr?`<div class="load-err"><span>相談を読み込めませんでした（${esc(_consultErr)}）</span><button class="btn btn-sm" type="button" onclick="loadConsultations(true)">再読み込み</button></div>`:'';
+  renderConsultHistory();
+}
+function renderConsultHistory(){
+  const el=document.getElementById('cs-history'); if(!el) return;
+  const mine=CONSULTS.filter(c=>c.authorEmail===AUTH_EMAIL);
+  if(!_consultLoaded && !_consultErr){ el.innerHTML='<div style="font-size:var(--fs-md);color:var(--t3);">読み込み中...</div>'; return; }
+  if(!mine.length){ el.innerHTML='<div style="font-size:var(--fs-md);color:var(--t3);">まだ送った相談はありません</div>'; return; }
+  const seen=_csSeen();
+  el.innerHTML=mine.map(c=>{
+    if(_csHasNewReply(c, seen)) _csNewThisView[c.id]=true;
+    const isNew=!!_csNewThisView[c.id];
+    return `<div class="cs-item">
+      <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;">
+        <span class="cs-meta">${esc(_fmtTs(c.createdAt))}</span>
+        ${c.kind?`<span class="cs-badge">${esc(c.kind)}</span>`:''}
+        <span class="cs-proj">${esc(c.project)}</span>
+        <span class="cs-badge ${c.status==='完了'?'done':''}">${esc(c.status||'未読')}</span>
+        ${isNew?'<span class="cs-badge unread">新しい返信</span>':''}
+      </div>
+      <div class="cs-body" style="margin:8px 0 0;">${esc(c.body)}</div>
+      ${c.managerReply?`<div class="cs-reply"><div style="font-size:var(--fs-sm);margin-bottom:4px;">小林さんからの返信 ${esc(_fmtTs(c.replyAt))}</div>${esc(c.managerReply)}</div>`:''}
+    </div>`;
+  }).join('');
+  // 表示した返信は既読にする（この端末のみ）
+  let changed=false;
+  mine.forEach(c=>{ if(_csHasNewReply(c, seen)){ seen[c.id]=_tsMs(c.replyAt); changed=true; } });
+  if(changed){ try{ localStorage.setItem(CS_SEEN_KEY, JSON.stringify(seen)); }catch(e){} _updateConsultBadge(); }
+}
+async function submitConsultation(){
+  if(ME<0||!MEMBERS[ME]){ showError('メンバー登録されていないため送信できません'); return; }
+  const pj=document.getElementById('cs-project'), bd=document.getElementById('cs-body');
+  const project=(pj.value||'').trim(), body=(bd.value||'').trim();
+  pj.classList.toggle('field-bad', !project); bd.classList.toggle('field-bad', !body);
+  if(!project||!body){ _toast('toast-consult', !project?'プロジェクト名を入力してください':'相談内容を入力してください', true); return; }
+  if(project.length>100||body.length>5000){ _toast('toast-consult','プロジェクト名は100文字、相談内容は5000文字までです', true); return; }
+  const btn=document.getElementById('cs-submit'); if(btn) btn.disabled=true;
+  const now=new Date();
+  const data={authorEmail:AUTH_EMAIL, authorName:MEMBERS[ME].name, project, body, status:'未読', managerReply:'', createdAt:now, updatedAt:now, notified:false};
+  try{
+    const ref=await _db.collection('consultations').add(data);
+    CONSULTS.unshift(Object.assign({id:ref.id}, data));
+    _addMyProjectName(project);
+    pj.value=''; bd.value='';
+    _toast('toast-consult','小林さんに送信しました', false, 4000);
+    renderConsultHistory();
+  }catch(e){
+    console.error('相談の送信エラー:', e);
+    _toast('toast-consult','送信できませんでした（'+_errText(e)+'）。入力内容はそのまま残っています。もう一度送信してください', true);
+  }finally{ if(btn) btn.disabled=false; }
+}
+// ---- 管理者：受信箱 ----
+function renderInbox(){
+  if(!IS_MANAGER) return;
+  const err=document.getElementById('inbox-load-err');
+  if(err){
+    const msgs=[];
+    if(_consultErr) msgs.push('相談（'+_consultErr+'）');
+    if(_plogErr) msgs.push('プロジェクト進捗（'+_plogErr+'）');
+    err.innerHTML=msgs.length?`<div class="load-err"><span>読み込めませんでした：${esc(msgs.join('、'))}</span><button class="btn btn-sm" type="button" onclick="refreshInbox()">再読み込み</button></div>`:'';
+  }
+  setInboxTab(_inboxTab);
+}
+function refreshInbox(){ loadConsultations(true); loadProjectLogs(true); }
+function setInboxTab(t){
+  _inboxTab=t==='progress'?'progress':'consult';
+  [['consult','ib-tab-consult','cs-inbox'],['progress','ib-tab-progress','pj-view']].forEach(([k,tab,box])=>{
+    const on=k===_inboxTab; const b=document.getElementById(tab), x=document.getElementById(box);
+    if(b){ b.classList.toggle('active', on); b.setAttribute('aria-selected', on?'true':'false'); } if(x) x.style.display=on?'':'none';
+  });
+  if(_inboxTab==='consult') renderConsultInbox(); else renderProjectProgress();
+}
+function _fillSelect(id, values, allLabel, labels){
+  const el=document.getElementById(id); if(!el) return;
+  const cur=el.value;
+  el.innerHTML=`<option value="">${allLabel}</option>`+values.map((v,i)=>`<option value="${esc(v)}">${esc(labels?labels[i]:v)}</option>`).join('');
+  if(values.includes(cur)) el.value=cur;
+}
+function renderConsultInbox(){
+  const list=document.getElementById('cs-list'); if(!list) return;
+  _fillSelect('cs-f-member', [...new Set(CONSULTS.map(c=>c.authorName).filter(Boolean))], 'すべて');
+  _fillSelect('cs-f-status', CS_STATUSES, 'すべて');
+  _fillSelect('cs-f-project', [...new Set(CONSULTS.map(c=>c.project).filter(Boolean))].sort(), 'すべて');
+  const f=id=>(document.getElementById(id)||{}).value||'';
+  const fm=f('cs-f-member'), fs=f('cs-f-status'), fp=f('cs-f-project');
+  const rows=CONSULTS.filter(c=>(!fm||c.authorName===fm)&&(!fs||c.status===fs)&&(!fp||c.project===fp));
+  if(!_consultLoaded && !_consultErr) list.innerHTML='<div style="font-size:var(--fs-md);color:var(--t3);">読み込み中...</div>';
+  else list.innerHTML=rows.length?rows.map(c=>`<button type="button" class="cs-row${c.id===_consultOpenId?' open':''}" data-id="${esc(c.id)}" onclick="openConsult(this.dataset.id)">
+      <span class="cs-meta">${esc(_fmtTs(c.createdAt))}</span>
+      <span class="cs-meta">${esc(c.authorName)}</span>
+      <span class="cs-proj">${esc(c.project)}</span>
+      <span class="cs-badge ${c.status==='未読'?'unread':c.status==='完了'?'done':''}">${esc(c.status||'未読')}</span>
+      <span class="cs-first">${esc(_firstLine(c.body))}</span>
+    </button>`).join(''):'<div style="font-size:var(--fs-md);color:var(--t3);">該当する相談はありません</div>';
+  renderConsultDetail();
+}
+function renderConsultDetail(){
+  const box=document.getElementById('cs-detail'); if(!box) return;
+  const c=CONSULTS.find(x=>x.id===_consultOpenId);
+  if(!c){ box.style.display='none'; box.innerHTML=''; return; }
+  box.style.display='';
+  box.innerHTML=`<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+      <div class="ct" style="margin-bottom:0;">${esc(c.project)}</div>
+      <button class="btn btn-sm" type="button" onclick="closeConsult()">閉じる</button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:baseline;margin-top:8px;font-size:var(--fs-sm);">
+      <span>${esc(c.authorName)}</span><span>${esc(_fmtTs(c.createdAt))}</span>${c.kind?`<span class="cs-badge">${esc(c.kind)}</span>`:''}
+    </div>
+    <div class="cs-body">${esc(c.body)}</div>
+    <div class="form-group" style="max-width:240px;"><label class="form-label" for="cs-d-status">状態</label>
+      <select id="cs-d-status">${CS_STATUSES.map(st=>`<option value="${esc(st)}"${st===c.status?' selected':''}>${esc(st)}</option>`).join('')}</select></div>
+    <div class="form-group"><label class="form-label" for="cs-d-reply">返信（${esc(c.authorName)}さんだけに表示）</label>
+      <textarea id="cs-d-reply" maxlength="5000" style="min-height:100px;">${esc(c.managerReply||'')}</textarea>
+      ${c.replyAt?`<div style="font-size:var(--fs-sm);margin-top:6px;">最終返信 ${esc(_fmtTs(c.replyAt))}</div>`:''}</div>
+    <div id="toast-consult-detail" class="toast" style="margin-bottom:14px;"></div>
+    <div style="display:flex;justify-content:flex-end;"><button class="btn btn-p" id="cs-d-save" type="button" data-id="${esc(c.id)}" onclick="saveConsultReply(this.dataset.id)">保存する</button></div>`;
+}
+function closeConsult(){ _consultOpenId=null; renderConsultInbox(); }
+async function openConsult(id){
+  _consultOpenId=id;
+  renderConsultInbox();
+  const box=document.getElementById('cs-detail'); if(box&&box.scrollIntoView) box.scrollIntoView({block:'nearest'});
+  const c=CONSULTS.find(x=>x.id===id);
+  if(c && c.status==='未読'){
+    try{
+      const upd={status:'確認済み', updatedAt:new Date()};
+      await _db.collection('consultations').doc(id).update(upd);
+      Object.assign(c, upd);
+    }catch(e){ console.error('既読にできませんでした', e); showError('「確認済み」にできませんでした（'+_errText(e)+'）'); }
+    _updateConsultBadge();
+    if(_consultOpenId===id) renderConsultInbox();
+  }
+}
+async function saveConsultReply(id){
+  const c=CONSULTS.find(x=>x.id===id); if(!c) return;
+  const st=(document.getElementById('cs-d-status')||{}).value||c.status;
+  const reply=((document.getElementById('cs-d-reply')||{}).value||'').trim();
+  const upd={status:CS_STATUSES.includes(st)?st:c.status, updatedAt:new Date()};
+  if(reply!==(c.managerReply||'')){ upd.managerReply=reply; upd.replyAt=new Date(); upd.replyNotified=!reply; }
+  const btn=document.getElementById('cs-d-save'); if(btn) btn.disabled=true;
+  try{
+    await _db.collection('consultations').doc(id).update(upd);
+    Object.assign(c, upd);
+    _updateConsultBadge();
+    renderConsultInbox();
+    _toast('toast-consult-detail', upd.managerReply?'保存しました（Slack で本人に通知します）':'保存しました', false, 4000);
+  }catch(e){
+    console.error('返信の保存エラー:', e);
+    _toast('toast-consult-detail','保存できませんでした（'+_errText(e)+'）。入力内容はそのまま残っています', true);
+    if(btn) btn.disabled=false;
+  }
+}
+// ---- 管理者：プロジェクト進捗（projectLogs）----
+let PLOGS=[], _plogLoadedAt=0, _plogKeyLoaded='', _plogErr='', _plogLoading=null;
+function _cutoffDs(days){ const d=new Date(); d.setDate(d.getDate()-days); return dateStr(d); }
+function _plogPeriod(){ return (document.getElementById('pj-f-period')||{}).value||'30'; }
+async function loadProjectLogs(force){
+  if(!_booted || !IS_MANAGER) return;
+  const period=_plogPeriod();
+  if(!force && _plogKeyLoaded===period && Date.now()-_plogLoadedAt<_CACHE_TTL) return;
+  if(_plogLoading && !force) return _plogLoading;
+  const run=(async()=>{
+    try{
+      let q=_db.collection('projectLogs');
+      if(period!=='all') q=q.where('date','>=',_cutoffDs(Number(period)));
+      const snap=await q.limit(1000).get();
+      const list=[]; snap.forEach(d=>list.push(Object.assign({id:d.id}, d.data())));
+      PLOGS=list; _plogKeyLoaded=period; _plogLoadedAt=Date.now(); _plogErr='';
+    }catch(e){
+      console.error('プロジェクト進捗の読み込みエラー:', e);
+      _plogErr=_errText(e);
+      _plogKeyLoaded=period; _plogLoadedAt=Date.now(); // 失敗しても繰り返し読みに行かない（「再読み込み」で読み直す）
+    }
+    _updateConsultBadge();
+    if(_curView==='inbox') renderInbox();
+  })();
+  _plogLoading=run;
+  try{ await run; }finally{ if(_plogLoading===run) _plogLoading=null; }
+}
+function _logOrder(a,b){ return a.date<b.date?1:a.date>b.date?-1:(_tsMs(b.updatedAt||b.createdAt)-_tsMs(a.updatedAt||a.createdAt))||(String(b.id)<String(a.id)?-1:1); }
+// プロジェクトごと（メンバー × 正規化したプロジェクト名）にまとめる
+function _projectGroups(cutoff){
+  const g={};
+  const key=(n,p)=>n+'|'+_projKey(p);
+  PLOGS.forEach(l=>{
+    if(!l||!l.project||(cutoff&&String(l.date)<cutoff)) return;
+    const n=l.authorName||l.authorEmail||''; const k=key(n,l.project);
+    (g[k]||(g[k]={member:n, logs:[], consults:[]})).logs.push(l);
+  });
+  CONSULTS.forEach(c=>{
+    if(!c||!c.project) return;
+    const n=c.authorName||c.authorEmail||''; const k=key(n,c.project);
+    if(cutoff && dateStr(new Date(_tsMs(c.createdAt)))<cutoff && !g[k]) return;
+    (g[k]||(g[k]={member:n, logs:[], consults:[]})).consults.push(c);
+  });
+  return Object.values(g).map(x=>{
+    x.logs.sort(_logOrder);
+    x.consults.sort((a,b)=>_tsMs(b.createdAt)-_tsMs(a.createdAt));
+    const latest=x.logs[0]||null;
+    x.latest=latest;
+    x.project=latest?latest.project:x.consults[0].project;
+    x.status=latest?latest.status:'';
+    const lastC=x.consults[0]?dateStr(new Date(_tsMs(x.consults[0].createdAt))):'';
+    x.lastDate=[latest?latest.date:'', lastC].sort().pop();
+    return x;
+  });
+}
+function _helpProjects30(){ return _projectGroups(_cutoffDs(30)).filter(x=>x.status==='ヘルプ'); }
+function renderProjectProgress(){
+  const box=document.getElementById('pj-list'); if(!box) return;
+  const period=_plogPeriod();
+  if(_plogKeyLoaded!==period || Date.now()-_plogLoadedAt>=_CACHE_TTL){ if(!_plogLoading) loadProjectLogs(); }
+  const cutoff=period==='all'?'':_cutoffDs(Number(period));
+  let groups=_projectGroups(cutoff);
+  _fillSelect('pj-f-member', [...new Set(groups.map(x=>x.member).filter(Boolean))], 'すべて');
+  const fm=(document.getElementById('pj-f-member')||{}).value||'';
+  const fh=(document.getElementById('pj-f-status')||{}).value||'';
+  groups=groups.filter(x=>(!fm||x.member===fm)&&(!fh||x.status==='ヘルプ'));
+  if(!_plogLoadedAt && !_plogErr){ box.innerHTML='<div class="card" style="font-size:var(--fs-md);color:var(--t3);">読み込み中...</div>'; return; }
+  if(!groups.length){ box.innerHTML='<div class="card" style="font-size:var(--fs-md);color:var(--t3);">この期間のプロジェクト進捗はありません（終業報告で「プロジェクト」のカテゴリのタスクを入力すると表示されます）</div>'; return; }
+  const byMember={};
+  groups.forEach(x=>{ (byMember[x.member]||(byMember[x.member]=[])).push(x); });
+  const order=MEMBERS.map(m=>m.name).filter(n=>byMember[n]).concat(Object.keys(byMember).filter(n=>!MEMBERS.some(m=>m.name===n)));
+  const hasHelp=n=>byMember[n].some(x=>x.status==='ヘルプ');
+  order.sort((a,b)=>(hasHelp(b)?1:0)-(hasHelp(a)?1:0));
+  box.innerHTML=order.map(n=>{
+    const list=byMember[n].sort((a,b)=>((b.status==='ヘルプ')-(a.status==='ヘルプ'))||(a.lastDate<b.lastDate?1:a.lastDate>b.lastDate?-1:0));
+    return `<div class="card"><div class="ct">${esc(n)}</div>${list.map(x=>{
+      const help=x.status==='ヘルプ';
+      const tl=x.logs.map(l=>({t:l.date, ms:_tsMs(l.updatedAt||l.createdAt), html:`<li class="pj-ev"><span class="cs-meta">${esc(_fmtDs(l.date))}</span><span class="cs-badge ${l.status==='ヘルプ'?'help':''}">${esc(l.status||'')}</span><span class="pj-ev-text">${esc(l.progress)}</span></li>`}))
+        .concat(x.consults.map(c=>({t:dateStr(new Date(_tsMs(c.createdAt))), ms:_tsMs(c.createdAt), html:`<li class="pj-ev"><span class="cs-meta">${esc(_fmtTs(c.createdAt))}</span><span class="cs-badge">相談・${esc(c.status||'未読')}</span><span class="pj-ev-text">${esc(c.body)}${c.managerReply?`<span class="pj-ev-reply">返信：${esc(c.managerReply)}</span>`:''}</span></li>`})))
+        .sort((a,b)=>a.t<b.t?1:a.t>b.t?-1:b.ms-a.ms);
+      return `<div class="pj-card${help?' help':''}">
+        <div class="pj-head">
+          <span class="pj-name">${esc(x.project)}</span>
+          ${x.status?`<span class="cs-badge ${help?'help':''}">${esc(x.status)}</span>`:'<span class="cs-badge">相談のみ</span>'}
+          <span class="cs-meta">最終更新 ${esc(_fmtDs(x.lastDate))}</span>
+        </div>
+        ${x.latest?`<div class="pj-latest">${esc(x.latest.progress)}</div>`:''}
+        <details class="pj-tl"><summary>経過を見る（${tl.length}件）</summary><ol>${tl.map(e=>e.html).join('')}</ol></details>
+      </div>`;
+    }).join('')}</div>`;
+  }).join('');
+}
+
 // ============================================================
 // バックアップ（管理者のみ）：書き出し・復元
 // ============================================================
-const _BACKUP_COLLS=['plans','reports','monthly','attendance','settings'];
+const _BACKUP_COLLS=['plans','reports','monthly','attendance','settings','consultations','projectLogs'];
 const _BACKUP_FORMAT='kuppography-team-backup';
 // Firestore の値 → JSON（日時は {"__ts": ISO文字列}）
 function _encFs(v){
@@ -4628,7 +5285,7 @@ async function exportData(){
     for(const c of _BACKUP_COLLS){
       const snap=await _db.collection(c).get();
       const docs={};
-      snap.forEach(d=>{ if(scope==='all' || c==='settings' || _docMonthOf(d.id)===ym){ docs[d.id]=_encFs(d.data()); total++; } });
+      snap.forEach(d=>{ const data=d.data(); if(scope==='all' || c==='settings' || (c==='consultations'?(t=>{const x=new Date(t);return _ymStr(x.getFullYear(),x.getMonth());})(_tsMs(data.createdAt))===ym:c==='projectLogs'?String(data.date||'').slice(0,7)===ym:_docMonthOf(d.id)===ym)){ docs[d.id]=_encFs(data); total++; } });
       out.collections[c]=docs;
     }
     const tag=scope==='all'?'all':ym;
@@ -4656,14 +5313,23 @@ async function restoreFromFile(input){
   try{ j=JSON.parse(await f.text()); }
   catch(e){ _toast('toast-backup','JSON ファイルとして読めませんでした（'+f.name+'）', true); return; }
   if(!j || j.format!==_BACKUP_FORMAT || !j.collections || typeof j.collections!=='object'){ _toast('toast-backup','このアプリのバックアップファイルではありません（'+f.name+'）', true); return; }
-  const writes=[];
-  _BACKUP_COLLS.forEach(c=>{
+  const withSettings=!!(document.getElementById('restore-settings')||{}).checked;
+  const LABEL={plans:'予定',reports:'報告',monthly:'カレンダー（休み）',attendance:'出退勤',settings:'設定',consultations:'相談',projectLogs:'プロジェクト進捗'};
+  const colls=_BACKUP_COLLS.filter(c=>c!=='settings'||withSettings);
+  const writes=[], per={}, months=[];
+  colls.forEach(c=>{
     const docs=j.collections[c]||{};
-    Object.keys(docs).forEach(id=>{ if(id && !/[\/]/.test(id) && docs[id] && typeof docs[id]==='object') writes.push([c,id,docs[id]]); });
+    per[c]=0;
+    Object.keys(docs).forEach(id=>{
+      if(id && !/[\/]/.test(id) && docs[id] && typeof docs[id]==='object'){ writes.push([c,id,docs[id]]); per[c]++; if(c==='projectLogs'){ const ym=String((docs[id]||{}).date||'').slice(0,7); if(/^\d{4}-\d{2}$/.test(ym)) months.push(ym); } else if(c!=='settings'&&c!=='consultations'){ const ym=_docMonthOf(id); if(/^\d{4}-\d{2}$/.test(ym)) months.push(ym); } }
+    });
   });
-  if(!writes.length){ _toast('toast-backup','復元するデータがありません', true); return; }
-  const counts=_BACKUP_COLLS.map(c=>c+' '+Object.keys(j.collections[c]||{}).length+'件').join('、');
-  if(!confirm(`バックアップ（${String(j.exportedAt||'').slice(0,16).replace('T',' ')}・${j.scope==='all'?'すべて':j.scope}）から ${writes.length} 件を復元します。\n${counts}\n\n同じ日付・メンバーの今のデータは、ファイルの内容で上書きされます。元に戻せません。続けますか？`)) return;
+  if(!writes.length){ _toast('toast-backup','復元するデータがありません'+(withSettings?'':'（設定は復元しない設定です）'), true); return; }
+  months.sort();
+  const range=months.length?(months[0]===months[months.length-1]?months[0]:months[0]+' 〜 '+months[months.length-1]):'—';
+  const lines=colls.map(c=>'・'+LABEL[c]+'：'+per[c]+'件').join('\n');
+  const skipped=withSettings?'':'\n・設定（メンバー・カテゴリ・勤怠レポートなど）：復元しない（今のまま）';
+  if(!confirm(`バックアップ（${String(j.exportedAt||'').slice(0,16).replace('T',' ')}・${j.scope==='all'?'すべて':j.scope}）から、次のデータを書き込みます。\n対象の月：${range}\n${lines}${skipped}\n合計 ${writes.length} 件\n\n同じ日付・メンバーの今のデータは、ファイルの内容で上書きされます。元に戻せません。続けますか？`)) return;
   const typed=prompt('確認のため「復元」と入力してください');
   if(typed===null || typed.trim()!=='復元'){ _toast('toast-backup','復元を中止しました', false, 4000); return; }
   _toast('toast-backup','復元中...',false,60000);
@@ -4682,7 +5348,8 @@ async function restoreFromFile(input){
     return;
   }
   // 画面のデータを読み直す
-  Object.keys(_monthCache).forEach(k=>delete _monthCache[k]);
+  _clearReadCaches();
+  Object.keys(_monthLoad).forEach(k=>delete _monthLoad[k]);
   _clearIndexCaches();
   await loadCategoriesFromGAS();
   await loadMembersFromGAS();
