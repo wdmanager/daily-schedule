@@ -16,6 +16,9 @@
   --divider:rgba(58,58,58,.2);
   --error-bg:#faeaea;
   --error-ink:#a23c3c;
+  --c-new:#3f6e9a;--c-new-bg:#e8eff6;
+  --c-chg:#e3b10b;--c-chg-ink:#6b5200;--c-chg-fill:#f2c94c;--c-chg-bg:#fdf5d3;
+  --c-miss:#a23c3c;--c-miss-bg:#f6e6e6;
   /* 既存の変数名（JSのインラインスタイルが参照）をモノクロに割り当て */
   --bg:#ffffff;          /* ページ背景・グレー面の中の白い面 */
   --surface:#ffffff;
@@ -362,32 +365,45 @@ body:not(.is-manager) .self-label{display:block;}
 .cal-d{position:relative;}
 .gcal-panel{background:var(--white);padding:20px 22px;margin-top:16px;}
 /* ダッシュボード：報告と予定の比較 */
-.cmp-summary{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:var(--fs-sm);margin-bottom:10px;}
-.cmp-summary b{font-weight:400;font-size:var(--fs-md);margin-left:3px;}
-.cmp-row{padding:8px 0;border-bottom:1px solid var(--divider);}
+.cmp-summary{display:flex;gap:6px 10px;flex-wrap:wrap;align-items:center;font-size:var(--fs-sm);margin-bottom:4px;}
+.cmp-summary b{display:inline-block;font-weight:400;font-size:var(--fs-sm);margin-left:4px;min-width:22px;padding:0 6px;text-align:center;line-height:1.6;background:var(--white);color:var(--ink);border:1px solid var(--divider);}
+.cmp-summary .k-chg b{background:var(--c-chg-fill);border-color:var(--c-chg-fill);color:var(--ink);}
+.cmp-summary .k-new b{background:var(--c-new);border-color:var(--c-new);color:var(--white);}
+.cmp-summary .k-miss b{background:var(--c-miss);border-color:var(--c-miss);color:var(--white);}
+.cmp-legend{display:flex;gap:4px 14px;flex-wrap:wrap;font-size:var(--fs-sm);color:#4a4a4a;margin-bottom:10px;}
+.cmp-legend i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;}
+.cmp-row{padding:8px 8px 8px 9px;border-bottom:1px solid var(--divider);border-left:3px solid transparent;}
 .cmp-row:last-child{border-bottom:none;}
 .cmp-head{display:flex;align-items:baseline;gap:6px 8px;flex-wrap:wrap;margin-bottom:4px;font-size:var(--fs-sm);}
 .cmp-cat{padding:1px 7px;border:1px solid var(--btn);background:var(--white);white-space:nowrap;}
 .cmp-name{word-break:break-all;}
 .cmp-time{white-space:nowrap;}
-.cmp-same{color:var(--t3);}
-.cmp-badge{display:inline-block;padding:1px 7px;font-size:var(--fs-sm);white-space:nowrap;line-height:1.5;}
-.cmp-badge.changed{border:1px solid var(--btn);color:var(--ink);background:var(--white);}
-.cmp-badge.unplanned{background:var(--ink);color:var(--white);border:1px solid var(--ink);}
-.cmp-badge.notdone{background:var(--error-ink);color:var(--white);}
-.cmp-note{color:var(--t3);white-space:nowrap;}
+.cmp-same{color:#505050;}
+.cmp-badge{display:inline-block;padding:1px 7px;font-size:var(--fs-sm);white-space:nowrap;line-height:1.5;color:var(--white);}
+.cmp-badge.changed{background:var(--c-chg-fill);border:1px solid var(--c-chg-fill);color:var(--ink)!important;}
+.cmp-badge.unplanned{background:var(--c-new);border:1px solid var(--c-new);}
+.cmp-badge.notdone{background:var(--c-miss);border:1px solid var(--c-miss);}
+.cmp-note{color:#505050;}
+.cmp-chg{display:flex;flex-wrap:wrap;gap:2px 6px;align-items:baseline;font-size:var(--fs-sm);margin:0 0 5px;color:var(--ink);}
+.cmp-chg s{color:#5a5a5a;text-decoration-color:rgba(58,58,58,.6);white-space:nowrap;}
+.cmp-chg .arw{color:var(--c-chg-ink);}
+.cmp-chg b{font-weight:400;color:var(--c-chg-ink);white-space:nowrap;}
 .cmp-bar{position:relative;height:10px;background:var(--white);}
-.cmp-bar span{position:absolute;top:0;height:10px;background:rgba(58,58,58,.55);}
-.cmp-row.unplanned .cmp-bar span{background:var(--ink);}
-.cmp-row.brk{color:var(--t3);}
+.cmp-bar span{position:absolute;top:0;height:10px;background:rgba(58,58,58,.45);}
+.cmp-row.changed{background:var(--c-chg-bg);border-left-color:var(--c-chg);}
+.cmp-row.changed .cmp-bar span{background:var(--c-chg);}
+.cmp-row.unplanned{background:var(--c-new-bg);border-left-color:var(--c-new);}
+.cmp-row.unplanned .cmp-bar span{background:var(--c-new);}
+.cmp-row.brk{color:#505050;}
 .cmp-row.brk .cmp-cat{border-color:var(--divider);background:var(--gray);}
 .cmp-row.brk .cmp-bar span{background:rgba(58,58,58,.15);}
 .cmp-proj{font-size:var(--fs-sm);margin-top:4px;padding-left:10px;border-left:2px solid var(--btn);white-space:pre-wrap;word-break:break-word;}
 .cmp-proj .help{color:var(--error-ink);}
-.cmp-missed{margin-top:14px;padding:10px 14px;background:var(--white);border-left:3px solid var(--error-ink);}
-.cmp-missed-t{font-size:var(--fs-sm);margin-bottom:4px;color:var(--error-ink);}
-.cmp-missed .cmp-row{padding:6px 0;}
-.cmp-hours{display:flex;padding-left:0;margin-bottom:3px;}
+.cmp-missed{margin-top:14px;padding:10px 14px;background:var(--white);border-left:3px solid var(--c-miss);}
+.cmp-missed-t{font-size:var(--fs-sm);margin-bottom:4px;color:var(--c-miss);}
+.cmp-missed .cmp-row{padding:6px 8px 6px 9px;}
+.cmp-missed .cmp-row.notdone{background:var(--c-miss-bg);border-left-color:var(--c-miss);margin-bottom:4px;border-bottom:none;}
+.cmp-hours{display:flex;padding:0 8px 0 12px;margin-bottom:3px;}
 .cmp-hours div{flex:1;font-size:var(--fs-sm);color:var(--t3);border-left:1px solid var(--border);padding-left:2px;}
 
 /* メンバー選択：管理者は自分が選ばれた状態。ほかのメンバーは「代理で開く」で表示 */
@@ -3468,7 +3484,7 @@ function compareTasks(planTasks, reportTasks){
   rows.forEach(x=>{ if(counts[x.cls]!==undefined) counts[x.cls]++; });
   return {rows, notDone, counts};
 }
-function _cmpSummaryHTML(c){ return `<div class="cmp-summary" aria-label="予定との比較"><span>予定どおり<b>${c.same}</b></span><span>／時間変更<b>${c.changed}</b></span><span>／予定外<b>${c.unplanned}</b></span><span>／未実施<b>${c.notDone}</b></span></div>`; }
+function _cmpSummaryHTML(c){ return `<div class="cmp-summary" aria-label="予定との比較"><span>予定どおり<b>${c.same}</b></span><span class="k-chg">／時間変更<b>${c.changed}</b></span><span class="k-new">／予定外<b>${c.unplanned}</b></span><span class="k-miss">／未実施<b>${c.notDone}</b></span></div><div class="cmp-legend" aria-hidden="true"><span><i style="background:var(--c-new)"></i>予定外（予定になかった作業）</span><span><i style="background:var(--c-chg)"></i>時間変更</span><span><i style="background:var(--c-miss)"></i>未実施</span></div>`; }
 function _renderReportComparison(cmp, TL_S, TL_E){
   const TL_R=TL_E-TL_S;
   const bar=t=>{ const s=Math.max(t2m(t.startTime), TL_S*60), e=Math.min(t2m(t.endTime), TL_E*60);
@@ -3480,11 +3496,11 @@ function _renderReportComparison(cmp, TL_S, TL_E){
   cmp.rows.forEach(x=>{
     const r=x.r;
     const badge=x.cls==='changed'?'<span class="cmp-badge changed">時間変更</span>':x.cls==='unplanned'?'<span class="cmp-badge unplanned">予定外</span>':'';
-    const note=x.cls==='changed'?`<span class="cmp-note">予定 ${esc(x.p.startTime)}〜${esc(x.p.endTime)}</span>`:x.cls==='same'?'<span class="cmp-note cmp-same">予定どおり</span>':'';
+    const note=x.cls==='same'?'<span class="cmp-note cmp-same">予定どおり</span>':'';
     const proj=(r.progress||r.projectStatus)?`<div class="cmp-proj">${r.projectStatus?`<span class="${r.projectStatus==='ヘルプ'?'help':''}">${esc(r.projectStatus)}</span>　`:''}${esc(r.progress||'')}</div>`:'';
     h+=`<div class="cmp-row ${x.cls==='break'?'brk':x.cls}">
       <div class="cmp-head"><span class="cmp-cat">${esc(r._cat||'—')}</span><span class="cmp-name">${esc(r.name||'—')}</span>
-        <span class="cmp-time">${esc(r.startTime)}〜${esc(r.endTime)}（${esc(dur(r))}）</span>${badge}${note}</div>
+        <span class="cmp-time">${esc(r.startTime)}〜${esc(r.endTime)}（${esc(dur(r))}）</span>${badge}${note}</div>${x.cls==='changed'?`<div class="cmp-chg"><s>予定 ${esc(x.p.startTime)}〜${esc(x.p.endTime)}</s><span class="arw">→</span><b>実績 ${esc(r.startTime)}〜${esc(r.endTime)}</b></div>`:''}
       ${bar(r)}${proj}
     </div>`;
   });
