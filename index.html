@@ -1746,8 +1746,36 @@ function normalizeTask(t){
     startTime:sH===null?'':pad(sH)+':'+pad(sM),
     endTime:eH===null?'':pad(eH)+':'+pad(eM),
     progress:typeof t.progress==='string'?t.progress:'',
-    projectStatus:(t.projectStatus==='順調'||t.projectStatus==='ヘルプ')?t.projectStatus:''
+    projectStatus:(t.projectStatus==='順調'||t.projectStatus==='ヘルプ')?t.projectStatus:'',
+    tid:_okId(t.tid)?t.tid:'',
+    fromPlan:_okId(t.fromPlan)?t.fromPlan:''
   };
+}
+// ===== タスクのID（予定タスク＝tid、報告タスクがどの予定からコピーされたか＝fromPlan） =====
+function _okId(v){ return typeof v==='string' && /^[A-Za-z0-9_-]{1,40}$/.test(v); }
+function _newTid(){
+  let r='';
+  try{ const a=new Uint8Array(6); crypto.getRandomValues(a); r=[...a].map(x=>x.toString(36).padStart(2,'0')).join(''); }
+  catch(e){ r=Math.random().toString(36).slice(2,12); }
+  return 't'+r;
+}
+// tid のない古い予定タスクには、中身から決まるIDを付ける（何度読んでも同じIDになる）
+function _legacyTid(t, n){
+  const k=[resolveCat(t.cat||''), t.name||'', t.startTime||'', t.endTime||''].join('|');
+  let h=0x811c9dc5; for(let i=0;i<k.length;i++){ h^=k.charCodeAt(i); h=Math.imul(h,0x01000193)>>>0; }
+  return 'L'+h.toString(36)+'-'+n;
+}
+function _ensureTids(arr){
+  const seen=new Set(), occ={};
+  return (Array.isArray(arr)?arr:[]).map(t=>{
+    const o=Object.assign({}, t);
+    if(!_okId(o.tid) || seen.has(o.tid)){
+      const base=_legacyTid(o, 0).replace(/-0$/,''); occ[base]=(occ[base]||0)+1;
+      let id=base+'-'+(occ[base]-1); while(seen.has(id)) id=_newTid();
+      o.tid=id;
+    }
+    seen.add(o.tid); return o;
+  });
 }
 function _normalizeTasks(arr){ return (Array.isArray(arr)?arr:[]).map(normalizeTask).filter(Boolean); }
 function _tasksForSave(arr){
@@ -1757,6 +1785,8 @@ function _tasksForSave(arr){
     if(t.status) o.status=t.status;
     if(n.progress) o.progress=n.progress;
     if(n.projectStatus) o.projectStatus=n.projectStatus;
+    if(n.tid) o.tid=n.tid;
+    if(n.fromPlan) o.fromPlan=n.fromPlan;
     return o;
   }).filter(Boolean);
 }
@@ -2256,10 +2286,11 @@ async function copyPlanToReport(){
   document.getElementById('task-list').innerHTML='';
   taskIdx=0;
   // 開始時刻順にソート
-  const sorted=_normalizeTasks(plans).sort((a,b)=>t2m(a.startTime)-t2m(b.startTime));
+  // 予定タスクのID（tid）を fromPlan として持たせる＝「予定からコピーしたタスク」の印
+  const sorted=_ensureTids(_normalizeTasks(plans)).sort((a,b)=>t2m(a.startTime)-t2m(b.startTime));
   sorted.forEach(t=>{
     addTask();
-    _fillTaskBlock(document.getElementById('task-list').lastElementChild, t);
+    _fillTaskBlock(document.getElementById('task-list').lastElementChild, Object.assign({}, t, {fromPlan:t.tid, tid:''}));
   });
   _setDirty(true);
   sortTaskBlocks();
@@ -2276,6 +2307,8 @@ function _fillTaskBlock(tb, t){
   if(n.startH!=='' && n.startH!==undefined) _setTime(tb,'t-start',n.startH,n.startM||0);
   if(n.endH!=='' && n.endH!==undefined) _setTime(tb,'t-end',n.endH,n.endM||0);
   tb.dataset.note=n.note||''; // 備考欄はUIにないため保持して再保存時に消さない
+  tb.dataset.tid=n.tid||'';
+  if(n.fromPlan){ tb.dataset.fromPlan=n.fromPlan; tb.dataset.fromCat=resolveCat(n.cat||''); } else { delete tb.dataset.fromPlan; delete tb.dataset.fromCat; }
   const pr=tb.querySelector('.task-progress'); if(pr) pr.value=n.progress||'';
   _setProjStatusValue(tb, n.projectStatus||'');
   _updateProjBox(tb);
@@ -3147,7 +3180,9 @@ function _clearProjErr(tb){
   tb.querySelectorAll('.field-bad').forEach(el=>el.classList.remove('field-bad'));
 }
 function onCatChange(sel){
-  const tb=sel&&sel.closest('.tb'); if(tb&&sel.value){ tb.classList.remove('cal-unset'); const h=tb.querySelector('.auto-hint'); if(h) h.remove(); }
+  const tb=sel&&sel.closest('.tb');
+  // 予定からコピーしたタスクのカテゴリを変えたら、別の作業とみなして予定とのつながりを外す
+  if(tb && tb.dataset.fromPlan && resolveCat(sel.value)!==tb.dataset.fromCat){ delete tb.dataset.fromPlan; delete tb.dataset.fromCat; } if(tb&&sel.value){ tb.classList.remove('cal-unset'); const h=tb.querySelector('.auto-hint'); if(h) h.remove(); }
   _updateProjBox(tb);
   const it=document.getElementById('i-type');
   if(it&&it.value==='report') calcWorkHours();
@@ -3180,7 +3215,7 @@ async function loadTasksFromGAS(isRep,mi){
   }
   if(data.success&&data.tasks&&data.tasks.length>0){
     tl.innerHTML='';taskIdx=0;
-    const tasks=_normalizeTasks(data.tasks);
+    const tasks=isRep?_normalizeTasks(data.tasks):_ensureTids(_normalizeTasks(data.tasks));
     tasks.forEach(t=>{
       addTask();
       _fillTaskBlock(tl.lastElementChild, t);
@@ -3372,6 +3407,8 @@ async function submitInput(){
       endM:et.empty||!et.valid?'0':String(et.m),
       note:tb.dataset.note||''
     };
+    if(!isRep){ if(!_okId(tb.dataset.tid)) tb.dataset.tid=_newTid(); task.tid=tb.dataset.tid; }
+    else if(_okId(tb.dataset.fromPlan)) task.fromPlan=tb.dataset.fromPlan;
     // 終業報告のプロジェクトのタスク：プロジェクト名（内容欄）・進捗・状況が必須
     if(isRep && isProjectCat(task.cat)){
       const pr=tb.querySelector('.task-progress'), err=tb.querySelector('.proj-err');
@@ -3454,24 +3491,32 @@ async function submitInput(){
 
 
 // ===== 予定と報告の比較（ダッシュボードの日別詳細） =====
-// 同じカテゴリで、名前が同じ（どちらも空・片方がもう片方を含む も同じとみなす）→ 時間の重なりが大きいもの
-// 名前で決まらなければ、同じカテゴリで時間が短いほうの50%以上重なるもの。休憩は比べない
+// 「予定をコピー」で作った報告タスクは fromPlan（元の予定タスクのID）を持つ。これで予定と結びつける
+//   fromPlan あり → 時刻が±10分以内なら予定どおり、ちがえば時間変更 ／ fromPlan なし → 予定外
+//   どの報告からも指されていない予定 → 未実施。1つの予定は1回だけ。休憩は比べない
+// 古いデータ（予定にIDがなく、報告にも fromPlan がない）は「同じカテゴリで、内容がまったく同じ」ものだけ結びつける
 function _cmpName(s){ return _projKey(s); }
 function _overlap(a,b){ return Math.max(0, Math.min(a.e,b.e)-Math.max(a.s,b.s)); }
 function compareTasks(planTasks, reportTasks){
   const iv=t=>({s:t2m(t.startTime), e:t2m(t.endTime)});
-  const prep=arr=>_normalizeTasks(arr).filter(t=>t.startTime&&t.endTime&&t2m(t.endTime)>t2m(t.startTime)).map(t=>Object.assign({}, t, {_cat:resolveCat(t.cat), _brk:isBreakCat(t.cat), _iv:iv(t), _nm:_cmpName(t.name)}))
+  const rawP=Array.isArray(planTasks)?planTasks:[], rawR=Array.isArray(reportTasks)?reportTasks:[];
+  const legacy=!rawR.some(t=>t&&_okId(t.fromPlan)) && !rawP.some(t=>t&&_okId(t.tid));
+  const prep=arr=>arr.filter(t=>t.startTime&&t.endTime&&t2m(t.endTime)>t2m(t.startTime)).map(t=>Object.assign({}, t, {_cat:resolveCat(t.cat), _brk:isBreakCat(t.cat), _iv:iv(t), _nm:_cmpName(t.name)}))
     .sort((a,b)=>a._iv.s-b._iv.s||a._iv.e-b._iv.e);
-  const P=prep(planTasks), R=prep(reportTasks);
+  const P=prep(_ensureTids(_normalizeTasks(rawP))), R=prep(_normalizeTasks(rawR));
   const used=new Set(), match=new Map();
-  const nameOk=(p,r)=>p._nm===r._nm || (p._nm&&r._nm&&(p._nm.includes(r._nm)||r._nm.includes(p._nm)));
-  const pick=(r,cond)=>{ let best=null, bo=-1;
-    P.forEach((p,pi)=>{ if(used.has(pi)||p._brk||p._cat!==r._cat||!cond(p)) return; const o=_overlap(p._iv,r._iv); if(o>bo){ bo=o; best=pi; } });
-    return best; };
-  R.forEach((r,ri)=>{ if(r._brk) return; const pi=pick(r, p=>nameOk(p,r)); if(pi!==null){ used.add(pi); match.set(ri,pi); } });
-  R.forEach((r,ri)=>{ if(r._brk||match.has(ri)) return;
-    const pi=pick(r, p=>{ const o=_overlap(p._iv,r._iv), shorter=Math.min(p._iv.e-p._iv.s, r._iv.e-r._iv.s); return shorter>0 && o>=shorter*0.5; });
-    if(pi!==null){ used.add(pi); match.set(ri,pi); } });
+  R.forEach((r,ri)=>{
+    if(r._brk) return;
+    let pi=-1;
+    if(legacy){
+      if(!r._nm) return;
+      let bo=-1;
+      P.forEach((p,i)=>{ if(used.has(i)||p._brk||p._cat!==r._cat||p._nm!==r._nm) return; const o=_overlap(p._iv,r._iv); if(o>bo){ bo=o; pi=i; } });
+    } else if(r.fromPlan){
+      pi=P.findIndex((p,i)=>!used.has(i) && !p._brk && p.tid===r.fromPlan && p._cat===r._cat);
+    }
+    if(pi>=0){ used.add(pi); match.set(ri,pi); }
+  });
   const rows=R.map((r,ri)=>{
     if(r._brk) return {r, p:null, cls:'break'};
     if(!match.has(ri)) return {r, p:null, cls:'unplanned'};
@@ -3813,6 +3858,7 @@ const USAGE_DEFAULT=`◎ カレンダー
 ◎ 終業報告
 退勤時に退勤打刻ボタンを押す。
 「予定をコピー」で予定内容を引用し、実際の作業内容・時間を修正して送信。
+（ダッシュボードの「予定どおり／時間変更」は、予定をコピーしたタスクで判定します。手で追加したタスクは「予定外」になります）
 
 ◎ 婚礼の日（予定のタスクがない日）
 朝：「出勤打刻」を押して、タスクを入れずにそのまま「送信する」（出勤のみで予定提出になります）。
