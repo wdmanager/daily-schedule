@@ -367,6 +367,20 @@ body:not(.is-manager) .self-label{display:block;}
 /* カレンダー：Googleカレンダーから自動登録した休み */
 .cal-d{position:relative;}
 .gcal-panel{background:var(--white);padding:20px 22px;margin-top:16px;}
+/* メンバー選択：管理者は自分が選ばれた状態。ほかのメンバーは「代理で開く」で表示 */
+#member-btns.collapsed,#m-member-btns.collapsed{display:none!important;}
+.proxy-row{display:none;align-items:baseline;gap:6px 14px;flex-wrap:wrap;font-size:var(--fs-md);}
+body.is-manager .proxy-row{display:flex;}
+body.is-manager .proxy-row + #member-btns:not(.collapsed),body.is-manager .proxy-row + #m-member-btns:not(.collapsed){margin-top:10px;}
+.link-btn{border:none;background:none;padding:0;font-family:var(--font);font-size:var(--fs-sm);color:var(--ink);text-decoration:underline;text-underline-offset:4px;cursor:pointer;letter-spacing:var(--ls-body);}
+.link-btn:hover{color:var(--btn-dark);}
+.proxy-note{font-size:var(--fs-sm);color:var(--error-ink);}
+/* 出勤時刻の入力（退勤時に出勤打刻がないとき） */
+.tb.clock-dlg{padding:18px 20px!important;margin:0 0 12px;border-left:3px solid var(--btn);}
+.clock-dlg .clock-q{font-size:var(--fs-md);margin-bottom:8px;}
+.clock-dlg .clock-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.clock-dlg .clock-err{font-size:var(--fs-sm);color:var(--error-ink);margin-top:6px;}
+.auto-hint{margin-top:10px;font-size:var(--fs-sm);color:var(--error-ink);}
 .gcal-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:9px 0;border-bottom:1px solid var(--divider);font-size:var(--fs-md);cursor:pointer;}
 .gcal-row:last-of-type{border-bottom:none;}
 .gcal-row input{accent-color:var(--btn);margin:0;align-self:center;}
@@ -642,6 +656,7 @@ body.is-manager .member-only{display:none!important;}
     <div style="margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border);">
       <div class="form-group">
         <div class="form-label">メンバー</div>
+        <div class="proxy-row" id="proxy-row-input"></div>
         <div style="display:flex;flex-wrap:wrap;gap:5px;" id="member-btns"><button data-idx="0" class="member-btn">飯倉 孝史</button><button data-idx="1" class="member-btn">佐々木 大翔</button><button data-idx="2" class="member-btn">坂本 楓花</button><button data-idx="3" class="member-btn">山口 葵</button><button data-idx="4" class="member-btn">川上 輝</button><button data-idx="5" class="member-btn">横山 大曜</button><button data-idx="6" class="member-btn">片倉 来波</button><button data-idx="7" class="member-btn">小林 俊介</button></div>
         <div class="self-label" id="self-label-input"></div>
         <select id="i-member" onchange="renderInputForm()" style="display:none;"><option value="0">飯倉 孝史</option><option value="1">佐々木 大翔</option><option value="2">坂本 楓花</option><option value="3">山口 葵</option><option value="4">川上 輝</option><option value="5">横山 大曜</option><option value="6">片倉 来波</option><option value="7">小林 俊介</option></select>
@@ -667,6 +682,7 @@ body.is-manager .member-only{display:none!important;}
       <div class="tl-summary"><span id="tl-summary-left">タスクを追加するとタイムラインに表示されます</span><span id="tl-summary-right"></span></div>
     </div>
     <div id="attendance-area" style="display:none;"></div>
+    <div id="clock-dialog" class="tb clock-dlg" role="dialog" aria-labelledby="clock-q" hidden></div>
     <div id="task-list" data-dnd-init="1"><div style="font-size:var(--fs-md);color:var(--t3);padding:20px 0;text-align:center;">メンバーを選択してください</div></div>
     <button class="btn-add" type="button" onclick="addTask();_setDirty(true);">
       <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 1.5v10M1.5 6.5h10"></path></svg>
@@ -715,6 +731,7 @@ body.is-manager .member-only{display:none!important;}
   <div class="card" style="margin-bottom:12px;">
     <div class="form-group" style="margin-bottom:0;">
       <div class="form-label">メンバー</div>
+      <div class="proxy-row" id="proxy-row-monthly"></div>
       <div style="display:flex;flex-wrap:wrap;gap:5px;" id="m-member-btns"><button data-idx="0" class="member-btn">飯倉 孝史</button><button data-idx="1" class="member-btn">佐々木 大翔</button><button data-idx="2" class="member-btn">坂本 楓花</button><button data-idx="3" class="member-btn">山口 葵</button><button data-idx="4" class="member-btn">川上 輝</button><button data-idx="5" class="member-btn">横山 大曜</button><button data-idx="6" class="member-btn">片倉 来波</button><button data-idx="7" class="member-btn">小林 俊介</button></div>
       <div class="self-label" id="self-label-monthly"></div>
       <select id="m-member-sel" onchange="renderMonthly()" style="display:none;"><option value="0">飯倉 孝史</option><option value="1">佐々木 大翔</option><option value="2">坂本 楓花</option><option value="3">山口 葵</option><option value="4">川上 輝</option><option value="5">横山 大曜</option><option value="6">片倉 来波</option><option value="7">小林 俊介</option></select>
@@ -1279,13 +1296,16 @@ async function _fsDispatch(p) {
   // ── 予定 ──────────────────────────────────────────
   if(action === 'getPlan') {
     const snap = await _db.collection('plans').doc(p.memberName + '_' + p.date).get();
-    if(snap.exists) { const d=snap.data(); return {success:true, tasks: _normalizeTasks(d.tasks), workMinutes:d.workMinutes, breakMin:d.breakMin}; }
+    if(snap.exists) { const d=snap.data(); return {success:true, tasks: _normalizeTasks(d.tasks), workMinutes:d.workMinutes, breakMin:d.breakMin, clockOnly:!!d.clockOnly, clockIn:d.clockIn||''}; }
     return {success:true, tasks:[]};
   }
   if(action === 'savePlan') {
     const tasks = _tasksForSave(typeof p.tasks==='string' ? JSON.parse(p.tasks) : p.tasks);
     const mb = minuteBreakdown(tasks);
-    await _db.collection('plans').doc(p.memberName + '_' + p.date).set({tasks, workMinutes: mb.work, breakMin: mb.brk, updatedAt: new Date()});
+    const doc = {tasks, workMinutes: mb.work, breakMin: mb.brk, updatedAt: new Date()};
+    // 出勤打刻だけの日（婚礼など）：タスクなしで「予定提出済み」にする
+    if(p.clockOnly && !tasks.length){ doc.clockOnly = true; doc.clockIn = String(p.clockIn||''); }
+    await _db.collection('plans').doc(p.memberName + '_' + p.date).set(doc);
     return {success:true};
   }
 
@@ -1352,6 +1372,7 @@ async function _fsDispatch(p) {
     const data = {updatedAt: new Date()};
     if(p.start !== undefined) data.start = p.start;
     if(p.end   !== undefined) data.end   = p.end;
+    if(p.startManual) data.startManual = true;
     await _db.collection('attendance').doc(p.memberName + '_' + p.date).set(data, {merge:true});
     return {success:true};
   }
@@ -1403,16 +1424,18 @@ function _clearReadCaches(){
   Object.keys(_dayCache).forEach(k=>delete _dayCache[k]);
 }
 // 1日分の予定/報告（無ければ null）。その月をまとめて読み込み済みならそれを使い、読み込み回数を減らす
+// タスクがある、または「出勤のみ（タスクなし）」の予定
+function _hasDayContent(d){ return !!(d && ((d.tasks&&d.tasks.length) || d.clockOnly)); }
 async function getDayDoc(coll, name, ds){
   const mc=_monthCache[coll+'|'+name+'|'+String(ds).slice(0,7)];
   if(mc && Date.now()-mc.t<_CACHE_TTL){
-    try{ const docs=await mc.p; const d=docs[ds]; return d&&d.tasks&&d.tasks.length?d:null; }catch(e){ /* 1日分で読み直す */ }
+    try{ const docs=await mc.p; const d=docs[ds]; return _hasDayContent(d)?d:null; }catch(e){ /* 1日分で読み直す */ }
   }
   const k=coll+'|'+name+'|'+ds;
   const c=_dayCache[k];
   if(c && Date.now()-c.t<_CACHE_TTL) return c.p;
   const pr=apiGet({action:coll==='plans'?'getPlan':'getReport', date:ds, memberName:name})
-    .then(d=>d&&d.tasks&&d.tasks.length?d:null, e=>{ delete _dayCache[k]; throw e; });
+    .then(d=>_hasDayContent(d)?d:null, e=>{ delete _dayCache[k]; throw e; });
   _dayCache[k]={t:Date.now(), p:pr};
   return pr;
 }
@@ -1446,7 +1469,7 @@ async function loadAttendance(mi, ds){
   delete _attErr[key];
   try{
     const data=await apiGet({action:'getAttendance', memberName:MEMBERS[mi].name, date:ds});
-    state.attendanceData[key]=data.success?{start:data.start||null,end:data.end||null}:{start:null,end:null};
+    state.attendanceData[key]=data.success?{start:data.start||null,end:data.end||null,startManual:!!data.startManual}:{start:null,end:null};
     return state.attendanceData[key];
   }catch(e){
     console.warn('出退勤の読み込みに失敗しました', e); // 失敗はキャッシュしない（次回また読む）
@@ -1478,7 +1501,7 @@ function renderAttendanceUI(mi, ds, isRep){
   if(!isRep){
     html=`<button class="att-btn att-btn-in" onclick="clockIn()" type="button"${dis}>出勤打刻</button>${stamp(att.start,true)}`;
   } else {
-    html=`<span style="font-size:var(--fs-sm);color:var(--t2);">出勤:</span>${stamp(att.start,false)}
+    html=`<span style="font-size:var(--fs-sm);color:var(--t2);">出勤:</span>${stamp(att.start,false)}${att.startManual?'<span style="font-size:var(--fs-sm);">（手入力）</span>':''}
       <button class="att-btn att-btn-out" onclick="clockOut()" type="button"${dis}>退勤打刻</button>${stamp(att.end,true)}`;
   }
   if(!today) html+='<span style="font-size:var(--fs-sm);color:var(--t3);">※ 打刻は当日のみ可能です</span>';
@@ -1514,10 +1537,12 @@ async function _saveClock(kind){
   if(cur[kind] && cur[kind]!==str && !confirm(`すでに ${cur[kind]} で${label}打刻しています。${str} に上書きしますか？`)) return;
   const btns=[...document.querySelectorAll('#attendance-area .att-btn')];
   btns.forEach(b=>b.disabled=true);
+  let ok=false;
   try{
     await apiPost({action:'saveAttendance', memberName:MEMBERS[mi].name, date:ds, [kind]:str});
     if(!state.attendanceData[key]) state.attendanceData[key]={start:null,end:null};
     state.attendanceData[key][kind]=str;
+    ok=true;
   }catch(e){
     console.error('打刻の保存エラー:', e);
     showError((kind==='start'?'出勤':'退勤')+'打刻を保存できませんでした（'+_errText(e)+'）。もう一度押してください');
@@ -1527,9 +1552,107 @@ async function _saveClock(kind){
     const it=document.getElementById('i-type');
     renderAttendanceUI(mi, ds, !!(it&&it.value==='report'));
   }
+  return ok;
 }
 async function clockIn(){ return _saveClock('start'); }
-async function clockOut(){ return _saveClock('end'); }
+// 退勤打刻：出勤打刻がなければ出勤時刻をたずねる。保存できたら、報告が空のとき 出勤〜退勤 のタスクを1つ作る
+async function clockOut(){
+  const mi=_selectedInputMember();
+  const ds=dateStr(state.inputDate);
+  const cur=mi>=0?state.attendanceData[mi+'_'+ds]:null;
+  if(mi>=0 && canEdit(mi) && _isTodayDs(ds) && cur && !cur.start){ openClockDialog(mi, ds); return; }
+  const ok=await _saveClock('end');
+  if(ok) await _afterClockOut(mi, ds);
+}
+function _hm(str){ const m=String(str||'').match(/^(\d{1,2}):(\d{2})$/); return m?{h:+m[1], m:+m[2]}:null; }
+// 何も入力していないタスク欄か
+function _isEmptyTb(tb){
+  const c=tb.querySelector('.task-cat'), n=tb.querySelector('.task-name'), pr=tb.querySelector('.task-progress');
+  const s=_readTime(tb,'t-start'), e=_readTime(tb,'t-end');
+  return !(c&&c.value) && !(n&&n.value.trim()) && s.empty && e.empty && !(pr&&pr.value.trim());
+}
+async function _afterClockOut(mi, ds){
+  if(_selectedInputMember()!==mi || dateStr(state.inputDate)!==ds) return;
+  const it=document.getElementById('i-type');
+  if(it && it.value!=='report'){
+    setType('report', document.getElementById('type-report')); // 入力中の予定があれば確認が出る
+    if(it.value!=='report') return;
+  }
+  if(_inputLoadPromise) await _inputLoadPromise;
+  if(!_inputLoadOK || _selectedInputMember()!==mi || dateStr(state.inputDate)!==ds) return;
+  const tl=document.getElementById('task-list');
+  if([...tl.querySelectorAll('.tb')].some(tb=>!_isEmptyTb(tb))) return; // すでにタスクがあれば何もしない
+  const att=state.attendanceData[mi+'_'+ds]||{}, s=_hm(att.start), e=_hm(att.end);
+  if(!s||!e) return;
+  tl.innerHTML=''; taskIdx=0;
+  addTask();
+  const tb=tl.lastElementChild;
+  _setTime(tb,'t-start',s.h,s.m);
+  _setTime(tb,'t-end',e.h,e.m);
+  tb.classList.add('cal-unset');
+  const hint=document.createElement('div'); hint.className='auto-hint'; hint.textContent='カテゴリ（婚礼など）を選んで送信してください';
+  tb.appendChild(hint);
+  _setDirty(true);
+  calcWorkHours();
+  const cat=tb.querySelector('.task-cat');
+  if(cat){ cat.focus(); if(tb.scrollIntoView) tb.scrollIntoView({block:'center'}); }
+}
+// ---- 出勤打刻を忘れたとき（退勤時に出勤時刻を入力） ----
+let _clockDlg=null;
+function closeClockDialog(){ _clockDlg=null; const d=document.getElementById('clock-dialog'); if(d){ d.hidden=true; d.innerHTML=''; } }
+async function openClockDialog(mi, ds){
+  let def={h:9,m:0};
+  try{
+    const plan=planStore[mi+'_'+ds] || await getDayDoc('plans', MEMBERS[mi].name, ds).then(d=>d&&d.tasks||[]);
+    const first=_normalizeTasks(plan).filter(t=>t.startTime).sort((a,b)=>t2m(a.startTime)-t2m(b.startTime))[0];
+    if(first) def={h:+first.startH, m:+first.startM||0};
+  }catch(e){ /* 予定が読めなければ 9:00 */ }
+  _clockDlg={mi, ds};
+  const d=document.getElementById('clock-dialog'); if(!d) return;
+  d.innerHTML=`<div class="clock-q" id="clock-q">出勤打刻がありません。出勤時刻を入力してください</div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">${_timeInputsHTML('t-start', def.h, def.m)}<span style="font-size:var(--fs-sm);">に出勤</span></div>
+    <div class="clock-err" id="clock-err" hidden></div>
+    <div class="clock-actions">
+      <button class="btn btn-p btn-sm" type="button" id="clock-ok" onclick="confirmClockDialog(true)">この時刻で出勤・退勤を記録</button>
+      <button class="btn btn-sm" type="button" id="clock-endonly" onclick="confirmClockDialog(false)">出勤打刻なしで退勤のみ記録</button>
+      <button class="btn btn-sm" type="button" onclick="closeClockDialog()">キャンセル</button>
+    </div>`;
+  d.hidden=false;
+  const h=d.querySelector('.t-h'); if(h){ h.focus(); }
+}
+async function confirmClockDialog(withStart){
+  const g=_clockDlg, d=document.getElementById('clock-dialog');
+  if(!g||!d) return;
+  const {mi, ds}=g, key=mi+'_'+ds, cur=state.attendanceData[key];
+  const err=document.getElementById('clock-err');
+  const fail=msg=>{ if(err){ err.textContent=msg; err.hidden=false; } };
+  if(_selectedInputMember()!==mi || dateStr(state.inputDate)!==ds || !_isTodayDs(ds)){ closeClockDialog(); return; }
+  if(!cur){ fail('出退勤の記録を読み込めていないため記録できません。「再読み込み」を押してください'); return; }
+  let startStr=null;
+  if(withStart){
+    d.querySelectorAll('.tpair input').forEach(el=>{ const st=_timeFieldState(el); _markTimeInvalid(el,!st.valid); });
+    const t=_readTime(d,'t-start');
+    if(t.empty||!t.valid){ fail('出勤時刻を正しく入力してください（時は6〜23、分は0〜59）'); return; }
+    const now=new Date(), nowMin=now.getHours()*60+now.getMinutes();
+    if(t.min>=nowMin){ fail('出勤時刻は今より前にしてください'); return; }
+    startStr=t.h+':'+String(t.m).padStart(2,'0');
+  }
+  d.querySelectorAll('button').forEach(b=>b.disabled=true);
+  if(withStart){
+    try{
+      await apiPost({action:'saveAttendance', memberName:MEMBERS[mi].name, date:ds, start:startStr, startManual:true});
+      cur.start=startStr; cur.startManual=true;
+    }catch(e){
+      console.error('出勤時刻の保存エラー:', e);
+      d.querySelectorAll('button').forEach(b=>b.disabled=false);
+      fail('出勤時刻を保存できませんでした（'+_errText(e)+'）。もう一度お試しください');
+      return;
+    }
+  }
+  closeClockDialog();
+  const ok=await _saveClock('end');
+  if(ok && withStart) await _afterClockOut(mi, ds);
+}
 
 async function loadMonthReportStatus(mi, ym){
   const name=MEMBERS[mi]&&MEMBERS[mi].name;
@@ -2137,6 +2260,8 @@ function setMember(idx, btn){
   btn.style.fontWeight='400';
   const sel=document.getElementById('i-member');
   if(sel){ sel.value=idx; }
+  closeClockDialog();
+  _renderProxyRows();
   renderInputForm();
 }
 
@@ -2159,6 +2284,7 @@ function setMemberMonthly(idx, btn){
   const sel=document.getElementById('m-member-sel');
   if(sel){ sel.value=idx; }
   const mc=document.getElementById('monthly-content');if(mc)mc.style.display='';
+  _renderProxyRows();
   renderMonthly();
 }
 
@@ -2682,7 +2808,8 @@ function renderInputForm(){
   if(tl)tl.innerHTML='';
   taskIdx=0;
   const rr=document.getElementById('report-reason'); if(rr) rr.value='';
-  loadTasksFromGAS(isRep,mi);
+  closeClockDialog();
+  _inputLoadPromise=loadTasksFromGAS(isRep,mi);
   const gen=_inputGen;
   // 出退勤UI表示（取得中に切り替わったら描画しない）
   const ds2=dateStr(state.inputDate);
@@ -3032,7 +3159,7 @@ function _clearProjErr(tb){
   tb.querySelectorAll('.field-bad').forEach(el=>el.classList.remove('field-bad'));
 }
 function onCatChange(sel){
-  const tb=sel&&sel.closest('.tb'); if(tb&&sel.value) tb.classList.remove('cal-unset');
+  const tb=sel&&sel.closest('.tb'); if(tb&&sel.value){ tb.classList.remove('cal-unset'); const h=tb.querySelector('.auto-hint'); if(h) h.remove(); }
   _updateProjBox(tb);
   const it=document.getElementById('i-type');
   if(it&&it.value==='report') calcWorkHours();
@@ -3122,6 +3249,7 @@ function retryProjectLogs(){
   _saveProjectLogs(p.mi, p.ds, p.tasks, [], true);
 }
 // 入力フォームの状態
+let _inputLoadPromise=null; // 入力フォームの読み込み（終わるのを待つ用）
 let _inputLoadOK=false;   // 保存済みデータの読み込みに成功したか（成功するまで送信不可）
 let _inputDirty=false;    // 保存していない変更があるか
 function _setInputReady(ok){
@@ -3230,7 +3358,16 @@ async function submitInput(){
   const tasks=[];
   let timeErr=false, catErr=false, fmtErr=false;
   const projErr=[];
-  document.querySelectorAll('#task-list .tb').forEach(tb=>{
+  // 何も入力していないタスク欄だけのとき：予定入力で今日の出勤打刻があれば「出勤のみ（タスクなし）」で送れる
+  const blocks=[...document.querySelectorAll('#task-list .tb')];
+  const allEmpty=blocks.every(_isEmptyTb);
+  const attToday=state.attendanceData[mi+'_'+ds];
+  const clockOnly=allEmpty && !isRep && _isTodayDs(ds) && !!(attToday&&attToday.start);
+  if(allEmpty && !clockOnly){
+    showError(isRep?'タスクを1件以上入力してください':'タスクを1件以上入力してください（婚礼などで予定のタスクがない日は、先に「出勤打刻」を押すとタスクなしで送信できます）');
+    return;
+  }
+  if(!clockOnly) blocks.forEach(tb=>{
     const catSel=tb.querySelector('.task-cat');
     const ni=tb.querySelector('.task-name');
     // 入力欄の形式チェック（範囲外の時刻は赤く表示）
@@ -3266,7 +3403,7 @@ async function submitInput(){
     else if(st.valid&&et.valid&&et.min<=st.min) timeErr=true;
     tasks.push(task);
   });
-  if(tasks.length===0){showError('タスクを1件以上入力してください');return;}
+  if(tasks.length===0 && !clockOnly){showError('タスクを1件以上入力してください');return;}
   if(fmtErr){showError('時刻の入力が正しくありません（時は6〜23、分は0〜59）');return;}
   if(catErr){showError('カテゴリを選択してください');return;}
   if(timeErr){showError('開始・終了時刻を入力し、終了は開始より後にしてください');return;}
@@ -3288,7 +3425,7 @@ async function submitInput(){
       const reason=document.getElementById('report-reason')?document.getElementById('report-reason').value:'';
       await apiPost({action:'saveReport',date:ds,memberName:mName,tasks,reason});
     } else {
-      await apiPost({action:'savePlan',date:ds,memberName:mName,tasks});
+      await apiPost(clockOnly?{action:'savePlan',date:ds,memberName:mName,tasks:[],clockOnly:true,clockIn:attToday.start}:{action:'savePlan',date:ds,memberName:mName,tasks});
     }
   }catch(e){
     console.error('保存エラー:', e);
@@ -3325,7 +3462,7 @@ async function submitInput(){
   // よく使うタスクの履歴（保存できたものだけ）
   tasks.forEach(t=>{ const d=(parseInt(t.endH)*60+parseInt(t.endM||0))-(parseInt(t.startH)*60+parseInt(t.startM||0)); if(t.cat&&d>0) trackUsage(t.cat,t.name,d); });
   if(gen===_inputGen) _setDirty(false);
-  _toast('toast-input', isRep?'送信しました。お疲れさまでした！':'送信しました。本日もよろしくお願いします！', false, 3000);
+  _toast('toast-input', isRep?'送信しました。お疲れさまでした！':clockOnly?`出勤 ${attToday.start} を記録しました（予定のタスクなし）。本日もよろしくお願いします！`:'送信しました。本日もよろしくお願いします！', false, 4000);
   rebuildMemberUI();
   if(btn) btn.disabled=!_inputLoadOK;
 }
@@ -3414,9 +3551,9 @@ async function renderDayDetailAsync(sel){
     if(isOff){
       dd+=`<div style="font-size:var(--fs-md);color:var(--t3);">休み登録日のため入力不要です</div>`;
     } else if(!hasPlan && !hasReport){
-      dd+=`<div style="font-size:var(--fs-md);color:var(--t3);">予定未入力</div>`;
+      dd+=planData.clockOnly?`<div style="font-size:var(--fs-md);">出勤 ${esc(planData.clockIn||'')}（タスクなし）</div>`:`<div style="font-size:var(--fs-md);color:var(--t3);">予定未入力</div>`;
     } else {
-      if(!hasPlan) dd+=`<div style="font-size:var(--fs-sm);color:var(--t3);margin-bottom:8px;">予定未入力（報告のみ）</div>`;
+      if(!hasPlan) dd+=planData.clockOnly?`<div style="font-size:var(--fs-sm);margin-bottom:8px;">出勤 ${esc(planData.clockIn||'')}（タスクなし）</div>`:`<div style="font-size:var(--fs-sm);color:var(--t3);margin-bottom:8px;">予定未入力（報告のみ）</div>`;
       // Summary row（重複時間は1回だけ数え、休憩は除く）
       const totalPlanMin=planMin;
       const totalActMin=actMin;
@@ -3625,7 +3762,12 @@ const USAGE_DEFAULT=`◎ カレンダー
 
 ◎ 終業報告
 退勤時に退勤打刻ボタンを押す。
-「予定をコピー」で予定内容を引用し、実際の作業内容・時間を修正して送信。`;
+「予定をコピー」で予定内容を引用し、実際の作業内容・時間を修正して送信。
+
+◎ 婚礼の日（予定のタスクがない日）
+朝：「出勤打刻」を押して、タスクを入れずにそのまま「送信する」（出勤のみで予定提出になります）。
+夜：「退勤打刻」を押すと、出勤〜退勤のタスクが1つ自動で入るので、カテゴリ（婚礼など）を選んで送信。
+出勤打刻を忘れたときは、退勤打刻のときに出勤時刻を入力できます。`;
 
 function renderUsagePage(){
   let stored=USAGE_DEFAULT;
@@ -4747,6 +4889,7 @@ function rebuildMemberUI(prevSel){
   };
   restore('member-btns','i-member', inputSelName, ()=>renderInputForm());
   restore('m-member-btns','m-member-sel', monthlySelName, ()=>{const mc=document.getElementById('monthly-content'); if(mc) mc.style.display='none';});
+  _renderProxyRows();
 }
 
 function renderMembersPage(){
@@ -4888,16 +5031,44 @@ function _refreshMe(){
     _selectSelf();
   }
 }
-// メンバー（管理者以外）は入力・カレンダーを自分に固定
+// 管理者：ふだんは自分。ほかのメンバーのボタンは「代理で開く」で表示
+const _proxyOpen={input:false, monthly:false};
+const _PROXY={input:['member-btns','i-member','proxy-row-input','入力するメンバー','他のメンバーの入力を代理で開く'],
+              monthly:['m-member-btns','m-member-sel','proxy-row-monthly','表示中のメンバー','他のメンバーのカレンダーを開く']};
+function _renderProxyRows(){
+  if(!IS_MANAGER) return;
+  Object.keys(_PROXY).forEach(k=>{
+    const [wid,sid,rid,lbl,openLbl]=_PROXY[k];
+    const wrap=document.getElementById(wid), sel=document.getElementById(sid), row=document.getElementById(rid);
+    if(!wrap||!sel||!row) return;
+    const has=!!wrap.querySelector('.member-btn.active');
+    const cur=has?parseInt(sel.value||0):-1;
+    const open=_proxyOpen[k] || ME<0;
+    wrap.classList.toggle('collapsed', !open);
+    const name=cur>=0&&MEMBERS[cur]?MEMBERS[cur].name:'未選択';
+    row.innerHTML=`<span>${esc(lbl)}：${esc(name)}</span>${cur>=0&&cur!==ME&&ME>=0?'<span class="proxy-note">代理で表示中</span>':''}`
+      +(ME>=0?`<button type="button" class="link-btn" id="proxy-toggle-${k}" aria-expanded="${open}" onclick="toggleProxy('${k}')">${open?'メンバー一覧を閉じる':esc(openLbl)}</button>`:'')
+      +(cur>=0&&cur!==ME&&ME>=0?`<button type="button" class="link-btn" id="proxy-self-${k}" onclick="backToSelf('${k}')">自分に戻す</button>`:'');
+  });
+}
+function toggleProxy(k){ _proxyOpen[k]=!_proxyOpen[k]; _renderProxyRows(); }
+function backToSelf(k){
+  if(ME<0) return;
+  if(k==='monthly') setMemberMonthly(ME); else setMember(ME);
+  _proxyOpen[k]=false; _renderProxyRows();
+}
+// ログインしたメンバーを自動で選ぶ（メンバーは自分に固定・管理者は最初は自分）
 function _selectSelf(){
-  if(IS_MANAGER || ME<0) return;
+  if(ME<0){ _renderProxyRows(); return; }
   [['member-btns','i-member'],['m-member-btns','m-member-sel']].forEach(([w,sid])=>{
     const wrap=document.getElementById(w), sel=document.getElementById(sid);
     if(!wrap||!sel) return;
+    if(IS_MANAGER && wrap.querySelector('.member-btn.active')) return; // 管理者が選んでいるメンバーはそのまま
     wrap.querySelectorAll('button').forEach((b,i)=>_styleMemberBtn(b, i===ME));
     sel.value=ME;
   });
   const mc=document.getElementById('monthly-content'); if(mc) mc.style.display='';
+  _renderProxyRows();
 }
 function signOutUser(){
   if(_inputDirty && !confirm('保存していない入力があります。ログアウトしますか？')) return;
