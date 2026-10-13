@@ -19,6 +19,7 @@
   --c-new:#3f6e9a;--c-new-bg:#e8eff6;
   --c-chg:#e3b10b;--c-chg-ink:#6b5200;--c-chg-fill:#f2c94c;--c-chg-bg:#fdf5d3;
   --c-miss:#a23c3c;--c-miss-bg:#f6e6e6;
+  --st-ok:#4f7a5c;
   /* 既存の変数名（JSのインラインスタイルが参照）をモノクロに割り当て */
   --bg:#ffffff;          /* ページ背景・グレー面の中の白い面 */
   --surface:#ffffff;
@@ -324,10 +325,10 @@ body:not(.is-manager) #member-btns,body:not(.is-manager) #m-member-btns{display:
 .self-label{display:none;font-size:var(--fs-md);}
 body:not(.is-manager) .self-label{display:block;}
 /* 時刻入力（数字を直接入力・候補は15分刻み） */
-.tb .tpair input.t-h,.tb .tpair input.t-m{border:none!important;background:transparent!important;width:2.3em!important;min-width:0;padding:6px 2px!important;text-align:center;font-size:var(--fs-lg)!important;font-variant-numeric:tabular-nums;color:var(--ink);}
-.tb .tpair input.t-h:hover,.tb .tpair input.t-m:hover{background:var(--gray)!important;}
-.tb .tpair input.t-h:focus,.tb .tpair input.t-m:focus{background:var(--gray)!important;}
 .tb .tpair input::-webkit-calendar-picker-indicator{display:none!important;opacity:0;}
+/* 時刻は1つの欄（19:00 / 1900 / 19 / 9:5 と打てる。欄を離れると 19:00 の形にそろう） */
+.tb .tpair input.t-in{border:none!important;background:transparent!important;width:4.3em!important;min-width:0;padding:6px 4px!important;text-align:center;font-size:var(--fs-lg)!important;font-variant-numeric:tabular-nums;color:var(--ink);letter-spacing:.04em;}
+.tb .tpair input.t-in:hover,.tb .tpair input.t-in:focus{background:var(--gray)!important;}
 .tb .tpair input::placeholder{color:var(--t3);}
 .tb .tpair.t-invalid{border-bottom-color:var(--error-ink)!important;background:var(--error-bg);}
 .tb .tpair input.t-invalid{color:var(--error-ink)!important;}
@@ -398,7 +399,9 @@ body:not(.is-manager) .self-label{display:block;}
 .cmp-row.brk .cmp-cat{border-color:var(--divider);background:var(--gray);}
 .cmp-row.brk .cmp-bar span{background:rgba(58,58,58,.15);}
 .cmp-proj{font-size:var(--fs-sm);margin-top:4px;padding-left:10px;border-left:2px solid var(--btn);white-space:pre-wrap;word-break:break-word;}
-.cmp-proj .help{color:var(--error-ink);}
+.cmp-proj .help,.cmp-proj .st-late{color:var(--error-ink);}
+.cmp-proj .st-adj{background:var(--c-chg-fill);padding:0 5px;}
+.cmp-proj .st-ok{color:var(--st-ok);}
 .cmp-missed{margin-top:14px;padding:10px 14px;background:var(--white);border-left:3px solid var(--c-miss);}
 .cmp-missed-t{font-size:var(--fs-sm);margin-bottom:4px;color:var(--c-miss);}
 .cmp-missed .cmp-row{padding:6px 8px 6px 9px;}
@@ -436,7 +439,9 @@ body.is-manager .proxy-row + #member-btns:not(.collapsed),body.is-manager .proxy
 .ps-btn + .ps-btn{border-left:none;}
 .ps-btn:hover{background:var(--gray);}
 .ps-btn.on{background:var(--btn);color:var(--white);}
-.ps-btn.on[data-v="ヘルプ"]{background:var(--error-ink);border-color:var(--error-ink);color:var(--white);}
+.ps-btn.on[data-v="順調"]{background:var(--st-ok);border-color:var(--st-ok);color:var(--white);}
+.ps-btn.on[data-v="調整予定"]{background:var(--c-chg-fill);border-color:var(--c-chg);color:var(--ink);}
+.ps-btn.on[data-v="遅延"]{background:var(--error-ink);border-color:var(--error-ink);color:var(--white);}
 .proj-err{display:none;margin-top:8px;font-size:var(--fs-sm);color:var(--error-ink);}
 .tb.proj-invalid .proj-err{display:block;}
 .tb.proj-invalid .proj-status .ps-btn:not(.on){border-color:var(--error-ink);}
@@ -452,11 +457,37 @@ body.is-manager .proxy-row + #member-btns:not(.collapsed),body.is-manager .proxy
 body.is-manager .member-only{display:none!important;}
 .nav .nav-badge + .nav-badge{margin-left:6px;}
 .nav-badge.help{background:var(--error-ink);}
-.cs-badge.help{background:var(--error-ink);color:var(--white);}
+.cs-badge.help,.cs-badge.st-late{background:var(--error-ink);color:var(--white);}
+.cs-badge.st-adj{background:var(--c-chg-fill);color:var(--ink);}
+.cs-badge.st-ok{background:var(--st-ok);color:var(--white);}
 .pj-card{background:var(--white);padding:16px 18px;margin-bottom:10px;border-left:3px solid var(--btn);}
 .pj-card:last-child{margin-bottom:0;}
-.pj-card.help{border-left-color:var(--error-ink);}
-.pj-card.help .pj-name{color:var(--error-ink);}
+.pj-card.st-late{border-left-color:var(--error-ink);}
+.pj-card.st-late .pj-name{color:var(--error-ink);}
+.pj-card.st-adj{border-left-color:var(--c-chg);}
+.pj-card.st-ok{border-left-color:var(--st-ok);}
+.pj-who{font-size:var(--fs-sm);padding:1px 8px;border:1px solid var(--divider);white-space:nowrap;}
+.pj-stats{display:flex;gap:4px 16px;flex-wrap:wrap;align-items:baseline;font-size:var(--fs-sm);margin-top:8px;}
+.pj-stats b{font-weight:400;font-size:var(--fs-md);margin-left:4px;}
+.pj-idle{color:var(--error-ink);border:1px solid var(--error-ink);padding:0 7px;white-space:nowrap;}
+.pj-tbar{height:6px;background:var(--gray);margin-top:6px;}
+.pj-tbar span{display:block;height:6px;background:var(--btn);}
+.pj-card.st-late .pj-tbar span{background:var(--error-ink);}
+.pj-card.st-adj .pj-tbar span{background:var(--c-chg);}
+.pj-focus{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--white);border-left:3px solid var(--btn);padding:10px 14px;margin-bottom:10px;font-size:var(--fs-md);}
+.pj-group-t{font-size:var(--fs-sm);margin:0 0 8px;}
+/* ダッシュボード：プロジェクト状況 */
+.pjd-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px;}
+.pjd-sec-t{font-size:var(--fs-sm);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.pjd-sec-t i{display:inline-block;width:10px;height:10px;}
+.pjd-item{display:flex;width:100%;gap:8px;align-items:baseline;justify-content:space-between;text-align:left;background:var(--white);border:none;border-left:3px solid var(--btn);padding:7px 10px;margin-bottom:5px;font-family:var(--font);font-size:var(--fs-sm);color:var(--ink);cursor:pointer;}
+.pjd-item:hover{background:var(--gray);}
+.pjd-item.st-late{border-left-color:var(--error-ink);}
+.pjd-item.st-adj{border-left-color:var(--c-chg);}
+.pjd-item .pjd-n{flex:1;min-width:0;word-break:break-word;}
+.pjd-item .pjd-v{white-space:nowrap;}
+.pjd-none{font-size:var(--fs-sm);color:#505050;padding:4px 0;}
+@media(max-width:767px){.pjd-grid{grid-template-columns:minmax(0,1fr);}}
 .pj-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
 .pj-name{font-size:var(--fs-lg);flex:1;min-width:8em;word-break:break-word;}
 .pj-latest{white-space:pre-wrap;word-break:break-word;font-size:var(--fs-md);margin-top:8px;}
@@ -518,8 +549,7 @@ body.is-manager .member-only{display:none!important;}
     </div>
   </div>
 </div>
-<datalist id="dl-hours"><option value="6"></option><option value="7"></option><option value="8"></option><option value="9"></option><option value="10"></option><option value="11"></option><option value="12"></option><option value="13"></option><option value="14"></option><option value="15"></option><option value="16"></option><option value="17"></option><option value="18"></option><option value="19"></option><option value="20"></option><option value="21"></option><option value="22"></option><option value="23"></option></datalist>
-<datalist id="dl-mins"><option value="00"></option><option value="15"></option><option value="30"></option><option value="45"></option></datalist>
+<datalist id="dl-times"><option value="06:00"></option><option value="06:15"></option><option value="06:30"></option><option value="06:45"></option><option value="07:00"></option><option value="07:15"></option><option value="07:30"></option><option value="07:45"></option><option value="08:00"></option><option value="08:15"></option><option value="08:30"></option><option value="08:45"></option><option value="09:00"></option><option value="09:15"></option><option value="09:30"></option><option value="09:45"></option><option value="10:00"></option><option value="10:15"></option><option value="10:30"></option><option value="10:45"></option><option value="11:00"></option><option value="11:15"></option><option value="11:30"></option><option value="11:45"></option><option value="12:00"></option><option value="12:15"></option><option value="12:30"></option><option value="12:45"></option><option value="13:00"></option><option value="13:15"></option><option value="13:30"></option><option value="13:45"></option><option value="14:00"></option><option value="14:15"></option><option value="14:30"></option><option value="14:45"></option><option value="15:00"></option><option value="15:15"></option><option value="15:30"></option><option value="15:45"></option><option value="16:00"></option><option value="16:15"></option><option value="16:30"></option><option value="16:45"></option><option value="17:00"></option><option value="17:15"></option><option value="17:30"></option><option value="17:45"></option><option value="18:00"></option><option value="18:15"></option><option value="18:30"></option><option value="18:45"></option><option value="19:00"></option><option value="19:15"></option><option value="19:30"></option><option value="19:45"></option><option value="20:00"></option><option value="20:15"></option><option value="20:30"></option><option value="20:45"></option><option value="21:00"></option><option value="21:15"></option><option value="21:30"></option><option value="21:45"></option><option value="22:00"></option><option value="22:15"></option><option value="22:30"></option><option value="22:45"></option><option value="23:00"></option><option value="23:15"></option><option value="23:30"></option><option value="23:45"></option></datalist>
 <div class="layout">
 <nav class="sidebar">
   <div class="s-logo">
@@ -646,6 +676,15 @@ body.is-manager .member-only{display:none!important;}
   <div id="dash-personal-pace" style="margin-bottom:14px;"></div>
 
   <!-- 残業アラート（勤怠レポート） -->
+  <!-- プロジェクト状況（管理者だけ） -->
+  <div class="card mgr-only" id="pj-dash-card" style="display:none;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
+      <div class="ct" style="margin-bottom:0;">プロジェクト状況 <span style="font-size:var(--fs-sm);margin-left:8px;">直近30日</span></div>
+      <button class="btn btn-sm" type="button" onclick="openProjectInInbox('','')">受信箱で見る</button>
+    </div>
+    <div id="pj-dash"></div>
+  </div>
+
   <div class="card" id="kintai-alert-card" style="display:none;">
     <div class="ct">残業アラート <span id="kintai-alert-src" style="font-size:var(--fs-sm);margin-left:8px;"></span></div>
     <div id="kintai-alert"></div>
@@ -928,7 +967,7 @@ body.is-manager .member-only{display:none!important;}
       <div class="ct" style="margin-bottom:0;">カテゴリ</div>
       <button class="btn btn-sm" onclick="const f=document.getElementById(&#39;cat-add-form&#39;);f.style.display=f.style.display===&#39;none&#39;?&#39;&#39;:&#39;none&#39;">＋ 追加</button>
     </div>
-    <div style="font-size:var(--fs-sm);margin-bottom:12px;">「休憩」に印をつけたカテゴリは実働時間から差し引きます。「プロジェクト」に印をつけたカテゴリは、終業報告でプロジェクト名・進捗・状況（順調／ヘルプ）の入力が必要になります。名前を変えても、過去の記録は新しい名前で集計されます。</div>
+    <div style="font-size:var(--fs-sm);margin-bottom:12px;">「休憩」に印をつけたカテゴリは実働時間から差し引きます。「プロジェクト」に印をつけたカテゴリは、終業報告でプロジェクト名・進捗・状況（順調／調整予定／遅延）の入力が必要になります。名前を変えても、過去の記録は新しい名前で集計されます。</div>
     <div id="cat-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
     <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:0;">
       <input type="color" value="#c8c8c8" onchange="updateCategoryColor(0,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:0;cursor:pointer;flex-shrink:0;">
@@ -1094,8 +1133,9 @@ body.is-manager .member-only{display:none!important;}
     <div class="card" style="padding:20px 24px;">
       <div class="ib-filters">
         <div><label class="form-label" for="pj-f-member">メンバー</label><select id="pj-f-member" onchange="renderProjectProgress()"></select></div>
-        <div><label class="form-label" for="pj-f-status">状況</label><select id="pj-f-status" onchange="renderProjectProgress()"><option value="">すべて</option><option value="help">ヘルプのみ</option></select></div>
-        <div><label class="form-label" for="pj-f-period">期間</label><select id="pj-f-period" onchange="renderProjectProgress()"><option value="30">最近30日</option><option value="90">最近90日</option><option value="all">すべて</option></select></div>
+        <div><label class="form-label" for="pj-f-status">状況</label><select id="pj-f-status" onchange="renderProjectProgress()"><option value="">すべて</option><option value="遅延">遅延</option><option value="調整予定">調整予定</option><option value="順調">順調</option></select></div>
+        <div><label class="form-label" for="pj-f-period">期間</label><select id="pj-f-period" onchange="renderProjectProgress()"><option value="month">今月</option><option value="30" selected>直近30日</option><option value="90">直近90日</option><option value="all">すべて</option></select></div>
+        <div><label class="form-label" for="pj-f-sort">並べ方</label><select id="pj-f-sort" onchange="renderProjectProgress()"><option value="status">遅延・調整予定を上に</option><option value="time">時間がかかっている順</option><option value="idle">取り組めていない順</option></select></div>
       </div>
     </div>
     <div id="pj-list"></div>
@@ -1448,6 +1488,7 @@ function fetchMonthDocs(coll, name, ym){
   if(c && Date.now()-c.t<_CACHE_TTL) return c.p;
   const pr=apiGet({action:'getMonthDocs', coll, memberName:name, ym}).then(d=>{
     if(!d || !d.success){ delete _monthCache[k]; return {}; }
+    if(_monthCache[k]) _monthCache[k].docs=d.docs||{};
     return d.docs||{};
   }, e=>{ delete _monthCache[k]; _notifyReadError(e); throw e; });
   _monthCache[k]={t:Date.now(), p:pr};
@@ -1657,7 +1698,7 @@ async function openClockDialog(mi, ds){
       <button class="btn btn-sm" type="button" onclick="closeClockDialog()">キャンセル</button>
     </div>`;
   d.hidden=false;
-  const h=d.querySelector('.t-h'); if(h){ h.focus(); }
+  const h=d.querySelector('.t-in'); if(h){ h.focus(); }
 }
 async function confirmClockDialog(withStart){
   const g=_clockDlg, d=document.getElementById('clock-dialog');
@@ -1669,9 +1710,9 @@ async function confirmClockDialog(withStart){
   if(!cur){ fail('出退勤の記録を読み込めていないため記録できません。「再読み込み」を押してください'); return; }
   let startStr=null;
   if(withStart){
-    d.querySelectorAll('.tpair input').forEach(el=>{ const st=_timeFieldState(el); _markTimeInvalid(el,!st.valid); });
+    d.querySelectorAll('.tpair input.t-in').forEach(el=>{ const st=_timeFieldState(el); _markTimeInvalid(el,!st.valid); });
     const t=_readTime(d,'t-start');
-    if(t.empty||!t.valid){ fail('出勤時刻を正しく入力してください（時は6〜23、分は0〜59）'); return; }
+    if(t.empty||!t.valid){ fail('出勤時刻を正しく入力してください（6:00〜23:59。例 9:30 / 930）'); return; }
     const now=new Date(), nowMin=now.getHours()*60+now.getMinutes();
     if(t.min>=nowMin){ fail('出勤時刻は今より前にしてください'); return; }
     startStr=t.h+':'+String(t.m).padStart(2,'0');
@@ -1746,7 +1787,7 @@ function normalizeTask(t){
     startTime:sH===null?'':pad(sH)+':'+pad(sM),
     endTime:eH===null?'':pad(eH)+':'+pad(eM),
     progress:typeof t.progress==='string'?t.progress:'',
-    projectStatus:(t.projectStatus==='順調'||t.projectStatus==='ヘルプ')?t.projectStatus:'',
+    projectStatus:_pjSt(t.projectStatus),
     tid:_okId(t.tid)?t.tid:'',
     fromPlan:_okId(t.fromPlan)?t.fromPlan:''
   };
@@ -1777,6 +1818,10 @@ function _ensureTids(arr){
     seen.add(o.tid); return o;
   });
 }
+// プロジェクトの状況：順調／調整予定／遅延。以前の「ヘルプ」は「遅延」として扱う
+const PJ_STATUSES=['順調','調整予定','遅延'];
+function _pjSt(v){ return v==='ヘルプ'?'遅延':PJ_STATUSES.includes(v)?v:''; }
+function _pjStCls(v){ v=_pjSt(v); return v==='遅延'?'st-late':v==='調整予定'?'st-adj':v==='順調'?'st-ok':''; }
 function _normalizeTasks(arr){ return (Array.isArray(arr)?arr:[]).map(normalizeTask).filter(Boolean); }
 function _tasksForSave(arr){
   return (Array.isArray(arr)?arr:[]).map(t=>{
@@ -2538,6 +2583,7 @@ function _renderUnsub(){
 }
 
 function renderDashboard(){
+  try{ renderProjectDashCard(); }catch(e){ console.error(e); }
   const sel=state.selectedDate;
   const ds=dateStr(sel);
   const isToday=ds===dateStr(new Date());
@@ -2898,14 +2944,28 @@ function _pad2(n){ return String(n).padStart(2,'0'); }
 function _normDigits(v){ return String(v==null?'':v).replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0)).replace(/\s+/g,''); }
 function _timeInputsHTML(cls, h, m){
   const hasH=h!==null&&h!==undefined&&h!=='';
-  const hv=hasH?String(parseInt(h,10)):'';
-  const mv=hasH?_pad2(parseInt(m||0,10)||0):'';
-  const lbl=cls==='t-start'?'開始':'終了';
-  const common='type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" placeholder="--" onfocus="_selAll(this)" oninput="onTimeInput(this)" onchange="onTimeCommit(this)" onblur="onTimeCommit(this)"';
-  return `<span class="tpair"><input class="t-h ${cls}" ${common} list="dl-hours" aria-label="${lbl}（時）" value="${hv}"><span class="tcolon">:</span><input class="t-m ${cls}" ${common} list="dl-mins" aria-label="${lbl}（分）" value="${mv}"></span>`;
+  const hn=hasH?parseInt(h,10):null, mn=hasH?(parseInt(m||0,10)||0):null;
+  const v=hasH?_pad2(hn)+':'+_pad2(mn):'';
+  const lbl=cls==='t-start'?'開始時刻':'終了時刻';
+  // 見える欄は1つ（.t-in）。.t-h / .t-m は隠し欄で、正しい時刻のときだけ中身が入る（ほかの処理との互換用）
+  return `<span class="tpair"><input class="t-in ${cls}" type="text" inputmode="numeric" maxlength="5" autocomplete="off" placeholder="--:--" list="dl-times" aria-label="${lbl}（例 19:00 / 1900）" value="${v}" onfocus="_selAll(this)" oninput="onTimeInput(this)" onchange="onTimeCommit(this)" onblur="onTimeCommit(this)"><input type="hidden" class="t-h ${cls}" value="${hasH?String(hn):''}"><input type="hidden" class="t-m ${cls}" value="${hasH?_pad2(mn):''}"></span>`;
 }
-// 1つの欄の状態 {empty, valid, num}。時は6〜23、分は0〜59
+// 時刻の文字列を読む：「19:00」「1900」「19」「9:5」「930」など。範囲は 6:00〜23:59
+function _parseTime(raw){
+  const v=_normDigits(raw).replace(/[：.．]/g,':');
+  if(v==='') return {empty:true, valid:true, h:null, m:null, min:null};
+  let r, h=null, m=null;
+  if((r=v.match(/^(\d{1,2}):(\d{1,2})$/))){ h=+r[1]; m=+r[2]; }
+  else if((r=v.match(/^(\d{1,2}):$/))){ h=+r[1]; m=0; }
+  else if(/^\d{1,2}$/.test(v)){ h=+v; m=0; }
+  else if(/^\d{3,4}$/.test(v)){ h=+v.slice(0,-2); m=+v.slice(-2); }
+  const valid=h!==null && h>=6 && h<=23 && m>=0 && m<=59;
+  return valid?{empty:false, valid:true, h, m, min:h*60+m}:{empty:false, valid:false, h:null, m:null, min:null};
+}
+function _fmtHM(h,m){ return _pad2(h)+':'+_pad2(m); }
+// 1つの欄の状態 {empty, valid, num}
 function _timeFieldState(el){
+  if(el && el.classList.contains('t-in')){ const p=_parseTime(el.value); return {empty:p.empty, valid:p.valid, num:p.min}; }
   const v=_normDigits(el&&el.value);
   if(v==='') return {empty:true, valid:true, num:null};
   if(!/^\d{1,2}$/.test(v)) return {empty:false, valid:false, num:null};
@@ -2915,13 +2975,16 @@ function _timeFieldState(el){
 }
 // タスクの開始/終了時刻 {empty, valid, h, m, min}
 function _readTime(tb, which){
-  const hEl=tb.querySelector('.t-h.'+which), mEl=tb.querySelector('.t-m.'+which);
-  if(!hEl) return {empty:true, valid:true, h:null, m:null, min:null};
-  const hs=_timeFieldState(hEl), ms=mEl?_timeFieldState(mEl):{empty:true,valid:true,num:null};
-  if(hs.empty) return {empty:true, valid:hs.valid&&ms.valid, h:null, m:null, min:null};
-  const valid=hs.valid&&ms.valid;
-  const h=hs.num, m=ms.empty?0:ms.num;
-  return {empty:false, valid, h, m, min:valid?h*60+m:null};
+  const el=tb.querySelector('.t-in.'+which);
+  if(!el) return {empty:true, valid:true, h:null, m:null, min:null};
+  return _parseTime(el.value);
+}
+function _syncHiddenTime(el){
+  const p=el.closest('.tpair'); if(!p) return;
+  const r=_parseTime(el.value);
+  const hEl=p.querySelector('input.t-h'), mEl=p.querySelector('input.t-m');
+  if(hEl) hEl.value=r.valid&&!r.empty?String(r.h):'';
+  if(mEl) mEl.value=r.valid&&!r.empty?_pad2(r.m):'';
 }
 function _markTimeInvalid(el, bad){
   el.classList.toggle('t-invalid', !!bad);
@@ -2930,22 +2993,28 @@ function _markTimeInvalid(el, bad){
   const tb=el.closest('.tb'); if(tb) tb.classList.toggle('has-time-err', !!tb.querySelector('input.t-invalid'));
 }
 function _setTime(tb, which, h, m){
-  const hEl=tb.querySelector('.t-h.'+which), mEl=tb.querySelector('.t-m.'+which);
-  if(hEl){ hEl.value=(h===null||h===undefined||h==='')?'':String(parseInt(h,10)); _markTimeInvalid(hEl,false); }
-  if(mEl){ mEl.value=(h===null||h===undefined||h==='')?'':_pad2(parseInt(m||0,10)||0); _markTimeInvalid(mEl,false); }
+  const el=tb.querySelector('.t-in.'+which); if(!el) return;
+  el.value=(h===null||h===undefined||h==='')?'':_fmtHM(parseInt(h,10), parseInt(m||0,10)||0);
+  _syncHiddenTime(el);
+  _markTimeInvalid(el,false);
 }
+// 入力中：4桁（1900 など）は 19:00 の形に。正しい時刻になったら赤い表示を消す
 function onTimeInput(el){
+  const v=_normDigits(el.value);
+  if(/^\d{4}$/.test(v)){ const p=_parseTime(v); if(p.valid) el.value=_fmtHM(p.h,p.m); }
   if(_timeFieldState(el).valid) _markTimeInvalid(el,false);
+  _syncHiddenTime(el);
   onTimeChange();
 }
-// 入力欄に入ったら中身を選択（2桁入っていても上書きで打てるように）
+// 入力欄に入ったら中身を選択（入っていても上書きで打てるように）
 function _selAll(el){ setTimeout(()=>{ try{ if(document.activeElement===el) el.select(); }catch(e){} },30); }
-// 欄を離れたとき：全角数字を半角に、分は2桁表示に。範囲外は赤く表示（分が空なら00分として扱う）
+// 欄を離れたとき：19:00 の形にそろえる。範囲外・読めない時刻は赤く表示
 function onTimeCommit(el){
-  const v=_normDigits(el.value); if(v!==el.value) el.value=v;
-  const st=_timeFieldState(el);
-  if(st.valid && !st.empty) el.value=el.classList.contains('t-m')?_pad2(st.num):String(st.num);
-  _markTimeInvalid(el, !st.valid);
+  const p=_parseTime(el.value);
+  if(p.valid && !p.empty){ const f=_fmtHM(p.h,p.m); if(el.value!==f) el.value=f; }
+  else if(p.empty && el.value!=='') el.value='';
+  _markTimeInvalid(el, !p.valid);
+  _syncHiddenTime(el);
   onTimeChange();
   if(el.classList.contains('t-start') && el.closest('#task-list')) _scheduleSort();
 }
@@ -3059,7 +3128,7 @@ function addTask(){
       ${_timeInputsHTML('t-start', prevH, prevM)}
       <span style="font-size:var(--fs-sm);color:var(--t3);">〜</span>
       ${_timeInputsHTML('t-end', null, null)}
-      <div class="t-err">時は6〜23、分は0〜59の数字で入力してください</div>
+      <div class="t-err">6:00〜23:59 の時刻で入力してください（例 19:00 / 1900）</div>
     </div>
     <div style="display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;">
       <span style="font-size:var(--fs-sm);color:var(--t3);align-self:center;">所要時間:</span>
@@ -3075,7 +3144,8 @@ function addTask(){
       <div class="proj-status" role="radiogroup" aria-label="状況">
         <span class="proj-lbl">状況（必須）</span>
         <button type="button" class="ps-btn" data-v="順調" role="radio" aria-checked="false" onclick="setProjStatus(this)">順調</button>
-        <button type="button" class="ps-btn" data-v="ヘルプ" role="radio" aria-checked="false" onclick="setProjStatus(this)">ヘルプ</button>
+        <button type="button" class="ps-btn" data-v="調整予定" role="radio" aria-checked="false" onclick="setProjStatus(this)">調整予定</button>
+        <button type="button" class="ps-btn" data-v="遅延" role="radio" aria-checked="false" onclick="setProjStatus(this)">遅延</button>
       </div>
       <div class="proj-err"></div>
     </div>
@@ -3165,7 +3235,7 @@ function _updateProjBox(tb){
   if(!on) _clearProjErr(tb);
 }
 function _setProjStatusValue(tb, v){
-  tb.dataset.pstatus=(v==='順調'||v==='ヘルプ')?v:'';
+  tb.dataset.pstatus=_pjSt(v);
   tb.querySelectorAll('.ps-btn').forEach(b=>{ const on=b.dataset.v===tb.dataset.pstatus; b.classList.toggle('on', on); b.setAttribute('aria-checked', on?'true':'false'); });
 }
 function setProjStatus(btn){
@@ -3247,9 +3317,12 @@ async function _saveProjectLogs(mi, ds, tasks, prevTasks, isRetry){
     const b=_db.batch();
     proj.forEach((t,i)=>{
       const p=prev[i];
-      const same=!isRetry && p && p.projectStatus===t.projectStatus && _projKey(p.name)===_projKey(t.name);
-      const data={authorEmail:email, authorName:m.name, date:ds, project:String(t.name).trim(), progress:t.progress, status:t.projectStatus, category:resolveCat(t.cat), updatedAt:new Date()};
-      if(!same){ data.createdAt=new Date(); data.notified=t.projectStatus!=='ヘルプ'; } // ヘルプは Slack で管理者に通知（通知済みにしない）
+      const same=!isRetry && p && _pjSt(p.projectStatus)===_pjSt(t.projectStatus) && _projKey(p.name)===_projKey(t.name);
+      const st=_pjSt(t.projectStatus);
+      const mins=(parseInt(t.endH,10)*60+(parseInt(t.endM,10)||0))-(parseInt(t.startH,10)*60+(parseInt(t.startM,10)||0));
+      const data={authorEmail:email, authorName:m.name, date:ds, project:String(t.name).trim(), progress:t.progress, status:st, category:resolveCat(t.cat), updatedAt:new Date()};
+      if(mins>0 && mins<=1440) data.minutes=mins; // このタスクの作業時間（分）。プロジェクトごとの合計時間に使う
+      if(!same){ data.createdAt=new Date(); data.notified=st!=='遅延'; } // 遅延は Slack で管理者に通知（通知済みにしない）
       b.set(_db.collection('projectLogs').doc(`${m.name}_${ds}_${i}`), data, {merge:true});
     });
     for(let i=proj.length;i<prev.length;i++) b.delete(_db.collection('projectLogs').doc(`${m.name}_${ds}_${i}`));
@@ -3396,7 +3469,7 @@ async function submitInput(){
     const catSel=tb.querySelector('.task-cat');
     const ni=tb.querySelector('.task-name');
     // 入力欄の形式チェック（範囲外の時刻は赤く表示）
-    tb.querySelectorAll('.tpair input').forEach(el=>{ const st=_timeFieldState(el); _markTimeInvalid(el,!st.valid); if(!st.valid) fmtErr=true; });
+    tb.querySelectorAll('.tpair input.t-in').forEach(el=>{ const st=_timeFieldState(el); _markTimeInvalid(el,!st.valid); if(!st.valid) fmtErr=true; });
     const st=_readTime(tb,'t-start'), et=_readTime(tb,'t-end');
     const task={
       cat:catSel?catSel.value:'',
@@ -3418,7 +3491,7 @@ async function submitInput(){
       const miss=[];
       if(!task.name){ miss.push('プロジェクト名（内容欄）'); if(ni) ni.classList.add('field-bad'); }
       if(!task.progress){ miss.push('進捗・進めた内容'); if(pr) pr.classList.add('field-bad'); }
-      if(!task.projectStatus) miss.push('状況（順調／ヘルプ）');
+      if(!task.projectStatus) miss.push('状況（順調／調整予定／遅延）');
       if(miss.length){ projErr.push((task.name||resolveCat(task.cat))+'：'+miss.join('・')); tb.classList.add('proj-invalid'); if(err) err.textContent=miss.join('・')+'を入力してください'; }
     }
     // バリデーション: カテゴリ必須
@@ -3431,7 +3504,7 @@ async function submitInput(){
     tasks.push(task);
   });
   if(tasks.length===0 && !clockOnly){showError('タスクを1件以上入力してください');return;}
-  if(fmtErr){showError('時刻の入力が正しくありません（時は6〜23、分は0〜59）');return;}
+  if(fmtErr){showError('時刻の入力が正しくありません（6:00〜23:59。例 19:00 / 1900）');return;}
   if(catErr){showError('カテゴリを選択してください');return;}
   if(timeErr){showError('開始・終了時刻を入力し、終了は開始より後にしてください');return;}
   if(projErr.length){
@@ -3542,7 +3615,7 @@ function _renderReportComparison(cmp, TL_S, TL_E){
     const r=x.r;
     const badge=x.cls==='changed'?'<span class="cmp-badge changed">時間変更</span>':x.cls==='unplanned'?'<span class="cmp-badge unplanned">予定外</span>':'';
     const note=x.cls==='same'?'<span class="cmp-note cmp-same">予定どおり</span>':'';
-    const proj=(r.progress||r.projectStatus)?`<div class="cmp-proj">${r.projectStatus?`<span class="${r.projectStatus==='ヘルプ'?'help':''}">${esc(r.projectStatus)}</span>　`:''}${esc(r.progress||'')}</div>`:'';
+    const proj=(r.progress||r.projectStatus)?`<div class="cmp-proj">${r.projectStatus?`<span class="${_pjStCls(r.projectStatus)}">${esc(_pjSt(r.projectStatus))}</span>　`:''}${esc(r.progress||'')}</div>`:'';
     h+=`<div class="cmp-row ${x.cls==='break'?'brk':x.cls}">
       <div class="cmp-head"><span class="cmp-cat">${esc(r._cat||'—')}</span><span class="cmp-name">${esc(r.name||'—')}</span>
         <span class="cmp-time">${esc(r.startTime)}〜${esc(r.endTime)}（${esc(dur(r))}）</span>${badge}${note}</div>${x.cls==='changed'?`<div class="cmp-chg"><s>予定 ${esc(x.p.startTime)}〜${esc(x.p.endTime)}</s><span class="arw">→</span><b>実績 ${esc(r.startTime)}〜${esc(r.endTime)}</b></div>`:''}
@@ -5222,11 +5295,11 @@ async function loadConsultations(force){
 function _setBadge(id, n, label){ const b=document.getElementById(id); if(!b) return; b.textContent=n>99?'99+':label?label+' '+n:String(n); b.hidden=!n; }
 function _updateConsultBadge(){
   let n=0, help=0;
-  if(IS_MANAGER){ n=CONSULTS.filter(c=>c.status==='未読').length; help=_helpProjects30().length; }
+  if(IS_MANAGER){ n=CONSULTS.filter(c=>c.status==='未読').length; help=_delayProjects30().length; }
   else { const seen=_csSeen(); n=CONSULTS.filter(c=>_csHasNewReply(c, seen)).length; }
   _setBadge('consult-badge', IS_MANAGER?0:n); _setBadge('consult-badge-m', IS_MANAGER?0:n);
   _setBadge('inbox-badge', IS_MANAGER?n:0); _setBadge('inbox-badge-m', IS_MANAGER?n:0);
-  _setBadge('inbox-help-badge', IS_MANAGER?help:0, 'ヘルプ'); _setBadge('inbox-help-badge-m', IS_MANAGER?help:0, 'ヘルプ');
+  _setBadge('inbox-help-badge', IS_MANAGER?help:0, '遅延'); _setBadge('inbox-help-badge-m', IS_MANAGER?help:0, '遅延');
   const dot=document.getElementById('mnav-more-dot'); if(dot) dot.hidden=!(n||help);
 }
 // ---- メンバー：相談 ----
@@ -5401,47 +5474,70 @@ async function saveConsultReply(id){
   }
 }
 // ---- 管理者：プロジェクト進捗（projectLogs）----
-let PLOGS=[], _plogLoadedAt=0, _plogKeyLoaded='', _plogErr='', _plogLoading=null;
+// 読み込みは「必要な期間をふくむ範囲」を1回だけ（5分キャッシュ）。ナビの遅延バッジとダッシュボードのために最低でも直近30日を読む
+const PJ_IDLE_DAYS=7; // この日数以上 進捗の記録がなければ「◯日間 取り組みなし」
+let PLOGS=[], _plogLoadedAt=0, _plogLoadedCutoff=null, _plogErr='', _plogLoading=null, _pjFocus=null;
 function _cutoffDs(days){ const d=new Date(); d.setDate(d.getDate()-days); return dateStr(d); }
+function _monthStartDs(){ const d=new Date(); return dateStr(new Date(d.getFullYear(), d.getMonth(), 1)); }
 function _plogPeriod(){ return (document.getElementById('pj-f-period')||{}).value||'30'; }
+function _periodCutoff(p){ return p==='all'?'':p==='month'?_monthStartDs():_cutoffDs(Number(p)||30); }
+function _plogNeedCutoff(){ const c=_periodCutoff(_plogPeriod()); const base=[_cutoffDs(30), _monthStartDs()].sort()[0]; return c===''?'':[c, base].sort()[0]; }
+function _plogCovers(cutoff){ return _plogLoadedCutoff!==null && Date.now()-_plogLoadedAt<_CACHE_TTL && (_plogLoadedCutoff==='' || (cutoff!=='' && _plogLoadedCutoff<=cutoff)); }
 async function loadProjectLogs(force){
   if(!_booted || !IS_MANAGER) return;
-  const period=_plogPeriod();
-  if(!force && _plogKeyLoaded===period && Date.now()-_plogLoadedAt<_CACHE_TTL) return;
+  const cutoff=_plogNeedCutoff();
+  if(!force && _plogCovers(cutoff)) return;
   if(_plogLoading && !force) return _plogLoading;
   const run=(async()=>{
     try{
       let q=_db.collection('projectLogs');
-      if(period!=='all') q=q.where('date','>=',_cutoffDs(Number(period)));
+      if(cutoff) q=q.where('date','>=',cutoff);
       const snap=await q.limit(1000).get();
       const list=[]; snap.forEach(d=>list.push(Object.assign({id:d.id}, d.data())));
-      PLOGS=list; _plogKeyLoaded=period; _plogLoadedAt=Date.now(); _plogErr='';
+      PLOGS=list; _plogLoadedCutoff=cutoff; _plogLoadedAt=Date.now(); _plogErr='';
     }catch(e){
       console.error('プロジェクト進捗の読み込みエラー:', e);
       _plogErr=_errText(e);
-      _plogKeyLoaded=period; _plogLoadedAt=Date.now(); // 失敗しても繰り返し読みに行かない（「再読み込み」で読み直す）
+      _plogLoadedCutoff=cutoff; _plogLoadedAt=Date.now(); // 失敗しても繰り返し読みに行かない（「再読み込み」で読み直す）
     }
     _updateConsultBadge();
     if(_curView==='inbox') renderInbox();
+    if(_curView==='dashboard') renderProjectDashCard();
   })();
   _plogLoading=run;
   try{ await run; }finally{ if(_plogLoading===run) _plogLoading=null; }
 }
 function _logOrder(a,b){ return a.date<b.date?1:a.date>b.date?-1:(_tsMs(b.updatedAt||b.createdAt)-_tsMs(a.updatedAt||a.createdAt))||(String(b.id)<String(a.id)?-1:1); }
+// 作業時間（分）。新しい記録は minutes を持つ。古い記録は、その月の報告をすでに読み込んでいればそこから計算（追加の読み込みはしない）
+function _logMinutes(l){
+  if(typeof l.minutes==='number' && l.minutes>=0) return l.minutes;
+  const name=l.authorName||'', ds=String(l.date||'');
+  const mc=_monthCache['reports|'+name+'|'+ds.slice(0,7)];
+  const day=mc&&mc.docs&&mc.docs[ds];
+  if(!day) return null;
+  const tasks=_normalizeTasks(day.tasks).filter(t=>isProjectCat(t.cat) && _projKey(t.name)===_projKey(l.project) && t.startTime && t.endTime);
+  if(!tasks.length) return null;
+  const sum=tasks.reduce((a,t)=>a+Math.max(0, t2m(t.endTime)-t2m(t.startTime)),0);
+  const n=PLOGS.filter(x=>x.authorName===l.authorName && x.date===l.date && _projKey(x.project)===_projKey(l.project)).length||1;
+  return Math.round(sum/n); // 同じ日に同じプロジェクトの記録が複数あれば等分
+}
+function _daysSince(ds){ const m=String(ds||'').match(/^(\d{4})-(\d{2})-(\d{2})$/); if(!m) return null; const t=new Date(); const a=Date.UTC(t.getFullYear(),t.getMonth(),t.getDate()), b=Date.UTC(+m[1],+m[2]-1,+m[3]); return Math.round((a-b)/86400000); }
 // プロジェクトごと（メンバー × 正規化したプロジェクト名）にまとめる
-function _projectGroups(cutoff){
+// {key, member, project, status, latest, logs, consults, totalMin, unknownMin, days, lastWork, idleDays, idle, lastDate}
+function _projectGroups(cutoff, opts){
+  opts=opts||{};
   const g={};
   const key=(n,p)=>n+'|'+_projKey(p);
   PLOGS.forEach(l=>{
     if(!l||!l.project||(cutoff&&String(l.date)<cutoff)) return;
     const n=l.authorName||l.authorEmail||''; const k=key(n,l.project);
-    (g[k]||(g[k]={member:n, logs:[], consults:[]})).logs.push(l);
+    (g[k]||(g[k]={key:k, member:n, logs:[], consults:[]})).logs.push(l);
   });
-  CONSULTS.forEach(c=>{
+  if(!opts.noConsults) CONSULTS.forEach(c=>{
     if(!c||!c.project) return;
     const n=c.authorName||c.authorEmail||''; const k=key(n,c.project);
     if(cutoff && dateStr(new Date(_tsMs(c.createdAt)))<cutoff && !g[k]) return;
-    (g[k]||(g[k]={member:n, logs:[], consults:[]})).consults.push(c);
+    (g[k]||(g[k]={key:k, member:n, logs:[], consults:[]})).consults.push(c);
   });
   return Object.values(g).map(x=>{
     x.logs.sort(_logOrder);
@@ -5449,48 +5545,106 @@ function _projectGroups(cutoff){
     const latest=x.logs[0]||null;
     x.latest=latest;
     x.project=latest?latest.project:x.consults[0].project;
-    x.status=latest?latest.status:'';
+    x.status=latest?_pjSt(latest.status):'';
+    let tot=0, unk=0;
+    x.logs.forEach(l=>{ const m=_logMinutes(l); if(m===null) unk++; else tot+=m; });
+    x.totalMin=tot; x.unknownMin=unk;
+    x.days=new Set(x.logs.map(l=>l.date)).size;
+    x.lastWork=latest?String(latest.date):'';
+    x.idleDays=x.lastWork?_daysSince(x.lastWork):null;
+    x.idle=x.idleDays!==null && x.idleDays>=PJ_IDLE_DAYS;
     const lastC=x.consults[0]?dateStr(new Date(_tsMs(x.consults[0].createdAt))):'';
-    x.lastDate=[latest?latest.date:'', lastC].sort().pop();
+    x.lastDate=[x.lastWork, lastC].sort().pop();
     return x;
   });
 }
-function _helpProjects30(){ return _projectGroups(_cutoffDs(30)).filter(x=>x.status==='ヘルプ'); }
+function _delayProjects30(){ return _projectGroups(_cutoffDs(30)).filter(x=>x.status==='遅延'); }
+const _PJ_RANK={'遅延':0,'調整予定':1,'順調':2,'':3};
+function _pjSorter(mode){
+  const byLast=(a,b)=>a.lastDate<b.lastDate?1:a.lastDate>b.lastDate?-1:0;
+  if(mode==='time') return (a,b)=>(b.totalMin-a.totalMin)||byLast(a,b);
+  if(mode==='idle') return (a,b)=>((a.lastWork?0:1)-(b.lastWork?0:1))||(a.lastWork<b.lastWork?-1:a.lastWork>b.lastWork?1:0)||(b.totalMin-a.totalMin);
+  return (a,b)=>(_PJ_RANK[a.status]-_PJ_RANK[b.status])||byLast(a,b);
+}
+function _pjTimeText(x){ return x.logs.length&&x.unknownMin===x.logs.length?'—':_fmtMin(x.totalMin)+(x.unknownMin?'＋不明'+x.unknownMin+'日':''); }
+function clearProjectFocus(){ _pjFocus=null; renderProjectProgress(); }
+// ダッシュボードなどから：受信箱 → プロジェクト進捗 を開き、そのプロジェクトだけ表示（key が空なら全部）
+function openProjectInInbox(member, key){
+  _pjFocus=key?{member:member||'', key}:null;
+  ['pj-f-member','pj-f-status'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  const pe=document.getElementById('pj-f-period'); if(pe && key) pe.value='30';
+  _inboxTab='progress';
+  sw('inbox');
+}
 function renderProjectProgress(){
   const box=document.getElementById('pj-list'); if(!box) return;
   const period=_plogPeriod();
-  if(_plogKeyLoaded!==period || Date.now()-_plogLoadedAt>=_CACHE_TTL){ if(!_plogLoading) loadProjectLogs(); }
-  const cutoff=period==='all'?'':_cutoffDs(Number(period));
+  if(!_plogCovers(_plogNeedCutoff()) && !_plogLoading) loadProjectLogs();
+  const cutoff=_periodCutoff(period);
   let groups=_projectGroups(cutoff);
   _fillSelect('pj-f-member', [...new Set(groups.map(x=>x.member).filter(Boolean))], 'すべて');
   const fm=(document.getElementById('pj-f-member')||{}).value||'';
-  const fh=(document.getElementById('pj-f-status')||{}).value||'';
-  groups=groups.filter(x=>(!fm||x.member===fm)&&(!fh||x.status==='ヘルプ'));
-  if(!_plogLoadedAt && !_plogErr){ box.innerHTML='<div class="card" style="font-size:var(--fs-md);color:var(--t3);">読み込み中...</div>'; return; }
-  if(!groups.length){ box.innerHTML='<div class="card" style="font-size:var(--fs-md);color:var(--t3);">この期間のプロジェクト進捗はありません（終業報告で「プロジェクト」のカテゴリのタスクを入力すると表示されます）</div>'; return; }
+  const fs=(document.getElementById('pj-f-status')||{}).value||'';
+  const mode=(document.getElementById('pj-f-sort')||{}).value||'status';
+  groups=groups.filter(x=>(!fm||x.member===fm)&&(!fs||x.status===fs)&&(!_pjFocus||x.key===_pjFocus.key));
+  const focusHTML=_pjFocus?`<div class="pj-focus" id="pj-focus"><span>「${esc(groups[0]?groups[0].project:_pjFocus.key.split('|').slice(1).join('|'))}」（${esc(_pjFocus.member)}）だけを表示しています</span><button class="btn btn-sm" type="button" onclick="clearProjectFocus()">すべて表示</button></div>`:'';
+  if(!_plogLoadedAt && !_plogErr){ box.innerHTML=focusHTML+'<div class="card" style="font-size:var(--fs-md);color:var(--t3);">読み込み中...</div>'; return; }
+  if(!groups.length){ box.innerHTML=focusHTML+'<div class="card" style="font-size:var(--fs-md);color:var(--t3);">この条件のプロジェクト進捗はありません（終業報告で「プロジェクト」のカテゴリのタスクを入力すると表示されます）</div>'; return; }
+  const maxMin=Math.max(1, ...groups.map(x=>x.totalMin));
+  const sorter=_pjSorter(mode);
+  const card=(x, showWho)=>{
+    const cls=_pjStCls(x.status);
+    const tl=x.logs.map(l=>({t:l.date, ms:_tsMs(l.updatedAt||l.createdAt), html:`<li class="pj-ev"><span class="cs-meta">${esc(_fmtDs(l.date))}</span><span class="cs-badge ${_pjStCls(l.status)}">${esc(_pjSt(l.status))}</span>${(m=>m!==null?`<span class="cs-meta">${esc(_fmtMin(m))}</span>`:'')(_logMinutes(l))}<span class="pj-ev-text">${esc(l.progress)}</span></li>`}))
+      .concat(x.consults.map(c=>({t:dateStr(new Date(_tsMs(c.createdAt))), ms:_tsMs(c.createdAt), html:`<li class="pj-ev"><span class="cs-meta">${esc(_fmtTs(c.createdAt))}</span><span class="cs-badge">相談・${esc(c.status||'未読')}</span><span class="pj-ev-text">${esc(c.body)}${c.managerReply?`<span class="pj-ev-reply">返信：${esc(c.managerReply)}</span>`:''}</span></li>`})))
+      .sort((a,b)=>a.t<b.t?1:a.t>b.t?-1:b.ms-a.ms);
+    return `<div class="pj-card ${cls}" data-key="${esc(x.key)}">
+      <div class="pj-head">
+        <span class="pj-name">${esc(x.project)}</span>
+        ${showWho?`<span class="pj-who">${esc(x.member)}</span>`:''}
+        ${x.status?`<span class="cs-badge ${cls}">${esc(x.status)}</span>`:'<span class="cs-badge">相談のみ</span>'}
+      </div>
+      ${x.logs.length?`<div class="pj-stats"><span>合計時間<b class="pj-time">${esc(_pjTimeText(x))}</b></span><span>取り組み<b class="pj-days">${x.days}日</b></span><span>最終<b class="pj-last">${esc(_fmtDs(x.lastWork))}</b></span>${x.idle?`<span class="pj-idle">${x.idleDays}日間 取り組みなし</span>`:''}</div>
+      <div class="pj-tbar" title="この表示の中でいちばん時間がかかっているプロジェクトとの比較"><span style="width:${(x.totalMin/maxMin*100).toFixed(1)}%"></span></div>`:''}
+      ${x.latest?`<div class="pj-latest">${esc(x.latest.progress)}</div>`:''}
+      <details class="pj-tl"><summary>経過を見る（${tl.length}件）</summary><ol>${tl.map(e=>e.html).join('')}</ol></details>
+    </div>`;
+  };
+  if(mode!=='status'){
+    box.innerHTML=focusHTML+`<div class="card"><div class="pj-group-t">${mode==='time'?'時間がかかっている順（期間内の合計時間）':'取り組めていない順（最後に記録した日が古い順）'}</div>${groups.sort(sorter).map(x=>card(x,true)).join('')}</div>`;
+    return;
+  }
   const byMember={};
   groups.forEach(x=>{ (byMember[x.member]||(byMember[x.member]=[])).push(x); });
   const order=MEMBERS.map(m=>m.name).filter(n=>byMember[n]).concat(Object.keys(byMember).filter(n=>!MEMBERS.some(m=>m.name===n)));
-  const hasHelp=n=>byMember[n].some(x=>x.status==='ヘルプ');
-  order.sort((a,b)=>(hasHelp(b)?1:0)-(hasHelp(a)?1:0));
-  box.innerHTML=order.map(n=>{
-    const list=byMember[n].sort((a,b)=>((b.status==='ヘルプ')-(a.status==='ヘルプ'))||(a.lastDate<b.lastDate?1:a.lastDate>b.lastDate?-1:0));
-    return `<div class="card"><div class="ct">${esc(n)}</div>${list.map(x=>{
-      const help=x.status==='ヘルプ';
-      const tl=x.logs.map(l=>({t:l.date, ms:_tsMs(l.updatedAt||l.createdAt), html:`<li class="pj-ev"><span class="cs-meta">${esc(_fmtDs(l.date))}</span><span class="cs-badge ${l.status==='ヘルプ'?'help':''}">${esc(l.status||'')}</span><span class="pj-ev-text">${esc(l.progress)}</span></li>`}))
-        .concat(x.consults.map(c=>({t:dateStr(new Date(_tsMs(c.createdAt))), ms:_tsMs(c.createdAt), html:`<li class="pj-ev"><span class="cs-meta">${esc(_fmtTs(c.createdAt))}</span><span class="cs-badge">相談・${esc(c.status||'未読')}</span><span class="pj-ev-text">${esc(c.body)}${c.managerReply?`<span class="pj-ev-reply">返信：${esc(c.managerReply)}</span>`:''}</span></li>`})))
-        .sort((a,b)=>a.t<b.t?1:a.t>b.t?-1:b.ms-a.ms);
-      return `<div class="pj-card${help?' help':''}">
-        <div class="pj-head">
-          <span class="pj-name">${esc(x.project)}</span>
-          ${x.status?`<span class="cs-badge ${help?'help':''}">${esc(x.status)}</span>`:'<span class="cs-badge">相談のみ</span>'}
-          <span class="cs-meta">最終更新 ${esc(_fmtDs(x.lastDate))}</span>
-        </div>
-        ${x.latest?`<div class="pj-latest">${esc(x.latest.progress)}</div>`:''}
-        <details class="pj-tl"><summary>経過を見る（${tl.length}件）</summary><ol>${tl.map(e=>e.html).join('')}</ol></details>
-      </div>`;
-    }).join('')}</div>`;
-  }).join('');
+  const top=n=>Math.min(...byMember[n].map(x=>_PJ_RANK[x.status]));
+  order.sort((a,b)=>top(a)-top(b));
+  box.innerHTML=focusHTML+order.map(n=>`<div class="card"><div class="ct">${esc(n)}</div>${byMember[n].sort(sorter).map(x=>card(x,false)).join('')}</div>`).join('');
+}
+// ---- ダッシュボード：プロジェクト状況（管理者だけ・直近30日） ----
+function renderProjectDashCard(){
+  const cardEl=document.getElementById('pj-dash-card'), box=document.getElementById('pj-dash');
+  if(!cardEl||!box) return;
+  if(!IS_MANAGER){ cardEl.style.display='none'; return; }
+  cardEl.style.display='';
+  if(!_plogCovers(_plogNeedCutoff()) && !_plogLoading) loadProjectLogs();
+  if(!_plogLoadedAt && !_plogErr){ box.innerHTML='<div class="pjd-none">読み込み中...</div>'; return; }
+  if(_plogErr){ box.innerHTML=`<div class="pjd-none">プロジェクト進捗を読み込めませんでした（${esc(_plogErr)}）</div>`; return; }
+  const fm=state.filterMember, fName=(fm!==null&&fm!==undefined&&MEMBERS[fm])?MEMBERS[fm].name:'';
+  const in30=_projectGroups(_cutoffDs(30), {noConsults:true}).filter(x=>!fName||x.member===fName);
+  const month=_projectGroups(_monthStartDs(), {noConsults:true}).filter(x=>!fName||x.member===fName);
+  const late=in30.filter(x=>x.status==='遅延').sort(_pjSorter('status'));
+  const adj=in30.filter(x=>x.status==='調整予定').sort(_pjSorter('status'));
+  const heavy=month.filter(x=>x.totalMin>0).sort(_pjSorter('time')).slice(0,3);
+  const idle=in30.filter(x=>x.idle).sort(_pjSorter('idle'));
+  const MAX=5;
+  const item=(x,val)=>`<button type="button" class="pjd-item ${_pjStCls(x.status)}" data-m="${esc(x.member)}" data-k="${esc(x.key)}" onclick="openProjectInInbox(this.dataset.m,this.dataset.k)"><span class="pjd-n">${esc(x.member)}｜${esc(x.project)}</span><span class="pjd-v">${esc(val)}</span></button>`;
+  const sec=(id,title,color,list,val)=>`<div class="pjd-sec" id="${id}"><div class="pjd-sec-t">${color?`<i style="background:${color}"></i>`:''}${title}（${list.length}）</div>${list.length?list.slice(0,MAX).map(x=>item(x,val(x))).join('')+(list.length>MAX?`<div class="pjd-none">ほか${list.length-MAX}件</div>`:''):'<div class="pjd-none">なし</div>'}</div>`;
+  box.innerHTML=`<div class="pjd-grid">
+    ${sec('pjd-late','遅延','var(--error-ink)',late,x=>'最終 '+_fmtDs(x.lastWork))}
+    ${sec('pjd-adj','調整予定','var(--c-chg)',adj,x=>'最終 '+_fmtDs(x.lastWork))}
+    ${sec('pjd-heavy','時間がかかっている（今月）','',heavy,x=>_pjTimeText(x))}
+    ${sec('pjd-idle','取り組みなし（'+PJ_IDLE_DAYS+'日以上）','',idle,x=>x.idleDays+'日間')}
+  </div>`;
 }
 
 // ============================================================
