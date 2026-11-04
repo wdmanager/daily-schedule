@@ -832,7 +832,9 @@ body.is-manager .member-only{display:none!important;}
       <div class="ct">凡例</div>
       <div style="display:flex;flex-direction:column;gap:8px;font-size:var(--fs-sm);color:var(--t2);line-height:1.5;">
         <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:0;background:#474747;border:1px solid #474747;flex-shrink:0;"></span>休み（有給・代休・公休）<br>→ その日は入力不要</span>
+        <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:0;background:#dfe0e1;border:1px solid #dfe0e1;flex-shrink:0;"></span>婚礼<br>→ その日は入力不要</span>
         <span style="display:flex;align-items:center;gap:7px;"><span style="width:14px;height:14px;border-radius:0;background:#ffffff;border:1px solid #ffffff;flex-shrink:0;"></span>通常勤務日（入力必要）</span>
+        <span style="color:var(--t3);">日付を押すたびに「休み → 婚礼 → 通常勤務日」の順に切り替わります</span>
       </div>
     </div>
   </div>
@@ -1412,6 +1414,7 @@ async function _fsDispatch(p) {
   if(action === 'saveMonthlySetup') {
     const data = {updatedAt: new Date()};
     if(Array.isArray(p.offDays)) data.offDays = p.offDays;
+    if(Array.isArray(p.weddingDays)) data.weddingDays = p.weddingDays;
     if(typeof p.targetHours==='number' && isFinite(p.targetHours)) data.targetHours = p.targetHours;
     await _db.collection('monthly').doc(p.memberName + '_' + p.ym).set(data, {merge:true});
     return {success:true};
@@ -2532,7 +2535,7 @@ function _renderDashboardNoSync(){
   if(_fmA!==undefined&&_fmA!=='') state.filterMember=parseInt(_fmA);
   const fm=state.filterMember;
   const indices=(fm!==null&&fm!==undefined)?[fm]:MEMBERS.map((_,i)=>i);
-  const workingIndices=indices.filter(i=>state.memberData[i]&&!(state.memberData[i].offDays&&state.memberData[i].offDays.includes(ds)));
+  const workingIndices=indices.filter(i=>state.memberData[i]&&!_noInput(state.memberData[i], ds));
   _renderUnsub();
   // Stats更新
   const total=workingIndices.length;
@@ -2554,7 +2557,7 @@ function _renderUnsub(){
   const isFiltered=(fm!==null&&fm!==undefined);
   const indices=isFiltered?[fm]:MEMBERS.map((_,i)=>i);
   const future=ds>today;
-  const rows=indices.filter(i=>MEMBERS[i]&&state.memberData[i]&&!(state.memberData[i].offDays||[]).includes(ds)).map(i=>{
+  const rows=indices.filter(i=>MEMBERS[i]&&state.memberData[i]&&!_noInput(state.memberData[i], ds)).map(i=>{
     const sub=(state.memberData[i].submitted||{})[ds]||{};
     return {i, missPlan:!sub.plan, missRep:!future&&!sub.report};
   }).filter(r=>r.missPlan||r.missRep);
@@ -2626,7 +2629,7 @@ function renderDashboard(){
   // 出勤メンバーのみ対象 (休みは除外)
   const workingIndices=indices.filter(i=>{
     const md=state.memberData[i];
-    return !(md.offDays&&md.offDays.includes(ds));
+    return !_noInput(md, ds);
   });
   const workingMembers=workingIndices.map(i=>MEMBERS[i]);
 
@@ -2921,6 +2924,7 @@ function renderInputForm(){
   const notice=document.getElementById('input-notice');
   if(notice){
     if(isOff)notice.innerHTML=`<div style="background:#dfe0e1;border:1px solid #dfe0e1;border-radius:0;padding:10px 14px;font-size:var(--fs-md);color:#3a3a3a;margin-bottom:14px;">本日は休み登録日です。</div>`;
+    else if(_isWedReg(md, ds))notice.innerHTML=`<div style="background:#dfe0e1;border:1px solid #dfe0e1;border-radius:0;padding:10px 14px;font-size:var(--fs-md);color:#3a3a3a;margin-bottom:14px;">本日は婚礼登録日のため入力不要です。</div>`;
     else notice.innerHTML='';
   }
   const tl=document.getElementById('task-list');
@@ -3660,7 +3664,8 @@ async function renderDayDetailAsync(sel){
     const md=state.memberData[i];
     if(!m||!md) continue;
     const isOff=(md.offDays||[]).includes(ds);
-    const isWed=(md.reportedWeddingDates||[]).includes(ds);
+    const isWedReg=!isOff&&_isWedReg(md, ds);
+    const isWed=isWedReg||(md.reportedWeddingDates||[]).includes(ds);
     const [planData,reportData]=fetched[k];
     let planTasks=_normalizeTasks(planData.success&&planData.tasks);
     let reportTasks=_normalizeTasks(reportData.success&&reportData.tasks);
@@ -3705,12 +3710,14 @@ async function renderDayDetailAsync(sel){
         <span style="font-size:var(--fs-md);font-weight:400;">${esc(m.name)}</span>
         ${isOff?`<span class="badge" style="background:#faeaea;color:#a23c3c;">休み</span>`:''}
         ${isWed?`<span class="badge" style="background:#dfe0e1;color:#474747;">婚礼撮影</span>`:''}
-        ${!isOff?`<span class="badge" style="background:${hasReport?'#dfe0e1':'#faeaea'};color:${hasReport?'#3a3a3a':'#a23c3c'};">${hasReport?'報告済':'未提出'}</span>`:''}
+        ${!isOff&&!(isWedReg&&!hasReport)?`<span class="badge" style="background:${hasReport?'#dfe0e1':'#faeaea'};color:${hasReport?'#3a3a3a':'#a23c3c'};">${hasReport?'報告済':'未提出'}</span>`:''}
         ${canEdit(i)?`<button class="btn btn-sm" onclick="goToInput(${i},'plan','${ds}')" style="margin-left:auto;">予定を編集</button>`:''}
         ${canEdit(i)&&hasReport?`<button class="btn btn-sm" onclick="goToInput(${i},'report','${ds}')">報告を編集</button>`:''}
       </div>`;
     if(isOff){
       dd+=`<div style="font-size:var(--fs-md);color:var(--t3);">休み登録日のため入力不要です</div>`;
+    } else if(isWedReg && !hasPlan && !hasReport){
+      dd+=`<div style="font-size:var(--fs-md);color:var(--t3);">婚礼登録日のため入力不要です</div>`;
     } else if(!hasPlan && !hasReport){
       dd+=planData.clockOnly?`<div style="font-size:var(--fs-md);">出勤 ${esc(planData.clockIn||'')}（タスクなし）</div>`:`<div style="font-size:var(--fs-md);color:var(--t3);">予定未入力</div>`;
     } else {
@@ -3828,6 +3835,9 @@ function _applyMonthlyDoc(md, ym, data){
   md.offDays=(md.offDays||[]).filter(d=>String(d).indexOf(ym)!==0).concat(ex?arr(data.offDays):[]);
   md.weddingDays=(md.weddingDays||[]).filter(d=>String(d).indexOf(ym)!==0).concat(ex?arr(data.weddingDays):[]);
 }
+// 婚礼として登録した日（カレンダー登録）。休みと同じく入力不要
+function _isWedReg(md, ds){ return !!md && (md.weddingDays||[]).includes(ds); }
+function _noInput(md, ds){ return !!md && ((md.offDays||[]).includes(ds) || _isWedReg(md, ds)); }
 function _monthTargetHours(md, ym){
   const [y,m]=ym.split('-').map(Number);
   return (new Date(y,m,0).getDate()-(md.offDays||[]).filter(d=>String(d).indexOf(ym)===0).length)*8;
@@ -4055,17 +4065,19 @@ function renderCalendar(mi){
     const day=new Date(calY,calM,d).getDay();
     const ds=`${ym}-${String(d).padStart(2,'0')}`;
     const isOff=(md.offDays||[]).includes(ds);
+    const isWed=!isOff&&_isWedReg(md, ds);
     const isSubmitted=(state.memberData[mi]?.reportedDays||{})[ds];
     const isTod=today.getFullYear()===calY&&today.getMonth()===calM&&today.getDate()===d;
-    let cls='cal-d'+(isOff?' off submitted':(day===0||day===6)?' weekend':'');
+    let cls='cal-d'+(isOff?' off submitted':isWed?' wedding':(day===0||day===6)?' weekend':'');
     if(isSubmitted && !isOff) cls+=' submitted';
     if(isTod)cls+=' today';
     let stamp='';
     if(isOff) stamp='<span style="font-size:var(--fs-sm);display:block;">休</span>';
+    else if(isWed) stamp='<span style="font-size:var(--fs-sm);display:block;">婚礼</span>';
     else if(isSubmitted) stamp='<span class="cal-済">済</span>';
-    const label=`${calM+1}月${d}日（${wd[day]}）${isOff?'休み':'勤務日'}${isSubmitted&&!isOff?'・報告済み':''}${isTod?'・今日':''}`;
+    const label=`${calM+1}月${d}日（${wd[day]}）${isOff?'休み':isWed?'婚礼':'勤務日'}${isSubmitted&&!isOff?'・報告済み':''}${isTod?'・今日':''}`;
     html+=editable
-      ?`<div class="${cls}" data-ds="${ds}" role="button" tabindex="0" aria-pressed="${isOff}" aria-label="${esc(label)}" onclick="toggleDay('${ds}',${mi})" onkeydown="_calKey(event,'${ds}',${mi})">${d}${stamp}</div>`
+      ?`<div class="${cls}" data-ds="${ds}" role="button" tabindex="0" aria-pressed="${isOff||isWed}" aria-label="${esc(label)}" onclick="toggleDay('${ds}',${mi})" onkeydown="_calKey(event,'${ds}',${mi})">${d}${stamp}</div>`
       :`<div class="${cls}" data-ds="${ds}" aria-label="${esc(label)}" style="cursor:default;">${d}${stamp}</div>`;
     cells++;
   }
@@ -4092,7 +4104,8 @@ async function _persistMonthly(mi, ym){
   await apiPost({
     action:'saveMonthlySetup', ym, memberName:MEMBERS[mi].name,
     targetHours:md.targetHours,
-    offDays:_filterByYm(md.offDays, ym)
+    offDays:_filterByYm(md.offDays, ym),
+    weddingDays:_filterByYm(md.weddingDays, ym)
   });
 }
 function _scheduleMonthlySave(mi, ym){
@@ -4116,10 +4129,12 @@ function toggleDay(ds,mi){
   const ym=String(ds).slice(0,7);
   const st=_monthLoad[_mlKey(MEMBERS[mi].name, ym)];
   if(st!=='ok'){ showError(st==='loading'?'読み込み中です。少し待ってからもう一度押してください':'この月の休みを読み込めていないため変更できません。「再読み込み」を押してください'); return; }
-  md.offDays=md.offDays||[];
-  const isOff=md.offDays.includes(ds);
-  if(!isOff) md.offDays.push(ds);
-  else md.offDays=md.offDays.filter(x=>x!==ds);
+  // 押すたびに 勤務日 → 休み → 婚礼 → 勤務日
+  md.offDays=md.offDays||[]; md.weddingDays=md.weddingDays||[];
+  const isOff=md.offDays.includes(ds), isWed=md.weddingDays.includes(ds);
+  if(isOff){ md.offDays=md.offDays.filter(x=>x!==ds); md.weddingDays.push(ds); }
+  else if(isWed){ md.weddingDays=md.weddingDays.filter(x=>x!==ds); }
+  else md.offDays.push(ds);
   // 休み変更で総労働時間を再計算
   md.targetHours=_monthTargetHours(md, ym);
   const _thEl=document.getElementById('target-hours');
@@ -4187,14 +4202,15 @@ async function applyOffDaysFromPanel(){
   const k=_mlKey(g.name, g.ym);
   if(_monthLoad[k]!=='ok'){ _toast('toast-monthly','この月の休みを読み込めていないため登録できません', true); return; }
   const btn=document.getElementById('gcal-apply-btn'); if(btn) btn.disabled=true;
-  const prev=(md.offDays||[]).slice();
+  const prev=(md.offDays||[]).slice(), prevWed=(md.weddingDays||[]).slice();
   md.offDays=[...new Set(prev.concat(picked))];
+  md.weddingDays=prevWed.filter(d=>!picked.includes(d)); // 休みにした日は婚礼から外す
   md.targetHours=_monthTargetHours(md, g.ym);
   clearTimeout(_offDaysSaveTimers[k]); delete _offDaysSaveTimers[k];
   try{
     await _persistMonthly(mi, g.ym);
   }catch(e){
-    md.offDays=prev; md.targetHours=_monthTargetHours(md, g.ym);
+    md.offDays=prev; md.weddingDays=prevWed; md.targetHours=_monthTargetHours(md, g.ym);
     console.error('休みの登録エラー:', e);
     _toast('toast-monthly', e&&e.userMessage?e.userMessage:'登録できませんでした（'+_errText(e)+'）。もう一度お試しください', true);
     if(btn) btn.disabled=false;
@@ -5010,6 +5026,8 @@ function rebuildMemberUI(prevSel){
       let badge='';
       if(isOff){
         badge=`<span style="font-size:var(--fs-sm);background:#dfe0e1;color:#3a3a3a;border:1px solid #dfe0e1;border-radius:0;padding:1px 5px;margin-left:4px;white-space:nowrap;">休み</span>`;
+      } else if(_isWedReg(md, today) && !sub.report){
+        badge=`<span style="font-size:var(--fs-sm);background:#dfe0e1;color:#3a3a3a;border:1px solid #dfe0e1;border-radius:0;padding:1px 5px;margin-left:4px;white-space:nowrap;">婚礼</span>`;
       } else if(sub.report){
         badge=`<span style="font-size:var(--fs-sm);background:#dfe0e1;color:#3a3a3a;border:1px solid #dfe0e1;border-radius:0;padding:1px 5px;margin-left:4px;white-space:nowrap;">報告済</span>`;
       } else if(sub.plan){
