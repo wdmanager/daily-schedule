@@ -1594,6 +1594,7 @@ function _roundTo15(date){
 
 const _attErr={}; // 出退勤の読み込みに失敗した 「mi_日付」
 async function loadAttendance(mi, ds){
+  if(!ATTENDANCE_ON) return null;
   const key=mi+'_'+ds;
   if(state.attendanceData[key]) return state.attendanceData[key];
   delete _attErr[key];
@@ -1610,9 +1611,12 @@ async function loadAttendance(mi, ds){
 
 function _isTodayDs(ds){ return ds===dateStr(new Date()); }
 
+// 2026-11：出退勤打刻は廃止（婚礼の日も入力不要になったため）。ATTENDANCE_ON=true で元に戻る
+var ATTENDANCE_ON=false;
 function renderAttendanceUI(mi, ds, isRep){
   const area=document.getElementById('attendance-area');
   if(!area) return;
+  if(!ATTENDANCE_ON){ area.style.display='none'; area.innerHTML=''; return; }
   if(!state.attendanceData[mi+'_'+ds]){
     // 読み込めていない（または読み込み中）ときは「未打刻」と表示せず、打刻もさせない（既存の打刻を上書きしないため）
     area.style.cssText='display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0;margin-bottom:10px;';
@@ -3522,7 +3526,7 @@ async function submitInput(){
   const attToday=state.attendanceData[mi+'_'+ds];
   const clockOnly=allEmpty && !isRep && _isTodayDs(ds) && !!(attToday&&attToday.start);
   if(allEmpty && !clockOnly){
-    showError(isRep?'タスクを1件以上入力してください':'タスクを1件以上入力してください（予定のタスクがない日は、先に「出勤打刻」を押すとタスクなしで送信できます）');
+    showError(isRep?'タスクを1件以上入力してください':'タスクを1件以上入力してください');
     return;
   }
   if(!clockOnly) blocks.forEach(tb=>{
@@ -3993,10 +3997,10 @@ const USAGE_DEFAULT=`◎ カレンダー
 
 ◎ 予定入力
 出勤日の朝に名前と日付を選択。
-出勤打刻ボタンを押してから、当日の予定タスクを入力して送信。
+当日の予定タスクを入力して送信。
 
 ◎ 終業報告
-退勤時に退勤打刻ボタンを押す。
+退勤時に入力。
 「予定をコピー」で予定内容を引用し、実際の作業内容・時間を修正して送信。
 （ダッシュボードの「予定どおり／時間変更」は、予定をコピーしたタスクで判定します。手で追加したタスクは「予定外」になります）`;
 
@@ -5468,7 +5472,7 @@ async function submitConsultation(){
 // ・通知：GAS（Slack終業リマインド）が毎朝10時ごろ、その日が報告日の人へ Slack で DM
 // ============================================================
 const MS_KIND='ミッション進捗';
-const MS_FREQ={weekly:'週1回', biweekly:'隔週', monthly:'月1回（第1週の曜日）'};
+const MS_FREQ={weekly:'週1回', biweekly:'隔週', monthly:'月1回（第1週の曜日）', none:'通知しない'};
 const MS_DOW=['日','月','火','水','木','金','土'];
 const MS_CATS=['報告','相談'];
 let _msName='', _msDoc=null, _msEdit=null, _msErr='', _msLoading=false;
@@ -5545,18 +5549,18 @@ function _renderMissionSetup(){
   const next=_msNextDate(Object.assign({}, _msDoc, {items:(_msDoc&&_msDoc.items)||[]}));
   box.innerHTML=`
     <div class="form-label">ミッション</div>
-    ${e.items.length?e.items.map((x,i)=>`<div class="ms-row"><input type="text" maxlength="100" value="${esc(x.title)}" placeholder="ミッション名" oninput="_msEdit.items[${i}].title=this.value" aria-label="ミッション${i+1}"><button class="ms-x" type="button" title="削除" onclick="msRemoveItem(${i})">×</button></div>`).join(''):'<div style="font-size:var(--fs-md);color:var(--t3);margin-bottom:8px;">まだミッションがありません</div>'}
+    ${e.items.length?e.items.map((x,i)=>`<div class="ms-row"><input type="text" maxlength="100" value="${esc(x.title)}" placeholder="ミッション名" oninput="_msEdit.items[${i}].title=this.value" aria-label="ミッション${i+1}">${IS_MANAGER&&((_msDoc&&_msDoc.items)||[]).some(y=>y.id===x.id)?`<button class="btn btn-sm" type="button" style="white-space:nowrap;" data-id="${esc(x.id)}" onclick="msAsk(this.dataset.id)">どうなってる？</button>`:''}<button class="ms-x" type="button" title="削除" onclick="msRemoveItem(${i})">×</button></div>`).join(''):'<div style="font-size:var(--fs-md);color:var(--t3);margin-bottom:8px;">まだミッションがありません</div>'}
     <button class="btn btn-sm" type="button" onclick="msAddItem()">＋ ミッションを追加</button>
     <div class="ms-sched">
       <div><label class="form-label" for="ms-freq">報告のタイミング</label>
-        <select id="ms-freq" onchange="_msEdit.freq=this.value">${Object.keys(MS_FREQ).map(k=>`<option value="${k}"${k===e.freq?' selected':''}>${esc(MS_FREQ[k])}</option>`).join('')}</select></div>
+        <select id="ms-freq" onchange="_msEdit.freq=this.value;const d=document.getElementById('ms-dow');if(d)d.disabled=this.value==='none';">${Object.keys(MS_FREQ).map(k=>`<option value="${k}"${k===e.freq?' selected':''}>${esc(MS_FREQ[k])}</option>`).join('')}</select></div>
       <div><label class="form-label" for="ms-dow">曜日</label>
-        <select id="ms-dow" onchange="_msEdit.dow=parseInt(this.value)">${[1,2,3,4,5,6,0].map(d=>`<option value="${d}"${d===e.dow?' selected':''}>${MS_DOW[d]}曜日</option>`).join('')}</select></div>
+        <select id="ms-dow" onchange="_msEdit.dow=parseInt(this.value)"${e.freq==='none'?' disabled':''}>${[1,2,3,4,5,6,0].map(d=>`<option value="${d}"${d===e.dow?' selected':''}>${MS_DOW[d]}曜日</option>`).join('')}</select></div>
     </div>
-    <div class="ms-note">その曜日の朝10時ごろ、Slack にミッション進捗確認の DM が届きます。${next?'次回：'+esc(_msLabelDate(next)):'（保存すると次回の日付が表示されます）'}</div>
+    <div class="ms-note">${(_msDoc&&_msDoc.freq==='none')?'いまは Slack の通知は届きません（報告はこの画面からいつでも送れます）。':'その曜日の朝10時ごろ、Slack にミッション進捗確認の DM が届きます。'+(next?'次回：'+esc(_msLabelDate(next)):'（保存すると次回の日付が表示されます）')}</div>
     <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px;">
       <span id="ms-save-status" role="status" aria-live="polite" style="font-size:var(--fs-md);margin-right:auto;"></span>
-      ${IS_MANAGER?`<button class="btn" type="button" id="ms-ask-btn" onclick="msAsk()">「進捗どうなってる？」を送る</button>`:''}
+      ${IS_MANAGER?`<button class="btn" type="button" id="ms-ask-btn" onclick="msAsk()">全部まとめて「どうなってる？」を送る</button>`:''}
       <button class="btn btn-p" type="button" id="ms-save-btn" onclick="saveMission()">保存する</button>
     </div>`;
 }
@@ -5586,14 +5590,17 @@ async function saveMission(){
     if(btn) btn.disabled=false;
   }
 }
-async function msAsk(){
+// id を指定するとそのミッションだけ、なしで全部まとめて
+async function msAsk(id){
   if(!IS_MANAGER||!_msName) return;
-  const name=_msName;
-  if(!((_msDoc&&_msDoc.items)||[]).length){ _msStatus('err', name+'さんのミッションがまだ登録されていません'); return; }
+  const name=_msName, items=(_msDoc&&_msDoc.items)||[];
+  if(!items.length){ _msStatus('err', name+'さんのミッションがまだ登録されていません'); return; }
+  const one=id?items.find(x=>x.id===id):null;
+  if(id && !one){ _msStatus('err', '先に「保存する」を押してください'); return; }
   const btn=document.getElementById('ms-ask-btn'); if(btn) btn.disabled=true;
   try{
-    await _msWrite({askPending:true, askAt:new Date(), askedBy:AUTH_EMAIL});
-    _msStatus('ok', '10分以内に Slack で '+name+'さんに届きます');
+    await _msWrite({askPending:true, askItems:one?[one.title]:[], askAt:new Date(), askedBy:AUTH_EMAIL});
+    _msStatus('ok', (one?'「'+one.title+'」について':'')+'10分以内に Slack で '+name+'さんに届きます');
   }catch(e){
     console.error('進捗確認の送信エラー:', e);
     _msStatus('err', '送れませんでした（'+_errText(e)+'）');
