@@ -288,6 +288,7 @@ textarea{resize:vertical;min-height:72px;line-height:var(--lh-body);}
 /* タスク入力：グレーの四角を減らして線で示す */
 .tb input[type=text],.tb select,.tb textarea{background:transparent!important;border:none!important;border-bottom:1px solid var(--divider)!important;padding-left:2px!important;padding-right:22px!important;}
 .tb .task-name{padding-right:28px!important;}
+.tb .task-name:disabled{background:var(--gray);color:var(--t3);cursor:not-allowed;}
 .tb input:focus,.tb select:focus,.tb textarea:focus{background:transparent!important;border-bottom-color:var(--btn)!important;}
 .tb select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%)!important;background-position:calc(100% - 10px) 55%,calc(100% - 6px) 55%!important;background-size:4px 4px,4px 4px!important;background-repeat:no-repeat!important;-webkit-appearance:none;appearance:none;}
 .tb .dur-btn{background:transparent;border:1px solid var(--divider);padding:2px 10px;}
@@ -515,6 +516,17 @@ body.is-manager .member-only{display:none!important;}
 .cs-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;}
 .cs-filters .form-label{margin-bottom:4px;}
 .cs-item{padding:16px 0;border-bottom:1px solid var(--divider);}
+/* ミッション進捗確認 */
+.ms-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.ms-row input{flex:1;min-width:0;}
+.ms-x{background:none;border:none;color:var(--t3);cursor:pointer;font-size:var(--fs-lg);padding:2px 8px;line-height:1;}
+.ms-sched{display:grid;grid-template-columns:repeat(2,minmax(0,200px));gap:10px;margin-top:14px;}
+.ms-rep{padding:14px 0;border-bottom:1px solid var(--divider);}
+.ms-rep-h{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.ms-rep-t{flex:1;font-size:var(--fs-md);min-width:0;word-break:break-word;}
+.ms-rep select{width:auto;padding:6px 9px;font-size:var(--fs-sm);}
+.ms-rep textarea{min-height:80px;}
+.ms-note{font-size:var(--fs-sm);color:var(--t3);margin-top:10px;}
 .cs-item:last-child{border-bottom:none;}
 .cs-proj-row{display:grid;grid-template-columns:minmax(8em,1.2fr) auto auto auto minmax(0,2fr);gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--divider);font-size:var(--fs-md);}
 .cs-proj-row:last-child{border-bottom:none;}
@@ -569,6 +581,10 @@ body.is-manager .member-only{display:none!important;}
     <button class="nav member-only" id="nav-consult" onclick="sw(&#39;consult&#39;)">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3.5" width="12" height="9"></rect><path d="M2 4l6 5 6-5"></path></svg>
       相談<span class="nav-badge" id="consult-badge" hidden></span>
+    </button>
+    <button class="nav" id="nav-mission" onclick="sw(&#39;mission&#39;)">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2v12"></path><path d="M3 3h9l-2 3 2 3H3"></path></svg>
+      ミッション<span class="nav-badge" id="mission-badge" hidden></span>
     </button>
     <button class="nav mgr-only" id="nav-inbox" onclick="sw(&#39;inbox&#39;)">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9l2-6h8l2 6v4H2z"></path><path d="M2 9h3.5l1 1.5h3l1-1.5H14"></path></svg>
@@ -970,7 +986,7 @@ body.is-manager .member-only{display:none!important;}
       <div class="ct" style="margin-bottom:0;">カテゴリ</div>
       <button class="btn btn-sm" onclick="const f=document.getElementById(&#39;cat-add-form&#39;);f.style.display=f.style.display===&#39;none&#39;?&#39;&#39;:&#39;none&#39;">＋ 追加</button>
     </div>
-    <div style="font-size:var(--fs-sm);margin-bottom:12px;">「休憩」に印をつけたカテゴリは実働時間から差し引きます。「プロジェクト」に印をつけたカテゴリは、終業報告でプロジェクト名・進捗・状況（順調／調整予定／遅延）の入力が必要になります。名前を変えても、過去の記録は新しい名前で集計されます。</div>
+    <div style="font-size:var(--fs-sm);margin-bottom:12px;">「休憩」に印をつけたカテゴリは実働時間から差し引きます。名前を変えても、過去の記録は新しい名前で集計されます。</div>
     <div id="cat-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
     <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg);border-radius:0;">
       <input type="color" value="#c8c8c8" onchange="updateCategoryColor(0,this.value)" style="width:32px;height:28px;padding:0;border:1px solid var(--border2);border-radius:0;cursor:pointer;flex-shrink:0;">
@@ -1081,6 +1097,34 @@ body.is-manager .member-only{display:none!important;}
 
 </div>
 
+<!-- ミッション進捗確認 -->
+<div class="view" id="page-mission">
+  <div class="ph">
+    <div><div class="pt">ミッション進捗確認</div><div class="ps">ミッションの進捗を、設定したタイミングで小林さんに報告します（ほかのメンバーには見えません）</div></div>
+    <button class="btn btn-sm" type="button" onclick="reloadMission()">更新</button>
+  </div>
+  <div class="card mgr-only" id="ms-member-card">
+    <label class="form-label" for="ms-member">メンバー</label>
+    <select id="ms-member" onchange="renderMissionPage()" style="max-width:260px;"></select>
+  </div>
+  <div class="card" id="ms-report-card">
+    <div class="ct">ミッション進捗を報告する</div>
+    <div id="ms-report"></div>
+    <div id="toast-ms-report" class="toast" style="margin-top:14px;margin-bottom:0;"></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:14px;">
+      <button class="btn btn-p" id="ms-send" type="button" onclick="submitMissionReport()">小林さんに送信する</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">ミッションと報告のタイミング</div>
+    <div id="ms-setup"></div>
+  </div>
+  <div class="card">
+    <div class="ct">これまでの報告</div>
+    <div id="ms-history"></div>
+  </div>
+</div>
+
 <!-- 相談（メンバー） -->
 <div class="view" id="page-consult">
   <div class="ph">
@@ -1113,13 +1157,13 @@ body.is-manager .member-only{display:none!important;}
 <!-- 受信箱（管理者のみ） -->
 <div class="view" id="page-inbox">
   <div class="ph">
-    <div><div class="pt">受信箱</div><div class="ps">メンバーからの相談と、終業報告のプロジェクト進捗</div></div>
+    <div><div class="pt">受信箱</div><div class="ps">メンバーからの相談</div></div>
     <button class="btn btn-sm" type="button" onclick="refreshInbox()">更新</button>
   </div>
   <div id="inbox-load-err"></div>
   <div style="display:flex;gap:6px;margin-bottom:16px;" role="tablist">
     <button class="pb active" id="ib-tab-consult" type="button" role="tab" onclick="setInboxTab('consult')">相談</button>
-    <button class="pb" id="ib-tab-progress" type="button" role="tab" onclick="setInboxTab('progress')">プロジェクト進捗</button>
+    <button class="pb" id="ib-tab-progress" type="button" role="tab" onclick="setInboxTab('progress')" style="display:none;">プロジェクト進捗</button>
   </div>
   <div id="cs-inbox">
     <div class="card" style="padding:20px 24px;">
@@ -1195,6 +1239,9 @@ body.is-manager .member-only{display:none!important;}
     <button class="more-item" id="more-usage" role="menuitem" onclick="sw('usage')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M9 10c0-1.7 1.3-3 3-3s3 1.3 3 3c0 1.5-2 2-2 3.5M12 16v.5"></path></svg>使い方
     </button>
+    <button class="more-item" id="more-mission" role="menuitem" onclick="sw('mission')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3v18"></path><path d="M5 4h13l-3 4.5 3 4.5H5"></path></svg>ミッション<span class="nav-badge" id="mission-badge-m" hidden></span>
+    </button>
     <button class="more-item" id="more-members" role="menuitem" onclick="sw('members')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="7" r="3"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M17 14c2.5 0 4.5 2 4.5 4.5"></path></svg>メンバー
     </button>
@@ -1225,7 +1272,6 @@ const MEMBERS=[
 // カテゴリは GAS から取得。初期値はデフォルトセット。
 let CATEGORIES=[
   {name:'撮影',            color:'#8B9DC3'},
-  {name:'婚礼',            color:'#D4A5B5'},
   {name:'現像チェック',    color:'#9DB89F'},
   {name:'打ち合わせ',      color:'#C9A87C'},
   {name:'MTG',             color:'#B0A3C7'},
@@ -1674,7 +1720,7 @@ async function _afterClockOut(mi, ds){
   _setTime(tb,'t-start',s.h,s.m);
   _setTime(tb,'t-end',e.h,e.m);
   tb.classList.add('cal-unset');
-  const hint=document.createElement('div'); hint.className='auto-hint'; hint.textContent='カテゴリ（婚礼など）を選んで送信してください';
+  const hint=document.createElement('div'); hint.className='auto-hint'; hint.textContent='カテゴリを選んで送信してください';
   tb.appendChild(hint);
   _setDirty(true);
   calcWorkHours();
@@ -2240,8 +2286,8 @@ function _highlightNav(name){
   });
   _MNAV_MAIN.forEach(n=>{ const mb=document.getElementById('mnav-'+n); if(mb) mb.classList.toggle('active', n===name); });
   const more=document.getElementById('mnav-more');
-  if(more) more.classList.toggle('active', ['usage','members','settings','consult','inbox'].includes(name));
-  ['usage','members','settings','consult','inbox'].forEach(n=>{ const it=document.getElementById('more-'+n); if(it) it.classList.toggle('active', n===name); });
+  if(more) more.classList.toggle('active', ['usage','members','settings','consult','inbox','mission'].includes(name));
+  ['usage','members','settings','consult','inbox','mission'].forEach(n=>{ const it=document.getElementById('more-'+n); if(it) it.classList.toggle('active', n===name); });
 }
 function sw(name){
   if((name==='settings'||name==='inbox') && !IS_MANAGER) name='input';
@@ -2263,7 +2309,8 @@ function sw(name){
   if(name==='settings'){renderSettingsPage();renderCategoryList();renderKintaiStatus();}
   if(name==='members')renderMembersPage();
   if(name==='consult'){ _csNewThisView={}; renderConsultPage(); loadConsultations(); }
-  if(name==='inbox'){ renderInbox(); loadConsultations(); loadProjectLogs(); }
+  if(name==='mission'){ _csNewThisView={}; renderMissionPage(); loadConsultations(); }
+  if(name==='inbox'){ renderInbox(); loadConsultations(); if(PROJECT_RULES_ON) loadProjectLogs(); }
   window.scrollTo(0,0);
 }
 function toggleMoreSheet(){ const sh=document.getElementById('more-sheet'); if(sh) sh.classList.toggle('open'); }
@@ -2441,7 +2488,7 @@ function init(){
   // 今月の報告（月単位で1回）→ 今日の提出状況（報告はキャッシュから・予定だけ読む）
   loadAllMonthlySetup().finally(()=>refreshWorkStats().finally(()=>_syncDayStatus(dateStr(new Date()))));
   loadConsultations();
-  if(IS_MANAGER) loadProjectLogs(); else loadMyProjectNames();
+  if(IS_MANAGER){ if(PROJECT_RULES_ON) loadProjectLogs(); } else loadMyProjectNames();
   const dp=document.getElementById('dash-pick');
   dp.value=dateStr(now);
   state.selectedDate=now;
@@ -2455,6 +2502,8 @@ function init(){
   _buildMonthOptions(document.getElementById('diff-month'), 6);
 
   renderUsagePage();
+  // Slack の通知から開いたとき（…/#mission）はミッション画面へ
+  if(location.hash==='#mission') setTimeout(()=>{ try{ sw('mission'); }catch(e){} }, 0);
   // 入力中の内容を消さないための確認・日付の切り替わり検知
   const card=document.querySelector('#page-input .card');
   if(card && !card.dataset.dirtyInit){
@@ -3221,7 +3270,10 @@ function _scheduleSort(){ clearTimeout(_sortTimer); _sortTimer=setTimeout(sortTa
 // カテゴリ変更時のフック（将来の拡張用）
 // ===== 終業報告：プロジェクトのカテゴリのタスクは「進捗・状況」も入力 =====
 // isProject が未設定のカテゴリは、名前に「プロジェクト」を含むものをプロジェクト扱い
+// 2026-11：プロジェクト推進の入力ルール（プロジェクト名・進捗・状況の必須入力など）は撤廃。すべて通常のカテゴリと同じ扱い
+var PROJECT_RULES_ON=false;
 function isProjectCat(cat){
+  if(!PROJECT_RULES_ON) return false;
   const n=resolveCat(cat); if(!n) return false;
   const c=CATEGORIES.find(x=>x.name===n);
   if(c && typeof c.isProject==='boolean') return c.isProject;
@@ -3230,13 +3282,16 @@ function isProjectCat(cat){
 function _isReportMode(){ const it=document.getElementById('i-type'); return !!(it&&it.value==='report'); }
 function _updateProjBox(tb){
   if(!tb) return;
+  // 休憩のカテゴリは「内容」の入力不要（欄を使えなくする）
+  { const c=tb.querySelector('.task-cat'), n=tb.querySelector('.task-name');
+    if(c&&n){ const brk=isBreakCat(c.value); if(brk) n.value=''; n.disabled=brk; n.placeholder=brk?'入力不要':'内容'; } }
   const box=tb.querySelector('.proj-box'); if(!box) return;
   const cat=tb.querySelector('.task-cat');
   const on=_isReportMode() && isProjectCat(cat&&cat.value);
   box.hidden=!on;
   tb.classList.toggle('is-project', on);
   const ni=tb.querySelector('.task-name');
-  if(ni){ ni.placeholder=on?'プロジェクト名（必須）':'内容'; if(on) ni.setAttribute('list','dl-proj-names'); else ni.removeAttribute('list'); }
+  if(ni){ if(on) ni.placeholder='プロジェクト名（必須）'; if(on) ni.setAttribute('list','dl-proj-names'); else ni.removeAttribute('list'); }
   if(!on) _clearProjErr(tb);
 }
 function _setProjStatusValue(tb, v){
@@ -3467,7 +3522,7 @@ async function submitInput(){
   const attToday=state.attendanceData[mi+'_'+ds];
   const clockOnly=allEmpty && !isRep && _isTodayDs(ds) && !!(attToday&&attToday.start);
   if(allEmpty && !clockOnly){
-    showError(isRep?'タスクを1件以上入力してください':'タスクを1件以上入力してください（婚礼などで予定のタスクがない日は、先に「出勤打刻」を押すとタスクなしで送信できます）');
+    showError(isRep?'タスクを1件以上入力してください':'タスクを1件以上入力してください（予定のタスクがない日は、先に「出勤打刻」を押すとタスクなしで送信できます）');
     return;
   }
   if(!clockOnly) blocks.forEach(tb=>{
@@ -3553,7 +3608,7 @@ async function submitInput(){
     // プロジェクトの進捗を projectLogs にも記録（報告の保存に成功したときだけ）
     const prevProj=(_loadedReports[mName+'_'+ds]||[]);
     _loadedReports[mName+'_'+ds]=tasks.map(t=>({...t}));
-    _saveProjectLogs(mi, ds, tasks, prevProj);
+    if(PROJECT_RULES_ON) _saveProjectLogs(mi, ds, tasks, prevProj); // 撤廃中は記録しない（過去の記録も消さない）
   } else {
     state.memberData[mi].submitted[ds].plan=true;
     planStore[mi+'_'+ds]=tasks.map(t=>({...t}));
@@ -4250,7 +4305,7 @@ function renderCategoryList(){
       <input type="text" value="${esc(c.name)}" onchange="updateCategoryName(${i},this.value)" style="flex:1;min-width:100px;padding:5px 8px;font-size:var(--fs-md);background:var(--surface);">
       <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:0;background:${safeColor(c.color)};color:#fff;font-size:var(--fs-sm);font-weight:400;white-space:nowrap;">${esc(c.name)}</span>
       <label class="radio-lbl" title="実働時間から差し引くカテゴリ"><input type="radio" name="cat-break" ${c.isBreak?'checked':''} onchange="setBreakCategory(${i})">休憩</label>
-      <label class="radio-lbl" title="終業報告でプロジェクト名・進捗・状況を入力するカテゴリ"><input type="checkbox" ${isProjectCat(c.name)?'checked':''} onchange="setProjectCategory(${i},this.checked)">プロジェクト</label>
+      ${PROJECT_RULES_ON?`<label class="radio-lbl" title="終業報告でプロジェクト名・進捗・状況を入力するカテゴリ"><input type="checkbox" ${isProjectCat(c.name)?'checked':''} onchange="setProjectCategory(${i},this.checked)">プロジェクト</label>`:''}
       <button onclick="removeCategory(${i})" title="${c.isBreak?'休憩カテゴリは削除できません':'削除'}" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:var(--fs-lg);padding:2px 6px;line-height:1;">×</button>
     </div>
   `).join('');
@@ -5317,6 +5372,7 @@ async function loadConsultations(force){
     }
     _updateConsultBadge();
     if(_curView==='consult') renderConsultPage();
+    if(_curView==='mission') _renderMissionHistory();
     if(_curView==='inbox') renderInbox();
   })();
   _consultLoading=run;
@@ -5326,11 +5382,13 @@ function _setBadge(id, n, label){ const b=document.getElementById(id); if(!b) re
 function _updateConsultBadge(){
   let n=0, help=0;
   if(IS_MANAGER){ n=CONSULTS.filter(c=>c.status==='未読').length; help=_delayProjects30().length; }
-  else { const seen=_csSeen(); n=CONSULTS.filter(c=>_csHasNewReply(c, seen)).length; }
+  let ms=0;
+  if(!IS_MANAGER){ const seen=_csSeen(); n=CONSULTS.filter(c=>!_isMissionReport(c) && _csHasNewReply(c, seen)).length; ms=CONSULTS.filter(c=>_isMissionReport(c) && _csHasNewReply(c, seen)).length; }
   _setBadge('consult-badge', IS_MANAGER?0:n); _setBadge('consult-badge-m', IS_MANAGER?0:n);
+  _setBadge('mission-badge', ms); _setBadge('mission-badge-m', ms);
   _setBadge('inbox-badge', IS_MANAGER?n:0); _setBadge('inbox-badge-m', IS_MANAGER?n:0);
   _setBadge('inbox-help-badge', IS_MANAGER?help:0, '遅延'); _setBadge('inbox-help-badge-m', IS_MANAGER?help:0, '遅延');
-  const dot=document.getElementById('mnav-more-dot'); if(dot) dot.hidden=!(n||help);
+  const dot=document.getElementById('mnav-more-dot'); if(dot) dot.hidden=!(n||help||ms);
 }
 // ---- メンバー：相談 ----
 const _myProjectNames=new Set();
@@ -5356,7 +5414,7 @@ function renderConsultPage(){
 }
 function renderConsultHistory(){
   const el=document.getElementById('cs-history'); if(!el) return;
-  const mine=CONSULTS.filter(c=>c.authorEmail===AUTH_EMAIL);
+  const mine=CONSULTS.filter(c=>c.authorEmail===AUTH_EMAIL && !_isMissionReport(c));
   if(!_consultLoaded && !_consultErr){ el.innerHTML='<div style="font-size:var(--fs-md);color:var(--t3);">読み込み中...</div>'; return; }
   if(!mine.length){ el.innerHTML='<div style="font-size:var(--fs-md);color:var(--t3);">まだ送った相談はありません</div>'; return; }
   const seen=_csSeen();
@@ -5402,6 +5460,234 @@ async function submitConsultation(){
     _toast('toast-consult','送信できませんでした（'+_errText(e)+'）。入力内容はそのまま残っています。もう一度送信してください', true);
   }finally{ if(btn) btn.disabled=false; }
 }
+// ============================================================
+// ミッション進捗確認
+// ・設定：missions/{名前} = {member, items:[{id,title}], freq:'weekly'|'biweekly'|'monthly', dow:0〜6, anchor:'YYYY-MM-DD',
+//         askPending（小林さんの「進捗どうなってる？」）, lastSent（GAS が通知した日）}
+// ・報告：consultations に kind:'ミッション進捗' で保存（受信箱・返信・Slack 通知の仕組みをそのまま使う）
+// ・通知：GAS（Slack終業リマインド）が毎朝10時ごろ、その日が報告日の人へ Slack で DM
+// ============================================================
+const MS_KIND='ミッション進捗';
+const MS_FREQ={weekly:'週1回', biweekly:'隔週', monthly:'月1回（第1週の曜日）'};
+const MS_DOW=['日','月','火','水','木','金','土'];
+const MS_CATS=['報告','相談'];
+let _msName='', _msDoc=null, _msEdit=null, _msErr='', _msLoading=false;
+function _isMissionReport(c){ return !!c && c.kind===MS_KIND; }
+function _msNewId(){ return 'm'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+function _msTargets(){ return MEMBERS.map((m,i)=>({m,i})).filter(x=>x.m && String(x.m.email||'').trim().toLowerCase()!==AUTH_EMAIL); }
+function _msMi(){
+  if(IS_MANAGER){ const s=document.getElementById('ms-member'); const v=s&&s.value!==''?parseInt(s.value):NaN; return isNaN(v)?-1:v; }
+  return ME;
+}
+function _msDue(doc, ds){
+  if(!doc || !Array.isArray(doc.items) || !doc.items.length) return false;
+  const d=new Date(ds+'T00:00:00');
+  if(d.getDay()!==Number(doc.dow)) return false;
+  if(doc.freq==='monthly') return d.getDate()<=7;
+  if(doc.freq==='biweekly'){ const a=new Date((doc.anchor||ds)+'T00:00:00'); const diff=Math.round((d-a)/86400000); return diff>=0 && diff%14===0; }
+  return doc.freq==='weekly';
+}
+function _msNextDate(doc){
+  const d=new Date(); d.setHours(0,0,0,0);
+  if(new Date().getHours()>=10) d.setDate(d.getDate()+1); // 今日の10時を過ぎていたら明日から
+  for(let k=0;k<70;k++){ const ds=dateStr(d); if(_msDue(doc, ds)) return ds; d.setDate(d.getDate()+1); }
+  return '';
+}
+function _msFirstDow(dow){ const d=new Date(); d.setHours(0,0,0,0); if(new Date().getHours()>=10) d.setDate(d.getDate()+1); while(d.getDay()!==dow) d.setDate(d.getDate()+1); return dateStr(d); }
+function _msLabelDate(ds){ if(!ds) return ''; const d=new Date(ds+'T00:00:00'); return `${d.getMonth()+1}月${d.getDate()}日（${MS_DOW[d.getDay()]}）`; }
+function _msStatus(kind, msg){
+  const el=document.getElementById('ms-save-status'); if(!el) return;
+  if(kind==='saving'){ el.style.color='var(--t3)'; el.textContent='保存中…'; }
+  else if(kind==='ok'){ el.style.color='var(--ink)'; el.textContent='✓ '+(msg||'保存しました')+'（'+new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})+'）'; }
+  else if(kind==='err'){ el.style.color='var(--error-ink)'; el.textContent='✕ '+(msg||'保存できませんでした'); }
+  else el.textContent='';
+}
+function renderMissionPage(){
+  const sel=document.getElementById('ms-member');
+  if(sel && IS_MANAGER){
+    const cur=sel.value, list=_msTargets();
+    sel.innerHTML=list.map(x=>`<option value="${x.i}">${esc(x.m.name)}</option>`).join('');
+    if(cur!=='' && list.some(x=>String(x.i)===cur)) sel.value=cur;
+  }
+  const mi=_msMi(), m=MEMBERS[mi];
+  const rc=document.getElementById('ms-report-card');
+  if(rc) rc.style.display=(!IS_MANAGER && m)?'':'none'; // 報告するのは本人だけ
+  if(!m){
+    const su=document.getElementById('ms-setup'); if(su) su.innerHTML=`<div style="font-size:var(--fs-md);color:var(--t3);">${IS_MANAGER?'メンバーを選んでください':'メンバー登録されていないため使えません'}</div>`;
+    return;
+  }
+  if(_msName!==m.name){ _msName=m.name; _msDoc=null; _msEdit=null; loadMission(m.name); }
+  _renderMissionSetup(); _renderMissionReport(); _renderMissionHistory();
+}
+function reloadMission(){ const n=_msName; _msName=''; renderMissionPage(); loadConsultations(true); if(!n) return; }
+async function loadMission(name){
+  _msLoading=true; _msErr='';
+  try{
+    const snap=await _db.collection('missions').doc(name).get();
+    if(_msName!==name) return;
+    _msDoc=snap.exists?(snap.data()||{}):{};
+  }catch(e){
+    if(_msName!==name) return;
+    console.error('ミッションの読み込みエラー:', e); _msErr=_errText(e); _msDoc=null;
+  }finally{
+    if(_msName===name){
+      _msLoading=false;
+      _msEdit=_msDoc?{items:(Array.isArray(_msDoc.items)?_msDoc.items:[]).map(x=>({id:x.id||_msNewId(), title:String(x.title||'')})), freq:MS_FREQ[_msDoc.freq]?_msDoc.freq:'weekly', dow:Number.isInteger(_msDoc.dow)?_msDoc.dow:1}:null;
+      if(_curView==='mission'){ _renderMissionSetup(); _renderMissionReport(); }
+    }
+  }
+}
+function _renderMissionSetup(){
+  const box=document.getElementById('ms-setup'); if(!box) return;
+  if(_msErr){ box.innerHTML=`<div class="load-err"><span>ミッションを読み込めませんでした（${esc(_msErr)}）</span><button class="btn btn-sm" type="button" onclick="reloadMission()">再読み込み</button></div>`; return; }
+  if(_msLoading||!_msEdit){ box.innerHTML='<div style="font-size:var(--fs-md);color:var(--t3);">読み込み中...</div>'; return; }
+  const e=_msEdit;
+  const next=_msNextDate(Object.assign({}, _msDoc, {items:(_msDoc&&_msDoc.items)||[]}));
+  box.innerHTML=`
+    <div class="form-label">ミッション</div>
+    ${e.items.length?e.items.map((x,i)=>`<div class="ms-row"><input type="text" maxlength="100" value="${esc(x.title)}" placeholder="ミッション名" oninput="_msEdit.items[${i}].title=this.value" aria-label="ミッション${i+1}"><button class="ms-x" type="button" title="削除" onclick="msRemoveItem(${i})">×</button></div>`).join(''):'<div style="font-size:var(--fs-md);color:var(--t3);margin-bottom:8px;">まだミッションがありません</div>'}
+    <button class="btn btn-sm" type="button" onclick="msAddItem()">＋ ミッションを追加</button>
+    <div class="ms-sched">
+      <div><label class="form-label" for="ms-freq">報告のタイミング</label>
+        <select id="ms-freq" onchange="_msEdit.freq=this.value">${Object.keys(MS_FREQ).map(k=>`<option value="${k}"${k===e.freq?' selected':''}>${esc(MS_FREQ[k])}</option>`).join('')}</select></div>
+      <div><label class="form-label" for="ms-dow">曜日</label>
+        <select id="ms-dow" onchange="_msEdit.dow=parseInt(this.value)">${[1,2,3,4,5,6,0].map(d=>`<option value="${d}"${d===e.dow?' selected':''}>${MS_DOW[d]}曜日</option>`).join('')}</select></div>
+    </div>
+    <div class="ms-note">その曜日の朝10時ごろ、Slack にミッション進捗確認の DM が届きます。${next?'次回：'+esc(_msLabelDate(next)):'（保存すると次回の日付が表示されます）'}</div>
+    <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px;">
+      <span id="ms-save-status" role="status" aria-live="polite" style="font-size:var(--fs-md);margin-right:auto;"></span>
+      ${IS_MANAGER?`<button class="btn" type="button" id="ms-ask-btn" onclick="msAsk()">「進捗どうなってる？」を送る</button>`:''}
+      <button class="btn btn-p" type="button" id="ms-save-btn" onclick="saveMission()">保存する</button>
+    </div>`;
+}
+function msAddItem(){ if(!_msEdit) return; if(_msEdit.items.length>=20){ showError('ミッションは20個までです'); return; } _msEdit.items.push({id:_msNewId(), title:''}); _renderMissionSetup(); const ins=document.querySelectorAll('#ms-setup .ms-row input'); if(ins.length) ins[ins.length-1].focus(); }
+function msRemoveItem(i){ if(!_msEdit) return; const x=_msEdit.items[i]; if(x && x.title.trim() && !confirm('「'+x.title.trim()+'」を削除しますか？（「保存する」で確定します）')) return; _msEdit.items.splice(i,1); _renderMissionSetup(); }
+async function _msWrite(data){
+  const name=_msName;
+  await _db.collection('missions').doc(name).set(Object.assign({member:name, updatedAt:new Date(), updatedBy:AUTH_EMAIL}, data), {merge:true});
+  if(_msName===name) _msDoc=Object.assign({}, _msDoc||{}, data);
+}
+async function saveMission(){
+  if(!_msEdit||!_msName) return;
+  const items=_msEdit.items.map(x=>({id:x.id||_msNewId(), title:String(x.title||'').trim().slice(0,100)})).filter(x=>x.title);
+  const freq=MS_FREQ[_msEdit.freq]?_msEdit.freq:'weekly', dow=Number.isInteger(_msEdit.dow)?_msEdit.dow:1;
+  const prev=_msDoc||{};
+  const anchor=(prev.anchor && prev.freq===freq && prev.dow===dow)?prev.anchor:_msFirstDow(dow);
+  const btn=document.getElementById('ms-save-btn'); if(btn) btn.disabled=true;
+  _msStatus('saving');
+  try{
+    await _msWrite({items, freq, dow, anchor});
+    _msEdit.items=items.map(x=>Object.assign({}, x));
+    _renderMissionSetup(); _renderMissionReport();
+    _msStatus('ok');
+  }catch(e){
+    console.error('ミッションの保存エラー:', e);
+    _msStatus('err', '保存できませんでした（'+_errText(e)+'）');
+    if(btn) btn.disabled=false;
+  }
+}
+async function msAsk(){
+  if(!IS_MANAGER||!_msName) return;
+  const name=_msName;
+  if(!((_msDoc&&_msDoc.items)||[]).length){ _msStatus('err', name+'さんのミッションがまだ登録されていません'); return; }
+  const btn=document.getElementById('ms-ask-btn'); if(btn) btn.disabled=true;
+  try{
+    await _msWrite({askPending:true, askAt:new Date(), askedBy:AUTH_EMAIL});
+    _msStatus('ok', '10分以内に Slack で '+name+'さんに届きます');
+  }catch(e){
+    console.error('進捗確認の送信エラー:', e);
+    _msStatus('err', '送れませんでした（'+_errText(e)+'）');
+  }finally{ if(btn) btn.disabled=false; }
+}
+// ---- 報告（本人だけ）
+function _renderMissionReport(){
+  const box=document.getElementById('ms-report'); if(!box || IS_MANAGER) return;
+  const send=document.getElementById('ms-send');
+  if(_msErr||_msLoading||!_msDoc){ box.innerHTML='<div style="font-size:var(--fs-md);color:var(--t3);">'+(_msErr?'ミッションを読み込めませんでした':'読み込み中...')+'</div>'; if(send) send.disabled=true; return; }
+  const items=Array.isArray(_msDoc.items)?_msDoc.items:[];
+  if(send) send.disabled=!items.length;
+  // 入力中の内容は残す（同じミッションの行はそのまま）
+  const keep={}; box.querySelectorAll('.ms-rep').forEach(r=>{ keep[r.dataset.id]={cat:r.querySelector('select').value, txt:r.querySelector('textarea').value}; });
+  box.innerHTML=items.length?items.map(x=>{ const k=keep[x.id]||{}; return `<div class="ms-rep" data-id="${esc(x.id)}" data-title="${esc(x.title)}">
+      <div class="ms-rep-h"><span class="ms-rep-t">${esc(x.title)}</span>
+        <select aria-label="カテゴリ">${MS_CATS.map(c=>`<option value="${c}"${(k.cat||'報告')===c?' selected':''}>${c}</option>`).join('')}</select>
+        <button class="ms-x" type="button" title="このミッションを削除" data-id="${esc(x.id)}" onclick="msDeleteFromReport(this.dataset.id)">×</button></div>
+      <textarea maxlength="2000" placeholder="進捗・内容（空欄のミッションは送信されません）">${esc(k.txt||'')}</textarea>
+    </div>`; }).join('')+'<div class="ms-note">終わったミッションや不要になったミッションは × で削除できます。</div>'
+    :'<div style="font-size:var(--fs-md);color:var(--t3);">ミッションが登録されていません。下の「ミッションと報告のタイミング」で追加してください。</div>';
+}
+async function msDeleteFromReport(id){
+  const items=((_msDoc&&_msDoc.items)||[]);
+  const x=items.find(y=>y.id===id); if(!x) return;
+  if(!confirm('「'+x.title+'」をミッションから削除しますか？')) return;
+  const rest=items.filter(y=>y.id!==id);
+  try{
+    await _msWrite({items:rest});
+    if(_msEdit) _msEdit.items=_msEdit.items.filter(y=>y.id!==id);
+    const row=document.querySelector('#ms-report .ms-rep[data-id="'+CSS.escape(id)+'"]'); if(row) row.remove();
+    _renderMissionReport(); _renderMissionSetup();
+    _toast('toast-ms-report','「'+x.title+'」を削除しました', false, 4000);
+  }catch(e){
+    console.error('ミッションの削除エラー:', e);
+    _toast('toast-ms-report','削除できませんでした（'+_errText(e)+'）', true);
+  }
+}
+async function submitMissionReport(){
+  if(IS_MANAGER) return;
+  if(ME<0||!MEMBERS[ME]){ showError('メンバー登録されていないため送信できません'); return; }
+  const rows=[...document.querySelectorAll('#ms-report .ms-rep')].map(r=>({
+    title:String(r.dataset.title||'').slice(0,100),
+    category:MS_CATS.includes(r.querySelector('select').value)?r.querySelector('select').value:'報告',
+    progress:(r.querySelector('textarea').value||'').trim().slice(0,2000)
+  })).filter(x=>x.progress);
+  if(!rows.length){ _toast('toast-ms-report','どれか1つ以上のミッションに進捗を入力してください', true); return; }
+  const body=rows.map(x=>`【${x.category}】${x.title}\n${x.progress}`).join('\n\n');
+  if(body.length>5000){ _toast('toast-ms-report','内容が長すぎます（合計5000文字まで）', true); return; }
+  const btn=document.getElementById('ms-send'); if(btn) btn.disabled=true;
+  const now=new Date();
+  const data={authorEmail:AUTH_EMAIL, authorName:MEMBERS[ME].name, project:'ミッション進捗確認', body, kind:MS_KIND, items:rows,
+    status:'未読', managerReply:'', createdAt:now, updatedAt:now, notified:false};
+  try{
+    const ref=await _db.collection('consultations').add(data);
+    CONSULTS.unshift(Object.assign({id:ref.id}, data));
+    document.querySelectorAll('#ms-report .ms-rep textarea').forEach(t=>t.value='');
+    document.querySelectorAll('#ms-report .ms-rep select').forEach(s=>s.value='報告');
+    _toast('toast-ms-report','小林さんに送信しました', false, 4000);
+    _renderMissionHistory();
+  }catch(e){
+    console.error('ミッション進捗の送信エラー:', e);
+    _toast('toast-ms-report','送信できませんでした（'+_errText(e)+'）。入力内容はそのまま残っています。もう一度送信してください', true);
+  }finally{ if(btn) btn.disabled=false; }
+}
+// ---- これまでの報告（本人：自分の分／小林さん：選んだメンバーの分）
+function _renderMissionHistory(){
+  const el=document.getElementById('ms-history'); if(!el) return;
+  const mine=CONSULTS.filter(c=>_isMissionReport(c) && (IS_MANAGER?c.authorName===_msName:c.authorEmail===AUTH_EMAIL));
+  if(!_consultLoaded && !_consultErr){ el.innerHTML='<div style="font-size:var(--fs-md);color:var(--t3);">読み込み中...</div>'; return; }
+  if(_consultErr){ el.innerHTML=`<div class="load-err"><span>読み込めませんでした（${esc(_consultErr)}）</span><button class="btn btn-sm" type="button" onclick="loadConsultations(true)">再読み込み</button></div>`; return; }
+  if(!mine.length){ el.innerHTML='<div style="font-size:var(--fs-md);color:var(--t3);">まだ報告はありません</div>'; return; }
+  const seen=_csSeen();
+  el.innerHTML=mine.map(c=>{
+    if(!IS_MANAGER && _csHasNewReply(c, seen)) _csNewThisView[c.id]=true;
+    const isNew=!!_csNewThisView[c.id];
+    return `<div class="cs-item">
+      <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;">
+        <span class="cs-meta">${esc(_fmtTs(c.createdAt))}</span>
+        <span class="cs-badge ${c.status==='完了'?'done':''}">${esc(c.status||'未読')}</span>
+        ${isNew?'<span class="cs-badge unread">新しい返信</span>':''}
+        ${IS_MANAGER?`<button class="btn btn-sm" type="button" style="margin-left:auto;" data-id="${esc(c.id)}" onclick="sw('inbox');openConsult(this.dataset.id)">受信箱で返信</button>`:''}
+      </div>
+      <div class="cs-body" style="margin:8px 0 0;">${esc(c.body)}</div>
+      ${c.managerReply?`<div class="cs-reply"><div style="font-size:var(--fs-sm);margin-bottom:4px;">小林さんからの返信 ${esc(_fmtTs(c.replyAt))}</div>${esc(c.managerReply)}</div>`:''}
+    </div>`;
+  }).join('');
+  if(!IS_MANAGER){
+    let changed=false;
+    mine.forEach(c=>{ if(_csHasNewReply(c, seen)){ seen[c.id]=_tsMs(c.replyAt); changed=true; } });
+    if(changed){ try{ localStorage.setItem(CS_SEEN_KEY, JSON.stringify(seen)); }catch(e){} _updateConsultBadge(); }
+  }
+}
+
 // ---- 管理者：受信箱 ----
 function renderInbox(){
   if(!IS_MANAGER) return;
@@ -5414,9 +5700,10 @@ function renderInbox(){
   }
   setInboxTab(_inboxTab);
 }
-function refreshInbox(){ loadConsultations(true); loadProjectLogs(true); }
+function refreshInbox(){ loadConsultations(true); if(PROJECT_RULES_ON) loadProjectLogs(true); }
 function setInboxTab(t){
-  _inboxTab=t==='progress'?'progress':'consult';
+  _inboxTab=(t==='progress'&&PROJECT_RULES_ON)?'progress':'consult';
+  { const pb=document.getElementById('ib-tab-progress'); if(pb) pb.style.display=PROJECT_RULES_ON?'':'none'; }
   [['consult','ib-tab-consult','cs-inbox'],['progress','ib-tab-progress','pj-view']].forEach(([k,tab,box])=>{
     const on=k===_inboxTab; const b=document.getElementById(tab), x=document.getElementById(box);
     if(b){ b.classList.toggle('active', on); b.setAttribute('aria-selected', on?'true':'false'); } if(x) x.style.display=on?'':'none';
@@ -5654,7 +5941,7 @@ function renderProjectProgress(){
 function renderProjectDashCard(){
   const cardEl=document.getElementById('pj-dash-card'), box=document.getElementById('pj-dash');
   if(!cardEl||!box) return;
-  if(!IS_MANAGER){ cardEl.style.display='none'; return; }
+  if(!IS_MANAGER || !PROJECT_RULES_ON){ cardEl.style.display='none'; return; }
   cardEl.style.display='';
   if(!_plogCovers(_plogNeedCutoff()) && !_plogLoading) loadProjectLogs();
   if(!_plogLoadedAt && !_plogErr){ box.innerHTML='<div class="pjd-none">読み込み中...</div>'; return; }
